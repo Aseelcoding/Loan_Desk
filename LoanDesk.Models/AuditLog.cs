@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LoanDesk.Models
 {
-    internal class AuditLog
+    public class AuditLog
     {
         public int ID { get; set; }
         public int UserID { get; set; }
