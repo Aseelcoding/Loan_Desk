@@ -1,5 +1,6 @@
 <Solution>
-  <Project Path="BSL/BSL.csproj" />
-  <Project Path="DAL/DAL.csproj" />
+  <Project Path="BSL/LoanDesk.BSL.csproj" />
+  <Project Path="DAL/LoanDesk.DAL.csproj" />
+  <Project Path="LoanDesk.Models/LoanDesk.Models.csproj" />
   <Project Path="Loan_Desk.csproj" />
 </Solution>
