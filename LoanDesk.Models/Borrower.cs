@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LoanDesk.Models
 {
-    internal class clsBorrower
+    internal class Borrower
     {
         public int ID { get; set; }
         public string FullName { get; set; }
