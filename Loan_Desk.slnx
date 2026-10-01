@@ -1,6 +1,6 @@
 <Solution>
-  <Project Path="BSL/LoanDesk.BSL.csproj" />
-  <Project Path="DAL/LoanDesk.DAL.csproj" />
-  <Project Path="LoanDesk.Models/LoanDesk.Models.csproj" />
-  <Project Path="Loan_Desk.csproj" />
+  <Project Path="BLL/BLL.csproj" Id="8d287a4b-eaa0-4974-9f2d-f2ae34981050" />
+  <Project Path="DAL/DAL.csproj" Id="2dbadb5c-d368-4578-8887-327163acab00" />
+  <Project Path="LoanDesk.Models/LoanDesk.Models.csproj" Id="d4eea928-bd1f-4d76-ab3d-5bf2a9a91c24" />
+  <Project Path="Loan_Desk.csproj" Id="c84bdbf3-6390-4275-8b8b-dad8a28efeb4" />
 </Solution>

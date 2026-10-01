@@ -15,6 +15,7 @@ namespace Loan_Desk
         public Form1()
         {
             InitializeComponent();
+           
         }
     }
 }

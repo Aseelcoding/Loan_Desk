@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -75,6 +76,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="BLL\BLL.csproj">
+      <Project>{8d287a4b-eaa0-4974-9f2d-f2ae34981050}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="LoanDesk.Models\LoanDesk.Models.csproj">
+      <Project>{d4eea928-bd1f-4d76-ab3d-5bf2a9a91c24}</Project>
+      <Name>LoanDesk.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
