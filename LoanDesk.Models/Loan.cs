@@ -15,11 +15,11 @@ namespace LoanDesk.Models
         public int Quantity { get; set; }
         public DateTime LoanedAt { get; set; }
         public DateTime DueAt { get; set; }
-        public DateTime ReturnedAt { get; set; }
+        public DateTime? ReturnedAt { get; set; }
         //Allowed (Active,Returned,Lost) only
         public string Status { get; set; }
         public decimal LateFee { get; set; }
-        public bool FinePaid { get; set; }
+        public bool? FinePaid { get; set; }
 
 
     }
