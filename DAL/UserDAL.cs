@@ -7,23 +7,64 @@ namespace DAL
 {
     public class UserDAL
     {
-        private readonly string  ConnectionString = ConfigurationManager.ConnectionStrings["LoanDeskDB"].ConnectionString;
+        private static readonly string  ConnectionString = ConfigurationManager.ConnectionStrings["LoanDeskDB"].ConnectionString;
 
 
-        public bool AddNewUser(User user) 
+        public static bool IsAdminExist() 
+        {
+            bool IsExist=false;
+            string Role = "Admin";
+           
+            SqlConnection connection = new SqlConnection(ConnectionString);
+            string query = @"SELECT TOP 1 IsActive FROM Users
+                                where Role=@Role and IsActive=1;";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@Role", SqlDbType.VarChar, 30).Value = Role;
+          
+
+            try
+            {
+                connection.Open();
+                object Result = cmd.ExecuteScalar();
+
+                if (Result!=DBNull.Value&&Result!=null)
+                {
+                    int IsActive;
+                    int.TryParse(Result.ToString(), out IsActive);
+
+                    if (IsActive == 1)
+                    {
+                        IsExist = true;
+                    }
+                }
+                else
+                {
+                    IsExist=false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to add new user \n\nDetails:", ex);
+            }
+            finally { connection.Close(); connection.Dispose();}
+
+            return IsExist;
+        }
+        public static bool AddNewUser(User user) 
         {
             bool IsAdded = false;
 
                 SqlConnection connection =new SqlConnection(ConnectionString);
 
             string query = @"
-INSERT INTO [dbo].[Users]
+            INSERT INTO [dbo].[Users]
            ([Username]
            ,[PasswordHash]
            ,[PasswordSalt]
            ,[Role]
            ,[IsActive])
-     VALUES
+            VALUES
            (@Username,
            @PasswordHash,
             @PasswordSalt,
@@ -38,11 +79,11 @@ INSERT INTO [dbo].[Users]
             cmd.Parameters.Add("@Role", SqlDbType.VarChar, 30).Value = user.Role;
             cmd.Parameters.Add("@IsActive", SqlDbType.Bit).Value = user.IsActive;
 
-            connection.Open();
+           
 
             try
             {
-
+                connection.Open();
                 object Result = cmd.ExecuteScalar();
 
                 if (Result != null && Result != DBNull.Value)
@@ -66,5 +107,75 @@ INSERT INTO [dbo].[Users]
             return IsAdded;
 
         }
+        
+        public static User Find(string Username) 
+        {
+            User user = new User();
+            SqlConnection connection = new SqlConnection(ConnectionString);
+
+
+            string query = @"
+
+                  SELECT [ID]
+                 ,[Username]
+                ,[PasswordHash]
+                ,[PasswordSalt]
+                ,[Role]
+                 ,[IsActive]
+                FROM [dbo].[Users]
+                 where [Username]=@Username
+                        ;";
+
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@Username", SqlDbType.VarChar, 15).Value = Username;
+
+          
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    // اقرأ الأعمدة هنا
+
+                    int UID;
+                    if (!int.TryParse(reader["ID"].ToString(), out UID))
+                        return null;
+
+
+                    user.ID = UID;
+                    user.Username = reader["Username"].ToString();
+                    user.Role = reader["Role"].ToString();
+                    user.PasswordHash = reader["PasswordHash"].ToString();
+                    user.PasswordSalt = reader["PasswordSalt"].ToString();
+                    if (reader["IsActive"].ToString() == "1")
+                    {
+                        user.IsActive = true;
+                    }
+                    else
+                        user.IsActive = false;
+
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+            finally
+            {
+                connection.Close(); connection.Dispose();
+            }
+
+            return user;
+            
+        }
+
     }
 }

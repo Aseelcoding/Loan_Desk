@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PasswordHasher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserBLL.cs" />
   </ItemGroup>
@@ -48,6 +49,10 @@
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{2dbadb5c-d368-4578-8887-327163acab00}</Project>
       <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LoanDesk.Models\LoanDesk.Models.csproj">
+      <Project>{d4eea928-bd1f-4d76-ab3d-5bf2a9a91c24}</Project>
+      <Name>LoanDesk.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
