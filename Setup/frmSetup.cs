@@ -15,6 +15,7 @@ namespace Loan_Desk.Setup
         public frmSetup()
         {
             InitializeComponent();
+          
         }
 
        

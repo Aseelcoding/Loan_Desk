@@ -65,11 +65,12 @@ namespace DAL
            ,[Role]
            ,[IsActive])
             VALUES
-           (@Username,
-           @PasswordHash,
+           (
+            @Username,
+            @PasswordHash,
             @PasswordSalt,
-                @Role,
-           @IsActive
+            @Role,
+            @IsActive
            ) select scope_identity();";
 
             SqlCommand cmd =new SqlCommand(query, connection);
