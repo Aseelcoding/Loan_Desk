@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
+using Loan_Desk.Setup;
+using BLL;
+
 
 namespace Loan_Desk
 {
@@ -20,9 +23,10 @@ namespace Loan_Desk
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-           
-
-            Application.Run(new Form1());
+            if(!UserBLL.IsAdminExist())
+            Application.Run(new frmSetup());
+            else 
+            Application.Run(new frmLogin());
         }
     }
 }

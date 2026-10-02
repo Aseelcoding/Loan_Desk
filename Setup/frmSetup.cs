@@ -8,14 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Loan_Desk
+namespace Loan_Desk.Setup
 {
-    public partial class Form1 : Form
+    public partial class frmSetup : Form
     {
-        public Form1()
+        public frmSetup()
         {
             InitializeComponent();
-           
         }
+
+       
     }
 }
