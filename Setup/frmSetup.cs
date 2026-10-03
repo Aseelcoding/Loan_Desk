@@ -75,9 +75,10 @@ namespace Loan_Desk.Setup
                 try
                 {
                     
-                    //UserBLL.AddNewUser(NewAdmin,txtPassword.Text);
-                    MessageBox.Show("New Admin Has Been Added To The System.\nNow this windwo will be closed.");
-                    this.Close();
+                    if(UserBLL.AddNewUser(NewAdmin,txtPassword.Text))
+                    {MessageBox.Show("New Admin Has Been Added To The System.\nNow this windwo will be closed.");
+                        this.Close();
+                    }
                 }
                 catch (Exception ex) 
                 {

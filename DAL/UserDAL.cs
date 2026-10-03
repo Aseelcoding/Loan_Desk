@@ -29,10 +29,10 @@ namespace DAL
 
                 if (Result!=DBNull.Value&&Result!=null)
                 {
-                    int IsActive;
-                    int.TryParse(Result.ToString(), out IsActive);
+                    bool IsActive;
+                    IsActive = (bool)Result;
 
-                    if (IsActive == 1)
+                    if (IsActive == true)
                     {
                         IsExist = true;
                     }

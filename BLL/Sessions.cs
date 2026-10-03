@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BLL
+﻿namespace BLL
 {
     public class Sessions
     {
@@ -30,11 +24,12 @@ namespace BLL
            
 
         }
-        public static UserSessions CurrentUser { get; internal set; }
+
+        public static UserSessions CurrentUser { get; internal set;}
         static internal void CreateUserSession(int ID, string Username, string Role, bool IsActive)
-            {
+        {
                 UserSessions CurrentUser_1 = new UserSessions(ID, Username, Role, IsActive);
                 CurrentUser = CurrentUser_1;
-            }
+        }
     }
 }

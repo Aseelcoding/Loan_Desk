@@ -1,0 +1,128 @@
+﻿namespace Loan_Desk
+{
+    partial class CustomPanel
+    {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.panel1 = new ReaLTaiizor.Controls.Panel();
+            this.btnAccount = new ReaLTaiizor.Controls.MetroEllipse();
+            this.labTitle = new ReaLTaiizor.Controls.FoxLabel();
+            this.labLoanDesk = new ReaLTaiizor.Controls.FoxLabel();
+            this.panel1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
+            this.panel1.Controls.Add(this.btnAccount);
+            this.panel1.Controls.Add(this.labTitle);
+            this.panel1.Controls.Add(this.labLoanDesk);
+            this.panel1.EdgeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(41)))), ((int)(((byte)(50)))));
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Name = "panel1";
+            this.panel1.Padding = new System.Windows.Forms.Padding(4);
+            this.panel1.Size = new System.Drawing.Size(751, 63);
+            this.panel1.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            this.panel1.TabIndex = 1;
+            this.panel1.Text = "panel1";
+            // 
+            // btnAccount
+            // 
+            this.btnAccount.BorderThickness = 7;
+            this.btnAccount.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.btnAccount.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(155)))), ((int)(((byte)(155)))));
+            this.btnAccount.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            this.btnAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F);
+            this.btnAccount.HoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.btnAccount.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.btnAccount.HoverTextColor = System.Drawing.Color.White;
+            this.btnAccount.Image = null;
+            this.btnAccount.ImageSize = new System.Drawing.Size(64, 64);
+            this.btnAccount.IsDerivedStyle = true;
+            this.btnAccount.Location = new System.Drawing.Point(681, 6);
+            this.btnAccount.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAccount.Name = "btnAccount";
+            this.btnAccount.NormalBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.btnAccount.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.btnAccount.NormalTextColor = System.Drawing.Color.Black;
+            this.btnAccount.PressBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.btnAccount.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.btnAccount.PressTextColor = System.Drawing.Color.White;
+            this.btnAccount.Size = new System.Drawing.Size(59, 50);
+            this.btnAccount.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            this.btnAccount.StyleManager = null;
+            this.btnAccount.TabIndex = 3;
+            this.btnAccount.Text = "Account";
+            this.btnAccount.ThemeAuthor = "Taiizor";
+            this.btnAccount.ThemeName = "MetroLight";
+            // 
+            // labTitle
+            // 
+            this.labTitle.BackColor = System.Drawing.Color.Transparent;
+            this.labTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.labTitle.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.labTitle.Location = new System.Drawing.Point(4, 27);
+            this.labTitle.Margin = new System.Windows.Forms.Padding(2);
+            this.labTitle.Name = "labTitle";
+            this.labTitle.Size = new System.Drawing.Size(160, 30);
+            this.labTitle.TabIndex = 1;
+            this.labTitle.Text = "Operations overview";
+            // 
+            // labLoanDesk
+            // 
+            this.labLoanDesk.BackColor = System.Drawing.Color.Transparent;
+            this.labLoanDesk.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
+            this.labLoanDesk.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.labLoanDesk.Location = new System.Drawing.Point(6, 10);
+            this.labLoanDesk.Margin = new System.Windows.Forms.Padding(2);
+            this.labLoanDesk.Name = "labLoanDesk";
+            this.labLoanDesk.Size = new System.Drawing.Size(128, 19);
+            this.labLoanDesk.TabIndex = 0;
+            this.labLoanDesk.Text = "LoanDesk/Dashboard";
+            // 
+            // CustomPanel
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Name = "CustomPanel";
+            this.Size = new System.Drawing.Size(751, 62);
+            this.panel1.ResumeLayout(false);
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private ReaLTaiizor.Controls.Panel panel1;
+        private ReaLTaiizor.Controls.MetroEllipse btnAccount;
+        private ReaLTaiizor.Controls.FoxLabel labTitle;
+        private ReaLTaiizor.Controls.FoxLabel labLoanDesk;
+    }
+}

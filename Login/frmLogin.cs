@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BLL;
+using Loan_Desk.Main_Screen;
 using LoanDesk.Models;
 namespace Loan_Desk
 {
@@ -24,9 +25,14 @@ namespace Loan_Desk
             
             User CurrentUser=new User();
             if (UserBLL.Login(txtUsername.Text, txtPassword.Text))
+            {
                 MessageBox.Show("Success");
+                frmMainScreen frmMainScreen = new frmMainScreen();
+                frmMainScreen.Show();
+                this.Hide();
+            }
             else
-                MessageBox.Show("Filed");
+                MessageBox.Show("Filed", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Stop);
 
             
         }

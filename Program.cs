@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.Configuration;
 using Loan_Desk.Setup;
 using BLL;
+using Loan_Desk.Main_Screen;
 
 
 namespace Loan_Desk
@@ -23,13 +24,13 @@ namespace Loan_Desk
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            //if(!UserBLL.IsAdminExist())
-            //Application.Run(new frmSetup());
+            //if (!UserBLL.IsAdminExist())
+            //    Application.Run(new frmSetup());
 
-            //if(UserBLL.IsAdminExist())
-            //Application.Run(new frmLogin());
+            //if (UserBLL.IsAdminExist())
+            //    Application.Run(new frmLogin());
 
-            Application.Run(new frmLogin());
+            Application.Run(new frmMainScreen());
         }
     }
 }

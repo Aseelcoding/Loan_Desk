@@ -52,11 +52,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomPanel .cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomPanel .Designer.cs">
+      <DependentUpon>CustomPanel .cs</DependentUpon>
+    </Compile>
     <Compile Include="Login\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Login\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main Screen\frmMainScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main Screen\frmMainScreen.Designer.cs">
+      <DependentUpon>frmMainScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -66,8 +78,14 @@
     <Compile Include="Setup\frmSetup.Designer.cs">
       <DependentUpon>frmSetup.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CustomPanel .resx">
+      <DependentUpon>CustomPanel .cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main Screen\frmMainScreen.resx">
+      <DependentUpon>frmMainScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -124,6 +142,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Icons\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Dashborad-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Users-32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Borrowers-32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Equipment-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\loan-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\return-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\fine-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\lost-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\log-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\reports-32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
