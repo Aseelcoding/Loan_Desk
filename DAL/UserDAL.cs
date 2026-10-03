@@ -113,8 +113,6 @@ namespace DAL
         {
             User user = new User();
             SqlConnection connection = new SqlConnection(ConnectionString);
-
-
             string query = @"
 
                   SELECT [ID]

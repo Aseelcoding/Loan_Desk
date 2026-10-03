@@ -52,13 +52,9 @@ namespace BLL
         {
             if (string.IsNullOrWhiteSpace(Username))
                 throw new Exception("Username must not be null or empty");
-            if (Username.Length > 15 || Username.Length < 5)
-                throw new Exception("Username must be between 5 and 15.");
 
             if (string.IsNullOrWhiteSpace(Password))
                 throw new Exception("Password must not be null or empty");
-            if (Password.Length > 20 || Password.Length < 5)
-                throw new Exception("Password must be between 5 and 20.");
 
             bool IsValid = false;
 
@@ -69,18 +65,21 @@ namespace BLL
             }
             catch(Exception ex)
             {
-                throw new Exception("Error in Database please contact the Admin. \n\nDetails:" + ex.Message);
+                throw new Exception("Error in Database please contact the Admin." , ex);
             }
 
-            if(user == null)
+            if (user == null)
                 return IsValid;
+
             else
             {
                 //here we will compare the password with the PasswordHash and PasswordSalt:
-                IsValid= PasswordHasher.VerifyPassword(Password, user.PasswordSalt,user.PasswordHash);
-
+                IsValid = PasswordHasher.VerifyPassword(Password, user.PasswordSalt, user.PasswordHash);
+              if(IsValid )
+                    Sessions.CreateUserSession(user.ID, user.Username, user.Role, user.IsActive);
             }
-
+              
+            
 
             return IsValid;
         }

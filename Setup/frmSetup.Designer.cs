@@ -31,11 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSetup));
             this.nightPanel1 = new ReaLTaiizor.Controls.NightPanel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.thunderLabel2 = new ReaLTaiizor.Controls.ThunderLabel();
             this.bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.thunderLabel1 = new ReaLTaiizor.Controls.ThunderLabel();
             this.labelEdit1 = new ReaLTaiizor.Controls.LabelEdit();
             this.parrotGradientPanel1 = new ReaLTaiizor.Controls.ParrotGradientPanel();
@@ -56,11 +53,14 @@
             this.bigLabel3 = new ReaLTaiizor.Controls.BigLabel();
             this.bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.nightPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.parrotGradientPanel1.SuspendLayout();
             this.cyberGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // nightPanel1
@@ -81,33 +81,6 @@
             this.nightPanel1.Side = ReaLTaiizor.Controls.NightPanel.PanelSide.Left;
             this.nightPanel1.Size = new System.Drawing.Size(737, 674);
             this.nightPanel1.TabIndex = 0;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label2.Image = global::Loan_Desk.Properties.Resources.lock_40;
-            this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label2.Location = new System.Drawing.Point(11, 606);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(590, 58);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "        Secure 256-bit AES protocol active for master \r\n         credential hashi" +
-    "ng.";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
-            this.label1.Image = global::Loan_Desk.Properties.Resources.loan_50;
-            this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label1.Location = new System.Drawing.Point(52, 57);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(316, 58);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "    Loan Desk";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // thunderLabel2
             // 
@@ -132,16 +105,6 @@
             this.bigLabel2.Size = new System.Drawing.Size(652, 50);
             this.bigLabel2.TabIndex = 5;
             this.bigLabel2.Text = "Establish Master System Administrator";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Loan_Desk.Properties.Resources.warning_20;
-            this.pictureBox1.Location = new System.Drawing.Point(40, 175);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(27, 21);
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
             // 
             // thunderLabel1
             // 
@@ -512,6 +475,43 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.label2.Image = global::Loan_Desk.Properties.Resources.lock_40;
+            this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label2.Location = new System.Drawing.Point(11, 606);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(590, 58);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "        Secure 256-bit AES protocol active for master \r\n         credential hashi" +
+    "ng.";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
+            this.label1.Image = global::Loan_Desk.Properties.Resources.loan_50;
+            this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.Location = new System.Drawing.Point(52, 57);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(316, 58);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "    Loan Desk";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Loan_Desk.Properties.Resources.warning_20;
+            this.pictureBox1.Location = new System.Drawing.Point(40, 175);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(27, 21);
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
             // frmSetup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -528,12 +528,12 @@
             this.Text = "LoanDesk - Initial Administrator Setup";
             this.nightPanel1.ResumeLayout(false);
             this.nightPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.parrotGradientPanel1.ResumeLayout(false);
             this.parrotGradientPanel1.PerformLayout();
             this.cyberGroupBox1.ResumeLayout(false);
             this.cyberGroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
