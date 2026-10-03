@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSetup));
             this.nightPanel1 = new ReaLTaiizor.Controls.NightPanel();
             this.label2 = new System.Windows.Forms.Label();
@@ -38,24 +39,28 @@
             this.thunderLabel1 = new ReaLTaiizor.Controls.ThunderLabel();
             this.labelEdit1 = new ReaLTaiizor.Controls.LabelEdit();
             this.parrotGradientPanel1 = new ReaLTaiizor.Controls.ParrotGradientPanel();
+            this.chPasswordConfirm = new ReaLTaiizor.Controls.HopeCheckBox();
+            this.chPassword = new ReaLTaiizor.Controls.HopeCheckBox();
             this.cyberGroupBox1 = new ReaLTaiizor.Controls.CyberGroupBox();
+            this.chLong = new ReaLTaiizor.Controls.HopeCheckBox();
+            this.chUpper = new ReaLTaiizor.Controls.HopeCheckBox();
+            this.chSymbol = new ReaLTaiizor.Controls.HopeCheckBox();
             this.smallLabel1 = new ReaLTaiizor.Controls.SmallLabel();
-            this.cyberButton1 = new ReaLTaiizor.Controls.CyberButton();
-            this.textBoxEdit3 = new ReaLTaiizor.Controls.TextBoxEdit();
-            this.textBoxEdit2 = new ReaLTaiizor.Controls.TextBoxEdit();
-            this.textBoxEdit1 = new ReaLTaiizor.Controls.TextBoxEdit();
+            this.btnCreateAdmin = new ReaLTaiizor.Controls.CyberButton();
+            this.txtPasswordConfirm = new ReaLTaiizor.Controls.TextBoxEdit();
+            this.txtPassword = new ReaLTaiizor.Controls.TextBoxEdit();
+            this.txtUsername = new ReaLTaiizor.Controls.TextBoxEdit();
             this.bigLabel6 = new ReaLTaiizor.Controls.BigLabel();
             this.bigLabel5 = new ReaLTaiizor.Controls.BigLabel();
             this.bigLabel4 = new ReaLTaiizor.Controls.BigLabel();
             this.bigLabel3 = new ReaLTaiizor.Controls.BigLabel();
             this.bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
-            this.hopeCheckBox1 = new ReaLTaiizor.Controls.HopeCheckBox();
-            this.hopeCheckBox2 = new ReaLTaiizor.Controls.HopeCheckBox();
-            this.hopeCheckBox3 = new ReaLTaiizor.Controls.HopeCheckBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.nightPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.parrotGradientPanel1.SuspendLayout();
             this.cyberGroupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // nightPanel1
@@ -166,11 +171,13 @@
             this.parrotGradientPanel1.BottomLeft = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(61)))));
             this.parrotGradientPanel1.BottomRight = System.Drawing.Color.GhostWhite;
             this.parrotGradientPanel1.CompositingQualityType = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+            this.parrotGradientPanel1.Controls.Add(this.chPasswordConfirm);
+            this.parrotGradientPanel1.Controls.Add(this.chPassword);
             this.parrotGradientPanel1.Controls.Add(this.cyberGroupBox1);
-            this.parrotGradientPanel1.Controls.Add(this.cyberButton1);
-            this.parrotGradientPanel1.Controls.Add(this.textBoxEdit3);
-            this.parrotGradientPanel1.Controls.Add(this.textBoxEdit2);
-            this.parrotGradientPanel1.Controls.Add(this.textBoxEdit1);
+            this.parrotGradientPanel1.Controls.Add(this.btnCreateAdmin);
+            this.parrotGradientPanel1.Controls.Add(this.txtPasswordConfirm);
+            this.parrotGradientPanel1.Controls.Add(this.txtPassword);
+            this.parrotGradientPanel1.Controls.Add(this.txtUsername);
             this.parrotGradientPanel1.Controls.Add(this.bigLabel6);
             this.parrotGradientPanel1.Controls.Add(this.bigLabel5);
             this.parrotGradientPanel1.Controls.Add(this.bigLabel4);
@@ -190,6 +197,50 @@
             this.parrotGradientPanel1.TopLeft = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(61)))));
             this.parrotGradientPanel1.TopRight = System.Drawing.Color.GhostWhite;
             // 
+            // chPasswordConfirm
+            // 
+            this.chPasswordConfirm.AutoSize = true;
+            this.chPasswordConfirm.BackColor = System.Drawing.Color.SlateGray;
+            this.chPasswordConfirm.CheckedColor = System.Drawing.Color.Red;
+            this.chPasswordConfirm.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chPasswordConfirm.DisabledColor = System.Drawing.Color.LimeGreen;
+            this.chPasswordConfirm.DisabledStringColor = System.Drawing.Color.White;
+            this.chPasswordConfirm.Enable = false;
+            this.chPasswordConfirm.Enabled = false;
+            this.chPasswordConfirm.EnabledCheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
+            this.chPasswordConfirm.EnabledStringColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
+            this.chPasswordConfirm.EnabledUncheckedColor = System.Drawing.Color.White;
+            this.chPasswordConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chPasswordConfirm.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.chPasswordConfirm.ForeColor = System.Drawing.Color.White;
+            this.chPasswordConfirm.Location = new System.Drawing.Point(7, 418);
+            this.chPasswordConfirm.Name = "chPasswordConfirm";
+            this.chPasswordConfirm.Size = new System.Drawing.Size(25, 20);
+            this.chPasswordConfirm.TabIndex = 19;
+            this.chPasswordConfirm.UseVisualStyleBackColor = false;
+            // 
+            // chPassword
+            // 
+            this.chPassword.AutoSize = true;
+            this.chPassword.BackColor = System.Drawing.Color.SlateGray;
+            this.chPassword.CheckedColor = System.Drawing.Color.Red;
+            this.chPassword.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chPassword.DisabledColor = System.Drawing.Color.LimeGreen;
+            this.chPassword.DisabledStringColor = System.Drawing.Color.White;
+            this.chPassword.Enable = false;
+            this.chPassword.Enabled = false;
+            this.chPassword.EnabledCheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
+            this.chPassword.EnabledStringColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
+            this.chPassword.EnabledUncheckedColor = System.Drawing.Color.White;
+            this.chPassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chPassword.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.chPassword.ForeColor = System.Drawing.Color.White;
+            this.chPassword.Location = new System.Drawing.Point(7, 341);
+            this.chPassword.Name = "chPassword";
+            this.chPassword.Size = new System.Drawing.Size(25, 20);
+            this.chPassword.TabIndex = 14;
+            this.chPassword.UseVisualStyleBackColor = false;
+            // 
             // cyberGroupBox1
             // 
             this.cyberGroupBox1.Alpha = 20;
@@ -204,9 +255,9 @@
             this.cyberGroupBox1.ColorLighting = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(200)))), ((int)(((byte)(238)))));
             this.cyberGroupBox1.ColorPen_1 = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(52)))), ((int)(((byte)(68)))));
             this.cyberGroupBox1.ColorPen_2 = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
-            this.cyberGroupBox1.Controls.Add(this.hopeCheckBox3);
-            this.cyberGroupBox1.Controls.Add(this.hopeCheckBox2);
-            this.cyberGroupBox1.Controls.Add(this.hopeCheckBox1);
+            this.cyberGroupBox1.Controls.Add(this.chLong);
+            this.cyberGroupBox1.Controls.Add(this.chUpper);
+            this.cyberGroupBox1.Controls.Add(this.chSymbol);
             this.cyberGroupBox1.Controls.Add(this.smallLabel1);
             this.cyberGroupBox1.CyberGroupBoxStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
             this.cyberGroupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -227,6 +278,72 @@
             this.cyberGroupBox1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             this.cyberGroupBox1.Timer_RGB = 300;
             // 
+            // chLong
+            // 
+            this.chLong.AutoSize = true;
+            this.chLong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(61)))));
+            this.chLong.CheckedColor = System.Drawing.Color.Red;
+            this.chLong.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chLong.DisabledColor = System.Drawing.Color.LimeGreen;
+            this.chLong.DisabledStringColor = System.Drawing.Color.White;
+            this.chLong.Enable = false;
+            this.chLong.Enabled = false;
+            this.chLong.EnabledCheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
+            this.chLong.EnabledStringColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
+            this.chLong.EnabledUncheckedColor = System.Drawing.Color.White;
+            this.chLong.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.chLong.ForeColor = System.Drawing.Color.White;
+            this.chLong.Location = new System.Drawing.Point(13, 108);
+            this.chLong.Name = "chLong";
+            this.chLong.Size = new System.Drawing.Size(249, 20);
+            this.chLong.TabIndex = 15;
+            this.chLong.Text = "At least 5 characters long";
+            this.chLong.UseVisualStyleBackColor = false;
+            // 
+            // chUpper
+            // 
+            this.chUpper.AutoSize = true;
+            this.chUpper.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(61)))));
+            this.chUpper.CheckedColor = System.Drawing.Color.Red;
+            this.chUpper.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chUpper.DisabledColor = System.Drawing.Color.LimeGreen;
+            this.chUpper.DisabledStringColor = System.Drawing.Color.White;
+            this.chUpper.Enable = false;
+            this.chUpper.Enabled = false;
+            this.chUpper.EnabledCheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
+            this.chUpper.EnabledStringColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
+            this.chUpper.EnabledUncheckedColor = System.Drawing.Color.White;
+            this.chUpper.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.chUpper.ForeColor = System.Drawing.Color.White;
+            this.chUpper.Location = new System.Drawing.Point(13, 73);
+            this.chUpper.Name = "chUpper";
+            this.chUpper.Size = new System.Drawing.Size(277, 20);
+            this.chUpper.TabIndex = 14;
+            this.chUpper.Text = "At least one uppercase letter";
+            this.chUpper.UseVisualStyleBackColor = false;
+            // 
+            // chSymbol
+            // 
+            this.chSymbol.AutoSize = true;
+            this.chSymbol.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(61)))));
+            this.chSymbol.CheckedColor = System.Drawing.Color.Red;
+            this.chSymbol.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chSymbol.DisabledColor = System.Drawing.Color.LimeGreen;
+            this.chSymbol.DisabledStringColor = System.Drawing.Color.White;
+            this.chSymbol.Enable = false;
+            this.chSymbol.Enabled = false;
+            this.chSymbol.EnabledCheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
+            this.chSymbol.EnabledStringColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
+            this.chSymbol.EnabledUncheckedColor = System.Drawing.Color.White;
+            this.chSymbol.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.chSymbol.ForeColor = System.Drawing.Color.White;
+            this.chSymbol.Location = new System.Drawing.Point(13, 41);
+            this.chSymbol.Name = "chSymbol";
+            this.chSymbol.Size = new System.Drawing.Size(295, 20);
+            this.chSymbol.TabIndex = 13;
+            this.chSymbol.Text = "At least one number or symbol";
+            this.chSymbol.UseVisualStyleBackColor = false;
+            // 
             // smallLabel1
             // 
             this.smallLabel1.AutoSize = true;
@@ -239,93 +356,96 @@
             this.smallLabel1.TabIndex = 1;
             this.smallLabel1.Text = "Password Requirements:";
             // 
-            // cyberButton1
+            // btnCreateAdmin
             // 
-            this.cyberButton1.Alpha = 20;
-            this.cyberButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.cyberButton1.Background = true;
-            this.cyberButton1.Background_WidthPen = 4F;
-            this.cyberButton1.BackgroundPen = false;
-            this.cyberButton1.ColorBackground = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(52)))), ((int)(((byte)(68)))));
-            this.cyberButton1.ColorBackground_1 = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(52)))), ((int)(((byte)(68)))));
-            this.cyberButton1.ColorBackground_2 = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
-            this.cyberButton1.ColorBackground_Pen = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(200)))), ((int)(((byte)(238)))));
-            this.cyberButton1.ColorLighting = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(61)))));
-            this.cyberButton1.ColorPen_1 = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(52)))), ((int)(((byte)(68)))));
-            this.cyberButton1.ColorPen_2 = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
-            this.cyberButton1.CyberButtonStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
-            this.cyberButton1.Effect_1 = true;
-            this.cyberButton1.Effect_1_ColorBackground = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(61)))));
-            this.cyberButton1.Effect_1_Transparency = 25;
-            this.cyberButton1.Effect_2 = true;
-            this.cyberButton1.Effect_2_ColorBackground = System.Drawing.Color.White;
-            this.cyberButton1.Effect_2_Transparency = 20;
-            this.cyberButton1.Font = new System.Drawing.Font("Arial", 11F);
-            this.cyberButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.cyberButton1.Lighting = false;
-            this.cyberButton1.LinearGradient_Background = false;
-            this.cyberButton1.LinearGradientPen = false;
-            this.cyberButton1.Location = new System.Drawing.Point(147, 611);
-            this.cyberButton1.Name = "cyberButton1";
-            this.cyberButton1.PenWidth = 15;
-            this.cyberButton1.Rounding = true;
-            this.cyberButton1.RoundingInt = 70;
-            this.cyberButton1.Size = new System.Drawing.Size(193, 50);
-            this.cyberButton1.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            this.cyberButton1.TabIndex = 17;
-            this.cyberButton1.Tag = "Cyber";
-            this.cyberButton1.TextButton = "Create Administrator";
-            this.cyberButton1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.cyberButton1.Timer_Effect_1 = 5;
-            this.cyberButton1.Timer_RGB = 300;
+            this.btnCreateAdmin.Alpha = 20;
+            this.btnCreateAdmin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.btnCreateAdmin.Background = true;
+            this.btnCreateAdmin.Background_WidthPen = 4F;
+            this.btnCreateAdmin.BackgroundPen = false;
+            this.btnCreateAdmin.ColorBackground = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(52)))), ((int)(((byte)(68)))));
+            this.btnCreateAdmin.ColorBackground_1 = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(52)))), ((int)(((byte)(68)))));
+            this.btnCreateAdmin.ColorBackground_2 = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
+            this.btnCreateAdmin.ColorBackground_Pen = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(200)))), ((int)(((byte)(238)))));
+            this.btnCreateAdmin.ColorLighting = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(61)))));
+            this.btnCreateAdmin.ColorPen_1 = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(52)))), ((int)(((byte)(68)))));
+            this.btnCreateAdmin.ColorPen_2 = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
+            this.btnCreateAdmin.CyberButtonStyle = ReaLTaiizor.Enum.Cyber.StateStyle.Custom;
+            this.btnCreateAdmin.Effect_1 = true;
+            this.btnCreateAdmin.Effect_1_ColorBackground = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(61)))));
+            this.btnCreateAdmin.Effect_1_Transparency = 25;
+            this.btnCreateAdmin.Effect_2 = true;
+            this.btnCreateAdmin.Effect_2_ColorBackground = System.Drawing.Color.White;
+            this.btnCreateAdmin.Effect_2_Transparency = 20;
+            this.btnCreateAdmin.Font = new System.Drawing.Font("Arial", 11F);
+            this.btnCreateAdmin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btnCreateAdmin.Lighting = false;
+            this.btnCreateAdmin.LinearGradient_Background = false;
+            this.btnCreateAdmin.LinearGradientPen = false;
+            this.btnCreateAdmin.Location = new System.Drawing.Point(147, 611);
+            this.btnCreateAdmin.Name = "btnCreateAdmin";
+            this.btnCreateAdmin.PenWidth = 15;
+            this.btnCreateAdmin.Rounding = true;
+            this.btnCreateAdmin.RoundingInt = 70;
+            this.btnCreateAdmin.Size = new System.Drawing.Size(193, 50);
+            this.btnCreateAdmin.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            this.btnCreateAdmin.TabIndex = 17;
+            this.btnCreateAdmin.Tag = "Cyber";
+            this.btnCreateAdmin.TextButton = "Create Administrator";
+            this.btnCreateAdmin.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.btnCreateAdmin.Timer_Effect_1 = 5;
+            this.btnCreateAdmin.Timer_RGB = 300;
+            this.btnCreateAdmin.Click += new System.EventHandler(this.btnCreateAdmin_Click);
             // 
-            // textBoxEdit3
+            // txtPasswordConfirm
             // 
-            this.textBoxEdit3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(61)))));
-            this.textBoxEdit3.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.textBoxEdit3.ForeColor = System.Drawing.Color.Silver;
-            this.textBoxEdit3.Image = null;
-            this.textBoxEdit3.Location = new System.Drawing.Point(41, 404);
-            this.textBoxEdit3.MaxLength = 20;
-            this.textBoxEdit3.Multiline = false;
-            this.textBoxEdit3.Name = "textBoxEdit3";
-            this.textBoxEdit3.ReadOnly = false;
-            this.textBoxEdit3.Size = new System.Drawing.Size(415, 46);
-            this.textBoxEdit3.TabIndex = 16;
-            this.textBoxEdit3.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
-            this.textBoxEdit3.UseSystemPasswordChar = true;
+            this.txtPasswordConfirm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(61)))));
+            this.txtPasswordConfirm.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.txtPasswordConfirm.ForeColor = System.Drawing.Color.Silver;
+            this.txtPasswordConfirm.Image = null;
+            this.txtPasswordConfirm.Location = new System.Drawing.Point(41, 404);
+            this.txtPasswordConfirm.MaxLength = 20;
+            this.txtPasswordConfirm.Multiline = false;
+            this.txtPasswordConfirm.Name = "txtPasswordConfirm";
+            this.txtPasswordConfirm.ReadOnly = false;
+            this.txtPasswordConfirm.Size = new System.Drawing.Size(415, 46);
+            this.txtPasswordConfirm.TabIndex = 16;
+            this.txtPasswordConfirm.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtPasswordConfirm.UseSystemPasswordChar = true;
+            this.txtPasswordConfirm.TextChanged += new System.EventHandler(this.txtPasswordConfirm_TextChanged);
             // 
-            // textBoxEdit2
+            // txtPassword
             // 
-            this.textBoxEdit2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(61)))));
-            this.textBoxEdit2.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.textBoxEdit2.ForeColor = System.Drawing.Color.Silver;
-            this.textBoxEdit2.Image = null;
-            this.textBoxEdit2.Location = new System.Drawing.Point(41, 329);
-            this.textBoxEdit2.MaxLength = 20;
-            this.textBoxEdit2.Multiline = false;
-            this.textBoxEdit2.Name = "textBoxEdit2";
-            this.textBoxEdit2.ReadOnly = false;
-            this.textBoxEdit2.Size = new System.Drawing.Size(414, 46);
-            this.textBoxEdit2.TabIndex = 15;
-            this.textBoxEdit2.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
-            this.textBoxEdit2.UseSystemPasswordChar = true;
+            this.txtPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(61)))));
+            this.txtPassword.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.txtPassword.ForeColor = System.Drawing.Color.Silver;
+            this.txtPassword.Image = null;
+            this.txtPassword.Location = new System.Drawing.Point(41, 329);
+            this.txtPassword.MaxLength = 20;
+            this.txtPassword.Multiline = false;
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.ReadOnly = false;
+            this.txtPassword.Size = new System.Drawing.Size(414, 46);
+            this.txtPassword.TabIndex = 15;
+            this.txtPassword.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtPassword.UseSystemPasswordChar = true;
+            this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
             // 
-            // textBoxEdit1
+            // txtUsername
             // 
-            this.textBoxEdit1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(61)))));
-            this.textBoxEdit1.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.textBoxEdit1.ForeColor = System.Drawing.Color.Silver;
-            this.textBoxEdit1.Image = null;
-            this.textBoxEdit1.Location = new System.Drawing.Point(40, 257);
-            this.textBoxEdit1.MaxLength = 20;
-            this.textBoxEdit1.Multiline = false;
-            this.textBoxEdit1.Name = "textBoxEdit1";
-            this.textBoxEdit1.ReadOnly = false;
-            this.textBoxEdit1.Size = new System.Drawing.Size(415, 46);
-            this.textBoxEdit1.TabIndex = 14;
-            this.textBoxEdit1.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
-            this.textBoxEdit1.UseSystemPasswordChar = false;
+            this.txtUsername.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(61)))));
+            this.txtUsername.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.txtUsername.ForeColor = System.Drawing.Color.Silver;
+            this.txtUsername.Image = null;
+            this.txtUsername.Location = new System.Drawing.Point(40, 256);
+            this.txtUsername.MaxLength = 20;
+            this.txtUsername.Multiline = false;
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.ReadOnly = false;
+            this.txtUsername.Size = new System.Drawing.Size(415, 46);
+            this.txtUsername.TabIndex = 14;
+            this.txtUsername.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtUsername.UseSystemPasswordChar = false;
             // 
             // bigLabel6
             // 
@@ -388,68 +508,9 @@
             this.bigLabel1.TabIndex = 6;
             this.bigLabel1.Text = "Create Administrator\r\n Account\r\n";
             // 
-            // hopeCheckBox1
+            // errorProvider1
             // 
-            this.hopeCheckBox1.AutoSize = true;
-            this.hopeCheckBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(61)))));
-            this.hopeCheckBox1.CheckedColor = System.Drawing.Color.Red;
-            this.hopeCheckBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.hopeCheckBox1.DisabledColor = System.Drawing.Color.LimeGreen;
-            this.hopeCheckBox1.DisabledStringColor = System.Drawing.Color.White;
-            this.hopeCheckBox1.Enable = false;
-            this.hopeCheckBox1.EnabledCheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
-            this.hopeCheckBox1.EnabledStringColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
-            this.hopeCheckBox1.EnabledUncheckedColor = System.Drawing.Color.White;
-            this.hopeCheckBox1.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.hopeCheckBox1.ForeColor = System.Drawing.Color.White;
-            this.hopeCheckBox1.Location = new System.Drawing.Point(13, 41);
-            this.hopeCheckBox1.Name = "hopeCheckBox1";
-            this.hopeCheckBox1.Size = new System.Drawing.Size(295, 20);
-            this.hopeCheckBox1.TabIndex = 13;
-            this.hopeCheckBox1.Text = "At least one number or symbol";
-            this.hopeCheckBox1.UseVisualStyleBackColor = false;
-            // 
-            // hopeCheckBox2
-            // 
-            this.hopeCheckBox2.AutoSize = true;
-            this.hopeCheckBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(61)))));
-            this.hopeCheckBox2.CheckedColor = System.Drawing.Color.Red;
-            this.hopeCheckBox2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.hopeCheckBox2.DisabledColor = System.Drawing.Color.LimeGreen;
-            this.hopeCheckBox2.DisabledStringColor = System.Drawing.Color.White;
-            this.hopeCheckBox2.Enable = false;
-            this.hopeCheckBox2.EnabledCheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
-            this.hopeCheckBox2.EnabledStringColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
-            this.hopeCheckBox2.EnabledUncheckedColor = System.Drawing.Color.White;
-            this.hopeCheckBox2.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.hopeCheckBox2.ForeColor = System.Drawing.Color.White;
-            this.hopeCheckBox2.Location = new System.Drawing.Point(13, 73);
-            this.hopeCheckBox2.Name = "hopeCheckBox2";
-            this.hopeCheckBox2.Size = new System.Drawing.Size(277, 20);
-            this.hopeCheckBox2.TabIndex = 14;
-            this.hopeCheckBox2.Text = "At least one uppercase letter";
-            this.hopeCheckBox2.UseVisualStyleBackColor = false;
-            // 
-            // hopeCheckBox3
-            // 
-            this.hopeCheckBox3.AutoSize = true;
-            this.hopeCheckBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(61)))));
-            this.hopeCheckBox3.CheckedColor = System.Drawing.Color.Red;
-            this.hopeCheckBox3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.hopeCheckBox3.DisabledColor = System.Drawing.Color.LimeGreen;
-            this.hopeCheckBox3.DisabledStringColor = System.Drawing.Color.White;
-            this.hopeCheckBox3.Enable = false;
-            this.hopeCheckBox3.EnabledCheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
-            this.hopeCheckBox3.EnabledStringColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
-            this.hopeCheckBox3.EnabledUncheckedColor = System.Drawing.Color.White;
-            this.hopeCheckBox3.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.hopeCheckBox3.ForeColor = System.Drawing.Color.White;
-            this.hopeCheckBox3.Location = new System.Drawing.Point(13, 108);
-            this.hopeCheckBox3.Name = "hopeCheckBox3";
-            this.hopeCheckBox3.Size = new System.Drawing.Size(249, 20);
-            this.hopeCheckBox3.TabIndex = 15;
-            this.hopeCheckBox3.Text = "At least 5 characters long";
-            this.hopeCheckBox3.UseVisualStyleBackColor = false;
+            this.errorProvider1.ContainerControl = this;
             // 
             // frmSetup
             // 
@@ -472,6 +533,7 @@
             this.parrotGradientPanel1.PerformLayout();
             this.cyberGroupBox1.ResumeLayout(false);
             this.cyberGroupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -492,14 +554,17 @@
         private ReaLTaiizor.Controls.BigLabel bigLabel5;
         private ReaLTaiizor.Controls.BigLabel bigLabel4;
         private ReaLTaiizor.Controls.BigLabel bigLabel3;
-        private ReaLTaiizor.Controls.TextBoxEdit textBoxEdit1;
-        private ReaLTaiizor.Controls.TextBoxEdit textBoxEdit3;
-        private ReaLTaiizor.Controls.TextBoxEdit textBoxEdit2;
-        private ReaLTaiizor.Controls.CyberButton cyberButton1;
+        private ReaLTaiizor.Controls.TextBoxEdit txtUsername;
+        private ReaLTaiizor.Controls.TextBoxEdit txtPasswordConfirm;
+        private ReaLTaiizor.Controls.TextBoxEdit txtPassword;
+        private ReaLTaiizor.Controls.CyberButton btnCreateAdmin;
         private ReaLTaiizor.Controls.CyberGroupBox cyberGroupBox1;
         private ReaLTaiizor.Controls.SmallLabel smallLabel1;
-        private ReaLTaiizor.Controls.HopeCheckBox hopeCheckBox1;
-        private ReaLTaiizor.Controls.HopeCheckBox hopeCheckBox3;
-        private ReaLTaiizor.Controls.HopeCheckBox hopeCheckBox2;
+        private ReaLTaiizor.Controls.HopeCheckBox chSymbol;
+        private ReaLTaiizor.Controls.HopeCheckBox chLong;
+        private ReaLTaiizor.Controls.HopeCheckBox chUpper;
+        private ReaLTaiizor.Controls.HopeCheckBox chPasswordConfirm;
+        private ReaLTaiizor.Controls.HopeCheckBox chPassword;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

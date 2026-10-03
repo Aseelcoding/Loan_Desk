@@ -25,7 +25,8 @@ namespace Loan_Desk
 
             if(!UserBLL.IsAdminExist())
             Application.Run(new frmSetup());
-            else 
+            
+            if(UserBLL.IsAdminExist())
             Application.Run(new frmLogin());
         }
     }
