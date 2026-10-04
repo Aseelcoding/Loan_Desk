@@ -24,15 +24,15 @@ namespace Loan_Desk
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            //if (!UserBLL.IsAdminExist())
-            //    Application.Run(new frmSetup());
+            if (!UserBLL.IsAdminExist())
+                Application.Run(new frmSetup());
 
-            //if (UserBLL.IsAdminExist())
-            //    Application.Run(new frmLogin());
+            if (UserBLL.IsAdminExist())
+                Application.Run(new frmLogin());
 
-            Application.Run(new frmMainScreen());
+            //Application.Run(new frmMainScreen());
 
-        
+
         }
     }
 }

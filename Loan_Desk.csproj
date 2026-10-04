@@ -54,6 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\AccountView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Account\AccountView.Designer.cs">
+      <DependentUpon>AccountView.cs</DependentUpon>
+    </Compile>
     <Compile Include="AuditLog\AuditLogView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -66,11 +72,11 @@
     <Compile Include="Borrowers\BorrowersView.Designer.cs">
       <DependentUpon>BorrowersView.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomPanel .cs">
+    <Compile Include="TopInfoPanel .cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomPanel .Designer.cs">
-      <DependentUpon>CustomPanel .cs</DependentUpon>
+    <Compile Include="TopInfoPanel .Designer.cs">
+      <DependentUpon>TopInfoPanel .cs</DependentUpon>
     </Compile>
     <Compile Include="Dashboard\DashboardView.cs">
       <SubType>UserControl</SubType>
@@ -128,14 +134,17 @@
     <Compile Include="Users\UsersView.Designer.cs">
       <DependentUpon>UsersView.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Account\AccountView.resx">
+      <DependentUpon>AccountView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AuditLog\AuditLogView.resx">
       <DependentUpon>AuditLogView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Borrowers\BorrowersView.resx">
       <DependentUpon>BorrowersView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomPanel .resx">
-      <DependentUpon>CustomPanel .cs</DependentUpon>
+    <EmbeddedResource Include="TopInfoPanel .resx">
+      <DependentUpon>TopInfoPanel .cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\DashboardView.resx">
       <DependentUpon>DashboardView.cs</DependentUpon>

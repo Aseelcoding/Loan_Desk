@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.panel1 = new ReaLTaiizor.Controls.Panel();
+            this.labAdOrStf = new ReaLTaiizor.Controls.MetroLabel();
             this.btnAccount = new ReaLTaiizor.Controls.MetroEllipse();
             this.labTitle = new ReaLTaiizor.Controls.FoxLabel();
             this.labLoanDesk = new ReaLTaiizor.Controls.FoxLabel();
-            this.labAdOrStf = new ReaLTaiizor.Controls.MetroLabel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,11 +47,25 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.panel1.Padding = new System.Windows.Forms.Padding(5);
             this.panel1.Size = new System.Drawing.Size(1001, 78);
             this.panel1.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.panel1.TabIndex = 1;
             this.panel1.Text = "panel1";
+            // 
+            // labAdOrStf
+            // 
+            this.labAdOrStf.Font = new System.Drawing.Font("Century", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labAdOrStf.IsDerivedStyle = true;
+            this.labAdOrStf.Location = new System.Drawing.Point(819, 46);
+            this.labAdOrStf.Name = "labAdOrStf";
+            this.labAdOrStf.Size = new System.Drawing.Size(84, 23);
+            this.labAdOrStf.Style = ReaLTaiizor.Enum.Metro.Style.Light;
+            this.labAdOrStf.StyleManager = null;
+            this.labAdOrStf.TabIndex = 4;
+            this.labAdOrStf.Text = "Admin";
+            this.labAdOrStf.ThemeAuthor = "Taiizor";
+            this.labAdOrStf.ThemeName = "MetroLight";
             // 
             // btnAccount
             // 
@@ -82,6 +96,7 @@
             this.btnAccount.Text = "Account";
             this.btnAccount.ThemeAuthor = "Taiizor";
             this.btnAccount.ThemeName = "MetroLight";
+            this.btnAccount.Click += new System.EventHandler(this.btnAccount_Click);
             // 
             // labTitle
             // 
@@ -107,20 +122,6 @@
             this.labLoanDesk.TabIndex = 0;
             this.labLoanDesk.Text = "LoanDesk/Dashboard";
             // 
-            // labAdOrStf
-            // 
-            this.labAdOrStf.Font = new System.Drawing.Font("Century", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labAdOrStf.IsDerivedStyle = true;
-            this.labAdOrStf.Location = new System.Drawing.Point(818, 46);
-            this.labAdOrStf.Name = "labAdOrStf";
-            this.labAdOrStf.Size = new System.Drawing.Size(84, 23);
-            this.labAdOrStf.Style = ReaLTaiizor.Enum.Metro.Style.Light;
-            this.labAdOrStf.StyleManager = null;
-            this.labAdOrStf.TabIndex = 4;
-            this.labAdOrStf.Text = "Admin";
-            this.labAdOrStf.ThemeAuthor = "Taiizor";
-            this.labAdOrStf.ThemeName = "MetroLight";
-            // 
             // CustomPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -129,6 +130,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "CustomPanel";
             this.Size = new System.Drawing.Size(1001, 76);
+            this.Load += new System.EventHandler(this.CustomPanel_Load);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

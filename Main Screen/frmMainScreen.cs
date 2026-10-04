@@ -80,5 +80,6 @@ namespace Loan_Desk.Main_Screen
             ContentPanel.Controls.Clear();
             ContentPanel.Controls.Add(auditLogView);
         }
+
     }
 }

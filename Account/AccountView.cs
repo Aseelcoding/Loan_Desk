@@ -1,0 +1,37 @@
+﻿using BLL;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Loan_Desk.Account
+{
+    public partial class AccountView : UserControl
+    {
+        public AccountView()
+        {
+            InitializeComponent();
+        }
+
+        private void AccountView_Load(object sender, EventArgs e)
+        {
+            txtUserID.Text = Sessions.CurrentUser.ID.ToString();
+            txtUsername.Text = Sessions.CurrentUser.Username;
+            if(Sessions.CurrentUser.Role=="Admin")
+                chAdmin.Checked = true;
+            else 
+                chStaff.Checked = true;
+
+            if(Sessions.CurrentUser.IsActive==true)
+                togIsActive.Toggled = true;
+
+            else togIsActive.Toggled = false;
+
+        }
+    }
+}

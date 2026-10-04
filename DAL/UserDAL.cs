@@ -137,7 +137,7 @@ namespace DAL
 
                 if (reader.Read())
                 {
-                    // اقرأ الأعمدة هنا
+                  
 
                     int UID;
                     if (!int.TryParse(reader["ID"].ToString(), out UID))
@@ -149,7 +149,8 @@ namespace DAL
                     user.Role = reader["Role"].ToString();
                     user.PasswordHash = reader["PasswordHash"].ToString();
                     user.PasswordSalt = reader["PasswordSalt"].ToString();
-                    if (reader["IsActive"].ToString() == "1")
+
+                    if ((bool)reader["IsActive"] == true)
                     {
                         user.IsActive = true;
                     }
