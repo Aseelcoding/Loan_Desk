@@ -37,7 +37,9 @@
     <Reference Include="ReaLTaiizor, Version=3.8.2.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\ReaLTaiizor.3.8.2.1\lib\net48\ReaLTaiizor.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
@@ -52,11 +54,47 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuditLog\AuditLogView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AuditLog\AuditLogView.Designer.cs">
+      <DependentUpon>AuditLogView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Borrowers\BorrowersView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Borrowers\BorrowersView.Designer.cs">
+      <DependentUpon>BorrowersView.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomPanel .cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="CustomPanel .Designer.cs">
       <DependentUpon>CustomPanel .cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\DashboardView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dashboard\DashboardView.Designer.cs">
+      <DependentUpon>DashboardView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Equipment\EquipmentView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Equipment\EquipmentView.Designer.cs">
+      <DependentUpon>EquipmentView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fines\FinesView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Fines\FinesView.Designer.cs">
+      <DependentUpon>FinesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Loans\LoansView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Loans\LoansView.Designer.cs">
+      <DependentUpon>LoansView.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\frmLogin.cs">
       <SubType>Form</SubType>
@@ -72,14 +110,44 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Returns\ReturnsView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Returns\ReturnsView.Designer.cs">
+      <DependentUpon>ReturnsView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Setup\frmSetup.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Setup\frmSetup.Designer.cs">
       <DependentUpon>frmSetup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Users\UsersView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Users\UsersView.Designer.cs">
+      <DependentUpon>UsersView.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AuditLog\AuditLogView.resx">
+      <DependentUpon>AuditLogView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Borrowers\BorrowersView.resx">
+      <DependentUpon>BorrowersView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomPanel .resx">
       <DependentUpon>CustomPanel .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\DashboardView.resx">
+      <DependentUpon>DashboardView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Equipment\EquipmentView.resx">
+      <DependentUpon>EquipmentView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fines\FinesView.resx">
+      <DependentUpon>FinesView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Loans\LoansView.resx">
+      <DependentUpon>LoansView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
@@ -97,8 +165,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Returns\ReturnsView.resx">
+      <DependentUpon>ReturnsView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Setup\frmSetup.resx">
       <DependentUpon>frmSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\UsersView.resx">
+      <DependentUpon>UsersView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -173,5 +247,9 @@
   <ItemGroup>
     <None Include="Icons\reports-32.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\add-25.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

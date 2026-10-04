@@ -31,6 +31,8 @@ namespace Loan_Desk
             //    Application.Run(new frmLogin());
 
             Application.Run(new frmMainScreen());
+
+        
         }
     }
 }
