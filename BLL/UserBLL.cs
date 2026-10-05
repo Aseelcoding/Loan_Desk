@@ -65,7 +65,7 @@ namespace BLL
         {
             bool IsUpdated = false;
 
-            IsUpdated=UserBLL.UpdateUser(user);
+            IsUpdated=UserDAL.UpdateUser(user);
 
             return IsUpdated;
         }
