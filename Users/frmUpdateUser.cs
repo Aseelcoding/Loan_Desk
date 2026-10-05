@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -38,6 +39,67 @@ namespace Loan_Desk.Users
                 togIsActive.Toggled = true;
             else togIsActive.Toggled = false;
 
+        }
+
+        private bool IsSameInfo(LoanDesk.Models.User NewUser)
+        {
+            bool IsSame = false;
+
+            if (NewUser.Username == UpdateUser.Username
+                && NewUser.Role == UpdateUser.Role
+                && NewUser.IsActive == UpdateUser.IsActive
+                )
+                IsSame = true;
+
+
+
+            return IsSame;
+
+        }
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            bool IsUpdated = false;
+            LoanDesk.Models.User NewUser=new LoanDesk.Models.User();
+
+            NewUser.ID= UpdateUser.ID;
+            NewUser.Username = txtUsername.Text;
+
+            if (RadbtnAdmin.Checked)
+                NewUser.Role = "Admin";
+            else
+                NewUser.Role = "Staff";
+
+            if (togIsActive.Toggled == true)
+                NewUser.IsActive = true;
+            else NewUser.IsActive = false;
+
+            if (IsSameInfo(NewUser))
+              { MessageBox.Show("You did not change any info so this window will be closed.");
+                this.Close();
+            }
+            else
+            {
+                ///here we will call the update function:
+
+                try
+                {
+                    IsUpdated = UserBLL.UpdateUser(NewUser);
+                   
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                
+            }
+
+
+            if (IsUpdated)
+                MessageBox.Show("Update user done successfully");
+            else
+                MessageBox.Show("Filed to update user.");
+
+            this.Close ();
         }
     }
 }

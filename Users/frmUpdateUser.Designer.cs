@@ -200,6 +200,7 @@
             this.btnSave.Size = new System.Drawing.Size(180, 62);
             this.btnSave.TabIndex = 87;
             this.btnSave.Text = "SAVE";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnClose
             // 

@@ -61,6 +61,14 @@ namespace BLL
             }
             return IsAdded;
         }
+        public static bool UpdateUser(User user)
+        {
+            bool IsUpdated = false;
+
+            IsUpdated = UserDAL.UpdateUser(user);
+
+            return IsUpdated;
+        }
         public static bool Login(string Username,string Password)
         {
             if (string.IsNullOrWhiteSpace(Username))

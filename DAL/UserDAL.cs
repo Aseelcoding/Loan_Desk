@@ -108,6 +108,45 @@ namespace DAL
             return IsAdded;
 
         }
+        public static bool UpdateUser(User user) 
+        {
+            bool IsUpdated = false;
+
+            SqlConnection connection = new SqlConnection(ConnectionString);
+
+            string query = @"UPDATE [dbo].[Users]
+                                SET Username= @Username
+                                ,Role=@Role
+                                ,IsActive=@IsActive
+                                WHERE ID=@ID;";
+            SqlCommand cmd =new SqlCommand(query, connection);
+
+            cmd.Parameters.Add("@ID", SqlDbType.Int).Value = user.ID;
+            cmd.Parameters.Add("@Username", SqlDbType.VarChar, 15).Value = user.Username;
+            cmd.Parameters.Add("@Role", SqlDbType.VarChar, 30).Value = user.Role;
+            cmd.Parameters.Add("@IsActive", SqlDbType.Bit).Value = user.IsActive;
+
+            try
+            {
+                connection.Open();
+                int AffectedRows = cmd.ExecuteNonQuery();
+
+                if (AffectedRows>0)
+                    IsUpdated = true;
+
+          
+
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to update user \n\nDetails:", ex);
+            }
+            finally { connection.Close(); connection.Dispose(); }
+
+            return IsUpdated;
+
+        }
         public static User Find(string Username) 
         {
             User user = new User();
