@@ -116,15 +116,15 @@ namespace DAL
 
             string query = @"UPDATE [dbo].[Users]
                                 SET Username= @Username
-                               
-                                ,IsActive=@IsActive
+                                 , Role=@Role
+                                
                                 WHERE ID=@ID;";
             SqlCommand cmd =new SqlCommand(query, connection);
 
             cmd.Parameters.Add("@ID", SqlDbType.Int).Value = user.ID;
             cmd.Parameters.Add("@Username", SqlDbType.VarChar, 15).Value = user.Username;
-         
-            cmd.Parameters.Add("@IsActive", SqlDbType.Bit).Value = user.IsActive;
+            cmd.Parameters.Add("@Role", SqlDbType.VarChar, 30).Value = user.Role;
+
 
             try
             {

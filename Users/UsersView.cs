@@ -144,6 +144,12 @@ namespace Loan_Desk.Users
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             LoanDesk.Models.User UpdateUser = GetSelectedRow();
+
+            if (UpdateUser == null)
+            {
+                MessageBox.Show("Please choose a vlid row.");
+                return;
+            }
             frmUpdateUser frmUpdateUser = new frmUpdateUser(UpdateUser);
             frmUpdateUser.ShowDialog();
 
@@ -153,6 +159,13 @@ namespace Loan_Desk.Users
 
         private void btnUpdatePassword_Click(object sender, EventArgs e)
         {
+
+            LoanDesk.Models.User user = GetSelectedRow();
+            if (user == null)
+            {
+                MessageBox.Show("Please choose a vlid row.");
+                return;
+            }
             frmUpdateUserPassword frmUpdateUserPassword = new frmUpdateUserPassword(GetSelectedRow());
             frmUpdateUserPassword.ShowDialog();
 
@@ -166,6 +179,12 @@ namespace Loan_Desk.Users
             try
             {
                 LoanDesk.Models.User user= GetSelectedRow();
+
+                if (user == null)
+                {
+                    MessageBox.Show("Please choose a vlid row.");
+                    return;
+                }
 
                 if (user.IsActive == false )
                 { MessageBox.Show("This user is already Inactive.");return; }
