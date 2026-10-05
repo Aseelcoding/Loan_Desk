@@ -73,7 +73,15 @@ namespace Loan_Desk.Users
             }
 
             if(IsAdded)
-            this.Close();
+            {
+               this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            else
+            {
+                this.DialogResult= DialogResult.Cancel;
+                this.Close();
+            }
         }
 
     }

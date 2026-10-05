@@ -65,7 +65,22 @@ namespace BLL
         {
             bool IsUpdated = false;
 
-            IsUpdated = UserDAL.UpdateUser(user);
+            IsUpdated=UserBLL.UpdateUser(user);
+
+            return IsUpdated;
+        }
+        public static bool UpdateUserPassword(int ID,string Username,string OldPassword,string NewPassword)
+        {
+            bool IsUpdated = false;
+
+            if (!CheckPassword(Username, OldPassword))
+                return IsUpdated;
+
+
+            string NewPasswordSalt = PasswordHasher.GenerateSalt();
+            string NewPasswordHash = PasswordHasher.HashPassword(NewPassword, NewPasswordSalt);
+             IsUpdated=UserDAL.UpdateUserPassword(ID, NewPasswordHash, NewPasswordSalt);
+
 
             return IsUpdated;
         }
@@ -101,6 +116,40 @@ namespace BLL
             }
               
             
+
+            return IsValid;
+        }
+        public static bool CheckPassword(string Username, string Password) 
+        {
+            if (string.IsNullOrWhiteSpace(Username))
+                throw new Exception("Username must not be null or empty");
+
+            if (string.IsNullOrWhiteSpace(Password))
+                throw new Exception("Password must not be null or empty");
+
+            bool IsValid = false;
+
+            User user = new User();
+            try
+            {
+                user = UserDAL.Find(Username);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in Database please contact the Admin.", ex);
+            }
+
+            if (user == null)
+                return IsValid;
+
+            else
+            {
+                //here we will compare the password with the PasswordHash and PasswordSalt:
+                IsValid = PasswordHasher.VerifyPassword(Password, user.PasswordSalt, user.PasswordHash);
+           
+            }
+
+
 
             return IsValid;
         }

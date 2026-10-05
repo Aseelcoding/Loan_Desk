@@ -147,6 +147,45 @@ namespace DAL
             return IsUpdated;
 
         }
+        public static bool UpdateUserPassword(int ID,string NewPasswordHash,string NewPasswordSalt)
+        {
+            bool IsUpdated = false;
+
+            SqlConnection connection = new SqlConnection(ConnectionString);
+
+            string query = @"UPDATE [dbo].[Users]
+                                SET PasswordHash= @PasswordHash
+                                ,PasswordSalt=@PasswordSalt
+                                WHERE ID=@ID;";
+
+
+            SqlCommand cmd = new SqlCommand(query, connection);
+
+            cmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
+            cmd.Parameters.Add("@PasswordHash", SqlDbType.VarChar, 500).Value = NewPasswordHash;
+            cmd.Parameters.Add("@PasswordSalt", SqlDbType.VarChar, 500).Value = NewPasswordSalt;
+            try
+            {
+                connection.Open();
+                int AffectedRows = cmd.ExecuteNonQuery();
+
+                if (AffectedRows > 0)
+                    IsUpdated = true;
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to update user password \n\nDetails:", ex);
+            }
+            finally { connection.Close(); connection.Dispose(); }
+
+            return IsUpdated;
+
+
+        }
         public static User Find(string Username) 
         {
             User user = new User();
@@ -248,3 +287,4 @@ namespace DAL
 
     }
 }
+

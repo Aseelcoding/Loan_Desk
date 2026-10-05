@@ -108,10 +108,15 @@ namespace Loan_Desk.Users
         private void btnAddUser_Click(object sender, EventArgs e)
         {
             frmAddUser frmAddUser = new frmAddUser();
-            frmAddUser.ShowDialog();
+            DialogResult result= frmAddUser.ShowDialog();
 
             dtUsers = UserBLL.GetUsers();
             LoadUsersInfo(string.Empty);
+
+            if (result == DialogResult.OK)
+                notiSuccess.Visible = true;
+            else
+                notiFailed.Visible = true;
 
         }
 
@@ -149,7 +154,7 @@ namespace Loan_Desk.Users
 
         private void btnUpdatePassword_Click(object sender, EventArgs e)
         {
-            frmUpdateUserPassword frmUpdateUserPassword = new frmUpdateUserPassword();
+            frmUpdateUserPassword frmUpdateUserPassword = new frmUpdateUserPassword(GetSelectedRow());
             frmUpdateUserPassword.ShowDialog();
 
             dtUsers = UserBLL.GetUsers();

@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.parrotGradientPanel1 = new ReaLTaiizor.Controls.ParrotGradientPanel();
             this.cbFilter = new ReaLTaiizor.Controls.MaterialComboBox();
             this.parrotGroupBox1 = new ReaLTaiizor.Controls.ParrotGroupBox();
@@ -47,6 +47,8 @@
             this.btnUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.btnDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.btnUpdatePassword = new System.Windows.Forms.ToolStripMenuItem();
+            this.notiSuccess = new ReaLTaiizor.Controls.NotificationBox();
+            this.notiFailed = new ReaLTaiizor.Controls.NotificationBox();
             this.parrotGradientPanel1.SuspendLayout();
             this.parrotGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
@@ -58,6 +60,8 @@
             this.parrotGradientPanel1.BottomLeft = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
             this.parrotGradientPanel1.BottomRight = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.parrotGradientPanel1.CompositingQualityType = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+            this.parrotGradientPanel1.Controls.Add(this.notiFailed);
+            this.parrotGradientPanel1.Controls.Add(this.notiSuccess);
             this.parrotGradientPanel1.Controls.Add(this.cbFilter);
             this.parrotGradientPanel1.Controls.Add(this.parrotGroupBox1);
             this.parrotGradientPanel1.Controls.Add(this.txtBarSearch);
@@ -182,14 +186,14 @@
             this.dgvUsers.AllowUserToAddRows = false;
             this.dgvUsers.AllowUserToDeleteRows = false;
             this.dgvUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUsers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
@@ -197,25 +201,25 @@
             this.Role,
             this.IsActive});
             this.dgvUsers.ContextMenuStrip = this.ContextOperation;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvUsers.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvUsers.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvUsers.Location = new System.Drawing.Point(0, 92);
             this.dgvUsers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvUsers.Name = "dgvUsers";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUsers.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUsers.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvUsers.RowHeadersWidth = 51;
             this.dgvUsers.RowTemplate.Height = 24;
             this.dgvUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -264,7 +268,7 @@
             this.btnUpdatePassword});
             this.ContextOperation.Name = "crownContextMenuStrip1";
             this.ContextOperation.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.ContextOperation.Size = new System.Drawing.Size(215, 110);
+            this.ContextOperation.Size = new System.Drawing.Size(197, 82);
             // 
             // btnUpdate
             // 
@@ -272,7 +276,7 @@
             this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btnUpdate.Image = global::Loan_Desk.Properties.Resources.update_20;
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(214, 26);
+            this.btnUpdate.Size = new System.Drawing.Size(196, 26);
             this.btnUpdate.Text = "Update";
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
@@ -282,7 +286,7 @@
             this.btnDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btnDelete.Image = global::Loan_Desk.Properties.Resources.delete_20;
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(214, 26);
+            this.btnDelete.Size = new System.Drawing.Size(196, 26);
             this.btnDelete.Text = "Delete";
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -292,9 +296,81 @@
             this.btnUpdatePassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btnUpdatePassword.Image = global::Loan_Desk.Properties.Resources.warning_20;
             this.btnUpdatePassword.Name = "btnUpdatePassword";
-            this.btnUpdatePassword.Size = new System.Drawing.Size(214, 26);
+            this.btnUpdatePassword.Size = new System.Drawing.Size(196, 26);
             this.btnUpdatePassword.Text = "Update Password";
             this.btnUpdatePassword.Click += new System.EventHandler(this.btnUpdatePassword_Click);
+            // 
+            // notiSuccess
+            // 
+            this.notiSuccess.BorderCurve = 16;
+            this.notiSuccess.CloseForeColor = System.Drawing.Color.Black;
+            this.notiSuccess.ErrorBackColor = System.Drawing.Color.Crimson;
+            this.notiSuccess.ErrorBorderColor = System.Drawing.Color.Crimson;
+            this.notiSuccess.ErrorForeColor = System.Drawing.Color.White;
+            this.notiSuccess.ErrorTitleText = "ERROR";
+            this.notiSuccess.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.notiSuccess.Image = null;
+            this.notiSuccess.Location = new System.Drawing.Point(871, 716);
+            this.notiSuccess.Margin = new System.Windows.Forms.Padding(4);
+            this.notiSuccess.MinimumSize = new System.Drawing.Size(125, 50);
+            this.notiSuccess.Name = "notiSuccess";
+            this.notiSuccess.NoticeBackColor = System.Drawing.Color.Gray;
+            this.notiSuccess.NoticeBorderColor = System.Drawing.Color.Gray;
+            this.notiSuccess.NoticeForeColor = System.Drawing.Color.White;
+            this.notiSuccess.NoticeTitleText = "NOTICE";
+            this.notiSuccess.NotificationType = ReaLTaiizor.Controls.NotificationBox.Type.Success;
+            this.notiSuccess.RoundCorners = true;
+            this.notiSuccess.ShowCloseButton = true;
+            this.notiSuccess.Size = new System.Drawing.Size(125, 50);
+            this.notiSuccess.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            this.notiSuccess.SuccessBackColor = System.Drawing.Color.SeaGreen;
+            this.notiSuccess.SuccessBorderColor = System.Drawing.Color.SeaGreen;
+            this.notiSuccess.SuccessForeColor = System.Drawing.Color.White;
+            this.notiSuccess.SuccessTitleText = "SUCCESS";
+            this.notiSuccess.TabIndex = 49;
+            this.notiSuccess.Text = "User Added";
+            this.notiSuccess.TextRenderingType = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.notiSuccess.Visible = false;
+            this.notiSuccess.WarningBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.notiSuccess.WarningBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.notiSuccess.WarningForeColor = System.Drawing.Color.White;
+            this.notiSuccess.WarningTitleText = "WARNING";
+            // 
+            // notiFailed
+            // 
+            this.notiFailed.BorderCurve = 16;
+            this.notiFailed.CloseForeColor = System.Drawing.Color.Black;
+            this.notiFailed.ErrorBackColor = System.Drawing.Color.Crimson;
+            this.notiFailed.ErrorBorderColor = System.Drawing.Color.Crimson;
+            this.notiFailed.ErrorForeColor = System.Drawing.Color.White;
+            this.notiFailed.ErrorTitleText = "ERROR";
+            this.notiFailed.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.notiFailed.Image = null;
+            this.notiFailed.Location = new System.Drawing.Point(844, 716);
+            this.notiFailed.Margin = new System.Windows.Forms.Padding(4);
+            this.notiFailed.MinimumSize = new System.Drawing.Size(125, 50);
+            this.notiFailed.Name = "notiFailed";
+            this.notiFailed.NoticeBackColor = System.Drawing.Color.Gray;
+            this.notiFailed.NoticeBorderColor = System.Drawing.Color.Gray;
+            this.notiFailed.NoticeForeColor = System.Drawing.Color.White;
+            this.notiFailed.NoticeTitleText = "NOTICE";
+            this.notiFailed.NotificationType = ReaLTaiizor.Controls.NotificationBox.Type.Error;
+            this.notiFailed.RoundCorners = true;
+            this.notiFailed.ShowCloseButton = true;
+            this.notiFailed.Size = new System.Drawing.Size(152, 50);
+            this.notiFailed.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            this.notiFailed.SuccessBackColor = System.Drawing.Color.SeaGreen;
+            this.notiFailed.SuccessBorderColor = System.Drawing.Color.SeaGreen;
+            this.notiFailed.SuccessForeColor = System.Drawing.Color.White;
+            this.notiFailed.SuccessTitleText = "SUCCESS";
+            this.notiFailed.TabIndex = 50;
+            this.notiFailed.Text = "Failed to add user";
+            this.notiFailed.TextRenderingType = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.notiFailed.Visible = false;
+            this.notiFailed.WarningBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.notiFailed.WarningBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.notiFailed.WarningForeColor = System.Drawing.Color.White;
+            this.notiFailed.WarningTitleText = "WARNING";
             // 
             // UsersView
             // 
@@ -332,5 +408,7 @@
         private System.Windows.Forms.ToolStripMenuItem btnUpdate;
         private System.Windows.Forms.ToolStripMenuItem btnDelete;
         private System.Windows.Forms.ToolStripMenuItem btnUpdatePassword;
+        private ReaLTaiizor.Controls.NotificationBox notiSuccess;
+        private ReaLTaiizor.Controls.NotificationBox notiFailed;
     }
 }

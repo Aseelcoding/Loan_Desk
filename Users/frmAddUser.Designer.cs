@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.togIsActive = new ReaLTaiizor.Controls.ToggleButton();
             this.bigLabel3 = new ReaLTaiizor.Controls.BigLabel();
             this.bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
@@ -42,6 +43,7 @@
             this.RadbtnStaff = new ReaLTaiizor.Controls.ParrotRadioButton();
             this.txtPassword = new ReaLTaiizor.Controls.ForeverTextBox();
             this.bigLabel6 = new ReaLTaiizor.Controls.BigLabel();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.SuspendLayout();
             // 
             // togIsActive
@@ -251,6 +253,11 @@
             this.bigLabel6.TabIndex = 78;
             this.bigLabel6.Text = "PASSWORD";
             // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Visible = true;
+            // 
             // frmAddUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -297,5 +304,6 @@
         private ReaLTaiizor.Controls.ParrotRadioButton RadbtnStaff;
         private ReaLTaiizor.Controls.ForeverTextBox txtPassword;
         private ReaLTaiizor.Controls.BigLabel bigLabel6;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
     }
 }
