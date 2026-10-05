@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,11 +11,108 @@ using System.Windows.Forms;
 
 namespace Loan_Desk.Users
 {
+    
     public partial class UsersView : UserControl
     {
+        DataTable dtUsers;
         public UsersView()
         {
             InitializeComponent();
+        }
+
+        private void UsersView_Load(object sender, EventArgs e)
+        {
+            dtUsers = UserBLL.GetUsers();
+            LoadUsersInfo("");
+        }
+        private void LoadUsersInfo(string Filter) 
+        {
+            dgvUsers.Rows.Clear();
+            DataView dvUser=new DataView();
+            dvUser = dtUsers.DefaultView;
+
+            dvUser.RowFilter=Filter;
+
+            foreach (DataRowView row in dvUser)
+            {
+
+                dgvUsers.Rows.Add(
+                    row["ID"],
+                    row["Username"],
+                    row["Role"],
+                    row["IsActive"]
+                    );
+            }
+
+        }
+        private void Filtering(string Text) 
+        {
+            if (string.IsNullOrEmpty(Text))
+                {
+                LoadUsersInfo("");
+                    return; }
+
+            string Filter = string.Empty;
+
+            if (cbFilter.SelectedIndex == 0)
+            {
+                int USID = -1;
+                int.TryParse(Text, out USID);
+                Filter = $"ID = {USID} ";
+
+            }
+            else if (cbFilter.SelectedIndex == 1)
+            {
+                Filter = $"Username  like '{Text}%'";
+
+                if (chActive.Checked && chInActive.Checked == false)
+                {
+                    Filter = $"Username  like '{Text}%' and IsActive =1";
+                }
+                else if (chActive.Checked == false && chInActive.Checked == true)
+                {
+                    Filter = $"Username  like '{Text}%' and IsActive =0";
+                }
+                else
+                {
+                    Filter = $"Username  like '{Text}%'";
+                }
+            }
+            else if (cbFilter.SelectedIndex == 2)
+            {
+                if (chActive.Checked && chInActive.Checked == false)
+                {
+                    Filter = $"Role  like '{Text}%' and IsActive =1";
+                }
+                else if (chActive.Checked==false && chInActive.Checked == true)
+                  {
+                    Filter = $"Role  like '{Text}%' and IsActive =0";
+                  }
+                else
+                {
+                    Filter = $"Role  like '{Text}%'";
+                }
+            }
+
+            LoadUsersInfo(Filter);
+
+        }
+        private void txtBarSearch_TextChanged(object sender, EventArgs e)
+        {
+
+            Filtering(txtBarSearch.Text);
+
+
+        }
+
+        private void btnAddUser_Click(object sender, EventArgs e)
+        {
+            frmAddUser frmAddUser = new frmAddUser();
+            frmAddUser.ShowDialog();
+
+            dtUsers = UserBLL.GetUsers();
+            LoadUsersInfo(string.Empty);
+
         }
     }
 }

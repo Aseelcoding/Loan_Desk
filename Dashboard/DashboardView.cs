@@ -16,5 +16,10 @@ namespace Loan_Desk.Dashboard
         {
             InitializeComponent();
         }
+
+        private void DashboardView_Load(object sender, EventArgs e)
+        {
+          
+        }
     }
 }

@@ -55,6 +55,10 @@
       <Project>{d4eea928-bd1f-4d76-ab3d-5bf2a9a91c24}</Project>
       <Name>LoanDesk.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\utilities\utilities.csproj">
+      <Project>{3460c8be-c11e-4cf5-85cb-86f2ec762fc2}</Project>
+      <Name>utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

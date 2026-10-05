@@ -30,6 +30,7 @@ namespace Loan_Desk.Main_Screen
             DashboardView dashboardView = new DashboardView();
             ContentPanel.Controls.Clear();
             ContentPanel.Controls.Add(dashboardView);
+            
         }
 
         private void btnUsers_Click(object sender, EventArgs e)

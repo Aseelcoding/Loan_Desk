@@ -29,20 +29,18 @@
         private void InitializeComponent()
         {
             this.panel1 = new ReaLTaiizor.Controls.Panel();
+            this.LabTitle = new ReaLTaiizor.Controls.FoxLabel();
             this.labAdOrStf = new ReaLTaiizor.Controls.MetroLabel();
             this.btnAccount = new ReaLTaiizor.Controls.MetroEllipse();
-            this.labTitle = new ReaLTaiizor.Controls.FoxLabel();
-            this.labLoanDesk = new ReaLTaiizor.Controls.FoxLabel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
+            this.panel1.Controls.Add(this.LabTitle);
             this.panel1.Controls.Add(this.labAdOrStf);
             this.panel1.Controls.Add(this.btnAccount);
-            this.panel1.Controls.Add(this.labTitle);
-            this.panel1.Controls.Add(this.labLoanDesk);
             this.panel1.EdgeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(41)))), ((int)(((byte)(50)))));
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -52,6 +50,18 @@
             this.panel1.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.panel1.TabIndex = 1;
             this.panel1.Text = "panel1";
+            // 
+            // LabTitle
+            // 
+            this.LabTitle.BackColor = System.Drawing.Color.Transparent;
+            this.LabTitle.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
+            this.LabTitle.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.LabTitle.Location = new System.Drawing.Point(8, 28);
+            this.LabTitle.Name = "LabTitle";
+            this.LabTitle.Size = new System.Drawing.Size(171, 23);
+            this.LabTitle.TabIndex = 5;
+            this.LabTitle.Text = "LoanDesk/Dashboard";
+           
             // 
             // labAdOrStf
             // 
@@ -98,30 +108,6 @@
             this.btnAccount.ThemeName = "MetroLight";
             this.btnAccount.Click += new System.EventHandler(this.btnAccount_Click);
             // 
-            // labTitle
-            // 
-            this.labTitle.BackColor = System.Drawing.Color.Transparent;
-            this.labTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.labTitle.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.labTitle.Location = new System.Drawing.Point(5, 33);
-            this.labTitle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.labTitle.Name = "labTitle";
-            this.labTitle.Size = new System.Drawing.Size(213, 37);
-            this.labTitle.TabIndex = 1;
-            this.labTitle.Text = "Operations overview";
-            // 
-            // labLoanDesk
-            // 
-            this.labLoanDesk.BackColor = System.Drawing.Color.Transparent;
-            this.labLoanDesk.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
-            this.labLoanDesk.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.labLoanDesk.Location = new System.Drawing.Point(8, 12);
-            this.labLoanDesk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.labLoanDesk.Name = "labLoanDesk";
-            this.labLoanDesk.Size = new System.Drawing.Size(171, 23);
-            this.labLoanDesk.TabIndex = 0;
-            this.labLoanDesk.Text = "LoanDesk/Dashboard";
-            // 
             // CustomPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -140,8 +126,7 @@
 
         private ReaLTaiizor.Controls.Panel panel1;
         private ReaLTaiizor.Controls.MetroEllipse btnAccount;
-        private ReaLTaiizor.Controls.FoxLabel labTitle;
-        private ReaLTaiizor.Controls.FoxLabel labLoanDesk;
         private ReaLTaiizor.Controls.MetroLabel labAdOrStf;
+        private ReaLTaiizor.Controls.FoxLabel LabTitle;
     }
 }

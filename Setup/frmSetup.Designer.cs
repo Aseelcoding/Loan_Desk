@@ -75,11 +75,11 @@
             this.nightPanel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.nightPanel1.LeftSideColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(61)))));
             this.nightPanel1.Location = new System.Drawing.Point(1, 0);
-            this.nightPanel1.Margin = new System.Windows.Forms.Padding(2);
+            this.nightPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.nightPanel1.Name = "nightPanel1";
             this.nightPanel1.RightSideColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(61)))));
             this.nightPanel1.Side = ReaLTaiizor.Controls.NightPanel.PanelSide.Left;
-            this.nightPanel1.Size = new System.Drawing.Size(553, 548);
+            this.nightPanel1.Size = new System.Drawing.Size(737, 674);
             this.nightPanel1.TabIndex = 0;
             // 
             // label2
@@ -88,10 +88,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.label2.Image = global::Loan_Desk.Properties.Resources.lock_40;
             this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label2.Location = new System.Drawing.Point(8, 492);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(11, 606);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(452, 50);
+            this.label2.Size = new System.Drawing.Size(590, 58);
             this.label2.TabIndex = 8;
             this.label2.Text = "        Secure 256-bit AES protocol active for master \r\n         credential hashi" +
     "ng.";
@@ -103,10 +102,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
             this.label1.Image = global::Loan_Desk.Properties.Resources.loan_50;
             this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label1.Location = new System.Drawing.Point(39, 46);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(52, 57);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(255, 46);
+            this.label1.Size = new System.Drawing.Size(316, 58);
             this.label1.TabIndex = 7;
             this.label1.Text = "    Loan Desk";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -116,10 +114,10 @@
             this.thunderLabel2.BackColor = System.Drawing.Color.Transparent;
             this.thunderLabel2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
             this.thunderLabel2.ForeColor = System.Drawing.Color.White;
-            this.thunderLabel2.Location = new System.Drawing.Point(30, 227);
-            this.thunderLabel2.Margin = new System.Windows.Forms.Padding(2);
+            this.thunderLabel2.Location = new System.Drawing.Point(40, 279);
+            this.thunderLabel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.thunderLabel2.Name = "thunderLabel2";
-            this.thunderLabel2.Size = new System.Drawing.Size(473, 59);
+            this.thunderLabel2.Size = new System.Drawing.Size(631, 73);
             this.thunderLabel2.TabIndex = 6;
             this.thunderLabel2.Text = resources.GetString("thunderLabel2.Text");
             // 
@@ -129,20 +127,19 @@
             this.bigLabel2.BackColor = System.Drawing.Color.Transparent;
             this.bigLabel2.Font = new System.Drawing.Font("Segoe UI", 22F);
             this.bigLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.bigLabel2.Location = new System.Drawing.Point(23, 176);
-            this.bigLabel2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.bigLabel2.Location = new System.Drawing.Point(31, 217);
             this.bigLabel2.Name = "bigLabel2";
-            this.bigLabel2.Size = new System.Drawing.Size(523, 41);
+            this.bigLabel2.Size = new System.Drawing.Size(652, 50);
             this.bigLabel2.TabIndex = 5;
             this.bigLabel2.Text = "Establish Master System Administrator";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Loan_Desk.Properties.Resources.warning_20;
-            this.pictureBox1.Location = new System.Drawing.Point(30, 142);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Location = new System.Drawing.Point(40, 175);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(20, 17);
+            this.pictureBox1.Size = new System.Drawing.Size(27, 21);
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
@@ -150,10 +147,10 @@
             // 
             this.thunderLabel1.BackColor = System.Drawing.Color.Transparent;
             this.thunderLabel1.ForeColor = System.Drawing.Color.Orange;
-            this.thunderLabel1.Location = new System.Drawing.Point(54, 146);
-            this.thunderLabel1.Margin = new System.Windows.Forms.Padding(2);
+            this.thunderLabel1.Location = new System.Drawing.Point(72, 180);
+            this.thunderLabel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.thunderLabel1.Name = "thunderLabel1";
-            this.thunderLabel1.Size = new System.Drawing.Size(230, 13);
+            this.thunderLabel1.Size = new System.Drawing.Size(307, 16);
             this.thunderLabel1.TabIndex = 3;
             this.thunderLabel1.Text = "First-Time Configuration Safeguard";
             // 
@@ -163,10 +160,9 @@
             this.labelEdit1.BackColor = System.Drawing.Color.Transparent;
             this.labelEdit1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.labelEdit1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(125)))), ((int)(((byte)(132)))));
-            this.labelEdit1.Location = new System.Drawing.Point(82, 93);
-            this.labelEdit1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelEdit1.Location = new System.Drawing.Point(109, 114);
             this.labelEdit1.Name = "labelEdit1";
-            this.labelEdit1.Size = new System.Drawing.Size(179, 15);
+            this.labelEdit1.Size = new System.Drawing.Size(220, 18);
             this.labelEdit1.TabIndex = 2;
             this.labelEdit1.Text = "ENTERPRISE LENDING SUITE";
             // 
@@ -188,11 +184,12 @@
             this.parrotGradientPanel1.Controls.Add(this.bigLabel3);
             this.parrotGradientPanel1.Controls.Add(this.bigLabel1);
             this.parrotGradientPanel1.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear;
-            this.parrotGradientPanel1.Location = new System.Drawing.Point(553, 0);
+            this.parrotGradientPanel1.Location = new System.Drawing.Point(737, 0);
+            this.parrotGradientPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.parrotGradientPanel1.Name = "parrotGradientPanel1";
             this.parrotGradientPanel1.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
             this.parrotGradientPanel1.PrimerColor = System.Drawing.Color.White;
-            this.parrotGradientPanel1.Size = new System.Drawing.Size(392, 540);
+            this.parrotGradientPanel1.Size = new System.Drawing.Size(523, 665);
             this.parrotGradientPanel1.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             this.parrotGradientPanel1.Style = ReaLTaiizor.Controls.ParrotGradientPanel.GradientStyle.Corners;
             this.parrotGradientPanel1.TabIndex = 1;
@@ -216,8 +213,8 @@
             this.chPasswordConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chPasswordConfirm.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.chPasswordConfirm.ForeColor = System.Drawing.Color.White;
-            this.chPasswordConfirm.Location = new System.Drawing.Point(5, 340);
-            this.chPasswordConfirm.Margin = new System.Windows.Forms.Padding(2);
+            this.chPasswordConfirm.Location = new System.Drawing.Point(7, 418);
+            this.chPasswordConfirm.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chPasswordConfirm.Name = "chPasswordConfirm";
             this.chPasswordConfirm.Size = new System.Drawing.Size(25, 20);
             this.chPasswordConfirm.TabIndex = 19;
@@ -239,8 +236,8 @@
             this.chPassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chPassword.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.chPassword.ForeColor = System.Drawing.Color.White;
-            this.chPassword.Location = new System.Drawing.Point(5, 277);
-            this.chPassword.Margin = new System.Windows.Forms.Padding(2);
+            this.chPassword.Location = new System.Drawing.Point(7, 341);
+            this.chPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chPassword.Name = "chPassword";
             this.chPassword.Size = new System.Drawing.Size(25, 20);
             this.chPassword.TabIndex = 14;
@@ -270,14 +267,14 @@
             this.cyberGroupBox1.Lighting = false;
             this.cyberGroupBox1.LinearGradient_Background = false;
             this.cyberGroupBox1.LinearGradientPen = false;
-            this.cyberGroupBox1.Location = new System.Drawing.Point(67, 370);
-            this.cyberGroupBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.cyberGroupBox1.Location = new System.Drawing.Point(89, 455);
+            this.cyberGroupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cyberGroupBox1.Name = "cyberGroupBox1";
             this.cyberGroupBox1.PenWidth = 15;
             this.cyberGroupBox1.RGB = false;
             this.cyberGroupBox1.Rounding = true;
             this.cyberGroupBox1.RoundingInt = 60;
-            this.cyberGroupBox1.Size = new System.Drawing.Size(249, 122);
+            this.cyberGroupBox1.Size = new System.Drawing.Size(332, 150);
             this.cyberGroupBox1.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighSpeed;
             this.cyberGroupBox1.TabIndex = 18;
             this.cyberGroupBox1.Tag = "Cyber";
@@ -299,10 +296,10 @@
             this.chLong.EnabledUncheckedColor = System.Drawing.Color.White;
             this.chLong.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.chLong.ForeColor = System.Drawing.Color.White;
-            this.chLong.Location = new System.Drawing.Point(10, 88);
-            this.chLong.Margin = new System.Windows.Forms.Padding(2);
+            this.chLong.Location = new System.Drawing.Point(13, 108);
+            this.chLong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chLong.Name = "chLong";
-            this.chLong.Size = new System.Drawing.Size(201, 20);
+            this.chLong.Size = new System.Drawing.Size(249, 20);
             this.chLong.TabIndex = 15;
             this.chLong.Text = "At least 5 characters long";
             this.chLong.UseVisualStyleBackColor = false;
@@ -322,10 +319,10 @@
             this.chUpper.EnabledUncheckedColor = System.Drawing.Color.White;
             this.chUpper.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.chUpper.ForeColor = System.Drawing.Color.White;
-            this.chUpper.Location = new System.Drawing.Point(10, 59);
-            this.chUpper.Margin = new System.Windows.Forms.Padding(2);
+            this.chUpper.Location = new System.Drawing.Point(13, 73);
+            this.chUpper.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chUpper.Name = "chUpper";
-            this.chUpper.Size = new System.Drawing.Size(224, 20);
+            this.chUpper.Size = new System.Drawing.Size(277, 20);
             this.chUpper.TabIndex = 14;
             this.chUpper.Text = "At least one uppercase letter";
             this.chUpper.UseVisualStyleBackColor = false;
@@ -345,10 +342,10 @@
             this.chSymbol.EnabledUncheckedColor = System.Drawing.Color.White;
             this.chSymbol.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.chSymbol.ForeColor = System.Drawing.Color.White;
-            this.chSymbol.Location = new System.Drawing.Point(10, 33);
-            this.chSymbol.Margin = new System.Windows.Forms.Padding(2);
+            this.chSymbol.Location = new System.Drawing.Point(13, 41);
+            this.chSymbol.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chSymbol.Name = "chSymbol";
-            this.chSymbol.Size = new System.Drawing.Size(238, 20);
+            this.chSymbol.Size = new System.Drawing.Size(295, 20);
             this.chSymbol.TabIndex = 13;
             this.chSymbol.Text = "At least one number or symbol";
             this.chSymbol.UseVisualStyleBackColor = false;
@@ -359,10 +356,9 @@
             this.smallLabel1.BackColor = System.Drawing.Color.Transparent;
             this.smallLabel1.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.smallLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(142)))), ((int)(((byte)(142)))));
-            this.smallLabel1.Location = new System.Drawing.Point(20, 0);
-            this.smallLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.smallLabel1.Location = new System.Drawing.Point(27, 0);
             this.smallLabel1.Name = "smallLabel1";
-            this.smallLabel1.Size = new System.Drawing.Size(133, 13);
+            this.smallLabel1.Size = new System.Drawing.Size(158, 19);
             this.smallLabel1.TabIndex = 1;
             this.smallLabel1.Text = "Password Requirements:";
             // 
@@ -392,13 +388,13 @@
             this.btnCreateAdmin.Lighting = false;
             this.btnCreateAdmin.LinearGradient_Background = false;
             this.btnCreateAdmin.LinearGradientPen = false;
-            this.btnCreateAdmin.Location = new System.Drawing.Point(110, 496);
-            this.btnCreateAdmin.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCreateAdmin.Location = new System.Drawing.Point(147, 610);
+            this.btnCreateAdmin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCreateAdmin.Name = "btnCreateAdmin";
             this.btnCreateAdmin.PenWidth = 15;
             this.btnCreateAdmin.Rounding = true;
             this.btnCreateAdmin.RoundingInt = 70;
-            this.btnCreateAdmin.Size = new System.Drawing.Size(145, 41);
+            this.btnCreateAdmin.Size = new System.Drawing.Size(193, 50);
             this.btnCreateAdmin.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.btnCreateAdmin.TabIndex = 17;
             this.btnCreateAdmin.Tag = "Cyber";
@@ -414,13 +410,13 @@
             this.txtPasswordConfirm.Font = new System.Drawing.Font("Tahoma", 11F);
             this.txtPasswordConfirm.ForeColor = System.Drawing.Color.Silver;
             this.txtPasswordConfirm.Image = null;
-            this.txtPasswordConfirm.Location = new System.Drawing.Point(31, 328);
-            this.txtPasswordConfirm.Margin = new System.Windows.Forms.Padding(2);
+            this.txtPasswordConfirm.Location = new System.Drawing.Point(41, 404);
+            this.txtPasswordConfirm.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPasswordConfirm.MaxLength = 20;
             this.txtPasswordConfirm.Multiline = false;
             this.txtPasswordConfirm.Name = "txtPasswordConfirm";
             this.txtPasswordConfirm.ReadOnly = false;
-            this.txtPasswordConfirm.Size = new System.Drawing.Size(311, 41);
+            this.txtPasswordConfirm.Size = new System.Drawing.Size(415, 46);
             this.txtPasswordConfirm.TabIndex = 16;
             this.txtPasswordConfirm.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtPasswordConfirm.UseSystemPasswordChar = true;
@@ -432,13 +428,13 @@
             this.txtPassword.Font = new System.Drawing.Font("Tahoma", 11F);
             this.txtPassword.ForeColor = System.Drawing.Color.Silver;
             this.txtPassword.Image = null;
-            this.txtPassword.Location = new System.Drawing.Point(31, 267);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(2);
+            this.txtPassword.Location = new System.Drawing.Point(41, 329);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPassword.MaxLength = 20;
             this.txtPassword.Multiline = false;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.ReadOnly = false;
-            this.txtPassword.Size = new System.Drawing.Size(310, 41);
+            this.txtPassword.Size = new System.Drawing.Size(413, 46);
             this.txtPassword.TabIndex = 15;
             this.txtPassword.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtPassword.UseSystemPasswordChar = true;
@@ -450,13 +446,13 @@
             this.txtUsername.Font = new System.Drawing.Font("Tahoma", 11F);
             this.txtUsername.ForeColor = System.Drawing.Color.Silver;
             this.txtUsername.Image = null;
-            this.txtUsername.Location = new System.Drawing.Point(30, 208);
-            this.txtUsername.Margin = new System.Windows.Forms.Padding(2);
+            this.txtUsername.Location = new System.Drawing.Point(40, 256);
+            this.txtUsername.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtUsername.MaxLength = 20;
             this.txtUsername.Multiline = false;
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.ReadOnly = false;
-            this.txtUsername.Size = new System.Drawing.Size(311, 41);
+            this.txtUsername.Size = new System.Drawing.Size(415, 46);
             this.txtUsername.TabIndex = 14;
             this.txtUsername.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtUsername.UseSystemPasswordChar = false;
@@ -467,10 +463,9 @@
             this.bigLabel6.BackColor = System.Drawing.Color.Transparent;
             this.bigLabel6.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.bigLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(61)))));
-            this.bigLabel6.Location = new System.Drawing.Point(27, 306);
-            this.bigLabel6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.bigLabel6.Location = new System.Drawing.Point(36, 377);
             this.bigLabel6.Name = "bigLabel6";
-            this.bigLabel6.Size = new System.Drawing.Size(147, 19);
+            this.bigLabel6.Size = new System.Drawing.Size(179, 23);
             this.bigLabel6.TabIndex = 10;
             this.bigLabel6.Text = "CONFIRM PASSWORD";
             // 
@@ -480,10 +475,9 @@
             this.bigLabel5.BackColor = System.Drawing.Color.Transparent;
             this.bigLabel5.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.bigLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(61)))));
-            this.bigLabel5.Location = new System.Drawing.Point(27, 249);
-            this.bigLabel5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.bigLabel5.Location = new System.Drawing.Point(36, 306);
             this.bigLabel5.Name = "bigLabel5";
-            this.bigLabel5.Size = new System.Drawing.Size(190, 19);
+            this.bigLabel5.Size = new System.Drawing.Size(234, 23);
             this.bigLabel5.TabIndex = 9;
             this.bigLabel5.Text = "ADMINISTRATOR PASSWORD";
             // 
@@ -493,10 +487,9 @@
             this.bigLabel4.BackColor = System.Drawing.Color.Transparent;
             this.bigLabel4.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.bigLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(61)))));
-            this.bigLabel4.Location = new System.Drawing.Point(27, 187);
-            this.bigLabel4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.bigLabel4.Location = new System.Drawing.Point(36, 230);
             this.bigLabel4.Name = "bigLabel4";
-            this.bigLabel4.Size = new System.Drawing.Size(189, 19);
+            this.bigLabel4.Size = new System.Drawing.Size(233, 23);
             this.bigLabel4.TabIndex = 8;
             this.bigLabel4.Text = "ADMINISTRATOR USERNAME";
             // 
@@ -506,10 +499,9 @@
             this.bigLabel3.BackColor = System.Drawing.Color.Transparent;
             this.bigLabel3.Font = new System.Drawing.Font("Segoe UI", 13F);
             this.bigLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(61)))));
-            this.bigLabel3.Location = new System.Drawing.Point(20, 121);
-            this.bigLabel3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.bigLabel3.Location = new System.Drawing.Point(27, 149);
             this.bigLabel3.Name = "bigLabel3";
-            this.bigLabel3.Size = new System.Drawing.Size(354, 50);
+            this.bigLabel3.Size = new System.Drawing.Size(427, 60);
             this.bigLabel3.TabIndex = 7;
             this.bigLabel3.Text = "No administrator account exists yet. Create\r\n the first administrator account to " +
     "continue.";
@@ -520,10 +512,9 @@
             this.bigLabel1.BackColor = System.Drawing.Color.Transparent;
             this.bigLabel1.Font = new System.Drawing.Font("Segoe UI", 28F);
             this.bigLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(61)))));
-            this.bigLabel1.Location = new System.Drawing.Point(15, 20);
-            this.bigLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.bigLabel1.Location = new System.Drawing.Point(20, 25);
             this.bigLabel1.Name = "bigLabel1";
-            this.bigLabel1.Size = new System.Drawing.Size(370, 102);
+            this.bigLabel1.Size = new System.Drawing.Size(458, 124);
             this.bigLabel1.TabIndex = 6;
             this.bigLabel1.Text = "Create Administrator\r\n Account\r\n";
             // 
@@ -533,15 +524,15 @@
             // 
             // frmSetup
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(946, 545);
+            this.ClientSize = new System.Drawing.Size(1259, 661);
             this.Controls.Add(this.parrotGradientPanel1);
             this.Controls.Add(this.nightPanel1);
             this.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.Margin = new System.Windows.Forms.Padding(2);
-            this.MaximumSize = new System.Drawing.Size(962, 584);
-            this.MinimumSize = new System.Drawing.Size(962, 584);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MaximumSize = new System.Drawing.Size(1277, 708);
+            this.MinimumSize = new System.Drawing.Size(1277, 708);
             this.Name = "frmSetup";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LoanDesk - Initial Administrator Setup";

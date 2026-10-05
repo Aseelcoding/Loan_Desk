@@ -175,6 +175,7 @@
             this.Controls.Add(this.parrotGradientPanel1);
             this.Name = "DashboardView";
             this.Size = new System.Drawing.Size(1000, 771);
+            this.Load += new System.EventHandler(this.DashboardView_Load);
             this.lostPanel1.ResumeLayout(false);
             this.lostPanel1.PerformLayout();
             this.lostPanel2.ResumeLayout(false);

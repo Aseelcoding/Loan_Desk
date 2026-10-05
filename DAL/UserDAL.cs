@@ -108,7 +108,6 @@ namespace DAL
             return IsAdded;
 
         }
-        
         public static User Find(string Username) 
         {
             User user = new User();
@@ -176,7 +175,37 @@ namespace DAL
             return user;
             
         }
+        public static DataTable GetUsers() 
+        {
+            DataTable dtUsers = new DataTable("Users");
 
+            SqlConnection connection = new SqlConnection(ConnectionString);
+
+            string query = @"
+            SELECT [ID]
+             ,[Username]
+             ,[Role]
+             ,[IsActive]
+             FROM [dbo].[Users];";
+
+            SqlCommand cmd = new SqlCommand(query,connection);
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                dtUsers.Load(reader);
+            }
+            catch (Exception ex) 
+            {
+                throw new Exception("Database Error", ex);
+            }
+            finally { connection.Close(); connection.Dispose(); }
+
+            return dtUsers;
+        }
 
     }
 }

@@ -20,7 +20,10 @@ namespace Loan_Desk.Account
 
         private void AccountView_Load(object sender, EventArgs e)
         {
-            txtUserID.Text = Sessions.CurrentUser.ID.ToString();
+            if (Sessions.CurrentUser == null)
+                return;
+
+                txtUserID.Text = Sessions.CurrentUser.ID.ToString();
             txtUsername.Text = Sessions.CurrentUser.Username;
             if(Sessions.CurrentUser.Role=="Admin")
                 chAdmin.Checked = true;

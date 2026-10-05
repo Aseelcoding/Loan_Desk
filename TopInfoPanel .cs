@@ -20,16 +20,18 @@ namespace Loan_Desk
            
         }
 
-        public string Title
+         public string Title
         {
-            get { return labTitle.Text; }
-            set { labTitle.Text = value; }
+            get { return LabTitle.Text; }
+            set { LabTitle.Text = value; }
         }
 
         private void btnAccount_Click(object sender, EventArgs e)
         {
+            if (Sessions.CurrentUser == null)
+                return;
 
-            Form Accfrm = new Form();
+                Form Accfrm = new Form();
           
             Account.AccountView accountView = new Account.AccountView();
            
@@ -47,7 +49,10 @@ namespace Loan_Desk
             if (DesignMode)
                 return;
 
+            if(Sessions.CurrentUser!=null)
             labAdOrStf.Text = Sessions.CurrentUser.Role;
         }
+
+       
     }
 }

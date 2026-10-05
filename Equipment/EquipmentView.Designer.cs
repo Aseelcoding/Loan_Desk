@@ -32,12 +32,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ContentPanel = new ReaLTaiizor.Controls.ParrotGradientPanel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.parrotGroupBox1 = new ReaLTaiizor.Controls.ParrotGroupBox();
             this.foreverRadioButton2 = new ReaLTaiizor.Controls.ForeverRadioButton();
             this.foreverRadioButton1 = new ReaLTaiizor.Controls.ForeverRadioButton();
             this.bigTextBox1 = new ReaLTaiizor.Controls.BigTextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EquipmentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,8 +46,8 @@
             this.ReplacementCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsActive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ContentPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.parrotGroupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // ContentPanel
@@ -62,11 +62,11 @@
             this.ContentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ContentPanel.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear;
             this.ContentPanel.Location = new System.Drawing.Point(0, 0);
-            this.ContentPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.ContentPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ContentPanel.Name = "ContentPanel";
             this.ContentPanel.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
             this.ContentPanel.PrimerColor = System.Drawing.Color.White;
-            this.ContentPanel.Size = new System.Drawing.Size(750, 626);
+            this.ContentPanel.Size = new System.Drawing.Size(1000, 770);
             this.ContentPanel.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             this.ContentPanel.Style = ReaLTaiizor.Controls.ParrotGradientPanel.GradientStyle.Corners;
             this.ContentPanel.TabIndex = 2;
@@ -74,8 +74,95 @@
             this.ContentPanel.TopLeft = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
             this.ContentPanel.TopRight = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
+            // parrotGroupBox1
+            // 
+            this.parrotGroupBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.parrotGroupBox1.BorderWidth = 1;
+            this.parrotGroupBox1.Controls.Add(this.foreverRadioButton2);
+            this.parrotGroupBox1.Controls.Add(this.foreverRadioButton1);
+            this.parrotGroupBox1.Location = new System.Drawing.Point(345, 36);
+            this.parrotGroupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.parrotGroupBox1.Name = "parrotGroupBox1";
+            this.parrotGroupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.parrotGroupBox1.ShowText = false;
+            this.parrotGroupBox1.Size = new System.Drawing.Size(267, 47);
+            this.parrotGroupBox1.TabIndex = 49;
+            this.parrotGroupBox1.TabStop = false;
+            this.parrotGroupBox1.Text = "parrotGroupBox1";
+            this.parrotGroupBox1.TextColor = System.Drawing.Color.DodgerBlue;
+            // 
+            // foreverRadioButton2
+            // 
+            this.foreverRadioButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
+            this.foreverRadioButton2.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
+            this.foreverRadioButton2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
+            this.foreverRadioButton2.Checked = false;
+            this.foreverRadioButton2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.foreverRadioButton2.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.foreverRadioButton2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
+            this.foreverRadioButton2.Location = new System.Drawing.Point(136, 12);
+            this.foreverRadioButton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.foreverRadioButton2.Name = "foreverRadioButton2";
+            this.foreverRadioButton2.Options = ReaLTaiizor.Controls.ForeverRadioButton._Options.Style1;
+            this.foreverRadioButton2.Size = new System.Drawing.Size(99, 22);
+            this.foreverRadioButton2.TabIndex = 2;
+            this.foreverRadioButton2.Text = "InActive";
+            // 
+            // foreverRadioButton1
+            // 
+            this.foreverRadioButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
+            this.foreverRadioButton1.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
+            this.foreverRadioButton1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
+            this.foreverRadioButton1.Checked = false;
+            this.foreverRadioButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.foreverRadioButton1.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.foreverRadioButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
+            this.foreverRadioButton1.Location = new System.Drawing.Point(9, 12);
+            this.foreverRadioButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.foreverRadioButton1.Name = "foreverRadioButton1";
+            this.foreverRadioButton1.Options = ReaLTaiizor.Controls.ForeverRadioButton._Options.Style1;
+            this.foreverRadioButton1.Size = new System.Drawing.Size(99, 22);
+            this.foreverRadioButton1.TabIndex = 1;
+            this.foreverRadioButton1.Text = "Active";
+            // 
+            // bigTextBox1
+            // 
+            this.bigTextBox1.BackColor = System.Drawing.Color.Transparent;
+            this.bigTextBox1.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.bigTextBox1.ForeColor = System.Drawing.Color.DimGray;
+            this.bigTextBox1.Image = null;
+            this.bigTextBox1.Location = new System.Drawing.Point(4, 32);
+            this.bigTextBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bigTextBox1.MaxLength = 32767;
+            this.bigTextBox1.Multiline = false;
+            this.bigTextBox1.Name = "bigTextBox1";
+            this.bigTextBox1.ReadOnly = false;
+            this.bigTextBox1.Size = new System.Drawing.Size(333, 46);
+            this.bigTextBox1.TabIndex = 48;
+            this.bigTextBox1.Text = "Search Equipment";
+            this.bigTextBox1.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
+            this.bigTextBox1.UseSystemPasswordChar = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Image = global::Loan_Desk.Properties.Resources.add_25;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(805, 46);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(180, 30);
+            this.button1.TabIndex = 47;
+            this.button1.Text = "Add Equipment";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = false;
+            // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -102,8 +189,8 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.Location = new System.Drawing.Point(-2, 72);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView1.Location = new System.Drawing.Point(-3, 89);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
@@ -115,122 +202,48 @@
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(750, 552);
+            this.dataGridView1.Size = new System.Drawing.Size(1000, 679);
             this.dataGridView1.TabIndex = 1;
-            // 
-            // parrotGroupBox1
-            // 
-            this.parrotGroupBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.parrotGroupBox1.BorderWidth = 1;
-            this.parrotGroupBox1.Controls.Add(this.foreverRadioButton2);
-            this.parrotGroupBox1.Controls.Add(this.foreverRadioButton1);
-            this.parrotGroupBox1.Location = new System.Drawing.Point(259, 29);
-            this.parrotGroupBox1.Name = "parrotGroupBox1";
-            this.parrotGroupBox1.ShowText = false;
-            this.parrotGroupBox1.Size = new System.Drawing.Size(200, 38);
-            this.parrotGroupBox1.TabIndex = 49;
-            this.parrotGroupBox1.TabStop = false;
-            this.parrotGroupBox1.Text = "parrotGroupBox1";
-            this.parrotGroupBox1.TextColor = System.Drawing.Color.DodgerBlue;
-            // 
-            // foreverRadioButton2
-            // 
-            this.foreverRadioButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
-            this.foreverRadioButton2.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
-            this.foreverRadioButton2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
-            this.foreverRadioButton2.Checked = false;
-            this.foreverRadioButton2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.foreverRadioButton2.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.foreverRadioButton2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
-            this.foreverRadioButton2.Location = new System.Drawing.Point(102, 10);
-            this.foreverRadioButton2.Name = "foreverRadioButton2";
-            this.foreverRadioButton2.Options = ReaLTaiizor.Controls.ForeverRadioButton._Options.Style1;
-            this.foreverRadioButton2.Size = new System.Drawing.Size(74, 22);
-            this.foreverRadioButton2.TabIndex = 2;
-            this.foreverRadioButton2.Text = "InActive";
-            // 
-            // foreverRadioButton1
-            // 
-            this.foreverRadioButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
-            this.foreverRadioButton1.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
-            this.foreverRadioButton1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
-            this.foreverRadioButton1.Checked = false;
-            this.foreverRadioButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.foreverRadioButton1.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.foreverRadioButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
-            this.foreverRadioButton1.Location = new System.Drawing.Point(7, 10);
-            this.foreverRadioButton1.Name = "foreverRadioButton1";
-            this.foreverRadioButton1.Options = ReaLTaiizor.Controls.ForeverRadioButton._Options.Style1;
-            this.foreverRadioButton1.Size = new System.Drawing.Size(74, 22);
-            this.foreverRadioButton1.TabIndex = 1;
-            this.foreverRadioButton1.Text = "Active";
-            // 
-            // bigTextBox1
-            // 
-            this.bigTextBox1.BackColor = System.Drawing.Color.Transparent;
-            this.bigTextBox1.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.bigTextBox1.ForeColor = System.Drawing.Color.DimGray;
-            this.bigTextBox1.Image = null;
-            this.bigTextBox1.Location = new System.Drawing.Point(3, 26);
-            this.bigTextBox1.MaxLength = 32767;
-            this.bigTextBox1.Multiline = false;
-            this.bigTextBox1.Name = "bigTextBox1";
-            this.bigTextBox1.ReadOnly = false;
-            this.bigTextBox1.Size = new System.Drawing.Size(250, 41);
-            this.bigTextBox1.TabIndex = 48;
-            this.bigTextBox1.Text = "Search Equipment";
-            this.bigTextBox1.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
-            this.bigTextBox1.UseSystemPasswordChar = false;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = global::Loan_Desk.Properties.Resources.add_25;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(604, 37);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(135, 24);
-            this.button1.TabIndex = 47;
-            this.button1.Text = "Add Equipment";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = false;
             // 
             // ID
             // 
             this.ID.HeaderText = "Equipment ID";
+            this.ID.MinimumWidth = 6;
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
             // 
             // EquipmentName
             // 
             this.EquipmentName.HeaderText = "Equipment";
+            this.EquipmentName.MinimumWidth = 6;
             this.EquipmentName.Name = "EquipmentName";
             this.EquipmentName.ReadOnly = true;
             // 
             // TotalQuantity
             // 
             this.TotalQuantity.HeaderText = "Quantity";
+            this.TotalQuantity.MinimumWidth = 6;
             this.TotalQuantity.Name = "TotalQuantity";
             this.TotalQuantity.ReadOnly = true;
             // 
             // AvailableQuantity
             // 
             this.AvailableQuantity.HeaderText = "Available Quantity";
+            this.AvailableQuantity.MinimumWidth = 6;
             this.AvailableQuantity.Name = "AvailableQuantity";
             this.AvailableQuantity.ReadOnly = true;
             // 
             // DailyLateFee
             // 
             this.DailyLateFee.HeaderText = "Daily Late Fee";
+            this.DailyLateFee.MinimumWidth = 6;
             this.DailyLateFee.Name = "DailyLateFee";
             this.DailyLateFee.ReadOnly = true;
             // 
             // ReplacementCost
             // 
             this.ReplacementCost.HeaderText = "Replacement Cost";
+            this.ReplacementCost.MinimumWidth = 6;
             this.ReplacementCost.Name = "ReplacementCost";
             this.ReplacementCost.ReadOnly = true;
             // 
@@ -239,17 +252,19 @@
             this.IsActive.HeaderText = "Active";
             this.IsActive.MinimumWidth = 6;
             this.IsActive.Name = "IsActive";
+            this.IsActive.ReadOnly = true;
             // 
             // EquipmentView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.ContentPanel);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "EquipmentView";
-            this.Size = new System.Drawing.Size(750, 626);
+            this.Size = new System.Drawing.Size(1000, 770);
             this.ContentPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.parrotGroupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
