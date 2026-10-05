@@ -114,5 +114,54 @@ namespace Loan_Desk.Users
             LoadUsersInfo(string.Empty);
 
         }
+
+        private LoanDesk.Models.User GetSelectedRow() 
+        {
+            LoanDesk.Models.User user =new LoanDesk.Models.User();
+
+            if (dgvUsers.SelectedRows.Count > 0) 
+            {
+                int USID = -1;
+                int.TryParse(dgvUsers.SelectedRows[0].Cells["ID"].Value.ToString(), out USID);
+                user.ID= USID;
+
+               user.Username= dgvUsers.SelectedRows[0].Cells["Username"].Value.ToString();
+                user.Role = dgvUsers.SelectedRows[0].Cells["Role"].Value.ToString();
+
+               user.IsActive= (bool)dgvUsers.SelectedRows[0].Cells["IsActive"].Value;
+
+                return user;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            LoanDesk.Models.User UpdateUser = GetSelectedRow();
+            frmUpdateUser frmUpdateUser = new frmUpdateUser(UpdateUser);
+            frmUpdateUser.ShowDialog();
+
+            dtUsers = UserBLL.GetUsers();
+            LoadUsersInfo(string.Empty);
+        }
+
+        private void btnUpdatePassword_Click(object sender, EventArgs e)
+        {
+            frmUpdateUserPassword frmUpdateUserPassword = new frmUpdateUserPassword();
+            frmUpdateUserPassword.ShowDialog();
+
+            dtUsers = UserBLL.GetUsers();
+            LoadUsersInfo(string.Empty);
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+
+            dtUsers = UserBLL.GetUsers();
+            LoadUsersInfo(string.Empty);
+        }
     }
 }

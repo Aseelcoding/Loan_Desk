@@ -28,24 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.parrotGradientPanel1 = new ReaLTaiizor.Controls.ParrotGradientPanel();
             this.cbFilter = new ReaLTaiizor.Controls.MaterialComboBox();
             this.parrotGroupBox1 = new ReaLTaiizor.Controls.ParrotGroupBox();
+            this.chInActive = new System.Windows.Forms.CheckBox();
+            this.chActive = new System.Windows.Forms.CheckBox();
             this.txtBarSearch = new ReaLTaiizor.Controls.BigTextBox();
+            this.btnAddUser = new System.Windows.Forms.Button();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Role = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsActive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.chActive = new System.Windows.Forms.CheckBox();
-            this.chInActive = new System.Windows.Forms.CheckBox();
-            this.btnAddUser = new System.Windows.Forms.Button();
+            this.ContextOperation = new ReaLTaiizor.Controls.CrownContextMenuStrip();
+            this.btnUpdate = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnUpdatePassword = new System.Windows.Forms.ToolStripMenuItem();
             this.parrotGradientPanel1.SuspendLayout();
             this.parrotGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
+            this.ContextOperation.SuspendLayout();
             this.SuspendLayout();
             // 
             // parrotGradientPanel1
@@ -117,6 +122,26 @@
             this.parrotGroupBox1.Text = "parrotGroupBox1";
             this.parrotGroupBox1.TextColor = System.Drawing.Color.DodgerBlue;
             // 
+            // chInActive
+            // 
+            this.chInActive.AutoSize = true;
+            this.chInActive.Location = new System.Drawing.Point(135, 13);
+            this.chInActive.Name = "chInActive";
+            this.chInActive.Size = new System.Drawing.Size(76, 20);
+            this.chInActive.TabIndex = 2;
+            this.chInActive.Text = "InActive";
+            this.chInActive.UseVisualStyleBackColor = true;
+            // 
+            // chActive
+            // 
+            this.chActive.AutoSize = true;
+            this.chActive.Location = new System.Drawing.Point(18, 13);
+            this.chActive.Name = "chActive";
+            this.chActive.Size = new System.Drawing.Size(66, 20);
+            this.chActive.TabIndex = 1;
+            this.chActive.Text = "Active";
+            this.chActive.UseVisualStyleBackColor = true;
+            // 
             // txtBarSearch
             // 
             this.txtBarSearch.BackColor = System.Drawing.Color.Transparent;
@@ -135,44 +160,62 @@
             this.txtBarSearch.UseSystemPasswordChar = false;
             this.txtBarSearch.TextChanged += new System.EventHandler(this.txtBarSearch_TextChanged);
             // 
+            // btnAddUser
+            // 
+            this.btnAddUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
+            this.btnAddUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddUser.Image = global::Loan_Desk.Properties.Resources.add_25;
+            this.btnAddUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddUser.Location = new System.Drawing.Point(853, 53);
+            this.btnAddUser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAddUser.Name = "btnAddUser";
+            this.btnAddUser.Size = new System.Drawing.Size(132, 30);
+            this.btnAddUser.TabIndex = 1;
+            this.btnAddUser.Text = "Add User";
+            this.btnAddUser.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddUser.UseVisualStyleBackColor = false;
+            this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
+            // 
             // dgvUsers
             // 
             this.dgvUsers.AllowUserToAddRows = false;
             this.dgvUsers.AllowUserToDeleteRows = false;
             this.dgvUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUsers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
             this.Username,
             this.Role,
             this.IsActive});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvUsers.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dgvUsers.ContextMenuStrip = this.ContextOperation;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvUsers.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvUsers.Location = new System.Drawing.Point(0, 92);
             this.dgvUsers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvUsers.Name = "dgvUsers";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUsers.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUsers.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvUsers.RowHeadersWidth = 51;
             this.dgvUsers.RowTemplate.Height = 24;
             this.dgvUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -210,42 +253,48 @@
             this.IsActive.Name = "IsActive";
             this.IsActive.ReadOnly = true;
             // 
-            // chActive
+            // ContextOperation
             // 
-            this.chActive.AutoSize = true;
-            this.chActive.Location = new System.Drawing.Point(18, 13);
-            this.chActive.Name = "chActive";
-            this.chActive.Size = new System.Drawing.Size(66, 20);
-            this.chActive.TabIndex = 1;
-            this.chActive.Text = "Active";
-            this.chActive.UseVisualStyleBackColor = true;
+            this.ContextOperation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.ContextOperation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.ContextOperation.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.ContextOperation.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnUpdate,
+            this.btnDelete,
+            this.btnUpdatePassword});
+            this.ContextOperation.Name = "crownContextMenuStrip1";
+            this.ContextOperation.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.ContextOperation.Size = new System.Drawing.Size(215, 110);
             // 
-            // chInActive
+            // btnUpdate
             // 
-            this.chInActive.AutoSize = true;
-            this.chInActive.Location = new System.Drawing.Point(135, 13);
-            this.chInActive.Name = "chInActive";
-            this.chInActive.Size = new System.Drawing.Size(76, 20);
-            this.chInActive.TabIndex = 2;
-            this.chInActive.Text = "InActive";
-            this.chInActive.UseVisualStyleBackColor = true;
+            this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.btnUpdate.Image = global::Loan_Desk.Properties.Resources.update_20;
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(214, 26);
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // btnAddUser
+            // btnDelete
             // 
-            this.btnAddUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
-            this.btnAddUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddUser.Image = global::Loan_Desk.Properties.Resources.add_25;
-            this.btnAddUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddUser.Location = new System.Drawing.Point(853, 53);
-            this.btnAddUser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnAddUser.Name = "btnAddUser";
-            this.btnAddUser.Size = new System.Drawing.Size(132, 30);
-            this.btnAddUser.TabIndex = 1;
-            this.btnAddUser.Text = "Add User";
-            this.btnAddUser.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAddUser.UseVisualStyleBackColor = false;
-            this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
+            this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.btnDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.btnDelete.Image = global::Loan_Desk.Properties.Resources.delete_20;
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(214, 26);
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnUpdatePassword
+            // 
+            this.btnUpdatePassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.btnUpdatePassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.btnUpdatePassword.Image = global::Loan_Desk.Properties.Resources.warning_20;
+            this.btnUpdatePassword.Name = "btnUpdatePassword";
+            this.btnUpdatePassword.Size = new System.Drawing.Size(214, 26);
+            this.btnUpdatePassword.Text = "Update Password";
+            this.btnUpdatePassword.Click += new System.EventHandler(this.btnUpdatePassword_Click);
             // 
             // UsersView
             // 
@@ -260,6 +309,7 @@
             this.parrotGroupBox1.ResumeLayout(false);
             this.parrotGroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
+            this.ContextOperation.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -278,5 +328,9 @@
         private ReaLTaiizor.Controls.MaterialComboBox cbFilter;
         private System.Windows.Forms.CheckBox chInActive;
         private System.Windows.Forms.CheckBox chActive;
+        private ReaLTaiizor.Controls.CrownContextMenuStrip ContextOperation;
+        private System.Windows.Forms.ToolStripMenuItem btnUpdate;
+        private System.Windows.Forms.ToolStripMenuItem btnDelete;
+        private System.Windows.Forms.ToolStripMenuItem btnUpdatePassword;
     }
 }

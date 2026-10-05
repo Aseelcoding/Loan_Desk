@@ -93,6 +93,16 @@ namespace Loan_Desk.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap delete_20 {
+            get {
+                object obj = ResourceManager.GetObject("delete-20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Equipment_32 {
             get {
                 object obj = ResourceManager.GetObject("Equipment-32", resourceCulture);
@@ -196,6 +206,16 @@ namespace Loan_Desk.Properties {
         internal static System.Drawing.Bitmap signing {
             get {
                 object obj = ResourceManager.GetObject("signing", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap update_20 {
+            get {
+                object obj = ResourceManager.GetObject("update-20", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
