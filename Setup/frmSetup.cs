@@ -24,7 +24,7 @@ namespace Loan_Desk.Setup
         private void txtPassword_TextChanged(object sender, EventArgs e)
         {
             // one number or symbol :
-            if (utilities.utilities.IsStringContainSymbol(txtPassword.Text) && utilities.utilities.IsDigit(txtPassword.Text))
+            if (utilities.utilities.IsStringContainSymbol(txtPassword.Text) || utilities.utilities.IsDigit(txtPassword.Text))
                 chSymbol.Checked = true;
             else
                 chSymbol.Checked = false;

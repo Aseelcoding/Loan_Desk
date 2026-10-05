@@ -45,7 +45,7 @@ namespace Loan_Desk.Users
 
             if (NewUser.Username == UpdateUser.Username
                 && NewUser.Role == UpdateUser.Role
-                && NewUser.IsActive == UpdateUser.IsActive
+                
                 )
                 IsSame = true;
 
@@ -93,7 +93,7 @@ namespace Loan_Desk.Users
             if (IsUpdated)
                { MessageBox.Show("Update user done successfully"); this.Close(); }
             else
-                MessageBox.Show("Filed to update user.");
+                MessageBox.Show("Failed to update user.");
 
          
         }

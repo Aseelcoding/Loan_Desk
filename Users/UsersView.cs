@@ -147,7 +147,7 @@ namespace Loan_Desk.Users
 
             if (UpdateUser == null)
             {
-                MessageBox.Show("Please choose a vlid row.");
+                MessageBox.Show("Please choose a valid row.");
                 return;
             }
             frmUpdateUser frmUpdateUser = new frmUpdateUser(UpdateUser);
@@ -182,7 +182,7 @@ namespace Loan_Desk.Users
 
                 if (user == null)
                 {
-                    MessageBox.Show("Please choose a vlid row.");
+                    MessageBox.Show("Please choose a valid row.");
                     return;
                 }
 

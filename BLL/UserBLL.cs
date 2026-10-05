@@ -46,7 +46,8 @@ namespace BLL
                 throw new Exception("Username must not be null or empty");
             if (user.Username.Length > 15 || user.Username.Length < 5)
                 throw new Exception("Username must be between 5 and 15.");
-            
+             if( utilities.utilities.IsStringContainSymbol( user.Username))
+                throw new Exception("Username must not has any Symbol.");
 
             if (user.Role != "Admin" && user.Role != "Staff")
                 throw new Exception("Role must be Admin or Staff.");

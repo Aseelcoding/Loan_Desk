@@ -45,7 +45,7 @@ namespace DAL
             }
             catch (Exception ex)
             {
-                throw new Exception("Failed to add new user \n\nDetails:", ex);
+                throw new Exception("Failed check is user exist.", ex);
             }
             finally { connection.Close(); connection.Dispose();}
 
@@ -280,7 +280,7 @@ namespace DAL
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw ex;
 
             }
             finally
