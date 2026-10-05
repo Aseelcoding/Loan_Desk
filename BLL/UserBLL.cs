@@ -32,7 +32,7 @@ namespace BLL
                 throw new Exception("Username must be between 5 and 15.");
             if (string.IsNullOrWhiteSpace(Password))
                 throw new Exception("Password must not be null or empty");
-            if (user.Username.Length > 20 || user.Username.Length < 5)
+            if (Password.Length > 20 || Password.Length < 5)
                 throw new Exception("Password must be between 5 and 20.");
 
             // one number or symbol :
