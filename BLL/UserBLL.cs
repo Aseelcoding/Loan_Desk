@@ -20,7 +20,7 @@ namespace BLL
             return IsExist;
 
         }
-        private static bool CheckUser(User user,string Password)
+        private static bool CheckUser(User user,string Password="FakePassword12")
         {
 
             if (user == null)
@@ -64,6 +64,10 @@ namespace BLL
         public static bool UpdateUser(User user)
         {
             bool IsUpdated = false;
+            if(!CheckUser(user)) 
+            {
+                return IsUpdated;
+            }
 
             IsUpdated=UserDAL.UpdateUser(user);
 
