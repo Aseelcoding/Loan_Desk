@@ -35,9 +35,7 @@ namespace Loan_Desk.Users
             else 
                 RadbtnStaff.Checked = true;
 
-            if (UpdateUser.IsActive)
-                togIsActive.Toggled = true;
-            else togIsActive.Toggled = false;
+           
 
         }
 
@@ -69,13 +67,11 @@ namespace Loan_Desk.Users
             else
                 NewUser.Role = "Staff";
 
-            if (togIsActive.Toggled == true)
-                NewUser.IsActive = true;
-            else NewUser.IsActive = false;
 
             if (IsSameInfo(NewUser))
               { MessageBox.Show("You did not change any info so this window will be closed.");
                 this.Close();
+                return;
             }
             else
             {

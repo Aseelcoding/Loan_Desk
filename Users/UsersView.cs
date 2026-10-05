@@ -115,8 +115,7 @@ namespace Loan_Desk.Users
 
             if (result == DialogResult.OK)
                 notiSuccess.Visible = true;
-            else
-                notiFailed.Visible = true;
+           
 
         }
 
@@ -164,9 +163,28 @@ namespace Loan_Desk.Users
         private void btnDelete_Click(object sender, EventArgs e)
         {
 
+            try
+            {
+                LoanDesk.Models.User user= GetSelectedRow();
 
+                if (user.IsActive == false )
+                { MessageBox.Show("This user is already Inactive.");return; }
+
+                UserBLL.DeleteUser(user);
+
+                MessageBox.Show("User now is Inactive.");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             dtUsers = UserBLL.GetUsers();
             LoadUsersInfo(string.Empty);
+        }
+
+        private void chActive_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -36,10 +36,9 @@
             this.bigLabel3 = new ReaLTaiizor.Controls.BigLabel();
             this.RadbtnAdmin = new ReaLTaiizor.Controls.ParrotRadioButton();
             this.RadbtnStaff = new ReaLTaiizor.Controls.ParrotRadioButton();
-            this.togIsActive = new ReaLTaiizor.Controls.ToggleButton();
-            this.bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
             this.btnSave = new ReaLTaiizor.Controls.LostCancelButton();
             this.btnClose = new ReaLTaiizor.Controls.LostCancelButton();
+            this.aloneNotice1 = new ReaLTaiizor.Controls.AloneNotice();
             this.SuspendLayout();
             // 
             // txtUserID
@@ -50,7 +49,7 @@
             this.txtUserID.Enabled = false;
             this.txtUserID.FocusOnHover = false;
             this.txtUserID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.txtUserID.Location = new System.Drawing.Point(138, 100);
+            this.txtUserID.Location = new System.Drawing.Point(118, 100);
             this.txtUserID.Margin = new System.Windows.Forms.Padding(4);
             this.txtUserID.MaxLength = 25;
             this.txtUserID.Multiline = false;
@@ -81,7 +80,7 @@
             this.txtUsername.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
             this.txtUsername.FocusOnHover = true;
             this.txtUsername.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.txtUsername.Location = new System.Drawing.Point(138, 158);
+            this.txtUsername.Location = new System.Drawing.Point(118, 158);
             this.txtUsername.Margin = new System.Windows.Forms.Padding(4);
             this.txtUsername.MaxLength = 25;
             this.txtUsername.Multiline = false;
@@ -163,29 +162,6 @@
             this.RadbtnStaff.Text = "Staff";
             this.RadbtnStaff.TextRenderingType = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             // 
-            // togIsActive
-            // 
-            this.togIsActive.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.togIsActive.Location = new System.Drawing.Point(129, 266);
-            this.togIsActive.Margin = new System.Windows.Forms.Padding(5);
-            this.togIsActive.Name = "togIsActive";
-            this.togIsActive.Size = new System.Drawing.Size(76, 33);
-            this.togIsActive.TabIndex = 89;
-            this.togIsActive.Toggled = false;
-            this.togIsActive.Type = ReaLTaiizor.Controls.ToggleButton._Type.YesNo;
-            // 
-            // bigLabel2
-            // 
-            this.bigLabel2.AutoSize = true;
-            this.bigLabel2.BackColor = System.Drawing.Color.Transparent;
-            this.bigLabel2.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.bigLabel2.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.bigLabel2.Location = new System.Drawing.Point(6, 274);
-            this.bigLabel2.Name = "bigLabel2";
-            this.bigLabel2.Size = new System.Drawing.Size(85, 23);
-            this.bigLabel2.TabIndex = 88;
-            this.bigLabel2.Text = "IS ACTIVE";
-            // 
             // btnSave
             // 
             this.btnSave.BackColor = System.Drawing.Color.SeaGreen;
@@ -218,14 +194,31 @@
             this.btnClose.Text = "CLOSE";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // aloneNotice1
+            // 
+            this.aloneNotice1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(253)))), ((int)(((byte)(232)))));
+            this.aloneNotice1.BorderColor = System.Drawing.Color.White;
+            this.aloneNotice1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.aloneNotice1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.aloneNotice1.Enabled = false;
+            this.aloneNotice1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(181)))), ((int)(((byte)(149)))));
+            this.aloneNotice1.Location = new System.Drawing.Point(390, 158);
+            this.aloneNotice1.Margin = new System.Windows.Forms.Padding(4);
+            this.aloneNotice1.Multiline = true;
+            this.aloneNotice1.Name = "aloneNotice1";
+            this.aloneNotice1.ReadOnly = true;
+            this.aloneNotice1.Size = new System.Drawing.Size(151, 38);
+            this.aloneNotice1.TabIndex = 90;
+            this.aloneNotice1.Text = "must be unique";
+            this.aloneNotice1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // frmUpdateUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
             this.ClientSize = new System.Drawing.Size(542, 399);
-            this.Controls.Add(this.togIsActive);
-            this.Controls.Add(this.bigLabel2);
+            this.Controls.Add(this.aloneNotice1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.RadbtnStaff);
@@ -257,9 +250,8 @@
         private ReaLTaiizor.Controls.BigLabel bigLabel3;
         private ReaLTaiizor.Controls.ParrotRadioButton RadbtnAdmin;
         private ReaLTaiizor.Controls.ParrotRadioButton RadbtnStaff;
-        private ReaLTaiizor.Controls.ToggleButton togIsActive;
-        private ReaLTaiizor.Controls.BigLabel bigLabel2;
         private ReaLTaiizor.Controls.LostCancelButton btnSave;
         private ReaLTaiizor.Controls.LostCancelButton btnClose;
+        private ReaLTaiizor.Controls.AloneNotice aloneNotice1;
     }
 }

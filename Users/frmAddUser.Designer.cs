@@ -44,6 +44,7 @@
             this.txtPassword = new ReaLTaiizor.Controls.ForeverTextBox();
             this.bigLabel6 = new ReaLTaiizor.Controls.BigLabel();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.aloneNotice1 = new ReaLTaiizor.Controls.AloneNotice();
             this.SuspendLayout();
             // 
             // togIsActive
@@ -89,7 +90,7 @@
             this.txtUserID.Enabled = false;
             this.txtUserID.FocusOnHover = false;
             this.txtUserID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.txtUserID.Location = new System.Drawing.Point(129, 79);
+            this.txtUserID.Location = new System.Drawing.Point(118, 79);
             this.txtUserID.Margin = new System.Windows.Forms.Padding(4);
             this.txtUserID.MaxLength = 25;
             this.txtUserID.Multiline = false;
@@ -120,7 +121,7 @@
             this.txtUsername.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
             this.txtUsername.FocusOnHover = true;
             this.txtUsername.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.txtUsername.Location = new System.Drawing.Point(129, 121);
+            this.txtUsername.Location = new System.Drawing.Point(118, 121);
             this.txtUsername.Margin = new System.Windows.Forms.Padding(4);
             this.txtUsername.MaxLength = 25;
             this.txtUsername.Multiline = false;
@@ -229,7 +230,7 @@
             this.txtPassword.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
             this.txtPassword.FocusOnHover = true;
             this.txtPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.txtPassword.Location = new System.Drawing.Point(129, 163);
+            this.txtPassword.Location = new System.Drawing.Point(118, 163);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.MaxLength = 20;
             this.txtPassword.Multiline = false;
@@ -258,12 +259,31 @@
             this.notifyIcon1.Text = "notifyIcon1";
             this.notifyIcon1.Visible = true;
             // 
+            // aloneNotice1
+            // 
+            this.aloneNotice1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(253)))), ((int)(((byte)(232)))));
+            this.aloneNotice1.BorderColor = System.Drawing.Color.White;
+            this.aloneNotice1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.aloneNotice1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.aloneNotice1.Enabled = false;
+            this.aloneNotice1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(181)))), ((int)(((byte)(149)))));
+            this.aloneNotice1.Location = new System.Drawing.Point(390, 121);
+            this.aloneNotice1.Margin = new System.Windows.Forms.Padding(4);
+            this.aloneNotice1.Multiline = true;
+            this.aloneNotice1.Name = "aloneNotice1";
+            this.aloneNotice1.ReadOnly = true;
+            this.aloneNotice1.Size = new System.Drawing.Size(151, 38);
+            this.aloneNotice1.TabIndex = 80;
+            this.aloneNotice1.Text = "must be unique";
+            this.aloneNotice1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // frmAddUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
             this.ClientSize = new System.Drawing.Size(542, 399);
+            this.Controls.Add(this.aloneNotice1);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.bigLabel6);
             this.Controls.Add(this.RadbtnStaff);
@@ -305,5 +325,6 @@
         private ReaLTaiizor.Controls.ForeverTextBox txtPassword;
         private ReaLTaiizor.Controls.BigLabel bigLabel6;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private ReaLTaiizor.Controls.AloneNotice aloneNotice1;
     }
 }

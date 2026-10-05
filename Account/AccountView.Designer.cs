@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnClose = new ReaLTaiizor.Controls.LostCancelButton();
-            this.btnSave = new ReaLTaiizor.Controls.LostCancelButton();
             this.bigLabel4 = new ReaLTaiizor.Controls.BigLabel();
             this.txtUsername = new ReaLTaiizor.Controls.ForeverTextBox();
             this.txtUserID = new ReaLTaiizor.Controls.ForeverTextBox();
@@ -40,36 +38,6 @@
             this.bigLabel3 = new ReaLTaiizor.Controls.BigLabel();
             this.togIsActive = new ReaLTaiizor.Controls.ToggleButton();
             this.SuspendLayout();
-            // 
-            // btnClose
-            // 
-            this.btnClose.BackColor = System.Drawing.Color.Crimson;
-            this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnClose.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.HoverColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnClose.Image = null;
-            this.btnClose.Location = new System.Drawing.Point(375, 342);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(180, 62);
-            this.btnClose.TabIndex = 52;
-            this.btnClose.Text = "CLOSE";
-            // 
-            // btnSave
-            // 
-            this.btnSave.BackColor = System.Drawing.Color.SeaGreen;
-            this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSave.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.HoverColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnSave.Image = null;
-            this.btnSave.Location = new System.Drawing.Point(5, 342);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(180, 62);
-            this.btnSave.TabIndex = 53;
-            this.btnSave.Text = "SAVE";
             // 
             // bigLabel4
             // 
@@ -91,11 +59,11 @@
             this.txtUsername.FocusOnHover = false;
             this.txtUsername.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.txtUsername.Location = new System.Drawing.Point(128, 157);
-            this.txtUsername.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUsername.Margin = new System.Windows.Forms.Padding(4);
             this.txtUsername.MaxLength = 25;
             this.txtUsername.Multiline = false;
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.ReadOnly = false;
+            this.txtUsername.ReadOnly = true;
             this.txtUsername.Size = new System.Drawing.Size(269, 34);
             this.txtUsername.TabIndex = 56;
             this.txtUsername.Text = "Username";
@@ -111,7 +79,7 @@
             this.txtUserID.FocusOnHover = false;
             this.txtUserID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.txtUserID.Location = new System.Drawing.Point(128, 82);
-            this.txtUserID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUserID.Margin = new System.Windows.Forms.Padding(4);
             this.txtUserID.MaxLength = 25;
             this.txtUserID.Multiline = false;
             this.txtUserID.Name = "txtUserID";
@@ -148,7 +116,7 @@
             this.chAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.chAdmin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(125)))), ((int)(((byte)(132)))));
             this.chAdmin.Location = new System.Drawing.Point(128, 226);
-            this.chAdmin.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.chAdmin.Margin = new System.Windows.Forms.Padding(5);
             this.chAdmin.Name = "chAdmin";
             this.chAdmin.Size = new System.Drawing.Size(115, 16);
             this.chAdmin.TabIndex = 59;
@@ -180,7 +148,7 @@
             this.chStaff.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.chStaff.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(125)))), ((int)(((byte)(132)))));
             this.chStaff.Location = new System.Drawing.Point(283, 226);
-            this.chStaff.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.chStaff.Margin = new System.Windows.Forms.Padding(5);
             this.chStaff.Name = "chStaff";
             this.chStaff.Size = new System.Drawing.Size(115, 16);
             this.chStaff.TabIndex = 61;
@@ -203,7 +171,7 @@
             this.togIsActive.Cursor = System.Windows.Forms.Cursors.Hand;
             this.togIsActive.Enabled = false;
             this.togIsActive.Location = new System.Drawing.Point(128, 272);
-            this.togIsActive.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.togIsActive.Margin = new System.Windows.Forms.Padding(5);
             this.togIsActive.Name = "togIsActive";
             this.togIsActive.Size = new System.Drawing.Size(76, 33);
             this.togIsActive.TabIndex = 63;
@@ -224,9 +192,7 @@
             this.Controls.Add(this.bigLabel1);
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.bigLabel4);
-            this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.btnClose);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximumSize = new System.Drawing.Size(560, 446);
             this.MinimumSize = new System.Drawing.Size(560, 446);
             this.Name = "AccountView";
@@ -238,9 +204,6 @@
         }
 
         #endregion
-
-        private ReaLTaiizor.Controls.LostCancelButton btnClose;
-        private ReaLTaiizor.Controls.LostCancelButton btnSave;
         private ReaLTaiizor.Controls.BigLabel bigLabel4;
         private ReaLTaiizor.Controls.ForeverTextBox txtUsername;
         private ReaLTaiizor.Controls.ForeverTextBox txtUserID;

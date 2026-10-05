@@ -36,5 +36,7 @@ namespace Loan_Desk.Account
             else togIsActive.Toggled = false;
 
         }
+
+        
     }
 }

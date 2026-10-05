@@ -32,6 +32,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.parrotGradientPanel1 = new ReaLTaiizor.Controls.ParrotGradientPanel();
+            this.notiFailed = new ReaLTaiizor.Controls.NotificationBox();
+            this.notiSuccess = new ReaLTaiizor.Controls.NotificationBox();
             this.cbFilter = new ReaLTaiizor.Controls.MaterialComboBox();
             this.parrotGroupBox1 = new ReaLTaiizor.Controls.ParrotGroupBox();
             this.chInActive = new System.Windows.Forms.CheckBox();
@@ -47,8 +49,6 @@
             this.btnUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.btnDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.btnUpdatePassword = new System.Windows.Forms.ToolStripMenuItem();
-            this.notiSuccess = new ReaLTaiizor.Controls.NotificationBox();
-            this.notiFailed = new ReaLTaiizor.Controls.NotificationBox();
             this.parrotGradientPanel1.SuspendLayout();
             this.parrotGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
@@ -81,6 +81,78 @@
             this.parrotGradientPanel1.TextRenderingType = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             this.parrotGradientPanel1.TopLeft = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
             this.parrotGradientPanel1.TopRight = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            // 
+            // notiFailed
+            // 
+            this.notiFailed.BorderCurve = 16;
+            this.notiFailed.CloseForeColor = System.Drawing.Color.Black;
+            this.notiFailed.ErrorBackColor = System.Drawing.Color.Crimson;
+            this.notiFailed.ErrorBorderColor = System.Drawing.Color.Crimson;
+            this.notiFailed.ErrorForeColor = System.Drawing.Color.White;
+            this.notiFailed.ErrorTitleText = "ERROR";
+            this.notiFailed.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.notiFailed.Image = null;
+            this.notiFailed.Location = new System.Drawing.Point(844, 716);
+            this.notiFailed.Margin = new System.Windows.Forms.Padding(4);
+            this.notiFailed.MinimumSize = new System.Drawing.Size(125, 50);
+            this.notiFailed.Name = "notiFailed";
+            this.notiFailed.NoticeBackColor = System.Drawing.Color.Gray;
+            this.notiFailed.NoticeBorderColor = System.Drawing.Color.Gray;
+            this.notiFailed.NoticeForeColor = System.Drawing.Color.White;
+            this.notiFailed.NoticeTitleText = "NOTICE";
+            this.notiFailed.NotificationType = ReaLTaiizor.Controls.NotificationBox.Type.Error;
+            this.notiFailed.RoundCorners = true;
+            this.notiFailed.ShowCloseButton = true;
+            this.notiFailed.Size = new System.Drawing.Size(152, 50);
+            this.notiFailed.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            this.notiFailed.SuccessBackColor = System.Drawing.Color.SeaGreen;
+            this.notiFailed.SuccessBorderColor = System.Drawing.Color.SeaGreen;
+            this.notiFailed.SuccessForeColor = System.Drawing.Color.White;
+            this.notiFailed.SuccessTitleText = "SUCCESS";
+            this.notiFailed.TabIndex = 50;
+            this.notiFailed.Text = "Failed to add user";
+            this.notiFailed.TextRenderingType = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.notiFailed.Visible = false;
+            this.notiFailed.WarningBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.notiFailed.WarningBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.notiFailed.WarningForeColor = System.Drawing.Color.White;
+            this.notiFailed.WarningTitleText = "WARNING";
+            // 
+            // notiSuccess
+            // 
+            this.notiSuccess.BorderCurve = 16;
+            this.notiSuccess.CloseForeColor = System.Drawing.Color.Black;
+            this.notiSuccess.ErrorBackColor = System.Drawing.Color.Crimson;
+            this.notiSuccess.ErrorBorderColor = System.Drawing.Color.Crimson;
+            this.notiSuccess.ErrorForeColor = System.Drawing.Color.White;
+            this.notiSuccess.ErrorTitleText = "ERROR";
+            this.notiSuccess.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.notiSuccess.Image = null;
+            this.notiSuccess.Location = new System.Drawing.Point(871, 716);
+            this.notiSuccess.Margin = new System.Windows.Forms.Padding(4);
+            this.notiSuccess.MinimumSize = new System.Drawing.Size(125, 50);
+            this.notiSuccess.Name = "notiSuccess";
+            this.notiSuccess.NoticeBackColor = System.Drawing.Color.Gray;
+            this.notiSuccess.NoticeBorderColor = System.Drawing.Color.Gray;
+            this.notiSuccess.NoticeForeColor = System.Drawing.Color.White;
+            this.notiSuccess.NoticeTitleText = "NOTICE";
+            this.notiSuccess.NotificationType = ReaLTaiizor.Controls.NotificationBox.Type.Success;
+            this.notiSuccess.RoundCorners = true;
+            this.notiSuccess.ShowCloseButton = true;
+            this.notiSuccess.Size = new System.Drawing.Size(125, 50);
+            this.notiSuccess.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            this.notiSuccess.SuccessBackColor = System.Drawing.Color.SeaGreen;
+            this.notiSuccess.SuccessBorderColor = System.Drawing.Color.SeaGreen;
+            this.notiSuccess.SuccessForeColor = System.Drawing.Color.White;
+            this.notiSuccess.SuccessTitleText = "SUCCESS";
+            this.notiSuccess.TabIndex = 49;
+            this.notiSuccess.Text = "User Added";
+            this.notiSuccess.TextRenderingType = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.notiSuccess.Visible = false;
+            this.notiSuccess.WarningBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.notiSuccess.WarningBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.notiSuccess.WarningForeColor = System.Drawing.Color.White;
+            this.notiSuccess.WarningTitleText = "WARNING";
             // 
             // cbFilter
             // 
@@ -145,6 +217,7 @@
             this.chActive.TabIndex = 1;
             this.chActive.Text = "Active";
             this.chActive.UseVisualStyleBackColor = true;
+            this.chActive.CheckedChanged += new System.EventHandler(this.chActive_CheckedChanged);
             // 
             // txtBarSearch
             // 
@@ -299,78 +372,6 @@
             this.btnUpdatePassword.Size = new System.Drawing.Size(196, 26);
             this.btnUpdatePassword.Text = "Update Password";
             this.btnUpdatePassword.Click += new System.EventHandler(this.btnUpdatePassword_Click);
-            // 
-            // notiSuccess
-            // 
-            this.notiSuccess.BorderCurve = 16;
-            this.notiSuccess.CloseForeColor = System.Drawing.Color.Black;
-            this.notiSuccess.ErrorBackColor = System.Drawing.Color.Crimson;
-            this.notiSuccess.ErrorBorderColor = System.Drawing.Color.Crimson;
-            this.notiSuccess.ErrorForeColor = System.Drawing.Color.White;
-            this.notiSuccess.ErrorTitleText = "ERROR";
-            this.notiSuccess.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.notiSuccess.Image = null;
-            this.notiSuccess.Location = new System.Drawing.Point(871, 716);
-            this.notiSuccess.Margin = new System.Windows.Forms.Padding(4);
-            this.notiSuccess.MinimumSize = new System.Drawing.Size(125, 50);
-            this.notiSuccess.Name = "notiSuccess";
-            this.notiSuccess.NoticeBackColor = System.Drawing.Color.Gray;
-            this.notiSuccess.NoticeBorderColor = System.Drawing.Color.Gray;
-            this.notiSuccess.NoticeForeColor = System.Drawing.Color.White;
-            this.notiSuccess.NoticeTitleText = "NOTICE";
-            this.notiSuccess.NotificationType = ReaLTaiizor.Controls.NotificationBox.Type.Success;
-            this.notiSuccess.RoundCorners = true;
-            this.notiSuccess.ShowCloseButton = true;
-            this.notiSuccess.Size = new System.Drawing.Size(125, 50);
-            this.notiSuccess.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            this.notiSuccess.SuccessBackColor = System.Drawing.Color.SeaGreen;
-            this.notiSuccess.SuccessBorderColor = System.Drawing.Color.SeaGreen;
-            this.notiSuccess.SuccessForeColor = System.Drawing.Color.White;
-            this.notiSuccess.SuccessTitleText = "SUCCESS";
-            this.notiSuccess.TabIndex = 49;
-            this.notiSuccess.Text = "User Added";
-            this.notiSuccess.TextRenderingType = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.notiSuccess.Visible = false;
-            this.notiSuccess.WarningBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.notiSuccess.WarningBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.notiSuccess.WarningForeColor = System.Drawing.Color.White;
-            this.notiSuccess.WarningTitleText = "WARNING";
-            // 
-            // notiFailed
-            // 
-            this.notiFailed.BorderCurve = 16;
-            this.notiFailed.CloseForeColor = System.Drawing.Color.Black;
-            this.notiFailed.ErrorBackColor = System.Drawing.Color.Crimson;
-            this.notiFailed.ErrorBorderColor = System.Drawing.Color.Crimson;
-            this.notiFailed.ErrorForeColor = System.Drawing.Color.White;
-            this.notiFailed.ErrorTitleText = "ERROR";
-            this.notiFailed.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.notiFailed.Image = null;
-            this.notiFailed.Location = new System.Drawing.Point(844, 716);
-            this.notiFailed.Margin = new System.Windows.Forms.Padding(4);
-            this.notiFailed.MinimumSize = new System.Drawing.Size(125, 50);
-            this.notiFailed.Name = "notiFailed";
-            this.notiFailed.NoticeBackColor = System.Drawing.Color.Gray;
-            this.notiFailed.NoticeBorderColor = System.Drawing.Color.Gray;
-            this.notiFailed.NoticeForeColor = System.Drawing.Color.White;
-            this.notiFailed.NoticeTitleText = "NOTICE";
-            this.notiFailed.NotificationType = ReaLTaiizor.Controls.NotificationBox.Type.Error;
-            this.notiFailed.RoundCorners = true;
-            this.notiFailed.ShowCloseButton = true;
-            this.notiFailed.Size = new System.Drawing.Size(152, 50);
-            this.notiFailed.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            this.notiFailed.SuccessBackColor = System.Drawing.Color.SeaGreen;
-            this.notiFailed.SuccessBorderColor = System.Drawing.Color.SeaGreen;
-            this.notiFailed.SuccessForeColor = System.Drawing.Color.White;
-            this.notiFailed.SuccessTitleText = "SUCCESS";
-            this.notiFailed.TabIndex = 50;
-            this.notiFailed.Text = "Failed to add user";
-            this.notiFailed.TextRenderingType = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.notiFailed.Visible = false;
-            this.notiFailed.WarningBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.notiFailed.WarningBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.notiFailed.WarningForeColor = System.Drawing.Color.White;
-            this.notiFailed.WarningTitleText = "WARNING";
             // 
             // UsersView
             // 

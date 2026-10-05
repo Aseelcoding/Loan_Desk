@@ -77,11 +77,7 @@ namespace Loan_Desk.Users
                this.DialogResult = DialogResult.OK;
                 this.Close();
             }
-            else
-            {
-                this.DialogResult= DialogResult.Cancel;
-                this.Close();
-            }
+            
         }
 
     }

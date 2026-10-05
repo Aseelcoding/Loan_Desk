@@ -101,7 +101,7 @@ namespace DAL
             }
             catch(Exception ex)
             {
-                throw new Exception("Failed to add new user \n\nDetails:", ex);
+                throw new Exception("Failed to add new user", ex);
             }
             finally { connection.Close(); connection.Dispose(); }
 
@@ -116,14 +116,14 @@ namespace DAL
 
             string query = @"UPDATE [dbo].[Users]
                                 SET Username= @Username
-                                ,Role=@Role
+                               
                                 ,IsActive=@IsActive
                                 WHERE ID=@ID;";
             SqlCommand cmd =new SqlCommand(query, connection);
 
             cmd.Parameters.Add("@ID", SqlDbType.Int).Value = user.ID;
             cmd.Parameters.Add("@Username", SqlDbType.VarChar, 15).Value = user.Username;
-            cmd.Parameters.Add("@Role", SqlDbType.VarChar, 30).Value = user.Role;
+         
             cmd.Parameters.Add("@IsActive", SqlDbType.Bit).Value = user.IsActive;
 
             try
@@ -145,6 +145,44 @@ namespace DAL
             finally { connection.Close(); connection.Dispose(); }
 
             return IsUpdated;
+
+        }
+        public static bool DeleteUser(User user) 
+        {
+            bool Isdeleted = false;
+
+            SqlConnection connection = new SqlConnection(ConnectionString);
+
+            bool InActive = false;
+            string query = @"
+
+                            UPDATE [dbo].[Users]
+                            SET [IsActive] =@IsActive
+                             WHERE ID=@ID;";
+
+            SqlCommand cmd =new SqlCommand(query, connection);
+            cmd.Parameters.Add("@IsActive", SqlDbType.Bit).Value = InActive;
+            cmd.Parameters.Add("@ID", SqlDbType.Int).Value = user.ID;
+
+            try
+            {
+                connection.Open();
+                int AffectedRows = cmd.ExecuteNonQuery();
+
+                if (AffectedRows > 0)
+                    Isdeleted = true;
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to delete user.", ex);
+            }
+            finally { connection.Close(); connection.Dispose(); }
+
+            return Isdeleted;
 
         }
         public static bool UpdateUserPassword(int ID,string NewPasswordHash,string NewPasswordSalt)

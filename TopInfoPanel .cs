@@ -41,6 +41,7 @@ namespace Loan_Desk
            accountView.Dock= DockStyle.Fill;
             Accfrm.Controls.Add(accountView);
             Accfrm.ShowDialog();
+          
 
         }
 
