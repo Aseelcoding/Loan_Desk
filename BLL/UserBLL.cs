@@ -131,6 +131,10 @@ namespace BLL
             if (string.IsNullOrWhiteSpace(Password))
                 throw new Exception("Password must not be null or empty");
 
+            if (string.IsNullOrWhiteSpace(Password))
+                throw new Exception("Password must not be null or empty");
+            if (Password.Length > 20 || Password.Length < 5)
+                throw new Exception("Password must be between 5 and 20.");
             bool IsValid = false;
 
             User user = new User();
