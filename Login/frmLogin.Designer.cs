@@ -30,15 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             this.parrotGradientPanel1 = new ReaLTaiizor.Controls.ParrotGradientPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.labelEdit1 = new ReaLTaiizor.Controls.LabelEdit();
             this.cyberGroupBox1 = new ReaLTaiizor.Controls.CyberGroupBox();
-            this.bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
-            this.txtUsername = new ReaLTaiizor.Controls.TextBoxEdit();
-            this.bigLabel4 = new ReaLTaiizor.Controls.BigLabel();
+            this.btnLogin = new ReaLTaiizor.Controls.CyberButton();
             this.txtPassword = new ReaLTaiizor.Controls.TextBoxEdit();
             this.bigLabel5 = new ReaLTaiizor.Controls.BigLabel();
-            this.btnLogin = new ReaLTaiizor.Controls.CyberButton();
+            this.txtUsername = new ReaLTaiizor.Controls.TextBoxEdit();
+            this.bigLabel4 = new ReaLTaiizor.Controls.BigLabel();
+            this.bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
+            this.labelEdit1 = new ReaLTaiizor.Controls.LabelEdit();
+            this.label1 = new System.Windows.Forms.Label();
             this.parrotGradientPanel1.SuspendLayout();
             this.cyberGroupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -63,32 +63,7 @@
             this.parrotGradientPanel1.TextRenderingType = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             this.parrotGradientPanel1.TopLeft = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(61)))));
             this.parrotGradientPanel1.TopRight = System.Drawing.Color.Gray;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
-            this.label1.Image = global::Loan_Desk.Properties.Resources.Logo;
-            this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label1.Location = new System.Drawing.Point(271, 147);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(355, 58);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "       Loan Desk";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // labelEdit1
-            // 
-            this.labelEdit1.AutoSize = true;
-            this.labelEdit1.BackColor = System.Drawing.Color.Transparent;
-            this.labelEdit1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEdit1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(125)))), ((int)(((byte)(132)))));
-            this.labelEdit1.Location = new System.Drawing.Point(382, 205);
-            this.labelEdit1.Name = "labelEdit1";
-            this.labelEdit1.Size = new System.Drawing.Size(244, 18);
-            this.labelEdit1.TabIndex = 9;
-            this.labelEdit1.Text = "ENTERPRISE LENDING SUITE";
+            this.parrotGradientPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.parrotGradientPanel1_Paint);
             // 
             // cyberGroupBox1
             // 
@@ -127,74 +102,6 @@
             this.cyberGroupBox1.Tag = "Cyber";
             this.cyberGroupBox1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             this.cyberGroupBox1.Timer_RGB = 300;
-            // 
-            // bigLabel1
-            // 
-            this.bigLabel1.AutoSize = true;
-            this.bigLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.bigLabel1.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bigLabel1.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.bigLabel1.Location = new System.Drawing.Point(36, 32);
-            this.bigLabel1.Name = "bigLabel1";
-            this.bigLabel1.Size = new System.Drawing.Size(89, 31);
-            this.bigLabel1.TabIndex = 7;
-            this.bigLabel1.Text = "Sign in";
-            // 
-            // txtUsername
-            // 
-            this.txtUsername.BackColor = System.Drawing.Color.Transparent;
-            this.txtUsername.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.txtUsername.ForeColor = System.Drawing.Color.Silver;
-            this.txtUsername.Image = null;
-            this.txtUsername.Location = new System.Drawing.Point(20, 114);
-            this.txtUsername.MaxLength = 20;
-            this.txtUsername.Multiline = false;
-            this.txtUsername.Name = "txtUsername";
-            this.txtUsername.ReadOnly = false;
-            this.txtUsername.Size = new System.Drawing.Size(330, 46);
-            this.txtUsername.TabIndex = 16;
-            this.txtUsername.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
-            this.txtUsername.UseSystemPasswordChar = false;
-            // 
-            // bigLabel4
-            // 
-            this.bigLabel4.AutoSize = true;
-            this.bigLabel4.BackColor = System.Drawing.Color.Transparent;
-            this.bigLabel4.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.bigLabel4.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.bigLabel4.Location = new System.Drawing.Point(27, 88);
-            this.bigLabel4.Name = "bigLabel4";
-            this.bigLabel4.Size = new System.Drawing.Size(98, 23);
-            this.bigLabel4.TabIndex = 15;
-            this.bigLabel4.Text = "USERNAME";
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(61)))));
-            this.txtPassword.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.txtPassword.ForeColor = System.Drawing.Color.Silver;
-            this.txtPassword.Image = null;
-            this.txtPassword.Location = new System.Drawing.Point(19, 212);
-            this.txtPassword.MaxLength = 20;
-            this.txtPassword.Multiline = false;
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.ReadOnly = false;
-            this.txtPassword.Size = new System.Drawing.Size(331, 46);
-            this.txtPassword.TabIndex = 18;
-            this.txtPassword.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
-            this.txtPassword.UseSystemPasswordChar = true;
-            // 
-            // bigLabel5
-            // 
-            this.bigLabel5.AutoSize = true;
-            this.bigLabel5.BackColor = System.Drawing.Color.Transparent;
-            this.bigLabel5.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.bigLabel5.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.bigLabel5.Location = new System.Drawing.Point(26, 186);
-            this.bigLabel5.Name = "bigLabel5";
-            this.bigLabel5.Size = new System.Drawing.Size(99, 23);
-            this.bigLabel5.TabIndex = 17;
-            this.bigLabel5.Text = "PASSWORD";
             // 
             // btnLogin
             // 
@@ -236,6 +143,100 @@
             this.btnLogin.Timer_Effect_1 = 5;
             this.btnLogin.Timer_RGB = 300;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(61)))));
+            this.txtPassword.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.txtPassword.ForeColor = System.Drawing.Color.Silver;
+            this.txtPassword.Image = null;
+            this.txtPassword.Location = new System.Drawing.Point(19, 212);
+            this.txtPassword.MaxLength = 20;
+            this.txtPassword.Multiline = false;
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.ReadOnly = false;
+            this.txtPassword.Size = new System.Drawing.Size(331, 46);
+            this.txtPassword.TabIndex = 18;
+            this.txtPassword.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtPassword.UseSystemPasswordChar = true;
+            // 
+            // bigLabel5
+            // 
+            this.bigLabel5.AutoSize = true;
+            this.bigLabel5.BackColor = System.Drawing.Color.Transparent;
+            this.bigLabel5.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.bigLabel5.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.bigLabel5.Location = new System.Drawing.Point(26, 186);
+            this.bigLabel5.Name = "bigLabel5";
+            this.bigLabel5.Size = new System.Drawing.Size(99, 23);
+            this.bigLabel5.TabIndex = 17;
+            this.bigLabel5.Text = "PASSWORD";
+            // 
+            // txtUsername
+            // 
+            this.txtUsername.BackColor = System.Drawing.Color.Transparent;
+            this.txtUsername.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.txtUsername.ForeColor = System.Drawing.Color.Silver;
+            this.txtUsername.Image = null;
+            this.txtUsername.Location = new System.Drawing.Point(20, 114);
+            this.txtUsername.MaxLength = 20;
+            this.txtUsername.Multiline = false;
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.ReadOnly = false;
+            this.txtUsername.Size = new System.Drawing.Size(330, 46);
+            this.txtUsername.TabIndex = 16;
+            this.txtUsername.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtUsername.UseSystemPasswordChar = false;
+            // 
+            // bigLabel4
+            // 
+            this.bigLabel4.AutoSize = true;
+            this.bigLabel4.BackColor = System.Drawing.Color.Transparent;
+            this.bigLabel4.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.bigLabel4.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.bigLabel4.Location = new System.Drawing.Point(27, 88);
+            this.bigLabel4.Name = "bigLabel4";
+            this.bigLabel4.Size = new System.Drawing.Size(98, 23);
+            this.bigLabel4.TabIndex = 15;
+            this.bigLabel4.Text = "USERNAME";
+            // 
+            // bigLabel1
+            // 
+            this.bigLabel1.AutoSize = true;
+            this.bigLabel1.BackColor = System.Drawing.Color.Transparent;
+            this.bigLabel1.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bigLabel1.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.bigLabel1.Location = new System.Drawing.Point(36, 32);
+            this.bigLabel1.Name = "bigLabel1";
+            this.bigLabel1.Size = new System.Drawing.Size(89, 31);
+            this.bigLabel1.TabIndex = 7;
+            this.bigLabel1.Text = "Sign in";
+            // 
+            // labelEdit1
+            // 
+            this.labelEdit1.AutoSize = true;
+            this.labelEdit1.BackColor = System.Drawing.Color.Transparent;
+            this.labelEdit1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEdit1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(125)))), ((int)(((byte)(132)))));
+            this.labelEdit1.Location = new System.Drawing.Point(382, 205);
+            this.labelEdit1.Name = "labelEdit1";
+            this.labelEdit1.Size = new System.Drawing.Size(244, 18);
+            this.labelEdit1.TabIndex = 9;
+            this.labelEdit1.Text = "ENTERPRISE LENDING SUITE";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
+            this.label1.Image = global::Loan_Desk.Properties.Resources.Logo;
+            this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.Location = new System.Drawing.Point(271, 147);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(355, 58);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "       Loan Desk";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // frmLogin
             // 

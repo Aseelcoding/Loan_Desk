@@ -22,28 +22,43 @@ namespace Loan_Desk
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            
-           
-            if (UserBLL.Login(txtUsername.Text, txtPassword.Text))
+
+
+            try
             {
-                MessageBox.Show("Success");
+                if (UserBLL.Login(txtUsername.Text, txtPassword.Text))
+                {
+                    MessageBox.Show("Success");
 
-                this.Hide();
+                    this.Hide();
 
-                frmMainScreen frmMainScreen = new frmMainScreen();
-                frmMainScreen.ShowDialog();
+                    frmMainScreen frmMainScreen = new frmMainScreen();
+                    frmMainScreen.ShowDialog();
 
-                this.Close();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show(
+                        "Failed",
+                        "Warning",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Stop);
+                }
             }
-            else
+            catch (Exception ex)
             {
                 MessageBox.Show(
-                    "Failed",
-                    "Warning",
+                    ex.Message,
+                    "Error",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Stop);
-            }
+                    MessageBoxIcon.Error);
 
+            }
+        }
+
+        private void parrotGradientPanel1_Paint(object sender, PaintEventArgs e)
+        {
 
         }
     }
