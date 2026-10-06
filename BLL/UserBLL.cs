@@ -144,6 +144,10 @@ namespace BLL
             else
             {
                 IsUpdated = UserDAL.UpdateUser(user);
+                if(IsUpdated)
+                {
+                    Sessions.CreateUserSession(user.ID, user.Username, user.Role, user.IsActive);
+                }
             }
 
                 return IsUpdated;
