@@ -44,7 +44,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.ContentPanel = new ReaLTaiizor.Controls.ParrotGradientPanel();
             this.customPanel1 = new Loan_Desk.CustomPanel();
-            this.customPanel1.Title = "LoanDesk/Dashboard";
             this.parrotSlidingPanel1.SuspendLayout();
             this.parrotGroupBox4.SuspendLayout();
             this.parrotGroupBox3.SuspendLayout();
@@ -426,6 +425,7 @@
             this.Name = "frmMainScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main Screen";
+            this.Load += new System.EventHandler(this.frmMainScreen_Load);
             this.parrotSlidingPanel1.ResumeLayout(false);
             this.parrotSlidingPanel1.PerformLayout();
             this.parrotGroupBox4.ResumeLayout(false);

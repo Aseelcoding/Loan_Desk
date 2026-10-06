@@ -63,6 +63,16 @@ namespace Loan_Desk.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap active_20 {
+            get {
+                object obj = ResourceManager.GetObject("active-20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap add_25 {
             get {
                 object obj = ResourceManager.GetObject("add-25", resourceCulture);

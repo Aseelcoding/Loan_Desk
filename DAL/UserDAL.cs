@@ -18,7 +18,7 @@ namespace DAL
 
             string query = @"SELECT Count(ID) AS CountAdmins
                         FROM Users
-                WHERE Users.Role='Admin';";
+                WHERE Users.Role='Admin' and Users.IsActive=1;";
 
             SqlCommand cmd =new SqlCommand(query, connection);
 
@@ -47,6 +47,34 @@ namespace DAL
 
             return Counter;
 
+        }
+        public static int CountActiveUsers()
+        {
+            int Counter = -1;
+            SqlConnection connection = new SqlConnection(ConnectionString);
+            string query = @"SELECT Count(ID) AS CountUsers
+                        FROM Users
+                WHERE Users.IsActive=1;";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            try
+            {
+                connection.Open();
+                object Result = cmd.ExecuteScalar();
+                if (Result != null && Result != DBNull.Value)
+                {
+                    int.TryParse(Result.ToString(), out Counter);
+                }
+                else
+                {
+                    throw new LoanDesk.Models.Exceptions.DataAccessException("Could not get the number of users");
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw SqlErrorMapper.Map(ex, "Get Number of active users");
+            }
+            finally { connection.Close(); connection.Dispose(); }
+            return Counter;
         }
         public static bool IsAdminExist() 
         {
@@ -151,6 +179,33 @@ namespace DAL
 
             return IsAdded;
 
+        }
+        public static bool ActivateUser(int ID)
+        {
+            bool IsActivated = false;
+            SqlConnection connection = new SqlConnection(ConnectionString);
+            bool IsActive = true;
+            string query = @"
+                            UPDATE [dbo].[Users]
+                            SET [IsActive] =@IsActive
+                             WHERE ID=@ID;";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.Add("@IsActive", SqlDbType.Bit).Value = IsActive;
+            cmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
+
+            try
+            {
+                connection.Open();
+                int AffectedRows = cmd.ExecuteNonQuery();
+                if (AffectedRows > 0)
+                    IsActivated = true;
+            }
+            catch (SqlException ex) 
+            {
+                throw SqlErrorMapper.Map(ex, "Activate a user");
+            }
+            finally { connection.Close(); connection.Dispose(); }
+            return IsActivated;
         }
         public static bool UpdateUser(User user) 
         {

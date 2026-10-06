@@ -25,7 +25,26 @@ namespace Loan_Desk.Main_Screen
             DashboardView dashboardView = new DashboardView();
             ContentPanel.Controls.Add(dashboardView);
         }
+        private void frmMainScreen_Load(object sender, EventArgs e)
+        {
+            if (Sessions.CurrentUser.Role != "Admin")
+            {btnUsers.Enabled = false;
+                btnUsers.Visible = false;
+                btnAuditLog.Enabled = false;
+                btnAuditLog.Visible = false;
+            }
+            else
+            {
+                btnUsers.Enabled = true;
+                btnUsers.Visible = true;
+                btnAuditLog.Enabled = true;
+                btnAuditLog.Visible = true;
+            }
 
+
+
+
+        }
         private void btnDashboard_Click(object sender, EventArgs e)
         {
             DashboardView dashboardView = new DashboardView();
@@ -38,7 +57,7 @@ namespace Loan_Desk.Main_Screen
         {
             
             ContentPanel.Controls.Clear();
-            if (Sessions.CurrentUser.Role != "Admin")
+            if (Sessions.CurrentUser.Role != "Admin" )
                 return;
 
             Users.UsersView usersView = new Users.UsersView();
@@ -91,5 +110,6 @@ namespace Loan_Desk.Main_Screen
             ContentPanel.Controls.Add(auditLogView);
         }
 
+        
     }
 }

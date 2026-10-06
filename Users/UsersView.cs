@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -104,7 +105,6 @@ namespace Loan_Desk.Users
 
 
         }
-
         private void btnAddUser_Click(object sender, EventArgs e)
         {
             frmAddUser frmAddUser = new frmAddUser();
@@ -113,12 +113,10 @@ namespace Loan_Desk.Users
             dtUsers = UserBLL.GetUsers();
             LoadUsersInfo(string.Empty);
 
-            if (result == DialogResult.OK)
-                notiSuccess.Visible = true;
+            
            
 
         }
-
         private LoanDesk.Models.User GetSelectedRow() 
         {
             LoanDesk.Models.User user =new LoanDesk.Models.User();
@@ -156,7 +154,6 @@ namespace Loan_Desk.Users
             dtUsers = UserBLL.GetUsers();
             LoadUsersInfo(string.Empty);
         }
-
         private void btnUpdatePassword_Click(object sender, EventArgs e)
         {
 
@@ -166,15 +163,15 @@ namespace Loan_Desk.Users
                 MessageBox.Show("Please choose a vlid row.");
                 return;
             }
-            frmUpdateUserPassword frmUpdateUserPassword = new frmUpdateUserPassword(GetSelectedRow());
+            frmUpdateUserPassword frmUpdateUserPassword = new frmUpdateUserPassword(user);
             frmUpdateUserPassword.ShowDialog();
 
             dtUsers = UserBLL.GetUsers();
             LoadUsersInfo(string.Empty);
         }
-
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            bool IsDeleted = false;
 
             try
             {
@@ -189,9 +186,13 @@ namespace Loan_Desk.Users
                 if (user.IsActive == false )
                 { MessageBox.Show("This user is already Inactive.");return; }
 
-                UserBLL.DeleteUser(user);
-
+                IsDeleted=UserBLL.DeleteUser(user);
+                if(IsDeleted)
                 MessageBox.Show("User now is Inactive.");
+                else
+                {
+                    MessageBox.Show("User could not be Inactivated.");
+                }
             }
             catch(Exception ex)
             {
@@ -200,10 +201,40 @@ namespace Loan_Desk.Users
             dtUsers = UserBLL.GetUsers();
             LoadUsersInfo(string.Empty);
         }
-
         private void chActive_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+        private void btnActivate_Click(object sender, EventArgs e)
+        {
+            bool IsActicated = false;
+            LoanDesk.Models.User user = GetSelectedRow();
+            try
+            {
+                if (user == null)
+                {
+                    MessageBox.Show("Please choose a valid row.");
+                    return;
+                }
+
+                if (user.IsActive == true)
+                { MessageBox.Show("This user is already Active."); return; }
+
+                IsActicated = UserBLL.ActivateUser(user.ID);
+               
+                if(IsActicated)
+                    MessageBox.Show("User now is Active.");
+                else
+                {
+                    MessageBox.Show("User could not be Activated.");
+                }
+            }
+            catch (SqlException ex) 
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dtUsers = UserBLL.GetUsers();
+            LoadUsersInfo(string.Empty);
         }
     }
 }

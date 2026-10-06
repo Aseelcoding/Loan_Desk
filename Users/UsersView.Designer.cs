@@ -29,26 +29,26 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.parrotGradientPanel1 = new ReaLTaiizor.Controls.ParrotGradientPanel();
-            this.notiFailed = new ReaLTaiizor.Controls.NotificationBox();
-            this.notiSuccess = new ReaLTaiizor.Controls.NotificationBox();
             this.cbFilter = new ReaLTaiizor.Controls.MaterialComboBox();
             this.parrotGroupBox1 = new ReaLTaiizor.Controls.ParrotGroupBox();
             this.chInActive = new System.Windows.Forms.CheckBox();
             this.chActive = new System.Windows.Forms.CheckBox();
             this.txtBarSearch = new ReaLTaiizor.Controls.BigTextBox();
-            this.btnAddUser = new System.Windows.Forms.Button();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Role = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsActive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ContextOperation = new ReaLTaiizor.Controls.CrownContextMenuStrip();
+            this.btnAddUser = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.btnDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.btnUpdatePassword = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnActivate = new System.Windows.Forms.ToolStripMenuItem();
             this.parrotGradientPanel1.SuspendLayout();
             this.parrotGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
@@ -60,8 +60,6 @@
             this.parrotGradientPanel1.BottomLeft = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
             this.parrotGradientPanel1.BottomRight = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.parrotGradientPanel1.CompositingQualityType = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-            this.parrotGradientPanel1.Controls.Add(this.notiFailed);
-            this.parrotGradientPanel1.Controls.Add(this.notiSuccess);
             this.parrotGradientPanel1.Controls.Add(this.cbFilter);
             this.parrotGradientPanel1.Controls.Add(this.parrotGroupBox1);
             this.parrotGradientPanel1.Controls.Add(this.txtBarSearch);
@@ -70,11 +68,11 @@
             this.parrotGradientPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.parrotGradientPanel1.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear;
             this.parrotGradientPanel1.Location = new System.Drawing.Point(0, 0);
-            this.parrotGradientPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.parrotGradientPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.parrotGradientPanel1.Name = "parrotGradientPanel1";
             this.parrotGradientPanel1.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
             this.parrotGradientPanel1.PrimerColor = System.Drawing.Color.White;
-            this.parrotGradientPanel1.Size = new System.Drawing.Size(750, 626);
+            this.parrotGradientPanel1.Size = new System.Drawing.Size(1000, 770);
             this.parrotGradientPanel1.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             this.parrotGradientPanel1.Style = ReaLTaiizor.Controls.ParrotGradientPanel.GradientStyle.Corners;
             this.parrotGradientPanel1.TabIndex = 2;
@@ -82,83 +80,13 @@
             this.parrotGradientPanel1.TopLeft = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
             this.parrotGradientPanel1.TopRight = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
-            // notiFailed
-            // 
-            this.notiFailed.BorderCurve = 16;
-            this.notiFailed.CloseForeColor = System.Drawing.Color.Black;
-            this.notiFailed.ErrorBackColor = System.Drawing.Color.Crimson;
-            this.notiFailed.ErrorBorderColor = System.Drawing.Color.Crimson;
-            this.notiFailed.ErrorForeColor = System.Drawing.Color.White;
-            this.notiFailed.ErrorTitleText = "ERROR";
-            this.notiFailed.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.notiFailed.Image = null;
-            this.notiFailed.Location = new System.Drawing.Point(633, 582);
-            this.notiFailed.MinimumSize = new System.Drawing.Size(94, 41);
-            this.notiFailed.Name = "notiFailed";
-            this.notiFailed.NoticeBackColor = System.Drawing.Color.Gray;
-            this.notiFailed.NoticeBorderColor = System.Drawing.Color.Gray;
-            this.notiFailed.NoticeForeColor = System.Drawing.Color.White;
-            this.notiFailed.NoticeTitleText = "NOTICE";
-            this.notiFailed.NotificationType = ReaLTaiizor.Controls.NotificationBox.Type.Error;
-            this.notiFailed.RoundCorners = true;
-            this.notiFailed.ShowCloseButton = true;
-            this.notiFailed.Size = new System.Drawing.Size(114, 41);
-            this.notiFailed.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            this.notiFailed.SuccessBackColor = System.Drawing.Color.SeaGreen;
-            this.notiFailed.SuccessBorderColor = System.Drawing.Color.SeaGreen;
-            this.notiFailed.SuccessForeColor = System.Drawing.Color.White;
-            this.notiFailed.SuccessTitleText = "SUCCESS";
-            this.notiFailed.TabIndex = 50;
-            this.notiFailed.Text = "Failed to add user";
-            this.notiFailed.TextRenderingType = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.notiFailed.Visible = false;
-            this.notiFailed.WarningBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.notiFailed.WarningBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.notiFailed.WarningForeColor = System.Drawing.Color.White;
-            this.notiFailed.WarningTitleText = "WARNING";
-            // 
-            // notiSuccess
-            // 
-            this.notiSuccess.BorderCurve = 16;
-            this.notiSuccess.CloseForeColor = System.Drawing.Color.Black;
-            this.notiSuccess.ErrorBackColor = System.Drawing.Color.Crimson;
-            this.notiSuccess.ErrorBorderColor = System.Drawing.Color.Crimson;
-            this.notiSuccess.ErrorForeColor = System.Drawing.Color.White;
-            this.notiSuccess.ErrorTitleText = "ERROR";
-            this.notiSuccess.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.notiSuccess.Image = null;
-            this.notiSuccess.Location = new System.Drawing.Point(653, 582);
-            this.notiSuccess.MinimumSize = new System.Drawing.Size(94, 41);
-            this.notiSuccess.Name = "notiSuccess";
-            this.notiSuccess.NoticeBackColor = System.Drawing.Color.Gray;
-            this.notiSuccess.NoticeBorderColor = System.Drawing.Color.Gray;
-            this.notiSuccess.NoticeForeColor = System.Drawing.Color.White;
-            this.notiSuccess.NoticeTitleText = "NOTICE";
-            this.notiSuccess.NotificationType = ReaLTaiizor.Controls.NotificationBox.Type.Success;
-            this.notiSuccess.RoundCorners = true;
-            this.notiSuccess.ShowCloseButton = true;
-            this.notiSuccess.Size = new System.Drawing.Size(94, 41);
-            this.notiSuccess.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            this.notiSuccess.SuccessBackColor = System.Drawing.Color.SeaGreen;
-            this.notiSuccess.SuccessBorderColor = System.Drawing.Color.SeaGreen;
-            this.notiSuccess.SuccessForeColor = System.Drawing.Color.White;
-            this.notiSuccess.SuccessTitleText = "SUCCESS";
-            this.notiSuccess.TabIndex = 49;
-            this.notiSuccess.Text = "User Added";
-            this.notiSuccess.TextRenderingType = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.notiSuccess.Visible = false;
-            this.notiSuccess.WarningBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.notiSuccess.WarningBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.notiSuccess.WarningForeColor = System.Drawing.Color.White;
-            this.notiSuccess.WarningTitleText = "WARNING";
-            // 
             // cbFilter
             // 
             this.cbFilter.AutoResize = true;
             this.cbFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbFilter.Depth = 0;
             this.cbFilter.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.cbFilter.DropDownHeight = 174;
+            this.cbFilter.DropDownHeight = 218;
             this.cbFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbFilter.DropDownWidth = 134;
             this.cbFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 17.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
@@ -166,17 +94,17 @@
             this.cbFilter.FormattingEnabled = true;
             this.cbFilter.Hint = "Filter";
             this.cbFilter.IntegralHeight = false;
-            this.cbFilter.ItemHeight = 43;
+            this.cbFilter.ItemHeight = 54;
             this.cbFilter.Items.AddRange(new object[] {
             "User ID",
             "Username",
             "Role"});
-            this.cbFilter.Location = new System.Drawing.Point(255, 22);
-            this.cbFilter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbFilter.Location = new System.Drawing.Point(340, 27);
+            this.cbFilter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbFilter.MaxDropDownItems = 4;
             this.cbFilter.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.OUT;
             this.cbFilter.Name = "cbFilter";
-            this.cbFilter.Size = new System.Drawing.Size(134, 49);
+            this.cbFilter.Size = new System.Drawing.Size(134, 60);
             this.cbFilter.StartIndex = 0;
             this.cbFilter.TabIndex = 48;
             // 
@@ -186,10 +114,12 @@
             this.parrotGroupBox1.BorderWidth = 1;
             this.parrotGroupBox1.Controls.Add(this.chInActive);
             this.parrotGroupBox1.Controls.Add(this.chActive);
-            this.parrotGroupBox1.Location = new System.Drawing.Point(400, 32);
+            this.parrotGroupBox1.Location = new System.Drawing.Point(533, 39);
+            this.parrotGroupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.parrotGroupBox1.Name = "parrotGroupBox1";
+            this.parrotGroupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.parrotGroupBox1.ShowText = false;
-            this.parrotGroupBox1.Size = new System.Drawing.Size(189, 38);
+            this.parrotGroupBox1.Size = new System.Drawing.Size(252, 47);
             this.parrotGroupBox1.TabIndex = 46;
             this.parrotGroupBox1.TabStop = false;
             this.parrotGroupBox1.Text = "parrotGroupBox1";
@@ -198,10 +128,10 @@
             // chInActive
             // 
             this.chInActive.AutoSize = true;
-            this.chInActive.Location = new System.Drawing.Point(101, 11);
-            this.chInActive.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chInActive.Location = new System.Drawing.Point(135, 14);
+            this.chInActive.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chInActive.Name = "chInActive";
-            this.chInActive.Size = new System.Drawing.Size(65, 17);
+            this.chInActive.Size = new System.Drawing.Size(76, 20);
             this.chInActive.TabIndex = 2;
             this.chInActive.Text = "InActive";
             this.chInActive.UseVisualStyleBackColor = true;
@@ -209,10 +139,10 @@
             // chActive
             // 
             this.chActive.AutoSize = true;
-            this.chActive.Location = new System.Drawing.Point(14, 11);
-            this.chActive.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chActive.Location = new System.Drawing.Point(19, 14);
+            this.chActive.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chActive.Name = "chActive";
-            this.chActive.Size = new System.Drawing.Size(56, 17);
+            this.chActive.Size = new System.Drawing.Size(66, 20);
             this.chActive.TabIndex = 1;
             this.chActive.Text = "Active";
             this.chActive.UseVisualStyleBackColor = true;
@@ -224,33 +154,17 @@
             this.txtBarSearch.Font = new System.Drawing.Font("Tahoma", 11F);
             this.txtBarSearch.ForeColor = System.Drawing.Color.DimGray;
             this.txtBarSearch.Image = null;
-            this.txtBarSearch.Location = new System.Drawing.Point(0, 30);
+            this.txtBarSearch.Location = new System.Drawing.Point(0, 37);
+            this.txtBarSearch.Margin = new System.Windows.Forms.Padding(4);
             this.txtBarSearch.MaxLength = 50;
             this.txtBarSearch.Multiline = false;
             this.txtBarSearch.Name = "txtBarSearch";
             this.txtBarSearch.ReadOnly = false;
-            this.txtBarSearch.Size = new System.Drawing.Size(250, 41);
+            this.txtBarSearch.Size = new System.Drawing.Size(333, 46);
             this.txtBarSearch.TabIndex = 41;
             this.txtBarSearch.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtBarSearch.UseSystemPasswordChar = false;
             this.txtBarSearch.TextChanged += new System.EventHandler(this.txtBarSearch_TextChanged);
-            // 
-            // btnAddUser
-            // 
-            this.btnAddUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
-            this.btnAddUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddUser.Image = global::Loan_Desk.Properties.Resources.add_25;
-            this.btnAddUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddUser.Location = new System.Drawing.Point(640, 43);
-            this.btnAddUser.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnAddUser.Name = "btnAddUser";
-            this.btnAddUser.Size = new System.Drawing.Size(99, 24);
-            this.btnAddUser.TabIndex = 1;
-            this.btnAddUser.Text = "Add User";
-            this.btnAddUser.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAddUser.UseVisualStyleBackColor = false;
-            this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
             // 
             // dgvUsers
             // 
@@ -272,32 +186,32 @@
             this.Role,
             this.IsActive});
             this.dgvUsers.ContextMenuStrip = this.ContextOperation;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvUsers.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvUsers.Location = new System.Drawing.Point(0, 75);
-            this.dgvUsers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.dgvUsers.Name = "dgvUsers";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUsers.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvUsers.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvUsers.Location = new System.Drawing.Point(0, 92);
+            this.dgvUsers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dgvUsers.Name = "dgvUsers";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUsers.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvUsers.RowHeadersWidth = 51;
             this.dgvUsers.RowTemplate.Height = 24;
             this.dgvUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvUsers.ShowCellErrors = false;
             this.dgvUsers.ShowCellToolTips = false;
             this.dgvUsers.ShowRowErrors = false;
-            this.dgvUsers.Size = new System.Drawing.Size(750, 552);
+            this.dgvUsers.Size = new System.Drawing.Size(1000, 679);
             this.dgvUsers.TabIndex = 0;
             // 
             // ID
@@ -323,6 +237,11 @@
             // 
             // IsActive
             // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.NullValue = false;
+            this.IsActive.DefaultCellStyle = dataGridViewCellStyle2;
+            this.IsActive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.IsActive.HeaderText = "Active";
             this.IsActive.MinimumWidth = 6;
             this.IsActive.Name = "IsActive";
@@ -336,10 +255,28 @@
             this.ContextOperation.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnUpdate,
             this.btnDelete,
-            this.btnUpdatePassword});
+            this.btnUpdatePassword,
+            this.btnActivate});
             this.ContextOperation.Name = "crownContextMenuStrip1";
             this.ContextOperation.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.ContextOperation.Size = new System.Drawing.Size(170, 82);
+            this.ContextOperation.Size = new System.Drawing.Size(215, 136);
+            // 
+            // btnAddUser
+            // 
+            this.btnAddUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
+            this.btnAddUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddUser.Image = global::Loan_Desk.Properties.Resources.add_25;
+            this.btnAddUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddUser.Location = new System.Drawing.Point(853, 53);
+            this.btnAddUser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAddUser.Name = "btnAddUser";
+            this.btnAddUser.Size = new System.Drawing.Size(132, 30);
+            this.btnAddUser.TabIndex = 1;
+            this.btnAddUser.Text = "Add User";
+            this.btnAddUser.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddUser.UseVisualStyleBackColor = false;
+            this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
             // 
             // btnUpdate
             // 
@@ -347,7 +284,7 @@
             this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btnUpdate.Image = global::Loan_Desk.Properties.Resources.update_20;
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(169, 26);
+            this.btnUpdate.Size = new System.Drawing.Size(214, 26);
             this.btnUpdate.Text = "Update";
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
@@ -357,7 +294,7 @@
             this.btnDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btnDelete.Image = global::Loan_Desk.Properties.Resources.delete_20;
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(169, 26);
+            this.btnDelete.Size = new System.Drawing.Size(214, 26);
             this.btnDelete.Text = "Delete";
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -367,18 +304,26 @@
             this.btnUpdatePassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btnUpdatePassword.Image = global::Loan_Desk.Properties.Resources.warning_20;
             this.btnUpdatePassword.Name = "btnUpdatePassword";
-            this.btnUpdatePassword.Size = new System.Drawing.Size(169, 26);
+            this.btnUpdatePassword.Size = new System.Drawing.Size(214, 26);
             this.btnUpdatePassword.Text = "Update Password";
             this.btnUpdatePassword.Click += new System.EventHandler(this.btnUpdatePassword_Click);
             // 
+            // btnActivate
+            // 
+            this.btnActivate.Image = global::Loan_Desk.Properties.Resources.active_20;
+            this.btnActivate.Name = "btnActivate";
+            this.btnActivate.Size = new System.Drawing.Size(214, 26);
+            this.btnActivate.Text = "Activate";
+            this.btnActivate.Click += new System.EventHandler(this.btnActivate_Click);
+            // 
             // UsersView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.parrotGradientPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "UsersView";
-            this.Size = new System.Drawing.Size(750, 626);
+            this.Size = new System.Drawing.Size(1000, 770);
             this.Load += new System.EventHandler(this.UsersView_Load);
             this.parrotGradientPanel1.ResumeLayout(false);
             this.parrotGroupBox1.ResumeLayout(false);
@@ -395,10 +340,6 @@
         private System.Windows.Forms.DataGridView dgvUsers;
         private System.Windows.Forms.Button btnAddUser;
         private ReaLTaiizor.Controls.BigTextBox txtBarSearch;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Username;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Role;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn IsActive;
         private ReaLTaiizor.Controls.ParrotGroupBox parrotGroupBox1;
         private ReaLTaiizor.Controls.MaterialComboBox cbFilter;
         private System.Windows.Forms.CheckBox chInActive;
@@ -407,7 +348,10 @@
         private System.Windows.Forms.ToolStripMenuItem btnUpdate;
         private System.Windows.Forms.ToolStripMenuItem btnDelete;
         private System.Windows.Forms.ToolStripMenuItem btnUpdatePassword;
-        private ReaLTaiizor.Controls.NotificationBox notiSuccess;
-        private ReaLTaiizor.Controls.NotificationBox notiFailed;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Username;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Role;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn IsActive;
+        private System.Windows.Forms.ToolStripMenuItem btnActivate;
     }
 }

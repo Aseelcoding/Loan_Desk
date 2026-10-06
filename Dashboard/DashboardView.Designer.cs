@@ -33,7 +33,7 @@
             this.lostPanel2 = new ReaLTaiizor.Controls.LostPanel();
             this.label3 = new System.Windows.Forms.Label();
             this.lostPanel3 = new ReaLTaiizor.Controls.LostPanel();
-            this.label4 = new System.Windows.Forms.Label();
+            this.labActiveUsers = new System.Windows.Forms.Label();
             this.lostPanel4 = new ReaLTaiizor.Controls.LostPanel();
             this.label5 = new System.Windows.Forms.Label();
             this.parrotGradientPanel1 = new ReaLTaiizor.Controls.ParrotGradientPanel();
@@ -97,7 +97,7 @@
             // lostPanel3
             // 
             this.lostPanel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(235)))), ((int)(((byte)(245)))));
-            this.lostPanel3.Controls.Add(this.label4);
+            this.lostPanel3.Controls.Add(this.labActiveUsers);
             this.lostPanel3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lostPanel3.ForeColor = System.Drawing.Color.Black;
             this.lostPanel3.Location = new System.Drawing.Point(552, 43);
@@ -108,16 +108,16 @@
             this.lostPanel3.TabIndex = 4;
             this.lostPanel3.Text = "Active Users";
             // 
-            // label4
+            // labActiveUsers
             // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(21, 40);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(66, 31);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "0000";
+            this.labActiveUsers.AutoSize = true;
+            this.labActiveUsers.BackColor = System.Drawing.Color.Transparent;
+            this.labActiveUsers.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labActiveUsers.Location = new System.Drawing.Point(21, 40);
+            this.labActiveUsers.Name = "labActiveUsers";
+            this.labActiveUsers.Size = new System.Drawing.Size(66, 31);
+            this.labActiveUsers.TabIndex = 7;
+            this.labActiveUsers.Text = "0000";
             // 
             // lostPanel4
             // 
@@ -196,7 +196,7 @@
         private ReaLTaiizor.Controls.LostPanel lostPanel2;
         private System.Windows.Forms.Label label3;
         private ReaLTaiizor.Controls.LostPanel lostPanel3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label labActiveUsers;
         private ReaLTaiizor.Controls.LostPanel lostPanel4;
         private System.Windows.Forms.Label label5;
         private ReaLTaiizor.Controls.ParrotGradientPanel parrotGradientPanel1;

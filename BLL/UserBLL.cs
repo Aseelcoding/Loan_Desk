@@ -24,6 +24,10 @@ namespace BLL
         {
             return UserDAL.CountActiveAdmins();
         }
+        static public int CountActiveUsers()
+        {
+            return UserDAL.CountActiveUsers();
+        }
         static public bool IsAdminExist() 
         {
             bool IsExist = false;
@@ -153,6 +157,13 @@ namespace BLL
                 throw new BusinessRuleException("You can not delete loging account.");
 
             return UserDAL.DeleteUser(user);
+        }
+        public static bool ActivateUser(int ID)
+        {
+            if (!RequireAdmin())
+                throw new BusinessRuleException("Only admins can activate users");
+            return UserDAL.ActivateUser(ID);
+
         }
         public static bool UpdateUserPassword(int ID,string Username,string OldPassword,string NewPassword)
         {
