@@ -20,7 +20,7 @@ namespace Loan_Desk.Dashboard
         private void DashboardView_Load(object sender, EventArgs e)
         {
           labActiveUsers.Text = BLL.UserBLL.CountActiveUsers().ToString();
-
+           
         }
     }
 }

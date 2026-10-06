@@ -20,7 +20,7 @@ namespace Loan_Desk
            
         }
 
-         public string Title
+          public string Title
         {
             get { return LabTitle.Text; }
             set { LabTitle.Text = value; }

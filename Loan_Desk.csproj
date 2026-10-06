@@ -74,11 +74,11 @@
     </Compile>
     <Compile Include="ErrorHandler.cs" />
     <Compile Include="Logger.cs" />
-    <Compile Include="TopInfoPanel .cs">
+    <Compile Include="TopInfoPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TopInfoPanel .Designer.cs">
-      <DependentUpon>TopInfoPanel .cs</DependentUpon>
+    <Compile Include="TopInfoPanel.Designer.cs">
+      <DependentUpon>TopInfoPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Dashboard\DashboardView.cs">
       <SubType>UserControl</SubType>
@@ -163,8 +163,8 @@
     <EmbeddedResource Include="Borrowers\BorrowersView.resx">
       <DependentUpon>BorrowersView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TopInfoPanel .resx">
-      <DependentUpon>TopInfoPanel .cs</DependentUpon>
+    <EmbeddedResource Include="TopInfoPanel.resx">
+      <DependentUpon>TopInfoPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\DashboardView.resx">
       <DependentUpon>DashboardView.cs</DependentUpon>

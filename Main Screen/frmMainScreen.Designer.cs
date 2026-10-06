@@ -43,12 +43,14 @@
             this.btnDashboard = new ReaLTaiizor.Controls.ParrotButton();
             this.label1 = new System.Windows.Forms.Label();
             this.ContentPanel = new ReaLTaiizor.Controls.ParrotGradientPanel();
-            this.customPanel1 = new Loan_Desk.CustomPanel();
+            this.ContentPanelTopInfo = new System.Windows.Forms.Panel();
+            this.PanleTopInfo = new Loan_Desk.CustomPanel();
             this.parrotSlidingPanel1.SuspendLayout();
             this.parrotGroupBox4.SuspendLayout();
             this.parrotGroupBox3.SuspendLayout();
             this.parrotGroupBox2.SuspendLayout();
             this.parrotGroupBox1.SuspendLayout();
+            this.ContentPanelTopInfo.SuspendLayout();
             this.SuspendLayout();
             // 
             // parrotSlidingPanel1
@@ -401,14 +403,23 @@
             this.ContentPanel.TopLeft = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
             this.ContentPanel.TopRight = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
-            // customPanel1
+            // ContentPanelTopInfo
             // 
-            this.customPanel1.Location = new System.Drawing.Point(363, 0);
-            this.customPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.customPanel1.Name = "customPanel1";
-            this.customPanel1.Size = new System.Drawing.Size(1001, 76);
-            this.customPanel1.TabIndex = 2;
-            this.customPanel1.Title = "Operations overview";
+            this.ContentPanelTopInfo.Controls.Add(this.PanleTopInfo);
+            this.ContentPanelTopInfo.Location = new System.Drawing.Point(363, 0);
+            this.ContentPanelTopInfo.Name = "ContentPanelTopInfo";
+            this.ContentPanelTopInfo.Size = new System.Drawing.Size(997, 78);
+            this.ContentPanelTopInfo.TabIndex = 2;
+            // 
+            // PanleTopInfo
+            // 
+            this.PanleTopInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanleTopInfo.Location = new System.Drawing.Point(0, 0);
+            this.PanleTopInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PanleTopInfo.Name = "PanleTopInfo";
+            this.PanleTopInfo.Size = new System.Drawing.Size(997, 78);
+            this.PanleTopInfo.TabIndex = 0;
+            this.PanleTopInfo.Title = "LoanDesk/Dashboard";
             // 
             // frmMainScreen
             // 
@@ -416,7 +427,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(1360, 847);
-            this.Controls.Add(this.customPanel1);
+            this.Controls.Add(this.ContentPanelTopInfo);
             this.Controls.Add(this.parrotSlidingPanel1);
             this.Controls.Add(this.ContentPanel);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -436,6 +447,7 @@
             this.parrotGroupBox2.PerformLayout();
             this.parrotGroupBox1.ResumeLayout(false);
             this.parrotGroupBox1.PerformLayout();
+            this.ContentPanelTopInfo.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -457,6 +469,7 @@
         private ReaLTaiizor.Controls.ParrotButton btnEquipment;
         private ReaLTaiizor.Controls.ParrotButton btnBorrowers;
         private ReaLTaiizor.Controls.ParrotGradientPanel ContentPanel;
-        private CustomPanel customPanel1;
+        private System.Windows.Forms.Panel ContentPanelTopInfo;
+        private CustomPanel PanleTopInfo;
     }
 }

@@ -60,8 +60,6 @@
             this.LabTitle.Name = "LabTitle";
             this.LabTitle.Size = new System.Drawing.Size(171, 23);
             this.LabTitle.TabIndex = 5;
-            this.LabTitle.Text = "LoanDesk/Dashboard";
-           
             // 
             // labAdOrStf
             // 

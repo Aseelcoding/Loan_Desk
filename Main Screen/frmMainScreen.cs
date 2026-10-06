@@ -18,10 +18,13 @@ namespace Loan_Desk.Main_Screen
 {
     public partial class frmMainScreen : Form
     {
+       
+
         public frmMainScreen()
         {
             InitializeComponent();
-
+         
+         this.PanleTopInfo.Title = "Dashboard View";
             DashboardView dashboardView = new DashboardView();
             ContentPanel.Controls.Add(dashboardView);
         }
@@ -50,7 +53,7 @@ namespace Loan_Desk.Main_Screen
             DashboardView dashboardView = new DashboardView();
             ContentPanel.Controls.Clear();
             ContentPanel.Controls.Add(dashboardView);
-            
+            this.PanleTopInfo.Title = "Dashboard View";
         }
 
         private void btnUsers_Click(object sender, EventArgs e)
@@ -62,6 +65,7 @@ namespace Loan_Desk.Main_Screen
 
             Users.UsersView usersView = new Users.UsersView();
             ContentPanel.Controls.Add(usersView);
+            this.PanleTopInfo.Title = "Users View";
         }
 
         private void btnBorrowers_Click(object sender, EventArgs e)
@@ -69,6 +73,7 @@ namespace Loan_Desk.Main_Screen
             ContentPanel.Controls.Clear();
            Borrowers.BorrowersView borrowersView = new Borrowers.BorrowersView();
             ContentPanel.Controls.Add(borrowersView);
+            PanleTopInfo.Title = "Borrowers View";
         }
 
         private void btnEquipment_Click(object sender, EventArgs e)
@@ -76,6 +81,7 @@ namespace Loan_Desk.Main_Screen
             Equipment.EquipmentView equipmentView = new Equipment.EquipmentView();
             ContentPanel.Controls.Clear();
             ContentPanel.Controls.Add(equipmentView);
+            this.PanleTopInfo.Title = "Equipment View";
         }
 
         private void btnLoans_Click(object sender, EventArgs e)
@@ -83,6 +89,7 @@ namespace Loan_Desk.Main_Screen
             Loans.LoansView loansView = new Loans.LoansView();
             ContentPanel.Controls.Clear();
             ContentPanel.Controls.Add(loansView);
+            this.PanleTopInfo.Title = "Loans View";
         }
 
         private void btnReturn_Click(object sender, EventArgs e)
@@ -90,6 +97,7 @@ namespace Loan_Desk.Main_Screen
             Returns.ReturnsView returnsView = new Returns.ReturnsView();
             ContentPanel.Controls.Clear();
             ContentPanel.Controls.Add(returnsView);
+            this.PanleTopInfo.Title = "Returns View";
         }
 
         private void btnFines_Click(object sender, EventArgs e)
@@ -97,6 +105,7 @@ namespace Loan_Desk.Main_Screen
             Fines.FinesView finesView = new Fines.FinesView();
             ContentPanel.Controls.Clear();
             ContentPanel.Controls.Add(finesView);
+            this.PanleTopInfo.Title = "Fines View";
         }
 
         private void btnAuditLog_Click(object sender, EventArgs e)
@@ -108,6 +117,7 @@ namespace Loan_Desk.Main_Screen
 
             AuditLog.AuditLogView auditLogView = new AuditLog.AuditLogView();
             ContentPanel.Controls.Add(auditLogView);
+            this.PanleTopInfo.Title = "Audit Log View";
         }
 
         
