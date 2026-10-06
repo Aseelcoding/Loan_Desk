@@ -80,11 +80,20 @@ namespace Loan_Desk.Users
                 try
                 {
                     IsUpdated = UserBLL.UpdateUser(NewUser);
+                    if (UserBLL.NeedToRestart) 
+                    {
+                        UserBLL.NeedToRestart = false;
+
+
+                     
+                        Application.Restart();
+
+                    }
                    
                 }
                 catch(Exception ex)
                 {
-                    throw new LoanDesk.Models.Exceptions.DataAccessException(ex.Message, ex.InnerException);
+                    MessageBox.Show(ex.Message);
                 }
                 
             }

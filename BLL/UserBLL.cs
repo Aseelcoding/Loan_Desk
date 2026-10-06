@@ -12,6 +12,7 @@ namespace BLL
 {
     public class UserBLL
     {
+        static public bool NeedToRestart = false; 
         static private bool RequireAdmin() 
         {
             if (Sessions.CurrentUser.Role == "Admin")
@@ -78,11 +79,19 @@ namespace BLL
             bool IsAdded = false;
             if (CheckUser(user)&& CheckPassword(Password))
             {
-                user.PasswordSalt = PasswordHasher.GenerateSalt();
+                if(UserDAL.Find(user.Username)==null)
+                {user.PasswordSalt = PasswordHasher.GenerateSalt();
                 user.PasswordHash = PasswordHasher.HashPassword(Password, user.PasswordSalt);
 
-                IsAdded = UserDAL.AddNewUser(user);
+                    IsAdded = UserDAL.AddNewUser(user);
+                }
+                else
+                {
+                    throw new BusinessRuleException("duplicate username , please enter a uniqeu username.");
+                }
             }
+
+
             return IsAdded;
         }
         public static bool UpdateUser(User user)
@@ -95,12 +104,45 @@ namespace BLL
             {
                 return IsUpdated;
             }
-            if(UserDAL.Find(user.Username)!=null)
-           throw new BusinessRuleException($"Username '{user.Username}' is already taken. Please choose another one.");
 
-            IsUpdated =UserDAL.UpdateUser(user);
+            LoanDesk.Models.User user2 = UserDAL.Find(user.Username);
 
-            return IsUpdated;
+            if(user2 != null)
+            { 
+                if (user2.ID != user.ID)
+                    throw new BusinessRuleException($"Username '{user.Username}' is already taken. Please choose another one.");
+
+            }
+
+           
+           
+
+            if (Sessions.CurrentUser.ID == user.ID)
+            {
+                if (Sessions.CurrentUser.Role != user.Role)
+                {
+                    if (CountActiveAdmins() <= 1)
+                        throw new BusinessRuleException("This is the only admin in the system you can not change his role to staff.");
+                    else
+                    {
+                        //Sessions.CurrentUser = null;
+                    NeedToRestart = true;
+                        IsUpdated = UserDAL.UpdateUser(user);
+                        return IsUpdated;
+                    }
+
+
+
+                }
+
+                    Sessions.CreateUserSession(user.ID,user.Username,user.Role,user.IsActive);
+            }
+            else
+            {
+                IsUpdated = UserDAL.UpdateUser(user);
+            }
+
+                return IsUpdated;
         }
         public static bool DeleteUser(User user)
         {
@@ -128,6 +170,8 @@ namespace BLL
 
             string NewPasswordSalt = PasswordHasher.GenerateSalt();
             string NewPasswordHash = PasswordHasher.HashPassword(NewPassword, NewPasswordSalt);
+
+
              IsUpdated=UserDAL.UpdateUserPassword(ID, NewPasswordHash, NewPasswordSalt);
 
 

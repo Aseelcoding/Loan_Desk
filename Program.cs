@@ -27,6 +27,8 @@ namespace Loan_Desk
             System.Windows.Forms.Application.EnableVisualStyles();
             System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
 
+            
+
             if (!UserBLL.IsAdminExist())
                 System.Windows.Forms.Application.Run(new frmSetup());
 
