@@ -1,4 +1,5 @@
-﻿using Loan_Desk.Dashboard;
+﻿using BLL;
+using Loan_Desk.Dashboard;
 using Loan_Desk.Fines;
 using Loan_Desk.Loans;
 using Loan_Desk.Returns;
@@ -35,7 +36,11 @@ namespace Loan_Desk.Main_Screen
 
         private void btnUsers_Click(object sender, EventArgs e)
         {
+            
             ContentPanel.Controls.Clear();
+            if (Sessions.CurrentUser.Role != "Admin")
+                return;
+
             Users.UsersView usersView = new Users.UsersView();
             ContentPanel.Controls.Add(usersView);
         }
@@ -77,8 +82,12 @@ namespace Loan_Desk.Main_Screen
 
         private void btnAuditLog_Click(object sender, EventArgs e)
         {
-            AuditLog.AuditLogView auditLogView = new AuditLog.AuditLogView();
+          
             ContentPanel.Controls.Clear();
+            if (Sessions.CurrentUser.Role != "Admin")
+                return;
+
+            AuditLog.AuditLogView auditLogView = new AuditLog.AuditLogView();
             ContentPanel.Controls.Add(auditLogView);
         }
 

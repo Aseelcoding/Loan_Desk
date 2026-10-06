@@ -23,18 +23,28 @@ namespace Loan_Desk
         private void btnLogin_Click(object sender, EventArgs e)
         {
             
-            User CurrentUser=new User();
+           
             if (UserBLL.Login(txtUsername.Text, txtPassword.Text))
             {
                 MessageBox.Show("Success");
-                frmMainScreen frmMainScreen = new frmMainScreen();
-                frmMainScreen.Show();
+
                 this.Hide();
+
+                frmMainScreen frmMainScreen = new frmMainScreen();
+                frmMainScreen.ShowDialog();
+
+                this.Close();
             }
             else
-                MessageBox.Show("Filed", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            {
+                MessageBox.Show(
+                    "Failed",
+                    "Warning",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Stop);
+            }
 
-            
+
         }
     }
 }

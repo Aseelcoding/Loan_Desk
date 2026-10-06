@@ -32,7 +32,7 @@ namespace Loan_Desk
             if (!UserBLL.IsAdminExist())
                 System.Windows.Forms.Application.Run(new frmSetup());
 
-            if (UserBLL.IsAdminExist())
+            else if (UserBLL.IsAdminExist())
                 System.Windows.Forms.Application.Run(new frmLogin());
 
             //Application.Run(new frmMainScreen());
