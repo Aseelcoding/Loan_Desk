@@ -15,6 +15,9 @@ namespace BLL
         static public bool NeedToRestart = false; 
         static private bool RequireAdmin() 
         {
+            if (Sessions.CurrentUser == null)
+                return false;
+
             if (Sessions.CurrentUser.Role == "Admin")
                 return true;
             else 
