@@ -10,6 +10,44 @@ namespace DAL
         private static readonly string  ConnectionString = ConfigurationManager.ConnectionStrings["LoanDeskDB"].ConnectionString;
 
 
+        public static int CountActiveAdmins() 
+        {
+            int Counter = -1;
+
+            SqlConnection connection = new SqlConnection(ConnectionString);
+
+            string query = @"SELECT Count(ID) AS CountAdmins
+                        FROM Users
+                WHERE Users.Role='Admin';";
+
+            SqlCommand cmd =new SqlCommand(query, connection);
+
+            try
+            {
+                connection.Open();
+
+                object Result = cmd.ExecuteScalar();
+
+                if (Result != null && Result != DBNull.Value) 
+                {
+                    int.TryParse(Result.ToString(), out Counter);
+                   
+                }
+                else
+                {
+                    throw new LoanDesk.Models.Exceptions.DataAccessException("Could not get the number of admins");
+                }
+
+            }
+            catch (SqlException ex) 
+            {
+                throw SqlErrorMapper.Map(ex, "Get Number of Admins");
+            }
+            finally { connection.Close(); connection.Dispose(); }
+
+            return Counter;
+
+        }
         public static bool IsAdminExist() 
         {
             bool IsExist=false;
@@ -43,9 +81,9 @@ namespace DAL
                 }
 
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                throw new Exception("Failed check is user exist.", ex);
+                throw SqlErrorMapper.Map(ex, "Check if user exist.");
             }
             finally { connection.Close(); connection.Dispose();}
 
@@ -87,21 +125,27 @@ namespace DAL
                 connection.Open();
                 object Result = cmd.ExecuteScalar();
 
-                if (Result != null && Result != DBNull.Value)
-                    IsAdded = true;
+                
 
                 int ID;
-                
-               if( int.TryParse(Result.ToString(), out ID))
+                if (Result != null && Result != DBNull.Value)
                 {
-                    user.ID = ID;
+                    if (int.TryParse(Result.ToString(), out ID))
+                    {
+                        user.ID = ID;
+                        IsAdded = true;
+                    }
+                    else
+                    {
+                        IsAdded = false;
+                    }
                 }
-               
+                else {  IsAdded = false; }
               
             }
-            catch(Exception ex)
+            catch(SqlException ex)
             {
-                throw new Exception("Failed to add new user", ex);
+                throw SqlErrorMapper.Map(ex, "Add new user");
             }
             finally { connection.Close(); connection.Dispose(); }
 
@@ -138,9 +182,9 @@ namespace DAL
 
 
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                throw new Exception("Failed to update user \n\nDetails:", ex);
+                throw SqlErrorMapper.Map(ex, "update the user");
             }
             finally { connection.Close(); connection.Dispose(); }
 
@@ -176,9 +220,9 @@ namespace DAL
 
 
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                throw new Exception("Failed to delete user.", ex);
+                throw SqlErrorMapper.Map(ex, "Delete the user");
             }
             finally { connection.Close(); connection.Dispose(); }
 
@@ -214,9 +258,9 @@ namespace DAL
 
 
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                throw new Exception("Failed to update user password \n\nDetails:", ex);
+                throw SqlErrorMapper.Map(ex, "Update user password.");
             }
             finally { connection.Close(); connection.Dispose(); }
 
@@ -278,9 +322,9 @@ namespace DAL
                     return null;
                 }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                throw ex;
+                throw SqlErrorMapper.Map(ex, "Find the user.");
 
             }
             finally
@@ -314,9 +358,9 @@ namespace DAL
 
                 dtUsers.Load(reader);
             }
-            catch (Exception ex) 
+            catch (SqlException ex) 
             {
-                throw new Exception("Database Error", ex);
+                throw SqlErrorMapper.Map(ex, "Get all users.");
             }
             finally { connection.Close(); connection.Dispose(); }
 

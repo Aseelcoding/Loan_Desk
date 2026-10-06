@@ -44,6 +44,7 @@
     <Compile Include="AuditLog.cs" />
     <Compile Include="Borrower.cs" />
     <Compile Include="Equipment.cs" />
+    <Compile Include="Exceptions.cs" />
     <Compile Include="Loan.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

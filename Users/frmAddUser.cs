@@ -61,15 +61,20 @@ namespace Loan_Desk.Users
 
             try
             {
-                IsAdded=UserBLL.AddNewUser(NewUser,txtPassword.Text);
+                IsAdded = UserBLL.AddNewUser(NewUser, txtPassword.Text);
                 if (IsAdded)
                     MessageBox.Show("User Added successfully");
                 else
                     MessageBox.Show("User Added Failed");
+
+               
+
+               
+            
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                throw new LoanDesk.Models.Exceptions.DataAccessException(ex.Message,ex.InnerException);
             }
 
             if(IsAdded)

@@ -7,11 +7,22 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using static LoanDesk.Models.Exceptions;
 namespace BLL
 {
     public class UserBLL
     {
-
+        static private bool RequireAdmin() 
+        {
+            if (Sessions.CurrentUser.Role == "Admin")
+                return true;
+            else 
+                return false;
+        }
+        static public int CountActiveAdmins() 
+        {
+            return UserDAL.CountActiveAdmins();
+        }
         static public bool IsAdminExist() 
         {
             bool IsExist = false;
@@ -23,16 +34,16 @@ namespace BLL
         static public bool CheckPassword(string Password)
         {
             if (string.IsNullOrWhiteSpace(Password))
-                throw new Exception("Password must not be null or empty");
+                throw new ValidationException("Password must not be null or empty");
             if (Password.Length > 20 || Password.Length < 5)
-                throw new Exception("Password must be between 5 and 20.");
+                throw new ValidationException("Password must be between 5 and 20.");
 
             // one number or symbol :
             if (!(utilities.utilities.IsStringContainSymbol(Password) || utilities.utilities.IsDigit(Password)))
-                throw new Exception("Password must has at least one number or symbol.");
+                throw new ValidationException("Password must has at least one number or symbol.");
             //one uppuercase letter :
             if (!utilities.utilities.IsStringContainUpper(Password))
-                throw new Exception("Password must has at least one uppercase letter.");
+                throw new ValidationException("Password must has at least one uppercase letter.");
 
             return true;
         }
@@ -43,20 +54,27 @@ namespace BLL
                 throw new ArgumentNullException("user");
 
             if (string.IsNullOrWhiteSpace(user.Username))
-                throw new Exception("Username must not be null or empty");
+               throw new ValidationException("Username must not be null or empty");
+
             if (user.Username.Length > 15 || user.Username.Length < 5)
-                throw new Exception("Username must be between 5 and 15.");
+                throw new ValidationException("Username must be between 5 and 15.");
+
              if( utilities.utilities.IsStringContainSymbol( user.Username))
-                throw new Exception("Username must not has any Symbol.");
+                throw new ValidationException("Username must not has any Symbol.");
 
             if (user.Role != "Admin" && user.Role != "Staff")
-                throw new Exception("Role must be Admin or Staff.");
+                throw new ValidationException("Role must be Admin or Staff.");
 
 
             return true;
         }
         public static bool AddNewUser(User user, string Password)
         {
+            if (!RequireAdmin())
+                throw new BusinessRuleException("Only admins can add users");
+
+
+
             bool IsAdded = false;
             if (CheckUser(user)&& CheckPassword(Password))
             {
@@ -69,26 +87,38 @@ namespace BLL
         }
         public static bool UpdateUser(User user)
         {
+            if (!RequireAdmin())
+                throw new BusinessRuleException("Only admins can update users");
+
             bool IsUpdated = false;
             if(!CheckUser(user)) 
             {
                 return IsUpdated;
             }
+            if(UserDAL.Find(user.Username)!=null)
+           throw new BusinessRuleException($"Username '{user.Username}' is already taken. Please choose another one.");
 
-            IsUpdated=UserDAL.UpdateUser(user);
+            IsUpdated =UserDAL.UpdateUser(user);
 
             return IsUpdated;
         }
         public static bool DeleteUser(User user)
         {
+            if (!RequireAdmin())
+                throw new BusinessRuleException("Only admins can delete users");
+
             if (user.ID == Sessions.CurrentUser.ID)
-                throw new Exception("You can not delete loging account.");
+                throw new BusinessRuleException("You can not delete loging account.");
 
             return UserDAL.DeleteUser(user);
         }
         public static bool UpdateUserPassword(int ID,string Username,string OldPassword,string NewPassword)
         {
             bool IsUpdated = false;
+
+            if (!RequireAdmin())
+                throw new BusinessRuleException("Only admins can update users password");
+
 
             if (!IsPasswordCorrect(Username, OldPassword))
                 return IsUpdated;
@@ -106,10 +136,11 @@ namespace BLL
         public static bool Login(string Username,string Password)
         {
             if (string.IsNullOrWhiteSpace(Username))
-                throw new Exception("Username must not be null or empty");
+                throw new ValidationException("Username must not be null or empty");
 
             if (string.IsNullOrWhiteSpace(Password))
-                throw new Exception("Password must not be null or empty");
+                throw new ValidationException("Password must not be null or empty");
+
 
             bool IsValid = false;
 
@@ -118,9 +149,9 @@ namespace BLL
             {
                  user = UserDAL.Find(Username);
             }
-            catch(Exception ex)
+            catch
             {
-                throw new Exception("Error in Database please contact the Admin." , ex);
+                throw;
             }
 
             if (user == null)
@@ -158,9 +189,9 @@ namespace BLL
             {
                 user = UserDAL.Find(Username);
             }
-            catch (Exception ex)
+            catch 
             {
-                throw new Exception("Error in Database please contact the Admin.", ex);
+                throw;
             }
 
             if (user == null)
@@ -177,11 +208,15 @@ namespace BLL
 
             return IsValid;
         }
-       public static DataTable GetUsers() 
+        public static DataTable GetUsers() 
         {
+            if (!RequireAdmin())
+                throw new BusinessRuleException("Only admins can add users");
 
             return UserDAL.GetUsers();
             
         }
+
+
     }
 }

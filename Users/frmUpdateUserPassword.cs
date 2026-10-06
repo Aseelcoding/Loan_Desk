@@ -48,7 +48,7 @@ namespace Loan_Desk.Users
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                throw new LoanDesk.Models.Exceptions.DataAccessException(ex.Message, ex.InnerException);
             }
             
         }

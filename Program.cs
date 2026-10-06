@@ -1,12 +1,13 @@
-﻿using System;
+﻿using BLL;
+using Loan_Desk.Main_Screen;
+using Loan_Desk.Setup;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Configuration;
-using Loan_Desk.Setup;
-using BLL;
-using Loan_Desk.Main_Screen;
+using static System.Net.Mime.MediaTypeNames;
 
 
 namespace Loan_Desk
@@ -19,16 +20,18 @@ namespace Loan_Desk
         [STAThread]
         static void Main()
         {
-           
+            System.Windows.Forms.Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+            System.Windows.Forms.Application.ThreadException += (s, e) => ErrorHandler.Show(e.Exception);
+            AppDomain.CurrentDomain.UnhandledException += (s, e) => Logger.Write(e.ExceptionObject as Exception);
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+            System.Windows.Forms.Application.EnableVisualStyles();
+            System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
 
             if (!UserBLL.IsAdminExist())
-                Application.Run(new frmSetup());
+                System.Windows.Forms.Application.Run(new frmSetup());
 
             if (UserBLL.IsAdminExist())
-                Application.Run(new frmLogin());
+                System.Windows.Forms.Application.Run(new frmLogin());
 
             //Application.Run(new frmMainScreen());
 

@@ -70,11 +70,11 @@
             this.parrotGradientPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.parrotGradientPanel1.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear;
             this.parrotGradientPanel1.Location = new System.Drawing.Point(0, 0);
-            this.parrotGradientPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.parrotGradientPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.parrotGradientPanel1.Name = "parrotGradientPanel1";
             this.parrotGradientPanel1.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
             this.parrotGradientPanel1.PrimerColor = System.Drawing.Color.White;
-            this.parrotGradientPanel1.Size = new System.Drawing.Size(1000, 770);
+            this.parrotGradientPanel1.Size = new System.Drawing.Size(750, 626);
             this.parrotGradientPanel1.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             this.parrotGradientPanel1.Style = ReaLTaiizor.Controls.ParrotGradientPanel.GradientStyle.Corners;
             this.parrotGradientPanel1.TabIndex = 2;
@@ -92,9 +92,8 @@
             this.notiFailed.ErrorTitleText = "ERROR";
             this.notiFailed.Font = new System.Drawing.Font("Tahoma", 9F);
             this.notiFailed.Image = null;
-            this.notiFailed.Location = new System.Drawing.Point(844, 716);
-            this.notiFailed.Margin = new System.Windows.Forms.Padding(4);
-            this.notiFailed.MinimumSize = new System.Drawing.Size(125, 50);
+            this.notiFailed.Location = new System.Drawing.Point(633, 582);
+            this.notiFailed.MinimumSize = new System.Drawing.Size(94, 41);
             this.notiFailed.Name = "notiFailed";
             this.notiFailed.NoticeBackColor = System.Drawing.Color.Gray;
             this.notiFailed.NoticeBorderColor = System.Drawing.Color.Gray;
@@ -103,7 +102,7 @@
             this.notiFailed.NotificationType = ReaLTaiizor.Controls.NotificationBox.Type.Error;
             this.notiFailed.RoundCorners = true;
             this.notiFailed.ShowCloseButton = true;
-            this.notiFailed.Size = new System.Drawing.Size(152, 50);
+            this.notiFailed.Size = new System.Drawing.Size(114, 41);
             this.notiFailed.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.notiFailed.SuccessBackColor = System.Drawing.Color.SeaGreen;
             this.notiFailed.SuccessBorderColor = System.Drawing.Color.SeaGreen;
@@ -128,9 +127,8 @@
             this.notiSuccess.ErrorTitleText = "ERROR";
             this.notiSuccess.Font = new System.Drawing.Font("Tahoma", 9F);
             this.notiSuccess.Image = null;
-            this.notiSuccess.Location = new System.Drawing.Point(871, 716);
-            this.notiSuccess.Margin = new System.Windows.Forms.Padding(4);
-            this.notiSuccess.MinimumSize = new System.Drawing.Size(125, 50);
+            this.notiSuccess.Location = new System.Drawing.Point(653, 582);
+            this.notiSuccess.MinimumSize = new System.Drawing.Size(94, 41);
             this.notiSuccess.Name = "notiSuccess";
             this.notiSuccess.NoticeBackColor = System.Drawing.Color.Gray;
             this.notiSuccess.NoticeBorderColor = System.Drawing.Color.Gray;
@@ -139,7 +137,7 @@
             this.notiSuccess.NotificationType = ReaLTaiizor.Controls.NotificationBox.Type.Success;
             this.notiSuccess.RoundCorners = true;
             this.notiSuccess.ShowCloseButton = true;
-            this.notiSuccess.Size = new System.Drawing.Size(125, 50);
+            this.notiSuccess.Size = new System.Drawing.Size(94, 41);
             this.notiSuccess.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.notiSuccess.SuccessBackColor = System.Drawing.Color.SeaGreen;
             this.notiSuccess.SuccessBorderColor = System.Drawing.Color.SeaGreen;
@@ -160,7 +158,7 @@
             this.cbFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbFilter.Depth = 0;
             this.cbFilter.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.cbFilter.DropDownHeight = 218;
+            this.cbFilter.DropDownHeight = 174;
             this.cbFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbFilter.DropDownWidth = 134;
             this.cbFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 17.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
@@ -168,16 +166,17 @@
             this.cbFilter.FormattingEnabled = true;
             this.cbFilter.Hint = "Filter";
             this.cbFilter.IntegralHeight = false;
-            this.cbFilter.ItemHeight = 54;
+            this.cbFilter.ItemHeight = 43;
             this.cbFilter.Items.AddRange(new object[] {
             "User ID",
             "Username",
             "Role"});
-            this.cbFilter.Location = new System.Drawing.Point(340, 27);
+            this.cbFilter.Location = new System.Drawing.Point(255, 22);
+            this.cbFilter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbFilter.MaxDropDownItems = 4;
             this.cbFilter.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.OUT;
             this.cbFilter.Name = "cbFilter";
-            this.cbFilter.Size = new System.Drawing.Size(134, 60);
+            this.cbFilter.Size = new System.Drawing.Size(134, 49);
             this.cbFilter.StartIndex = 0;
             this.cbFilter.TabIndex = 48;
             // 
@@ -187,12 +186,10 @@
             this.parrotGroupBox1.BorderWidth = 1;
             this.parrotGroupBox1.Controls.Add(this.chInActive);
             this.parrotGroupBox1.Controls.Add(this.chActive);
-            this.parrotGroupBox1.Location = new System.Drawing.Point(533, 40);
-            this.parrotGroupBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.parrotGroupBox1.Location = new System.Drawing.Point(400, 32);
             this.parrotGroupBox1.Name = "parrotGroupBox1";
-            this.parrotGroupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.parrotGroupBox1.ShowText = false;
-            this.parrotGroupBox1.Size = new System.Drawing.Size(252, 47);
+            this.parrotGroupBox1.Size = new System.Drawing.Size(189, 38);
             this.parrotGroupBox1.TabIndex = 46;
             this.parrotGroupBox1.TabStop = false;
             this.parrotGroupBox1.Text = "parrotGroupBox1";
@@ -201,9 +198,10 @@
             // chInActive
             // 
             this.chInActive.AutoSize = true;
-            this.chInActive.Location = new System.Drawing.Point(135, 13);
+            this.chInActive.Location = new System.Drawing.Point(101, 11);
+            this.chInActive.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.chInActive.Name = "chInActive";
-            this.chInActive.Size = new System.Drawing.Size(76, 20);
+            this.chInActive.Size = new System.Drawing.Size(65, 17);
             this.chInActive.TabIndex = 2;
             this.chInActive.Text = "InActive";
             this.chInActive.UseVisualStyleBackColor = true;
@@ -211,9 +209,10 @@
             // chActive
             // 
             this.chActive.AutoSize = true;
-            this.chActive.Location = new System.Drawing.Point(18, 13);
+            this.chActive.Location = new System.Drawing.Point(14, 11);
+            this.chActive.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.chActive.Name = "chActive";
-            this.chActive.Size = new System.Drawing.Size(66, 20);
+            this.chActive.Size = new System.Drawing.Size(56, 17);
             this.chActive.TabIndex = 1;
             this.chActive.Text = "Active";
             this.chActive.UseVisualStyleBackColor = true;
@@ -225,13 +224,12 @@
             this.txtBarSearch.Font = new System.Drawing.Font("Tahoma", 11F);
             this.txtBarSearch.ForeColor = System.Drawing.Color.DimGray;
             this.txtBarSearch.Image = null;
-            this.txtBarSearch.Location = new System.Drawing.Point(0, 37);
-            this.txtBarSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBarSearch.Location = new System.Drawing.Point(0, 30);
             this.txtBarSearch.MaxLength = 50;
             this.txtBarSearch.Multiline = false;
             this.txtBarSearch.Name = "txtBarSearch";
             this.txtBarSearch.ReadOnly = false;
-            this.txtBarSearch.Size = new System.Drawing.Size(333, 46);
+            this.txtBarSearch.Size = new System.Drawing.Size(250, 41);
             this.txtBarSearch.TabIndex = 41;
             this.txtBarSearch.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtBarSearch.UseSystemPasswordChar = false;
@@ -244,10 +242,10 @@
             this.btnAddUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddUser.Image = global::Loan_Desk.Properties.Resources.add_25;
             this.btnAddUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddUser.Location = new System.Drawing.Point(853, 53);
-            this.btnAddUser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAddUser.Location = new System.Drawing.Point(640, 43);
+            this.btnAddUser.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAddUser.Name = "btnAddUser";
-            this.btnAddUser.Size = new System.Drawing.Size(132, 30);
+            this.btnAddUser.Size = new System.Drawing.Size(99, 24);
             this.btnAddUser.TabIndex = 1;
             this.btnAddUser.Text = "Add User";
             this.btnAddUser.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -282,8 +280,8 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvUsers.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvUsers.Location = new System.Drawing.Point(0, 92);
-            this.dgvUsers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dgvUsers.Location = new System.Drawing.Point(0, 75);
+            this.dgvUsers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvUsers.Name = "dgvUsers";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
@@ -299,7 +297,7 @@
             this.dgvUsers.ShowCellErrors = false;
             this.dgvUsers.ShowCellToolTips = false;
             this.dgvUsers.ShowRowErrors = false;
-            this.dgvUsers.Size = new System.Drawing.Size(1000, 679);
+            this.dgvUsers.Size = new System.Drawing.Size(750, 552);
             this.dgvUsers.TabIndex = 0;
             // 
             // ID
@@ -341,7 +339,7 @@
             this.btnUpdatePassword});
             this.ContextOperation.Name = "crownContextMenuStrip1";
             this.ContextOperation.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.ContextOperation.Size = new System.Drawing.Size(197, 82);
+            this.ContextOperation.Size = new System.Drawing.Size(170, 82);
             // 
             // btnUpdate
             // 
@@ -349,7 +347,7 @@
             this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btnUpdate.Image = global::Loan_Desk.Properties.Resources.update_20;
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(196, 26);
+            this.btnUpdate.Size = new System.Drawing.Size(169, 26);
             this.btnUpdate.Text = "Update";
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
@@ -359,7 +357,7 @@
             this.btnDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btnDelete.Image = global::Loan_Desk.Properties.Resources.delete_20;
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(196, 26);
+            this.btnDelete.Size = new System.Drawing.Size(169, 26);
             this.btnDelete.Text = "Delete";
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -369,18 +367,18 @@
             this.btnUpdatePassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btnUpdatePassword.Image = global::Loan_Desk.Properties.Resources.warning_20;
             this.btnUpdatePassword.Name = "btnUpdatePassword";
-            this.btnUpdatePassword.Size = new System.Drawing.Size(196, 26);
+            this.btnUpdatePassword.Size = new System.Drawing.Size(169, 26);
             this.btnUpdatePassword.Text = "Update Password";
             this.btnUpdatePassword.Click += new System.EventHandler(this.btnUpdatePassword_Click);
             // 
             // UsersView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.parrotGradientPanel1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "UsersView";
-            this.Size = new System.Drawing.Size(1000, 770);
+            this.Size = new System.Drawing.Size(750, 626);
             this.Load += new System.EventHandler(this.UsersView_Load);
             this.parrotGradientPanel1.ResumeLayout(false);
             this.parrotGroupBox1.ResumeLayout(false);
