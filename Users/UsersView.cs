@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using utilities;
+using static LoanDesk.Models.Exceptions;
 
 namespace Loan_Desk.Users
 {
@@ -30,7 +31,7 @@ namespace Loan_Desk.Users
                 dtUsers = UserBLL.GetUsers();
             }
 
-            catch
+            catch(Exceptions.DataAccessException)
             {
                 MessageBox.Show(
     "An unexpected error occurred.\nPlease contact your system manager for assistance.",
@@ -223,7 +224,7 @@ namespace Loan_Desk.Users
             {
                 MessageBox.Show(ex.Message);
             }
-            catch
+            catch(Exceptions.DataAccessException)
             {
                 MessageBox.Show(
     "An unexpected error occurred.\nPlease contact your system manager for assistance.",
@@ -279,7 +280,7 @@ namespace Loan_Desk.Users
             {
                 MessageBox.Show(ex.Message);
             }
-            catch 
+            catch (DataAccessException)
             {
                 MessageBox.Show(
     "An unexpected error occurred.\nPlease contact your system manager for assistance.",

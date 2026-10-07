@@ -89,7 +89,7 @@ namespace Loan_Desk.Setup
                 {
                     MessageBox.Show(ex.Message);
                 }
-                catch 
+                catch (Exceptions.DataAccessException)
                 {
                     MessageBox.Show(
  "An unexpected error occurred.\nPlease contact your system manager for assistance.",

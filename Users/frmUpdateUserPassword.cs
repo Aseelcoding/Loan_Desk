@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static LoanDesk.Models.Exceptions;
 
 namespace Loan_Desk.Users
 {
@@ -55,7 +56,7 @@ namespace Loan_Desk.Users
             {
                 MessageBox.Show(ex.Message);
             }
-            catch
+            catch(DataAccessException)
             {
                 MessageBox.Show(
   "An unexpected error occurred.\nPlease contact your system manager for assistance.",

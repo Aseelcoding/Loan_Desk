@@ -36,7 +36,7 @@ namespace BLL
             {
                 count = UserDAL.CountActiveAdmins();
             }
-            catch (SqlException ex) 
+            catch (DataAccessException ex) 
             {
                 Logger.Write(ex);
                 throw;
@@ -47,7 +47,7 @@ namespace BLL
         {
             int count = 0;
             try { count= UserDAL.CountActiveUsers(); }
-            catch(SqlException ex) 
+            catch(DataAccessException ex) 
             {
              Logger.Write(ex);
                 throw;
@@ -61,7 +61,7 @@ namespace BLL
             {
                 IsExist = UserDAL.IsAdminExist();
             }
-            catch (SqlException ex) 
+            catch (DataAccessException ex) 
             {
                 Logger.Write(ex);
                 throw;
@@ -130,7 +130,7 @@ namespace BLL
                         throw new BusinessRuleException("duplicate username , please enter a uniqeu username.");
                     }
                 }
-                catch (SqlException ex)
+                catch (DataAccessException ex)
                 {
                     Logger.Write(ex);
                     throw;
@@ -148,7 +148,7 @@ namespace BLL
             {
                  OldUser = UserDAL.Find(NewUser.Username);
             }
-            catch (SqlException ex)
+            catch (DataAccessException ex)
             {
                 Logger.Write(ex);
                 throw;
@@ -180,7 +180,15 @@ namespace BLL
             if (Sessions.CurrentUser.ID != user.ID)
             {
 
-                        IsUpdated = UserDAL.UpdateUser(user);
+                try
+                {
+                    IsUpdated = UserDAL.UpdateUser(user);
+                }
+                catch (DataAccessException ex) 
+                {
+                    Logger.Write(ex);
+                    throw;
+                }
             }
             else
             {
@@ -195,7 +203,7 @@ namespace BLL
                     {
                         IsUpdated = UserDAL.UpdateUser(user);
                     }
-                    catch(SqlException ex) 
+                    catch(DataAccessException ex) 
                     {
                         Logger.Write(ex);
                         throw;
@@ -215,7 +223,7 @@ namespace BLL
                     {
                         IsUpdated = UserDAL.UpdateUser(user);
                     }
-                    catch(SqlException ex) 
+                    catch(DataAccessException ex) 
                     {
                         Logger.Write(ex);
                         throw;
@@ -250,7 +258,7 @@ namespace BLL
             {
                 IsDeleted = UserDAL.DeleteUser(user);
             }
-            catch (SqlException ex) 
+            catch (DataAccessException ex) 
             {
                 Logger.Write(ex);
                 throw;
@@ -270,7 +278,7 @@ namespace BLL
             {
                 IsActivated = UserDAL.ActivateUser(ID);
             }
-            catch (SqlException ex) 
+            catch (DataAccessException ex) 
             {
                 Logger.Write(ex);
                 throw;
@@ -300,7 +308,7 @@ namespace BLL
             {
                 IsUpdated = UserDAL.UpdateUserPassword(ID, NewPasswordHash, NewPasswordSalt);
             }
-            catch (SqlException ex) 
+            catch (DataAccessException ex) 
             {
                 Logger.Write(ex);
                 throw;
@@ -325,7 +333,7 @@ namespace BLL
             {
                  user = UserDAL.Find(Username);
             }
-            catch(SqlException ex)
+            catch(DataAccessException ex)
             {
                 Logger.Write(ex);
                 throw;
@@ -366,7 +374,7 @@ namespace BLL
             {
                 user = UserDAL.Find(Username);
             }
-            catch (SqlException ex)
+            catch (DataAccessException ex)
             {
                 Logger.Write(ex);
                 throw;
@@ -396,7 +404,7 @@ namespace BLL
             {
                 dtUsers = UserDAL.GetUsers();
             }
-            catch(SqlException ex) 
+            catch(DataAccessException ex) 
             {
                 Logger.Write(ex);
                 throw;
