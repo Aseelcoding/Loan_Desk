@@ -47,7 +47,7 @@ namespace Loan_Desk.Users
             }
 
         }
-        private void Filtering(string Text) 
+        private void Filtering(string Text,string TextFilterIsActive) 
         {
             if (string.IsNullOrEmpty(Text))
                 {
@@ -62,38 +62,25 @@ namespace Loan_Desk.Users
                 int.TryParse(Text, out USID);
                 Filter = $"ID = {USID} ";
 
-            }
-            else if (cbFilter.SelectedIndex == 1)
-            {
-                Filter = $"Username  like '{Text}%'";
-
                 if (chActive.Checked && chInActive.Checked == false)
                 {
-                    Filter = $"Username  like '{Text}%' and IsActive =1";
+                    Filter = $"ID = {USID} and IsActive =1";
                 }
                 else if (chActive.Checked == false && chInActive.Checked == true)
                 {
-                    Filter = $"Username  like '{Text}%' and IsActive =0";
+                    Filter = $"ID = {USID} and IsActive =0";
                 }
-                else
-                {
-                    Filter = $"Username  like '{Text}%'";
-                }
+
+            }
+            else if (cbFilter.SelectedIndex == 1)
+            {
+                Filter = $"Username  like '{Text}%' and {TextFilterIsActive}";
+
+                
             }
             else if (cbFilter.SelectedIndex == 2)
             {
-                if (chActive.Checked && chInActive.Checked == false)
-                {
-                    Filter = $"Role  like '{Text}%' and IsActive =1";
-                }
-                else if (chActive.Checked==false && chInActive.Checked == true)
-                  {
-                    Filter = $"Role  like '{Text}%' and IsActive =0";
-                  }
-                else
-                {
-                    Filter = $"Role  like '{Text}%'";
-                }
+                Filter = $"Role  like '{Text}%' and {TextFilterIsActive}";
             }
 
             LoadUsersInfo(Filter);
@@ -102,8 +89,23 @@ namespace Loan_Desk.Users
         private void txtBarSearch_TextChanged(object sender, EventArgs e)
         {
             string Text = txtBarSearch.Text;
-            Text =utilities.utilities.ClearFilterString(Text);
-            Filtering(Text);
+            string TextFilterIsActive = "";
+            Text = utilities.utilities.ClearFilterString(Text);
+
+            if (cbFilter.SelectedIndex != 0) 
+            {
+                if (chActive.Checked && !string.IsNullOrEmpty(Text) && chInActive.Checked == false)
+                    TextFilterIsActive = "IsActive = 1";
+                else if (chInActive.Checked && !string.IsNullOrEmpty(Text) && chActive.Checked == false)
+                    TextFilterIsActive = "IsActive = 0";
+                else
+                    TextFilterIsActive = "1=1";
+            }
+
+            
+
+            
+            Filtering(Text, TextFilterIsActive);
 
 
         }
