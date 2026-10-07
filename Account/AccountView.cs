@@ -43,7 +43,7 @@ namespace Loan_Desk.Account
             {
                 UserBLL.RestartRequired = false;
 
-
+                UserBLL.Logout();
 
                 Application.Restart();
 

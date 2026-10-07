@@ -31,5 +31,6 @@
                 UserSessions CurrentUser_1 = new UserSessions(ID, Username, Role, IsActive);
                 CurrentUser = CurrentUser_1;
         }
+        static internal void ClearUserSessions() { CurrentUser = null; }
     }
 }

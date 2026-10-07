@@ -15,6 +15,10 @@ namespace BLL
     public class UserBLL
     {
         static public bool RestartRequired = false; 
+        static public void Logout() 
+        {
+            Sessions.ClearUserSessions();
+        }
         static private bool RequireAdmin() 
         {
             if (Sessions.CurrentUser == null)
