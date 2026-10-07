@@ -1,8 +1,10 @@
 ﻿using DAL;
+using Loan_Desk;
 using LoanDesk.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -25,17 +27,41 @@ namespace BLL
         }
         static public int CountActiveAdmins() 
         {
-            return UserDAL.CountActiveAdmins();
+            int count = 0;
+            try
+            {
+                count = UserDAL.CountActiveAdmins();
+            }
+            catch (SqlException ex) 
+            {
+                Logger.Write(ex);
+                throw;
+            }
+            return count;
         }
         static public int CountActiveUsers()
         {
-            return UserDAL.CountActiveUsers();
+            int count = 0;
+            try { count= UserDAL.CountActiveUsers(); }
+            catch(SqlException ex) 
+            {
+             Logger.Write(ex);
+                throw;
+            }
+            return count;
         }
         static public bool IsAdminExist() 
         {
             bool IsExist = false;
-            IsExist = UserDAL.IsAdminExist();
-
+            try
+            {
+                IsExist = UserDAL.IsAdminExist();
+            }
+            catch (SqlException ex) 
+            {
+                Logger.Write(ex);
+                throw;
+            }
             return IsExist;
 
         }
@@ -86,15 +112,24 @@ namespace BLL
             bool IsAdded = false;
             if (CheckUser(user)&& CheckPassword(Password))
             {
-                if(UserDAL.Find(user.Username)==null)
-                {user.PasswordSalt = PasswordHasher.GenerateSalt();
-                user.PasswordHash = PasswordHasher.HashPassword(Password, user.PasswordSalt);
-
-                    IsAdded = UserDAL.AddNewUser(user);
-                }
-                else
+                try
                 {
-                    throw new BusinessRuleException("duplicate username , please enter a uniqeu username.");
+                    if (UserDAL.Find(user.Username) == null)
+                    {
+                        user.PasswordSalt = PasswordHasher.GenerateSalt();
+                        user.PasswordHash = PasswordHasher.HashPassword(Password, user.PasswordSalt);
+
+                        IsAdded = UserDAL.AddNewUser(user);
+                    }
+                    else
+                    {
+                        throw new BusinessRuleException("duplicate username , please enter a uniqeu username.");
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    Logger.Write(ex);
+                    throw;
                 }
             }
 
@@ -104,8 +139,16 @@ namespace BLL
         public static bool IsUsernameTaken(User NewUser)
         {
             bool IsUsernameTaken = false;
-
-            User OldUser = UserDAL.Find(NewUser.Username);
+            User OldUser;
+            try
+            {
+                 OldUser = UserDAL.Find(NewUser.Username);
+            }
+            catch (SqlException ex)
+            {
+                Logger.Write(ex);
+                throw;
+            }
 
             if(OldUser!=null&&OldUser.ID!=NewUser.ID)
                 IsUsernameTaken = true;
@@ -140,8 +183,17 @@ namespace BLL
            
                       if (user.Role != Sessions.CurrentUser.Role)
                       {
-                                  
-                                     IsUpdated = UserDAL.UpdateUser(user);
+
+                    try
+                    {
+                        IsUpdated = UserDAL.UpdateUser(user);
+                    }
+                    catch(SqlException ex) 
+                    {
+                        Logger.Write(ex);
+                        throw;
+                    }
+
                                          if(IsUpdated)
                                     RestartRequired = true;
                             
@@ -151,8 +203,17 @@ namespace BLL
                       }
                     else
                     {
-                      
-                            IsUpdated = UserDAL.UpdateUser(user);
+
+                    try
+                    {
+                        IsUpdated = UserDAL.UpdateUser(user);
+                    }
+                    catch(SqlException ex) 
+                    {
+                        Logger.Write(ex);
+                        throw;
+                    }
+
                             if(IsUpdated)
                             Sessions.CreateUserSession(user.ID, user.Username, user.Role, user.IsActive);
                            
@@ -171,20 +232,44 @@ namespace BLL
         }
         public static bool DeleteUser(User user)
         {
+            bool IsDeleted = false;
             if (!RequireAdmin())
                 throw new BusinessRuleException("Only admins can delete users");
 
             if (user.ID == Sessions.CurrentUser.ID)
                 throw new BusinessRuleException("You can not delete loging account.");
 
-            return UserDAL.DeleteUser(user);
+            try
+            {
+                IsDeleted = UserDAL.DeleteUser(user);
+            }
+            catch (SqlException ex) 
+            {
+                Logger.Write(ex);
+                throw;
+            }
+            return IsDeleted;
+
+
         }
         public static bool ActivateUser(int ID)
         {
+            bool IsActivated = false;
             if (!RequireAdmin())
                 throw new BusinessRuleException("Only admins can activate users");
-            return UserDAL.ActivateUser(ID);
 
+
+            try
+            {
+                IsActivated = UserDAL.ActivateUser(ID);
+            }
+            catch (SqlException ex) 
+            {
+                Logger.Write(ex);
+                throw;
+            }
+
+            return IsActivated;
         }
         public static bool UpdateUserPassword(int ID,string Username,string OldPassword,string NewPassword)
         {
@@ -204,7 +289,15 @@ namespace BLL
             string NewPasswordHash = PasswordHasher.HashPassword(NewPassword, NewPasswordSalt);
 
 
-             IsUpdated=UserDAL.UpdateUserPassword(ID, NewPasswordHash, NewPasswordSalt);
+            try
+            {
+                IsUpdated = UserDAL.UpdateUserPassword(ID, NewPasswordHash, NewPasswordSalt);
+            }
+            catch (SqlException ex) 
+            {
+                Logger.Write(ex);
+                throw;
+            }
 
 
             return IsUpdated;
@@ -225,8 +318,9 @@ namespace BLL
             {
                  user = UserDAL.Find(Username);
             }
-            catch
+            catch(SqlException ex)
             {
+                Logger.Write(ex);
                 throw;
             }
 
@@ -265,8 +359,9 @@ namespace BLL
             {
                 user = UserDAL.Find(Username);
             }
-            catch 
+            catch (SqlException ex)
             {
+                Logger.Write(ex);
                 throw;
             }
 
@@ -286,10 +381,20 @@ namespace BLL
         }
         public static DataTable GetUsers() 
         {
+            DataTable dtUsers = null;
             if (!RequireAdmin())
-                throw new BusinessRuleException("Only admins can add users");
+                throw new BusinessRuleException("Only admins can view users");
 
-            return UserDAL.GetUsers();
+            try
+            {
+                dtUsers = UserDAL.GetUsers();
+            }
+            catch(SqlException ex) 
+            {
+                Logger.Write(ex);
+                throw;
+            }
+            return dtUsers;
             
         }
 

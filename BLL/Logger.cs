@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+
 
 namespace Loan_Desk
 {
@@ -39,10 +39,10 @@ namespace Loan_Desk
                    
                     File.AppendAllText(LogFilePath, logEntry);
                 }
-                catch (Exception writeEx)
+                catch 
                 {
                  
-                    MessageBox.Show($"Could not write to log file: {writeEx.Message}", "Log Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    
                 }
             }
         }

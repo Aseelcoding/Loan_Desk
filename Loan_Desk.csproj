@@ -73,7 +73,6 @@
       <DependentUpon>BorrowersView.cs</DependentUpon>
     </Compile>
     <Compile Include="ErrorHandler.cs" />
-    <Compile Include="Logger.cs" />
     <Compile Include="TopInfoPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>

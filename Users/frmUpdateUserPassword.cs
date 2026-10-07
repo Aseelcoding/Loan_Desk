@@ -46,9 +46,14 @@ namespace Loan_Desk.Users
                     MessageBox.Show("Update user password Failed");
                 }
             }
-            catch(Exception ex)
+            catch
             {
-                throw new LoanDesk.Models.Exceptions.DataAccessException(ex.Message, ex.InnerException);
+                MessageBox.Show(
+  "An unexpected error occurred.\nPlease contact your system manager for assistance.",
+  "System Error",
+  MessageBoxButtons.OK,
+  MessageBoxIcon.Error
+);
             }
             
         }

@@ -22,10 +22,26 @@ namespace Loan_Desk.Users
             InitializeComponent();
         }
 
+        private void RefreshData()
+        {
+            try
+            {
+                dtUsers = UserBLL.GetUsers();
+            }
+            catch
+            {
+                MessageBox.Show(
+    "An unexpected error occurred.\nPlease contact your system manager for assistance.",
+    "System Error",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Error
+);
+            }
+            LoadUsersInfo(string.Empty);
+        }
         private void UsersView_Load(object sender, EventArgs e)
         {
-            dtUsers = UserBLL.GetUsers();
-            LoadUsersInfo("");
+            RefreshData();
         }
         private void LoadUsersInfo(string Filter) 
         {
@@ -114,11 +130,10 @@ namespace Loan_Desk.Users
             frmAddUser frmAddUser = new frmAddUser();
             DialogResult result= frmAddUser.ShowDialog();
 
-            dtUsers = UserBLL.GetUsers();
-            LoadUsersInfo(string.Empty);
 
-            
-           
+            RefreshData();
+
+
 
         }
         private LoanDesk.Models.User GetSelectedRow() 
@@ -154,9 +169,7 @@ namespace Loan_Desk.Users
             }
             frmUpdateUser frmUpdateUser = new frmUpdateUser(UpdateUser);
             frmUpdateUser.ShowDialog();
-
-            dtUsers = UserBLL.GetUsers();
-            LoadUsersInfo(string.Empty);
+            RefreshData();
         }
         private void btnUpdatePassword_Click(object sender, EventArgs e)
         {
@@ -170,8 +183,7 @@ namespace Loan_Desk.Users
             frmUpdateUserPassword frmUpdateUserPassword = new frmUpdateUserPassword(user);
             frmUpdateUserPassword.ShowDialog();
 
-            dtUsers = UserBLL.GetUsers();
-            LoadUsersInfo(string.Empty);
+            RefreshData();
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -198,12 +210,17 @@ namespace Loan_Desk.Users
                     MessageBox.Show("User could not be Inactivated.");
                 }
             }
-            catch(Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(
+    "An unexpected error occurred.\nPlease contact your system manager for assistance.",
+    "System Error",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Error
+);
             }
-            dtUsers = UserBLL.GetUsers();
-            LoadUsersInfo(string.Empty);
+
+            RefreshData();
         }
         private void chActive_CheckedChanged(object sender, EventArgs e)
         {
@@ -233,12 +250,16 @@ namespace Loan_Desk.Users
                     MessageBox.Show("User could not be Activated.");
                 }
             }
-            catch (SqlException ex) 
+            catch 
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(
+    "An unexpected error occurred.\nPlease contact your system manager for assistance.",
+    "System Error",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Error
+);
             }
-            dtUsers = UserBLL.GetUsers();
-            LoadUsersInfo(string.Empty);
+            RefreshData();
         }
     }
 }

@@ -91,9 +91,14 @@ namespace Loan_Desk.Users
                     }
                    
                 }
-                catch(Exception ex)
+                catch
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(
+       "An unexpected error occurred.\nPlease contact your system manager for assistance.",
+       "System Error",
+       MessageBoxButtons.OK,
+       MessageBoxIcon.Error
+   );
                 }
                 
             }
