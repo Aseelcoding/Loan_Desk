@@ -36,7 +36,19 @@ namespace Loan_Desk.Account
             else togIsActive.Toggled = false;
 
         }
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            UserBLL.NeedToRestart = true;
+            if (UserBLL.NeedToRestart)
+            {
+                UserBLL.NeedToRestart = false;
 
-        
+
+
+                Application.Restart();
+
+            }
+        }
+
     }
 }

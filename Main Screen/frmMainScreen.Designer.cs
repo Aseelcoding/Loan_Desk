@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMainScreen));
             this.parrotSlidingPanel1 = new ReaLTaiizor.Controls.ParrotSlidingPanel();
             this.parrotGroupBox4 = new ReaLTaiizor.Controls.ParrotGroupBox();
             this.btnAuditLog = new ReaLTaiizor.Controls.ParrotButton();
@@ -430,6 +431,7 @@
             this.Controls.Add(this.ContentPanelTopInfo);
             this.Controls.Add(this.parrotSlidingPanel1);
             this.Controls.Add(this.ContentPanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximumSize = new System.Drawing.Size(1378, 894);
             this.MinimumSize = new System.Drawing.Size(1378, 894);
@@ -440,7 +442,6 @@
             this.parrotSlidingPanel1.ResumeLayout(false);
             this.parrotSlidingPanel1.PerformLayout();
             this.parrotGroupBox4.ResumeLayout(false);
-            this.parrotGroupBox4.PerformLayout();
             this.parrotGroupBox3.ResumeLayout(false);
             this.parrotGroupBox3.PerformLayout();
             this.parrotGroupBox2.ResumeLayout(false);

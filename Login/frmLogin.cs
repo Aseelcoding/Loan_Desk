@@ -57,9 +57,6 @@ namespace Loan_Desk
             }
         }
 
-        private void parrotGradientPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+      
     }
 }

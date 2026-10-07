@@ -37,6 +37,7 @@
             this.chStaff = new ReaLTaiizor.Controls.CheckBox();
             this.bigLabel3 = new ReaLTaiizor.Controls.BigLabel();
             this.togIsActive = new ReaLTaiizor.Controls.ToggleButton();
+            this.btnLogout = new ReaLTaiizor.Controls.RibbonButtonLeft();
             this.SuspendLayout();
             // 
             // bigLabel4
@@ -178,11 +179,38 @@
             this.togIsActive.Toggled = false;
             this.togIsActive.Type = ReaLTaiizor.Controls.ToggleButton._Type.YesNo;
             // 
+            // btnLogout
+            // 
+            this.btnLogout.BackColor = System.Drawing.Color.Transparent;
+            this.btnLogout.BaseColorA = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
+            this.btnLogout.BaseColorB = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(190)))));
+            this.btnLogout.BorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(117)))), ((int)(((byte)(120)))), ((int)(((byte)(117)))));
+            this.btnLogout.BorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnLogout.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLogout.DownBaseColorA = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(201)))), ((int)(((byte)(205)))));
+            this.btnLogout.DownBaseColorB = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(186)))), ((int)(((byte)(190)))));
+            this.btnLogout.DownBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(117)))), ((int)(((byte)(120)))), ((int)(((byte)(117)))));
+            this.btnLogout.DownBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnLogout.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold);
+            this.btnLogout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.btnLogout.HoverBaseColorA = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(191)))), ((int)(((byte)(195)))));
+            this.btnLogout.HoverBaseColorB = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(192)))), ((int)(((byte)(196)))));
+            this.btnLogout.HoverBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(117)))), ((int)(((byte)(120)))), ((int)(((byte)(117)))));
+            this.btnLogout.HoverBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnLogout.Location = new System.Drawing.Point(188, 323);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(140, 40);
+            this.btnLogout.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            this.btnLogout.TabIndex = 64;
+            this.btnLogout.Text = "Logout";
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
             // AccountView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
+            this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.togIsActive);
             this.Controls.Add(this.bigLabel3);
             this.Controls.Add(this.chStaff);
@@ -213,5 +241,6 @@
         private ReaLTaiizor.Controls.CheckBox chStaff;
         private ReaLTaiizor.Controls.BigLabel bigLabel3;
         private ReaLTaiizor.Controls.ToggleButton togIsActive;
+        private ReaLTaiizor.Controls.RibbonButtonLeft btnLogout;
     }
 }
