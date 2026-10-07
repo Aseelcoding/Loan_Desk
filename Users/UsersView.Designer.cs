@@ -38,13 +38,13 @@
             this.chInActive = new System.Windows.Forms.CheckBox();
             this.chActive = new System.Windows.Forms.CheckBox();
             this.txtBarSearch = new ReaLTaiizor.Controls.BigTextBox();
+            this.btnAddUser = new System.Windows.Forms.Button();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Role = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsActive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ContextOperation = new ReaLTaiizor.Controls.CrownContextMenuStrip();
-            this.btnAddUser = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.btnDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.btnUpdatePassword = new System.Windows.Forms.ToolStripMenuItem();
@@ -166,6 +166,23 @@
             this.txtBarSearch.UseSystemPasswordChar = false;
             this.txtBarSearch.TextChanged += new System.EventHandler(this.txtBarSearch_TextChanged);
             // 
+            // btnAddUser
+            // 
+            this.btnAddUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
+            this.btnAddUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddUser.Image = global::Loan_Desk.Properties.Resources.add_25;
+            this.btnAddUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddUser.Location = new System.Drawing.Point(853, 53);
+            this.btnAddUser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAddUser.Name = "btnAddUser";
+            this.btnAddUser.Size = new System.Drawing.Size(132, 30);
+            this.btnAddUser.TabIndex = 1;
+            this.btnAddUser.Text = "Add User";
+            this.btnAddUser.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddUser.UseVisualStyleBackColor = false;
+            this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
+            // 
             // dgvUsers
             // 
             this.dgvUsers.AllowUserToAddRows = false;
@@ -259,24 +276,7 @@
             this.btnActivate});
             this.ContextOperation.Name = "crownContextMenuStrip1";
             this.ContextOperation.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.ContextOperation.Size = new System.Drawing.Size(215, 136);
-            // 
-            // btnAddUser
-            // 
-            this.btnAddUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
-            this.btnAddUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddUser.Image = global::Loan_Desk.Properties.Resources.add_25;
-            this.btnAddUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddUser.Location = new System.Drawing.Point(853, 53);
-            this.btnAddUser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnAddUser.Name = "btnAddUser";
-            this.btnAddUser.Size = new System.Drawing.Size(132, 30);
-            this.btnAddUser.TabIndex = 1;
-            this.btnAddUser.Text = "Add User";
-            this.btnAddUser.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAddUser.UseVisualStyleBackColor = false;
-            this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
+            this.ContextOperation.Size = new System.Drawing.Size(197, 108);
             // 
             // btnUpdate
             // 
@@ -284,7 +284,7 @@
             this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btnUpdate.Image = global::Loan_Desk.Properties.Resources.update_20;
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(214, 26);
+            this.btnUpdate.Size = new System.Drawing.Size(196, 26);
             this.btnUpdate.Text = "Update";
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
@@ -294,7 +294,7 @@
             this.btnDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btnDelete.Image = global::Loan_Desk.Properties.Resources.delete_20;
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(214, 26);
+            this.btnDelete.Size = new System.Drawing.Size(196, 26);
             this.btnDelete.Text = "Delete";
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -304,15 +304,17 @@
             this.btnUpdatePassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btnUpdatePassword.Image = global::Loan_Desk.Properties.Resources.warning_20;
             this.btnUpdatePassword.Name = "btnUpdatePassword";
-            this.btnUpdatePassword.Size = new System.Drawing.Size(214, 26);
+            this.btnUpdatePassword.Size = new System.Drawing.Size(196, 26);
             this.btnUpdatePassword.Text = "Update Password";
             this.btnUpdatePassword.Click += new System.EventHandler(this.btnUpdatePassword_Click);
             // 
             // btnActivate
             // 
+            this.btnActivate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.btnActivate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btnActivate.Image = global::Loan_Desk.Properties.Resources.active_20;
             this.btnActivate.Name = "btnActivate";
-            this.btnActivate.Size = new System.Drawing.Size(214, 26);
+            this.btnActivate.Size = new System.Drawing.Size(196, 26);
             this.btnActivate.Text = "Activate";
             this.btnActivate.Click += new System.EventHandler(this.btnActivate_Click);
             // 

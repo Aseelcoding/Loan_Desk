@@ -24,6 +24,11 @@ namespace utilities
             return Regex.IsMatch(Password, @"[\p{P}\p{S}]");
 
         }
-
+        static public string ClearFilterString(string input)
+        {
+            // Remove all special characters from the string
+            string output = Regex.Replace(input, @"[^\w\s]", "");
+            return output;
+        }
     }
 }

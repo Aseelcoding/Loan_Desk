@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using utilities;
 
 namespace Loan_Desk.Users
 {
@@ -100,8 +101,9 @@ namespace Loan_Desk.Users
         }
         private void txtBarSearch_TextChanged(object sender, EventArgs e)
         {
-
-            Filtering(txtBarSearch.Text);
+            string Text = txtBarSearch.Text;
+            Text =utilities.utilities.ClearFilterString(Text);
+            Filtering(Text);
 
 
         }
