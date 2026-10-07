@@ -2,10 +2,10 @@
 
 LoanDesk is a campus equipment loan management system designed to manage the lending and returning of equipment such as laptops, projectors, cameras, and other campus resources.
 
-The project is being developed as a practical C# Windows Forms application with a focus on layered architecture, database management, authentication, authorization, and maintainable code.
+The project is being developed as a practical C# Windows Forms application with a focus on layered architecture, database management, authentication, authorization, maintainable code, and learning software engineering concepts through implementation.
 
 > **Status:** Under Development
-> **Current Progress:** Approximately 45%
+> **Current Focus:** Completing the Users module and preparing the core Borrowers and Equipment modules
 
 ---
 
@@ -37,17 +37,19 @@ The main goal is not only to build a working application, but also to apply soft
 - Restricted session modification using `internal`
 - Parameterized SQL queries
 - SQL exception mapping
-- Centralized error handling
+- Improved exception handling across the application
+- Global unhandled exception handling
 - Basic logging infrastructure
 - Layered UI / BLL / DAL / Models structure
 - Main application shell and navigation
 - Reusable `UserControl` based views
 - Account view
-- Users CRUD-related operations
+- Users add, update, password update, deactivate, and activate operations
 - Soft delete using `IsActive`
 - User activation
 - Active-user count on the dashboard
-- Initial Admin-only authorization for Users and Audit Log navigation
+- Admin authorization for protected user operations
+- Admin authorization for protected navigation
 
 ### In Progress
 
@@ -63,10 +65,10 @@ The main goal is not only to build a working application, but also to apply soft
 - Business rules and validation
 - Database transactions
 
-### Not Started / Planned
+### Planned
 
 - Automated unit and integration testing
-- Stronger password hashing such as PBKDF2, bcrypt, or Argon2
+- Password security hardening
 - Improved configuration management
 - More complete audit logging
 - Reports
@@ -136,7 +138,7 @@ Current implementations include:
 - Admin checks in the Business Logic Layer
 - Separation between UI and business logic
 
-The current password implementation uses SHA-256 with a random salt as a learning implementation. A slow password-specific hashing algorithm is planned for a later hardening stage.
+The current password implementation uses SHA-256 with a random salt as a learning implementation. A slow password-specific hashing algorithm is planned for a later security hardening stage.
 
 ---
 
@@ -192,13 +194,29 @@ Admins can activate inactive users again, while the login process prevents inact
 
 Changing the role of the currently logged-in Admin can affect the current application session. LoanDesk therefore treats this as a special case and can restart the application when the current user's role changes.
 
-This area is still being refined so that database state and session state remain consistent.
+The database is updated before the application decides whether the current session needs to be recreated or the application restarted.
 
 ### 6. Reusable Top Information Panel
 
 A reusable custom panel is used for the top information area of the main screen. Its title changes according to the currently selected view, while the logged-in user's role is displayed separately.
 
 The custom panel also provides access to the Account view.
+
+---
+
+## Error Handling
+
+Error handling has been improved during development and is now separated according to the layer and type of failure.
+
+The application currently uses custom exceptions such as `ValidationException` and `BusinessRuleException` for expected application and business-rule failures.
+
+Database errors are handled in the Data Access Layer, where SQL exceptions can be mapped to application-specific exceptions.
+
+The application also contains global exception handling for unexpected unhandled errors.
+
+Logging is used to record important technical errors while the UI presents appropriate messages to the user.
+
+The error-handling implementation is still being refined as the remaining modules are developed.
 
 ---
 
@@ -222,6 +240,7 @@ The project is being developed in stages rather than trying to complete every mo
 - [x] Password hashing and salt
 - [x] User session
 - [x] Session access restrictions
+- [x] Basic authorization checks
 
 ### Phase 3 — Users
 
@@ -230,8 +249,8 @@ The project is being developed in stages rather than trying to complete every mo
 - [x] Update password
 - [x] Soft delete
 - [x] Activate user
-- [x] Search and filtering
 - [x] Active-user count
+- [ ] Finish filtering behavior
 - [ ] Finish edge cases and consistency checks
 - [ ] Final authorization checks
 
@@ -263,45 +282,6 @@ The project is being developed in stages rather than trying to complete every mo
 - [ ] Configuration cleanup
 - [ ] Password security hardening
 - [ ] Final UI/UX cleanup
-
----
-
-## Current Bug-Fix Map
-
-Before moving too far into the remaining modules, the following technical issues should be reviewed and fixed:
-
-1. **Current-user update consistency**
-   - Update the database first.
-   - Change the session only after a successful database update.
-   - Keep the restart behavior only when it is actually required.
-
-2. **Session null safety**
-   - Authorization methods should handle the case where no user session exists.
-
-3. **Startup check cleanup**
-   - Avoid calling the Admin-existence query more than once during application startup.
-
-4. **User update behavior**
-   - Keep username uniqueness checks clear and consistent with the database constraint.
-
-5. **UsersView filtering**
-   - Review DataView filtering for special characters and unexpected input.
-
-6. **Exception handling in Forms**
-   - Avoid converting every exception into a different exception type in the UI.
-   - Let the existing application error-handling strategy handle BLL/DAL exceptions consistently.
-
-7. **Resource disposal**
-   - Review DAL connection/command disposal and gradually move to `using` blocks where appropriate.
-
-8. **Authorization**
-   - UI hiding is not enough. Sensitive operations must remain protected in the BLL.
-
-9. **Enums / constants**
-   - Consider replacing repeated strings such as `Admin`, `Staff`, and status values with centralized constants or enums where appropriate.
-
-10. **Testing**
-   - Add tests after the core business rules become stable.
 
 ---
 
@@ -344,13 +324,61 @@ LoanDesk
 
 ---
 
+## Current Learning Focus
+
+The current development focus is not only completing features, but understanding the programming concepts behind them.
+
+The main concepts currently being practiced include:
+
+**Exception handling**
+
+Understanding how exceptions move between DAL, BLL, and UI and deciding which layer should handle each type of error.
+
+**State consistency**
+
+Understanding the difference between database state and application session state, especially when updating the currently logged-in user.
+
+**Validation and business rules**
+
+Separating input validation from rules that belong to the application domain.
+
+**Authorization**
+
+Protecting sensitive operations in the Business Logic Layer instead of relying only on hidden UI controls.
+
+**Resource management**
+
+Improving database connection, command, and reader disposal using appropriate .NET resource-management patterns.
+
+**Database integrity**
+
+Using primary keys, unique constraints, foreign keys, and other database rules together with BLL validation.
+
+---
+
 ## Development Philosophy
 
 LoanDesk is being developed as a learning project.
 
 The focus is not simply on making the application work, but on understanding why architectural and programming decisions are made.
 
-Bugs and design problems discovered during development are treated as part of the learning process. The goal is to improve both the application and the developer's understanding of software engineering practices.
+Bugs and design problems discovered during development are treated as part of the learning process. The goal is to improve both the application and my understanding of software engineering practices.
+
+The development process follows a simple cycle:
+
+```text
+Understand the concept
+        ↓
+Understand the flow
+        ↓
+Predict the correct behavior
+        ↓
+Implement
+        ↓
+Test
+        ↓
+Review
+```
 
 ---
 
