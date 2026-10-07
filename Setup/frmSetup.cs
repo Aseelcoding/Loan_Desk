@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Schema;
 
 namespace Loan_Desk.Setup
 {
@@ -80,9 +81,21 @@ namespace Loan_Desk.Setup
                         this.Close();
                     }
                 }
-                catch (Exception ex) 
+                catch (Exceptions.BusinessRuleException ex ) 
                 {
-                    MessageBox.Show("Not Vaild info error for more details :\n"+ex.Message, "Warning");
+                    MessageBox.Show(ex.Message);
+                }
+                catch (Exceptions.ValidationException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch 
+                {
+                    MessageBox.Show(
+ "An unexpected error occurred.\nPlease contact your system manager for assistance.",
+ "System Error",
+ MessageBoxButtons.OK,
+ MessageBoxIcon.Error);
                 }
 
             }

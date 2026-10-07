@@ -101,7 +101,7 @@ namespace BLL
                 throw new ValidationException("Username must not has any Symbol.");
 
             if (user.Role != "Admin" && user.Role != "Staff")
-                throw new ValidationException("Role must be Admin or Staff.");
+                throw new BusinessRuleException("Role must be Admin or Staff.");
 
 
             return true;
@@ -185,9 +185,12 @@ namespace BLL
             else
             {
            
-                      if (user.Role != Sessions.CurrentUser.Role)
-                      {
-
+                     if (user.Role != Sessions.CurrentUser.Role)
+                     {
+                    if (CountActiveAdmins() <= 1) 
+                    {
+                        throw new BusinessRuleException("You are the last admin you can not be a staff.");
+                    }
                     try
                     {
                         IsUpdated = UserDAL.UpdateUser(user);
@@ -353,7 +356,7 @@ namespace BLL
         public static bool IsPasswordCorrect(string Username, string Password) 
         {
             if (string.IsNullOrWhiteSpace(Username))
-                throw new Exception("Username must not be null or empty");
+                throw new ValidationException("Username must not be null or empty");
 
 
             bool IsValid = false;

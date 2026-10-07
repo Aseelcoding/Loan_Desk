@@ -1,4 +1,5 @@
 ﻿using BLL;
+using LoanDesk.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,6 +29,7 @@ namespace Loan_Desk.Users
             {
                 dtUsers = UserBLL.GetUsers();
             }
+
             catch
             {
                 MessageBox.Show(
@@ -210,6 +212,14 @@ namespace Loan_Desk.Users
                     MessageBox.Show("User could not be Inactivated.");
                 }
             }
+            catch (Exceptions.BusinessRuleException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exceptions.ValidationException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             catch
             {
                 MessageBox.Show(
@@ -219,6 +229,7 @@ namespace Loan_Desk.Users
     MessageBoxIcon.Error
 );
             }
+            
 
             RefreshData();
         }
@@ -249,6 +260,14 @@ namespace Loan_Desk.Users
                 {
                     MessageBox.Show("User could not be Activated.");
                 }
+            }
+            catch (Exceptions.BusinessRuleException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exceptions.ValidationException ex)
+            {
+                MessageBox.Show(ex.Message);
             }
             catch 
             {

@@ -1,4 +1,5 @@
 ﻿using BLL;
+using LoanDesk.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -45,6 +46,14 @@ namespace Loan_Desk.Users
                 {
                     MessageBox.Show("Update user password Failed");
                 }
+            }
+            catch (Exceptions.BusinessRuleException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exceptions.ValidationException ex)
+            {
+                MessageBox.Show(ex.Message);
             }
             catch
             {

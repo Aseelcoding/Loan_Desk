@@ -46,14 +46,24 @@ namespace Loan_Desk
                         MessageBoxIcon.Stop);
                 }
             }
-            catch (Exception ex)
+
+
+            catch (Exceptions.BusinessRuleException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exceptions.ValidationException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch
             {
                 MessageBox.Show(
-                    ex.Message,
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-
+    "An unexpected error occurred.\nPlease contact your system manager for assistance.",
+    "System Error",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Error
+);
             }
         }
 
