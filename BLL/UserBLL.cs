@@ -12,7 +12,7 @@ namespace BLL
 {
     public class UserBLL
     {
-        static public bool NeedToRestart = false; 
+        static public bool RestartRequired = false; 
         static private bool RequireAdmin() 
         {
             if (Sessions.CurrentUser == null)
@@ -101,57 +101,71 @@ namespace BLL
 
             return IsAdded;
         }
+        public static bool IsUsernameTaken(User NewUser)
+        {
+            bool IsUsernameTaken = false;
+
+            User OldUser = UserDAL.Find(NewUser.Username);
+
+            if(OldUser!=null&&OldUser.ID!=NewUser.ID)
+                IsUsernameTaken = true;
+            else
+            {
+                IsUsernameTaken = false;
+            }
+            return IsUsernameTaken;
+        }
         public static bool UpdateUser(User user)
         {
             if (!RequireAdmin())
                 throw new BusinessRuleException("Only admins can update users");
 
             bool IsUpdated = false;
-            if(!CheckUser(user)) 
+
+            if (CheckUser(user))
+            { return IsUpdated; }
+
+                if (IsUsernameTaken(user))
             {
-                return IsUpdated;
+                throw new ValidationException("duplicate username , please enter a uniqeu username.");
             }
 
-            LoanDesk.Models.User user2 = UserDAL.Find(user.Username);
-
-            if(user2 != null)
-            { 
-                if (user2.ID != user.ID)
-                    throw new BusinessRuleException($"Username '{user.Username}' is already taken. Please choose another one.");
-
-            }
-
-           
-           
-
-            if (Sessions.CurrentUser.ID == user.ID)
+            if (Sessions.CurrentUser.ID != user.ID)
             {
-                if (Sessions.CurrentUser.Role != user.Role)
-                {
-                    if (CountActiveAdmins() <= 1)
-                        throw new BusinessRuleException("This is the only admin in the system you can not change his role to staff.");
-                    else
-                    {
-                        //Sessions.CurrentUser = null;
-                    NeedToRestart = true;
+
                         IsUpdated = UserDAL.UpdateUser(user);
-                        return IsUpdated;
-                    }
-
-
-
-                }
-
-                    Sessions.CreateUserSession(user.ID,user.Username,user.Role,user.IsActive);
             }
             else
             {
-                IsUpdated = UserDAL.UpdateUser(user);
-                if(IsUpdated)
-                {
-                    Sessions.CreateUserSession(user.ID, user.Username, user.Role, user.IsActive);
+           
+                      if (user.Role != Sessions.CurrentUser.Role)
+                      {
+                                  
+                                     IsUpdated = UserDAL.UpdateUser(user);
+                                         if(IsUpdated)
+                                    RestartRequired = true;
+                            
+                                        return IsUpdated;
+                                    
+                        
+                      }
+                    else
+                    {
+                      
+                            IsUpdated = UserDAL.UpdateUser(user);
+                            if(IsUpdated)
+                            Sessions.CreateUserSession(user.ID, user.Username, user.Role, user.IsActive);
+                           
+                           
+                            
+                        
+
+                    }
                 }
-            }
+
+            
+     
+
 
                 return IsUpdated;
         }

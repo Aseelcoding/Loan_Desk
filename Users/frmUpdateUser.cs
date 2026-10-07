@@ -80,9 +80,9 @@ namespace Loan_Desk.Users
                 try
                 {
                     IsUpdated = UserBLL.UpdateUser(NewUser);
-                    if (UserBLL.NeedToRestart) 
+                    if (UserBLL.RestartRequired) 
                     {
-                        UserBLL.NeedToRestart = false;
+                        UserBLL.RestartRequired = false;
 
 
                      
