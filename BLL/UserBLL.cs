@@ -169,7 +169,7 @@ namespace BLL
 
             bool IsUpdated = false;
 
-            if (CheckUser(user))
+            if (!CheckUser(user))
             { return IsUpdated; }
 
                 if (IsUsernameTaken(user))

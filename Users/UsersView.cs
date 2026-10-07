@@ -47,6 +47,9 @@ namespace Loan_Desk.Users
         }
         private void LoadUsersInfo(string Filter) 
         {
+            if (dtUsers == null)
+                return;
+
             dgvUsers.Rows.Clear();
             DataView dvUser=new DataView();
             dvUser = dtUsers.DefaultView;
@@ -70,7 +73,7 @@ namespace Loan_Desk.Users
             if (string.IsNullOrEmpty(Text))
                 {
                 LoadUsersInfo("");
-                    return; }
+                    }
 
             string Filter = string.Empty;
 
@@ -235,8 +238,15 @@ namespace Loan_Desk.Users
         }
         private void chActive_CheckedChanged(object sender, EventArgs e)
         {
-
+            {
+                Filtering(txtBarSearch.Text, "Active");
+            }
         }
+        private void chInactive_CheckedChanged(object sender, EventArgs e)
+        {
+            Filtering(txtBarSearch.Text, "Inactive");
+        }
+        
         private void btnActivate_Click(object sender, EventArgs e)
         {
             bool IsActicated = false;
