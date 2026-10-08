@@ -74,6 +74,23 @@ namespace BLL
 
             return IsAdded;
         }
+        public static Borrower GetBorrowerByID(int BorrowerID) 
+        {
+            try
+            {
+                return BorrowersDAL.GetBorrowerByID(BorrowerID);
+
+            }
+            catch (Exception ex)
+            {
+                if (!(ex is Exceptions.ValidationException) && !(ex is Exceptions.BusinessRuleException))
+                {
+                    Logger.Write(ex);
+                }
+
+                throw;
+            }
+        }
 
     }
 }

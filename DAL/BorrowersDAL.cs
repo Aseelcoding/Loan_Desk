@@ -76,6 +76,53 @@ GROUP BY B.ID, B.FullName, B.Passport, B.Phone, B.IsActive;";
 
             return IsAdded;
         }
+        public static Borrower GetBorrowerByID(int BorrowerID) 
+        {
+            Borrower borrower = null;
+
+            string query = @"SELECT [ID],
+       [FullName],
+       [Passport],
+       [Phone],
+       [IsActive]
+FROM   [dbo].[Borrowers]
+WHERE  ID = @BorrowerID;";
+
+            try
+            {
+
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@BorrowerID", BorrowerID);
+                    connection.Open();
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read()) 
+                    {
+                        borrower=new Borrower();
+
+                        int BID = -1;
+                        int.TryParse(reader["ID"].ToString(), out BID);
+                        borrower.ID=BID;
+
+                        borrower.FullName=reader["FullName"].ToString();
+                        borrower.Passport=reader["Passport"].ToString();
+                        borrower.Phone = reader["Phone"].ToString();
+                        if ((bool)reader["IsActive"] == true)
+                            borrower.IsActive = true;
+                        else borrower.IsActive = false;
+                                       
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw SqlErrorMapper.Map(ex, "Get borrower by id");
+            }
+            return borrower;
+        }
 
     }
 }
