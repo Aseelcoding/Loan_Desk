@@ -213,5 +213,35 @@ WHERE  ID = @ID;";
 
             return IsUpdated;
         }
+        public static bool DeactivateBorrowerByID(int BorrowerID) 
+        {
+            bool IsDeactivate = false;
+
+            string query = @"UPDATE [dbo].[Borrowers]
+                    SET    [IsActive] = 0
+                         WHERE  ID = @ID;";
+
+            try 
+            {
+                using (SqlConnection connection =new SqlConnection(ConnectionString))
+                using (SqlCommand cmd =new SqlCommand(query, connection)) 
+                {
+                    connection.Open();
+
+                    cmd.Parameters.AddWithValue("@ID", BorrowerID);
+
+                    int AffectedRows = cmd.ExecuteNonQuery();
+                    if (AffectedRows > 0)
+                        IsDeactivate = true;
+                }
+            }
+            catch (SqlException ex) 
+            {
+                throw SqlErrorMapper.Map(ex, "Deactivate Borrower");
+            }
+
+            return IsDeactivate;
+        }
+        
     }
 }
