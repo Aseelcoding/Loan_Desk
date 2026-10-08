@@ -91,6 +91,47 @@ namespace BLL
                 throw;
             }
         }
+        public static Borrower GetBorrowerByPassport(string Passport)
+        {
+            try
+            {
+                return BorrowersDAL.GetBorrowerByPassport(Passport);
 
+            }
+            catch (Exception ex)
+            {
+                if (!(ex is Exceptions.ValidationException) && !(ex is Exceptions.BusinessRuleException))
+                {
+                    Logger.Write(ex);
+                }
+
+                throw;
+            }
+        }
+        public static bool UpdateBorrower(Borrower borrower) 
+        {
+            bool IsUpdated = false;
+            try
+            {
+                ValidateBorrower(borrower);
+
+                Borrower _borrower1=GetBorrowerByPassport(borrower.Passport);
+                if (_borrower1 != null && _borrower1.ID != borrower.ID)
+                    throw new Exceptions.BusinessRuleException("Passport must be unique");
+
+                IsUpdated = BorrowersDAL.UpdateBorrower(borrower);
+            }
+            catch (Exception ex)
+            {
+                if (!(ex is Exceptions.ValidationException) && !(ex is Exceptions.BusinessRuleException))
+                {
+                    Logger.Write(ex);
+                }
+
+                throw;
+            }
+
+            return IsUpdated;
+        }
     }
 }

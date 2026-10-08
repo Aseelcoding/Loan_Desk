@@ -8,7 +8,12 @@ using System.Reflection;
 namespace DAL
 {
     public class BorrowersDAL
-    {
+    {           
+        
+            //catch (SqlException ex) 
+            //{
+            //    throw SqlErrorMapper.Map(ex, "Add New borrower");
+            //}
         private static readonly string ConnectionString = ConfigurationManager.ConnectionStrings["LoanDeskDB"].ConnectionString;
 
         public static DataTable GetBorrowers()
@@ -123,6 +128,90 @@ WHERE  ID = @BorrowerID;";
             }
             return borrower;
         }
+        public static Borrower GetBorrowerByPassport(string Passport)
+        {
+            Borrower borrower = null;
 
+            string query = @"SELECT [ID],
+       [FullName],
+       [Passport],
+       [Phone],
+       [IsActive]
+FROM   [dbo].[Borrowers]
+WHERE  Passport = @Passport;";
+
+            try
+            {
+
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@Passport", Passport);
+                    connection.Open();
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        borrower = new Borrower();
+
+                        int BID = -1;
+                        int.TryParse(reader["ID"].ToString(), out BID);
+                        borrower.ID = BID;
+
+                        borrower.FullName = reader["FullName"].ToString();
+                        borrower.Passport = reader["Passport"].ToString();
+                        borrower.Phone = reader["Phone"].ToString();
+                        if ((bool)reader["IsActive"] == true)
+                            borrower.IsActive = true;
+                        else borrower.IsActive = false;
+
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw SqlErrorMapper.Map(ex, "Get borrower by passport");
+            }
+            return borrower;
+        }
+        public static bool UpdateBorrower (Borrower borrower) 
+        {
+            bool IsUpdated = false;
+
+            string query = @"UPDATE [dbo].[Borrowers]
+SET    [FullName] = @FullName,
+       [Passport] = @Passport,
+       [Phone]    = @Phone
+WHERE  ID = @ID;";
+
+
+            try 
+            {
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@ID", borrower.ID);
+                    cmd.Parameters.AddWithValue("@FullName", borrower.FullName);
+                    cmd.Parameters.AddWithValue("@Passport", borrower.Passport);
+                    cmd.Parameters.AddWithValue("@Phone", borrower.Phone);
+                    
+                    connection.Open();
+
+                    int AffectedRows = cmd.ExecuteNonQuery();
+
+                    if (AffectedRows > 0)
+                        IsUpdated = true;
+
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                throw SqlErrorMapper.Map(ex, "Update borrower");
+            }
+
+            return IsUpdated;
+        }
     }
 }
