@@ -74,6 +74,7 @@ namespace Loan_Desk.Users
             if (string.IsNullOrEmpty(Text))
                 {
                 LoadUsersInfo("");
+                return;
                     }
 
             string Filter = string.Empty;

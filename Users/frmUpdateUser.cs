@@ -69,6 +69,8 @@ namespace Loan_Desk.Users
             else
                 NewUser.Role = "Staff";
 
+            NewUser.IsActive = true;
+
 
             if (IsSameInfo(NewUser))
               { MessageBox.Show("You did not change any info so this window will be closed.");

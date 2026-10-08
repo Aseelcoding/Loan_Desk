@@ -10,66 +10,72 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using static LoanDesk.Models.Exceptions;
+
 namespace BLL
 {
     public class UserBLL
     {
-        static public bool RestartRequired = false; 
-        static public void Logout() 
+        public static bool RestartRequired = false;
+
+        public static void Logout()
         {
             Sessions.ClearUserSessions();
         }
-        static private bool RequireAdmin() 
+
+        private static bool RequireAdmin()
         {
             if (Sessions.CurrentUser == null)
                 return false;
 
             if (Sessions.CurrentUser.Role == "Admin")
                 return true;
-            else 
+            else
                 return false;
         }
-        static public int CountActiveAdmins() 
+
+        public static int CountActiveAdmins()
         {
             int count = 0;
             try
             {
                 count = UserDAL.CountActiveAdmins();
             }
-            catch (DataAccessException ex) 
+            catch (DataAccessException ex)
             {
                 Logger.Write(ex);
                 throw;
             }
             return count;
         }
-        static public int CountActiveUsers()
+
+        public static int CountActiveUsers()
         {
             int count = 0;
-            try { count= UserDAL.CountActiveUsers(); }
-            catch(DataAccessException ex) 
+            try { count = UserDAL.CountActiveUsers(); }
+            catch (DataAccessException ex)
             {
-             Logger.Write(ex);
+                Logger.Write(ex);
                 throw;
             }
             return count;
         }
-        static public bool IsAdminExist() 
+
+        public static bool IsAdminExist()
         {
             bool IsExist = false;
             try
             {
                 IsExist = UserDAL.IsAdminExist();
             }
-            catch (DataAccessException ex) 
+            catch (DataAccessException ex)
             {
                 Logger.Write(ex);
                 throw;
             }
             return IsExist;
-
         }
-        static public bool CheckPassword(string Password)
+
+        public static bool CheckPassword(string Password)
         {
             if (string.IsNullOrWhiteSpace(Password))
                 throw new ValidationException("Password must not be null or empty");
@@ -85,36 +91,34 @@ namespace BLL
 
             return true;
         }
+
         private static bool CheckUser(User user)
         {
-
             if (user == null)
                 throw new ArgumentNullException("user");
 
             if (string.IsNullOrWhiteSpace(user.Username))
-               throw new ValidationException("Username must not be null or empty");
+                throw new ValidationException("Username must not be null or empty");
 
             if (user.Username.Length > 15 || user.Username.Length < 5)
                 throw new ValidationException("Username must be between 5 and 15.");
 
-             if( utilities.utilities.IsStringContainSymbol( user.Username))
+            if (utilities.utilities.IsStringContainSymbol(user.Username))
                 throw new ValidationException("Username must not has any Symbol.");
 
             if (user.Role != "Admin" && user.Role != "Staff")
                 throw new BusinessRuleException("Role must be Admin or Staff.");
 
-
             return true;
         }
+
         public static bool AddNewUser(User user, string Password)
         {
             if (!RequireAdmin())
                 throw new BusinessRuleException("Only admins can add users");
 
-
-
             bool IsAdded = false;
-            if (CheckUser(user)&& CheckPassword(Password))
+            if (CheckUser(user) && CheckPassword(Password))
             {
                 try
                 {
@@ -137,16 +141,16 @@ namespace BLL
                 }
             }
 
-
             return IsAdded;
         }
+
         public static bool IsUsernameTaken(User NewUser)
         {
             bool IsUsernameTaken = false;
             User OldUser;
             try
             {
-                 OldUser = UserDAL.Find(NewUser.Username);
+                OldUser = UserDAL.Find(NewUser.Username);
             }
             catch (DataAccessException ex)
             {
@@ -154,7 +158,7 @@ namespace BLL
                 throw;
             }
 
-            if(OldUser!=null&&OldUser.ID!=NewUser.ID)
+            if (OldUser != null && OldUser.ID != NewUser.ID)
                 IsUsernameTaken = true;
             else
             {
@@ -162,6 +166,7 @@ namespace BLL
             }
             return IsUsernameTaken;
         }
+
         public static bool UpdateUser(User user)
         {
             if (!RequireAdmin())
@@ -172,19 +177,18 @@ namespace BLL
             if (!CheckUser(user))
             { return IsUpdated; }
 
-                if (IsUsernameTaken(user))
+            if (IsUsernameTaken(user))
             {
                 throw new ValidationException("duplicate username , please enter a uniqeu username.");
             }
 
             if (Sessions.CurrentUser.ID != user.ID)
             {
-
                 try
                 {
                     IsUpdated = UserDAL.UpdateUser(user);
                 }
-                catch (DataAccessException ex) 
+                catch (DataAccessException ex)
                 {
                     Logger.Write(ex);
                     throw;
@@ -192,10 +196,9 @@ namespace BLL
             }
             else
             {
-           
-                     if (user.Role != Sessions.CurrentUser.Role)
-                     {
-                    if (CountActiveAdmins() <= 1) 
+                if (user.Role != Sessions.CurrentUser.Role)
+                {
+                    if (CountActiveAdmins() <= 1)
                     {
                         throw new BusinessRuleException("You are the last admin you can not be a staff.");
                     }
@@ -203,48 +206,37 @@ namespace BLL
                     {
                         IsUpdated = UserDAL.UpdateUser(user);
                     }
-                    catch(DataAccessException ex) 
+                    catch (DataAccessException ex)
                     {
                         Logger.Write(ex);
                         throw;
                     }
 
-                                         if(IsUpdated)
-                                    RestartRequired = true;
-                            
-                                        return IsUpdated;
-                                    
-                        
-                      }
-                    else
-                    {
+                    if (IsUpdated)
+                        RestartRequired = true;
 
+                    return IsUpdated;
+                }
+                else
+                {
                     try
                     {
                         IsUpdated = UserDAL.UpdateUser(user);
                     }
-                    catch(DataAccessException ex) 
+                    catch (DataAccessException ex)
                     {
                         Logger.Write(ex);
                         throw;
                     }
 
-                            if(IsUpdated)
-                            Sessions.CreateUserSession(user.ID, user.Username, user.Role, user.IsActive);
-                           
-                           
-                            
-                        
-
-                    }
+                    if (IsUpdated)
+                        Sessions.CreateUserSession(user.ID, user.Username, user.Role, user.IsActive);
                 }
+            }
 
-            
-     
-
-
-                return IsUpdated;
+            return IsUpdated;
         }
+
         public static bool DeleteUser(User user)
         {
             bool IsDeleted = false;
@@ -258,27 +250,25 @@ namespace BLL
             {
                 IsDeleted = UserDAL.DeleteUser(user);
             }
-            catch (DataAccessException ex) 
+            catch (DataAccessException ex)
             {
                 Logger.Write(ex);
                 throw;
             }
             return IsDeleted;
-
-
         }
+
         public static bool ActivateUser(int ID)
         {
             bool IsActivated = false;
             if (!RequireAdmin())
                 throw new BusinessRuleException("Only admins can activate users");
 
-
             try
             {
                 IsActivated = UserDAL.ActivateUser(ID);
             }
-            catch (DataAccessException ex) 
+            catch (DataAccessException ex)
             {
                 Logger.Write(ex);
                 throw;
@@ -286,13 +276,13 @@ namespace BLL
 
             return IsActivated;
         }
-        public static bool UpdateUserPassword(int ID,string Username,string OldPassword,string NewPassword)
+
+        public static bool UpdateUserPassword(int ID, string Username, string OldPassword, string NewPassword)
         {
             bool IsUpdated = false;
 
             if (!RequireAdmin())
                 throw new BusinessRuleException("Only admins can update users password");
-
 
             if (!IsPasswordCorrect(Username, OldPassword))
                 return IsUpdated;
@@ -303,69 +293,26 @@ namespace BLL
             string NewPasswordSalt = PasswordHasher.GenerateSalt();
             string NewPasswordHash = PasswordHasher.HashPassword(NewPassword, NewPasswordSalt);
 
-
             try
             {
                 IsUpdated = UserDAL.UpdateUserPassword(ID, NewPasswordHash, NewPasswordSalt);
             }
-            catch (DataAccessException ex) 
+            catch (DataAccessException ex)
             {
                 Logger.Write(ex);
                 throw;
             }
 
-
             return IsUpdated;
         }
-        public static bool Login(string Username,string Password)
+
+        public static bool Login(string Username, string Password)
         {
             if (string.IsNullOrWhiteSpace(Username))
                 throw new ValidationException("Username must not be null or empty");
 
             if (string.IsNullOrWhiteSpace(Password))
                 throw new ValidationException("Password must not be null or empty");
-
-
-            bool IsValid = false;
-
-            User user=new User();
-            try
-            {
-                 user = UserDAL.Find(Username);
-            }
-            catch(DataAccessException ex)
-            {
-                Logger.Write(ex);
-                throw;
-            }
-
-            if (user == null)
-                return IsValid;
-
-            else
-            {
-                //here we will compare the password with the PasswordHash and PasswordSalt:
-                IsValid = PasswordHasher.VerifyPassword(Password, user.PasswordSalt, user.PasswordHash);
-              if(IsValid )
-                    {
-                    if (user.IsActive == false)
-                        {
-                                IsValid = false;
-                        return IsValid;
-                                    }
-                    Sessions.CreateUserSession(user.ID, user.Username, user.Role, user.IsActive); 
-                }
-            }
-              
-            
-
-            return IsValid;
-        }
-        public static bool IsPasswordCorrect(string Username, string Password) 
-        {
-            if (string.IsNullOrWhiteSpace(Username))
-                throw new ValidationException("Username must not be null or empty");
-
 
             bool IsValid = false;
 
@@ -382,19 +329,54 @@ namespace BLL
 
             if (user == null)
                 return IsValid;
-
             else
             {
                 //here we will compare the password with the PasswordHash and PasswordSalt:
                 IsValid = PasswordHasher.VerifyPassword(Password, user.PasswordSalt, user.PasswordHash);
-           
+                if (IsValid)
+                {
+                    if (user.IsActive == false)
+                    {
+                        IsValid = false;
+                        return IsValid;
+                    }
+                    Sessions.CreateUserSession(user.ID, user.Username, user.Role, user.IsActive);
+                }
             }
-
-
 
             return IsValid;
         }
-        public static DataTable GetUsers() 
+
+        public static bool IsPasswordCorrect(string Username, string Password)
+        {
+            if (string.IsNullOrWhiteSpace(Username))
+                throw new ValidationException("Username must not be null or empty");
+
+            bool IsValid = false;
+
+            User user = new User();
+            try
+            {
+                user = UserDAL.Find(Username);
+            }
+            catch (DataAccessException ex)
+            {
+                Logger.Write(ex);
+                throw;
+            }
+
+            if (user == null)
+                return IsValid;
+            else
+            {
+                //here we will compare the password with the PasswordHash and PasswordSalt:
+                IsValid = PasswordHasher.VerifyPassword(Password, user.PasswordSalt, user.PasswordHash);
+            }
+
+            return IsValid;
+        }
+
+        public static DataTable GetUsers()
         {
             DataTable dtUsers = null;
             if (!RequireAdmin())
@@ -404,15 +386,12 @@ namespace BLL
             {
                 dtUsers = UserDAL.GetUsers();
             }
-            catch(DataAccessException ex) 
+            catch (DataAccessException ex)
             {
                 Logger.Write(ex);
                 throw;
             }
             return dtUsers;
-            
         }
-
-
     }
 }

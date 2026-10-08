@@ -44,5 +44,11 @@
     <Compile Include="utilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LoanDesk.Models\LoanDesk.Models.csproj">
+      <Project>{d4eea928-bd1f-4d76-ab3d-5bf2a9a91c24}</Project>
+      <Name>LoanDesk.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
