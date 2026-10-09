@@ -1,6 +1,6 @@
 ﻿namespace Loan_Desk.Borrowers
 {
-    partial class frmAddBorrower
+    partial class frmUpdateBorrwer
     {
         /// <summary>
         /// Required designer variable.
@@ -38,7 +38,7 @@
             this.bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
             this.togIsActive = new ReaLTaiizor.Controls.ToggleButton();
             this.bigLabel3 = new ReaLTaiizor.Controls.BigLabel();
-            this.txtUserID = new ReaLTaiizor.Controls.ForeverTextBox();
+            this.txtborrowerID = new ReaLTaiizor.Controls.ForeverTextBox();
             this.bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
             this.txtFullName = new ReaLTaiizor.Controls.ForeverTextBox();
             this.bigLabel4 = new ReaLTaiizor.Controls.BigLabel();
@@ -58,15 +58,16 @@
             this.panel1.Controls.Add(this.bigLabel2);
             this.panel1.Controls.Add(this.togIsActive);
             this.panel1.Controls.Add(this.bigLabel3);
-            this.panel1.Controls.Add(this.txtUserID);
+            this.panel1.Controls.Add(this.txtborrowerID);
             this.panel1.Controls.Add(this.bigLabel1);
             this.panel1.Controls.Add(this.txtFullName);
             this.panel1.Controls.Add(this.bigLabel4);
             this.panel1.Controls.Add(this.bigLabel5);
-            this.panel1.Location = new System.Drawing.Point(-3, 0);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(547, 411);
-            this.panel1.TabIndex = 0;
+            this.panel1.Size = new System.Drawing.Size(542, 399);
+            this.panel1.TabIndex = 1;
             // 
             // aloneNotice1
             // 
@@ -76,18 +77,17 @@
             this.aloneNotice1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.aloneNotice1.Cursor = System.Windows.Forms.Cursors.Default;
             this.aloneNotice1.Enabled = false;
-            this.aloneNotice1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F);
+            this.aloneNotice1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.aloneNotice1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(181)))), ((int)(((byte)(149)))));
-            this.aloneNotice1.Location = new System.Drawing.Point(421, 187);
+            this.aloneNotice1.Location = new System.Drawing.Point(429, 187);
             this.aloneNotice1.Margin = new System.Windows.Forms.Padding(4);
             this.aloneNotice1.MaxLength = 20;
             this.aloneNotice1.Multiline = true;
             this.aloneNotice1.Name = "aloneNotice1";
             this.aloneNotice1.ReadOnly = true;
-            this.aloneNotice1.Size = new System.Drawing.Size(111, 34);
+            this.aloneNotice1.Size = new System.Drawing.Size(109, 34);
             this.aloneNotice1.TabIndex = 90;
             this.aloneNotice1.Text = "UNIQUE";
-            this.aloneNotice1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btnSave
             // 
@@ -97,13 +97,12 @@
             this.btnSave.ForeColor = System.Drawing.Color.White;
             this.btnSave.HoverColor = System.Drawing.Color.MediumSeaGreen;
             this.btnSave.Image = null;
-            this.btnSave.Location = new System.Drawing.Point(0, 344);
+            this.btnSave.Location = new System.Drawing.Point(5, 344);
             this.btnSave.Margin = new System.Windows.Forms.Padding(5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(180, 62);
             this.btnSave.TabIndex = 89;
             this.btnSave.Text = "SAVE";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnClose
             // 
@@ -113,7 +112,7 @@
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.HoverColor = System.Drawing.Color.MediumSeaGreen;
             this.btnClose.Image = null;
-            this.btnClose.Location = new System.Drawing.Point(367, 344);
+            this.btnClose.Location = new System.Drawing.Point(362, 344);
             this.btnClose.Margin = new System.Windows.Forms.Padding(5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(180, 62);
@@ -125,7 +124,7 @@
             // 
             this.txtPhone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
             this.txtPhone.ForeColor = System.Drawing.Color.Silver;
-            this.txtPhone.Location = new System.Drawing.Point(125, 237);
+            this.txtPhone.Location = new System.Drawing.Point(141, 237);
             this.txtPhone.Mask = "+(999) 000-000000";
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(269, 22);
@@ -150,7 +149,7 @@
             this.txtPassport.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
             this.txtPassport.FocusOnHover = true;
             this.txtPassport.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.txtPassport.Location = new System.Drawing.Point(135, 187);
+            this.txtPassport.Location = new System.Drawing.Point(141, 187);
             this.txtPassport.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassport.MaxLength = 25;
             this.txtPassport.Multiline = false;
@@ -197,25 +196,25 @@
             this.bigLabel3.TabIndex = 81;
             this.bigLabel3.Text = "IS ACTIVE";
             // 
-            // txtUserID
+            // txtborrowerID
             // 
-            this.txtUserID.BackColor = System.Drawing.Color.Transparent;
-            this.txtUserID.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
-            this.txtUserID.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
-            this.txtUserID.Enabled = false;
-            this.txtUserID.FocusOnHover = false;
-            this.txtUserID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.txtUserID.Location = new System.Drawing.Point(135, 103);
-            this.txtUserID.Margin = new System.Windows.Forms.Padding(4);
-            this.txtUserID.MaxLength = 25;
-            this.txtUserID.Multiline = false;
-            this.txtUserID.Name = "txtUserID";
-            this.txtUserID.ReadOnly = true;
-            this.txtUserID.Size = new System.Drawing.Size(269, 34);
-            this.txtUserID.TabIndex = 80;
-            this.txtUserID.Text = "BORROWER ID";
-            this.txtUserID.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.txtUserID.UseSystemPasswordChar = false;
+            this.txtborrowerID.BackColor = System.Drawing.Color.Transparent;
+            this.txtborrowerID.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
+            this.txtborrowerID.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
+            this.txtborrowerID.Enabled = false;
+            this.txtborrowerID.FocusOnHover = false;
+            this.txtborrowerID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.txtborrowerID.Location = new System.Drawing.Point(141, 103);
+            this.txtborrowerID.Margin = new System.Windows.Forms.Padding(4);
+            this.txtborrowerID.MaxLength = 25;
+            this.txtborrowerID.Multiline = false;
+            this.txtborrowerID.Name = "txtborrowerID";
+            this.txtborrowerID.ReadOnly = true;
+            this.txtborrowerID.Size = new System.Drawing.Size(269, 34);
+            this.txtborrowerID.TabIndex = 80;
+            this.txtborrowerID.Text = "BORROWER ID";
+            this.txtborrowerID.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtborrowerID.UseSystemPasswordChar = false;
             // 
             // bigLabel1
             // 
@@ -236,7 +235,7 @@
             this.txtFullName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
             this.txtFullName.FocusOnHover = true;
             this.txtFullName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.txtFullName.Location = new System.Drawing.Point(135, 145);
+            this.txtFullName.Location = new System.Drawing.Point(141, 145);
             this.txtFullName.Margin = new System.Windows.Forms.Padding(4);
             this.txtFullName.MaxLength = 25;
             this.txtFullName.Multiline = false;
@@ -266,13 +265,13 @@
             this.bigLabel5.BackColor = System.Drawing.Color.Transparent;
             this.bigLabel5.Font = new System.Drawing.Font("Segoe UI", 25F);
             this.bigLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.bigLabel5.Location = new System.Drawing.Point(125, 0);
+            this.bigLabel5.Location = new System.Drawing.Point(104, 0);
             this.bigLabel5.Name = "bigLabel5";
-            this.bigLabel5.Size = new System.Drawing.Size(285, 57);
+            this.bigLabel5.Size = new System.Drawing.Size(344, 57);
             this.bigLabel5.TabIndex = 76;
-            this.bigLabel5.Text = "Add Borrower";
+            this.bigLabel5.Text = "Update Borrower";
             // 
-            // frmAddBorrower
+            // frmUpdateBorrwer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -280,9 +279,9 @@
             this.Controls.Add(this.panel1);
             this.MaximumSize = new System.Drawing.Size(560, 446);
             this.MinimumSize = new System.Drawing.Size(560, 446);
-            this.Name = "frmAddBorrower";
+            this.Name = "frmUpdateBorrwer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AddNewBorrower";
+            this.Text = "frmUpdateBorrwer";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -292,19 +291,19 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private ReaLTaiizor.Controls.BigLabel bigLabel5;
-        private ReaLTaiizor.Controls.ForeverTextBox txtUserID;
-        private ReaLTaiizor.Controls.BigLabel bigLabel1;
-        private ReaLTaiizor.Controls.ForeverTextBox txtFullName;
-        private ReaLTaiizor.Controls.BigLabel bigLabel4;
-        private ReaLTaiizor.Controls.ToggleButton togIsActive;
-        private ReaLTaiizor.Controls.BigLabel bigLabel3;
+        private ReaLTaiizor.Controls.AloneNotice aloneNotice1;
+        private ReaLTaiizor.Controls.LostCancelButton btnSave;
+        private ReaLTaiizor.Controls.LostCancelButton btnClose;
+        private System.Windows.Forms.MaskedTextBox txtPhone;
         private ReaLTaiizor.Controls.BigLabel bigLabel6;
         private ReaLTaiizor.Controls.ForeverTextBox txtPassport;
         private ReaLTaiizor.Controls.BigLabel bigLabel2;
-        private System.Windows.Forms.MaskedTextBox txtPhone;
-        private ReaLTaiizor.Controls.LostCancelButton btnSave;
-        private ReaLTaiizor.Controls.LostCancelButton btnClose;
-        private ReaLTaiizor.Controls.AloneNotice aloneNotice1;
+        private ReaLTaiizor.Controls.ToggleButton togIsActive;
+        private ReaLTaiizor.Controls.BigLabel bigLabel3;
+        private ReaLTaiizor.Controls.ForeverTextBox txtborrowerID;
+        private ReaLTaiizor.Controls.BigLabel bigLabel1;
+        private ReaLTaiizor.Controls.ForeverTextBox txtFullName;
+        private ReaLTaiizor.Controls.BigLabel bigLabel4;
+        private ReaLTaiizor.Controls.BigLabel bigLabel5;
     }
 }

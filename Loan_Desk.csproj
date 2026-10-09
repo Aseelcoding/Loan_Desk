@@ -78,6 +78,12 @@
     <Compile Include="Borrowers\BorrowersView.Designer.cs">
       <DependentUpon>BorrowersView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Borrowers\frmUpdateBorrwer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Borrowers\frmUpdateBorrwer.Designer.cs">
+      <DependentUpon>frmUpdateBorrwer.cs</DependentUpon>
+    </Compile>
     <Compile Include="ErrorHandler.cs" />
     <Compile Include="TopInfoPanel.cs">
       <SubType>UserControl</SubType>
@@ -170,6 +176,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Borrowers\BorrowersView.resx">
       <DependentUpon>BorrowersView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Borrowers\frmUpdateBorrwer.resx">
+      <DependentUpon>frmUpdateBorrwer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TopInfoPanel.resx">
       <DependentUpon>TopInfoPanel.cs</DependentUpon>
