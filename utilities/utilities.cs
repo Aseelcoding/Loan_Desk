@@ -33,9 +33,11 @@ namespace utilities
             string output = Regex.Replace(input, @"[^\w\s]", "");
             return output;
         }
-        static public bool IsValidPhoneNumber(string PhoneNumber)
+        static public void IsValidPhoneNumber(string PhoneNumber)
         {
-            return Regex.Match(PhoneNumber, @"^(\+[0-9]{9})$").Success;
+            if (!Regex.Match(PhoneNumber, @"^\+[0-9]{9,15}$").Success)
+                throw new Exceptions.ValidationException("Phone number is not valid");
+
         }
         static public bool IsValidName(string Name)
         {

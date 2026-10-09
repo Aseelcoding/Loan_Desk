@@ -30,7 +30,19 @@ namespace BLL
             utilities.utilities.IsValidName(Newborrower.FullName);
             utilities.utilities.IsEmptyOrNullOrWhiteSpace(Newborrower.Phone, "Phone Number");
             utilities.utilities.ValidateLength(Newborrower.Phone, "Phone Number", 9, 25);
-            utilities.utilities.IsValidPhoneNumber(Newborrower.Phone);
+
+            string phoneNumber = Newborrower.Phone.Trim();
+            bool hasPlus = phoneNumber.StartsWith("+");
+
+            phoneNumber = new string(phoneNumber.Where(char.IsDigit).ToArray());
+
+            if (hasPlus)
+                phoneNumber = "+" + phoneNumber;
+
+            Newborrower.Phone= phoneNumber;
+
+            utilities.utilities.IsValidPhoneNumber(phoneNumber);
+          
 
            
 
@@ -59,6 +71,10 @@ namespace BLL
             try
             {
                 ValidateBorrower(Newborrower);
+
+                Borrower _borrower1 = GetBorrowerByPassport(Newborrower.Passport);
+                if (_borrower1 != null && _borrower1.ID != Newborrower.ID)
+                    throw new Exceptions.BusinessRuleException("Passport must be unique");
 
                 IsAdded = BorrowersDAL.AddNewBorrower(Newborrower);
             }

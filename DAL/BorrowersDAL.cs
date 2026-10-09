@@ -58,7 +58,7 @@ GROUP BY B.ID, B.FullName, B.Passport, B.Phone, B.IsActive;";
             bool IsAdded = false;
 
             string query = @"INSERT  INTO [dbo].[Borrowers] ([FullName], [Passport], [Phone], [IsActive])
-                            VALUES                        (@FullName, @Passport, @Phone, IsActive);";
+                            VALUES                        (@FullName, @Passport, @Phone, @IsActive);";
 
             try 
             {
@@ -66,6 +66,10 @@ GROUP BY B.ID, B.FullName, B.Passport, B.Phone, B.IsActive;";
                 using (SqlConnection connection = new SqlConnection(ConnectionString))
                 using (SqlCommand cmd=new SqlCommand(query, connection)) 
                 {
+                    cmd.Parameters.AddWithValue("@FullName", Newborrower.FullName);
+                    cmd.Parameters.AddWithValue("@Passport", Newborrower.Passport);
+                    cmd.Parameters.AddWithValue("Phone", Newborrower.Phone);
+                    cmd.Parameters.AddWithValue("@IsActive", Newborrower.IsActive);
                     connection.Open();
 
                     int AffectedRows = cmd.ExecuteNonQuery();
