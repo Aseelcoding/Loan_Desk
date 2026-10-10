@@ -39,15 +39,14 @@ namespace Loan_Desk.Account
         private void btnLogout_Click(object sender, EventArgs e)
         {
            
-            if (UserBLL.RestartRequired)
-            {
+          
                
 
                 UserBLL.Logout();
 
                 Application.Restart();
 
-            }
+            
         }
 
     }
