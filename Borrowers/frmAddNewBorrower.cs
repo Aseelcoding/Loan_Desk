@@ -11,25 +11,21 @@ using System.Windows.Forms;
 
 namespace Loan_Desk.Borrowers
 {
-    public partial class frmAddBorrower : Form
+    public partial class frmAddNewBorrower : Form
     {
-        public frmAddBorrower()
+        public frmAddNewBorrower()
         {
             InitializeComponent();
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            bool IsAdded=false;
+            bool IsAdded = false;
             try
             {
                 utilities.utilities.IsEmptyOrNullOrWhiteSpace(txtFullName.Text, "Username");
                 utilities.utilities.IsEmptyOrNullOrWhiteSpace(txtPassport.Text, "Passport");
-               
+
                 if (!txtPhone.MaskCompleted)
                 {
                     MessageBox.Show("Please enter a complete phone number.");
@@ -44,10 +40,10 @@ namespace Loan_Desk.Borrowers
                     IsActive = togIsActive.Toggled
                 };
 
-                IsAdded =BorrowersBLL.AddNewBorrower(NewBorrower);
+                IsAdded = BorrowersBLL.AddNewBorrower(NewBorrower);
 
                 if (IsAdded)
-                    { MessageBox.Show("Success");this.Close(); }
+                { MessageBox.Show("Success"); this.Close(); }
                 else
                     MessageBox.Show("Failed");
 
@@ -56,14 +52,11 @@ namespace Loan_Desk.Borrowers
             {
                 ErrorHandler.Show(ex);
             }
-
-           
-
-
-           
-
         }
 
-        
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

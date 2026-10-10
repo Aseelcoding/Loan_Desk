@@ -68,7 +68,7 @@ namespace Loan_Desk.Borrowers
         }
         private void btnAddBorrower_Click(object sender, EventArgs e)
         {
-            frmAddBorrower frmAddBorrower = new frmAddBorrower();
+            frmAddNewBorrower frmAddBorrower = new frmAddNewBorrower();
             frmAddBorrower.ShowDialog();
             RefreshData();
         }

@@ -66,17 +66,17 @@
     <Compile Include="AuditLog\AuditLogView.Designer.cs">
       <DependentUpon>AuditLogView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Borrowers\AddNewBorrower.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Borrowers\AddNewBorrower.Designer.cs">
-      <DependentUpon>AddNewBorrower.cs</DependentUpon>
-    </Compile>
     <Compile Include="Borrowers\BorrowersView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Borrowers\BorrowersView.Designer.cs">
       <DependentUpon>BorrowersView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Borrowers\frmAddNewBorrower.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Borrowers\frmAddNewBorrower.Designer.cs">
+      <DependentUpon>frmAddNewBorrower.cs</DependentUpon>
     </Compile>
     <Compile Include="Borrowers\frmUpdateBorrwer.cs">
       <SubType>Form</SubType>
@@ -171,11 +171,11 @@
     <EmbeddedResource Include="AuditLog\AuditLogView.resx">
       <DependentUpon>AuditLogView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Borrowers\AddNewBorrower.resx">
-      <DependentUpon>AddNewBorrower.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Borrowers\BorrowersView.resx">
       <DependentUpon>BorrowersView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Borrowers\frmAddNewBorrower.resx">
+      <DependentUpon>frmAddNewBorrower.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Borrowers\frmUpdateBorrwer.resx">
       <DependentUpon>frmUpdateBorrwer.cs</DependentUpon>
