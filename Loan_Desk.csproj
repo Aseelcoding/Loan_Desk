@@ -84,6 +84,12 @@
     <Compile Include="Borrowers\frmUpdateBorrwer.Designer.cs">
       <DependentUpon>frmUpdateBorrwer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Equipment\frmAddNewEquipment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Equipment\frmAddNewEquipment.Designer.cs">
+      <DependentUpon>frmAddNewEquipment.cs</DependentUpon>
+    </Compile>
     <Compile Include="ErrorHandler.cs" />
     <Compile Include="Controls\TopInfoPanel.cs">
       <SubType>UserControl</SubType>
@@ -188,6 +194,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Equipment\EquipmentView.resx">
       <DependentUpon>EquipmentView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Equipment\frmAddNewEquipment.resx">
+      <DependentUpon>frmAddNewEquipment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Fines\FinesView.resx">
       <DependentUpon>FinesView.cs</DependentUpon>

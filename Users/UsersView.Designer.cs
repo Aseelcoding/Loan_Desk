@@ -114,7 +114,7 @@
             this.parrotGroupBox1.BorderWidth = 1;
             this.parrotGroupBox1.Controls.Add(this.chInActive);
             this.parrotGroupBox1.Controls.Add(this.chActive);
-            this.parrotGroupBox1.Location = new System.Drawing.Point(533, 39);
+            this.parrotGroupBox1.Location = new System.Drawing.Point(531, 36);
             this.parrotGroupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.parrotGroupBox1.Name = "parrotGroupBox1";
             this.parrotGroupBox1.Padding = new System.Windows.Forms.Padding(4);

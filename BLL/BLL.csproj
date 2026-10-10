@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BorrowersBLL.cs" />
+    <Compile Include="EquipmentBLL.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="PasswordHasher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
