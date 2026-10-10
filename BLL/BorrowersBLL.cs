@@ -161,5 +161,25 @@ namespace BLL
             }
             return IsDeactivate;
         }
+        public static bool ActivateBorrowerByID(int BorrowerID) 
+        {
+            bool IsActivated = false;
+
+            try
+            {
+                IsActivated = BorrowersDAL.ActivateBorrowerByID(BorrowerID);
+
+            }
+            catch (Exception ex)
+            {
+
+                if (!(ex is Exceptions.ValidationException) && !(ex is Exceptions.BusinessRuleException))
+                {
+                    Logger.Write(ex);
+                }
+                throw;
+            }
+            return IsActivated;
+        }
     }
 }

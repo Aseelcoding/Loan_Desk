@@ -1,4 +1,5 @@
 ﻿using BLL;
+using LoanDesk.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -84,6 +85,65 @@ namespace Loan_Desk.Borrowers
            frmUpdateBorrwer frmUpdate  = new frmUpdateBorrwer(borrower);
             frmUpdate.ShowDialog(); 
             RefreshData();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            bool IsDeleted = false;
+            LoanDesk.Models.Borrower borrower = GetSelectedRow();
+            if (borrower == null)
+            {
+                MessageBox.Show("Please choose a vaild row.");
+                return;
+            }
+
+            try
+            {
+                if (borrower.IsActive == false)
+                    throw new Exceptions.ValidationException("This borrower is already InActive");
+
+                IsDeleted=BorrowersBLL.DeactivateBorrowerByID(borrower.ID);
+                if(IsDeleted) 
+                {
+                    MessageBox.Show("Success");
+                    RefreshData();
+                }
+                
+            }
+            catch (Exception ex) 
+            {
+                ErrorHandler.Show(ex);
+            }
+
+        }
+
+        private void btnActivate_Click(object sender, EventArgs e)
+        {
+            bool IsActivated = false;
+            LoanDesk.Models.Borrower borrower = GetSelectedRow();
+            if (borrower == null)
+            {
+                MessageBox.Show("Please choose a vaild row.");
+                return;
+            }
+
+            try
+            {
+                if (borrower.IsActive)
+                    throw new Exceptions.ValidationException("This borrower is already Active");
+
+                IsActivated = BorrowersBLL.ActivateBorrowerByID(borrower.ID);
+                if (IsActivated)
+                {
+                    MessageBox.Show("Success");
+                    RefreshData();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.Show(ex);
+            }
         }
     }
 }

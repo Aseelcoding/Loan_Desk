@@ -246,6 +246,34 @@ WHERE  ID = @ID;";
 
             return IsDeactivate;
         }
-        
+        public static bool ActivateBorrowerByID(int BorrowerID)
+        {
+            bool IsActivated = false;
+
+            string query = @"UPDATE [dbo].[Borrowers]
+                    SET    [IsActive] = 1
+                         WHERE  ID = @ID;";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+
+                    cmd.Parameters.AddWithValue("@ID", BorrowerID);
+
+                    int AffectedRows = cmd.ExecuteNonQuery();
+                    if (AffectedRows > 0)
+                        IsActivated = true;
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw SqlErrorMapper.Map(ex, "Activate Borrower");
+            }
+
+            return IsActivated;
+        }
     }
 }
