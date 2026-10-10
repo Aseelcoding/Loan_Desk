@@ -39,9 +39,10 @@ namespace utilities
                 throw new Exceptions.ValidationException("Phone number is not valid");
 
         }
-        static public bool IsValidName(string Name)
+        static public void ValidateName(string Name)
         {
-            return Regex.Match(Name, @"^[A-Za-z]+(?: [A-Za-z]+)*$").Success;
+            if (!Regex.Match(Name, @"^[A-Za-z]+(?: [A-Za-z]+)*$").Success)
+                throw new Exceptions.ValidationException("Name is not vaild");
         }
         static public void ValidateLength(string Text, string PropertyName, int Min, int Max)
         {

@@ -27,7 +27,13 @@ namespace BLL
         {
             utilities.utilities.IsEmptyOrNullOrWhiteSpace(Newborrower.FullName, "Full Name");
             utilities.utilities.ValidateLength(Newborrower.FullName, "Full Name", 3, 250);
-            utilities.utilities.IsValidName(Newborrower.FullName);
+            utilities.utilities.ValidateName(Newborrower.FullName);
+            utilities.utilities.IsEmptyOrNullOrWhiteSpace(Newborrower.Passport, "Passport");
+            utilities.utilities.ValidateLength(Newborrower.Passport, "Passport", 6, 30);
+            if (!utilities.utilities.IsStringContainSymbol(Newborrower.Passport)) 
+            {
+                throw new Exceptions.ValidationException("Passport must has only chars and numbers");
+            }
             utilities.utilities.IsEmptyOrNullOrWhiteSpace(Newborrower.Phone, "Phone Number");
             utilities.utilities.ValidateLength(Newborrower.Phone, "Phone Number", 9, 25);
 
@@ -147,6 +153,8 @@ namespace BLL
 
             try 
             {
+                
+
                 IsDeactivate = BorrowersDAL.DeactivateBorrowerByID(BorrowerID);
 
             }

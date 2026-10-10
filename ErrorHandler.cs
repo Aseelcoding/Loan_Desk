@@ -21,14 +21,14 @@ namespace Loan_Desk
             }
             else if (ex is DataAccessException)
             {
-                Logger.Write(ex);
+                
                 MessageBox.Show(ex.Message + "\n\nIf this keeps happening, contact the administrator.",
                 title, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
                 // Anything unexpected: never show its raw message to the user
-                Logger.Write(ex);
+                
                 MessageBox.Show("Something unexpected went wrong. The details were saved to the log file.",
                 title, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

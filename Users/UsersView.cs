@@ -31,14 +31,9 @@ namespace Loan_Desk.Users
                 dtUsers = UserBLL.GetUsers();
             }
 
-            catch(Exceptions.DataAccessException)
+            catch (Exception ex)
             {
-                MessageBox.Show(
-    "An unexpected error occurred.\nPlease contact your system manager for assistance.",
-    "System Error",
-    MessageBoxButtons.OK,
-    MessageBoxIcon.Error
-);
+                ErrorHandler.Show(ex);
             }
             LoadUsersInfo(string.Empty);
         }
@@ -217,24 +212,11 @@ namespace Loan_Desk.Users
                     MessageBox.Show("User could not be Inactivated.");
                 }
             }
-            catch (Exceptions.BusinessRuleException ex)
+            catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                ErrorHandler.Show(ex);
             }
-            catch (Exceptions.ValidationException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            catch(Exceptions.DataAccessException)
-            {
-                MessageBox.Show(
-    "An unexpected error occurred.\nPlease contact your system manager for assistance.",
-    "System Error",
-    MessageBoxButtons.OK,
-    MessageBoxIcon.Error
-);
-            }
-            
+
 
             RefreshData();
         }
@@ -273,22 +255,9 @@ namespace Loan_Desk.Users
                     MessageBox.Show("User could not be Activated.");
                 }
             }
-            catch (Exceptions.BusinessRuleException ex)
+            catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-            }
-            catch (Exceptions.ValidationException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            catch (DataAccessException)
-            {
-                MessageBox.Show(
-    "An unexpected error occurred.\nPlease contact your system manager for assistance.",
-    "System Error",
-    MessageBoxButtons.OK,
-    MessageBoxIcon.Error
-);
+                ErrorHandler.Show(ex);
             }
             RefreshData();
         }

@@ -40,9 +40,13 @@ namespace BLL
             {
                 count = UserDAL.CountActiveAdmins();
             }
-            catch (DataAccessException ex)
+            catch (Exception ex)
             {
-                Logger.Write(ex);
+                if (!(ex is Exceptions.ValidationException) && !(ex is Exceptions.BusinessRuleException))
+                {
+                    Logger.Write(ex);
+                }
+
                 throw;
             }
             return count;
@@ -52,9 +56,13 @@ namespace BLL
         {
             int count = 0;
             try { count = UserDAL.CountActiveUsers(); }
-            catch (DataAccessException ex)
+            catch (Exception ex)
             {
-                Logger.Write(ex);
+                if (!(ex is Exceptions.ValidationException) && !(ex is Exceptions.BusinessRuleException))
+                {
+                    Logger.Write(ex);
+                }
+
                 throw;
             }
             return count;
@@ -67,9 +75,13 @@ namespace BLL
             {
                 IsExist = UserDAL.IsAdminExist();
             }
-            catch (DataAccessException ex)
+            catch (Exception ex)
             {
-                Logger.Write(ex);
+                if (!(ex is Exceptions.ValidationException) && !(ex is Exceptions.BusinessRuleException))
+                {
+                    Logger.Write(ex);
+                }
+
                 throw;
             }
             return IsExist;
@@ -114,8 +126,10 @@ namespace BLL
 
         public static bool AddNewUser(User user, string Password)
         {
-            if (!RequireAdmin())
-                throw new BusinessRuleException("Only admins can add users");
+            if(IsAdminExist())
+             { if (!RequireAdmin())
+                    throw new BusinessRuleException("Only admins can add users");
+            }
 
             bool IsAdded = false;
             if (CheckUser(user) && CheckPassword(Password))
@@ -134,9 +148,13 @@ namespace BLL
                         throw new BusinessRuleException("duplicate username , please enter a uniqeu username.");
                     }
                 }
-                catch (DataAccessException ex)
+                catch (Exception ex)
                 {
-                    Logger.Write(ex);
+                    if (!(ex is Exceptions.ValidationException) && !(ex is Exceptions.BusinessRuleException))
+                    {
+                        Logger.Write(ex);
+                    }
+
                     throw;
                 }
             }
@@ -152,9 +170,13 @@ namespace BLL
             {
                 OldUser = UserDAL.Find(NewUser.Username);
             }
-            catch (DataAccessException ex)
+            catch (Exception ex)
             {
-                Logger.Write(ex);
+                if (!(ex is Exceptions.ValidationException) && !(ex is Exceptions.BusinessRuleException))
+                {
+                    Logger.Write(ex);
+                }
+
                 throw;
             }
 
@@ -169,90 +191,97 @@ namespace BLL
 
         public static bool UpdateUser(User user)
         {
-            if (!RequireAdmin())
-                throw new BusinessRuleException("Only admins can update users");
 
             bool IsUpdated = false;
 
-            if (!CheckUser(user))
-            { return IsUpdated; }
+            try
+            {
+                if (!RequireAdmin())
+                    throw new BusinessRuleException("Only admins can update users");
 
-            if (IsUsernameTaken(user))
-            {
-                throw new ValidationException("duplicate username , please enter a uniqeu username.");
-            }
+                
 
-            if (Sessions.CurrentUser.ID != user.ID)
-            {
-                try
+                if (!CheckUser(user))
+                { return IsUpdated; }
+
+                if (IsUsernameTaken(user))
                 {
-                    IsUpdated = UserDAL.UpdateUser(user);
+                    throw new ValidationException("duplicate username , please enter a uniqeu username.");
                 }
-                catch (DataAccessException ex)
+
+                if (Sessions.CurrentUser.ID != user.ID)
                 {
-                    Logger.Write(ex);
-                    throw;
-                }
-            }
-            else
-            {
-                if (user.Role != Sessions.CurrentUser.Role)
-                {
-                    if (CountActiveAdmins() <= 1)
-                    {
-                        throw new BusinessRuleException("You are the last admin you can not be a staff.");
-                    }
-                    try
-                    {
+                   
                         IsUpdated = UserDAL.UpdateUser(user);
-                    }
-                    catch (DataAccessException ex)
-                    {
-                        Logger.Write(ex);
-                        throw;
-                    }
-
-                    if (IsUpdated)
-                        RestartRequired = true;
-
-                    return IsUpdated;
+                    
                 }
                 else
                 {
-                    try
+                    if (user.Role != Sessions.CurrentUser.Role)
                     {
+                        if (CountActiveAdmins() <= 1)
+                        {
+                            throw new BusinessRuleException("You are the last admin you can not be a staff.");
+                        }
+                        
+                            IsUpdated = UserDAL.UpdateUser(user);
+                        
+
+                        if (IsUpdated)
+                            RestartRequired = true;
+
+                        return IsUpdated;
+                    }
+                    else
+                    {
+
                         IsUpdated = UserDAL.UpdateUser(user);
-                    }
-                    catch (DataAccessException ex)
-                    {
-                        Logger.Write(ex);
-                        throw;
-                    }
 
-                    if (IsUpdated)
-                        Sessions.CreateUserSession(user.ID, user.Username, user.Role, user.IsActive);
+                        if (IsUpdated)
+                            Sessions.CreateUserSession(user.ID, user.Username, user.Role, user.IsActive);
+                    }
                 }
-            }
 
+            }
+            catch (Exception ex)
+            {
+                if (!(ex is Exceptions.ValidationException) && !(ex is Exceptions.BusinessRuleException))
+                {
+                    Logger.Write(ex);
+                }
+
+                throw;
+            }
             return IsUpdated;
         }
 
         public static bool DeleteUser(User user)
         {
             bool IsDeleted = false;
-            if (!RequireAdmin())
-                throw new BusinessRuleException("Only admins can delete users");
 
-            if (user.ID == Sessions.CurrentUser.ID)
-                throw new BusinessRuleException("You can not delete loging account.");
+
 
             try
             {
-                IsDeleted = UserDAL.DeleteUser(user);
+                if (!RequireAdmin())
+                    throw new BusinessRuleException("Only admins can delete users");
+
+                if (user.ID == Sessions.CurrentUser.ID)
+                    throw new BusinessRuleException("You can not delete loging account.");
+
+                
+                    IsDeleted = UserDAL.DeleteUser(user);
+                
+              
+
             }
-            catch (DataAccessException ex)
+            catch (Exception ex)
             {
-                Logger.Write(ex);
+                if (!(ex is Exceptions.ValidationException) && !(ex is Exceptions.BusinessRuleException))
+                {
+                    Logger.Write(ex);
+                }
+
                 throw;
             }
             return IsDeleted;
@@ -261,16 +290,22 @@ namespace BLL
         public static bool ActivateUser(int ID)
         {
             bool IsActivated = false;
-            if (!RequireAdmin())
-                throw new BusinessRuleException("Only admins can activate users");
+            
 
             try
             {
+                if (!RequireAdmin())
+                    throw new BusinessRuleException("Only admins can activate users");
+
                 IsActivated = UserDAL.ActivateUser(ID);
             }
-            catch (DataAccessException ex)
+            catch (Exception ex)
             {
-                Logger.Write(ex);
+                if (!(ex is Exceptions.ValidationException) && !(ex is Exceptions.BusinessRuleException))
+                {
+                    Logger.Write(ex);
+                }
+
                 throw;
             }
 
@@ -281,25 +316,31 @@ namespace BLL
         {
             bool IsUpdated = false;
 
-            if (!RequireAdmin())
-                throw new BusinessRuleException("Only admins can update users password");
-
-            if (!IsPasswordCorrect(Username, OldPassword))
-                return IsUpdated;
-
-            if (!CheckPassword(NewPassword))
-                return IsUpdated;
-
-            string NewPasswordSalt = PasswordHasher.GenerateSalt();
-            string NewPasswordHash = PasswordHasher.HashPassword(NewPassword, NewPasswordSalt);
+            
 
             try
             {
+                if (!RequireAdmin())
+                    throw new BusinessRuleException("Only admins can update users password");
+
+                if (!IsPasswordCorrect(Username, OldPassword))
+                    return IsUpdated;
+
+                if (!CheckPassword(NewPassword))
+                    return IsUpdated;
+
+                string NewPasswordSalt = PasswordHasher.GenerateSalt();
+                string NewPasswordHash = PasswordHasher.HashPassword(NewPassword, NewPasswordSalt);
+
                 IsUpdated = UserDAL.UpdateUserPassword(ID, NewPasswordHash, NewPasswordSalt);
             }
-            catch (DataAccessException ex)
+            catch (Exception ex)
             {
-                Logger.Write(ex);
+                if (!(ex is Exceptions.ValidationException) && !(ex is Exceptions.BusinessRuleException))
+                {
+                    Logger.Write(ex);
+                }
+
                 throw;
             }
 
@@ -308,70 +349,95 @@ namespace BLL
 
         public static bool Login(string Username, string Password)
         {
-            if (string.IsNullOrWhiteSpace(Username))
-                throw new ValidationException("Username must not be null or empty");
-
-            if (string.IsNullOrWhiteSpace(Password))
-                throw new ValidationException("Password must not be null or empty");
+           
 
             bool IsValid = false;
 
             User user = new User();
             try
             {
+
+                if (string.IsNullOrWhiteSpace(Username))
+                    throw new ValidationException("Username must not be null or empty");
+
+                if (string.IsNullOrWhiteSpace(Password))
+                    throw new ValidationException("Password must not be null or empty");
+
+
                 user = UserDAL.Find(Username);
+
+
+
+
+
+
+                if (user == null)
+                    return IsValid;
+                else
+                {
+                    //here we will compare the password with the PasswordHash and PasswordSalt:
+                    IsValid = PasswordHasher.VerifyPassword(Password, user.PasswordSalt, user.PasswordHash);
+                    if (IsValid)
+                    {
+                        if (user.IsActive == false)
+                        {
+                            IsValid = false;
+                            return IsValid;
+                        }
+                        Sessions.CreateUserSession(user.ID, user.Username, user.Role, user.IsActive);
+                    }
+                }
             }
-            catch (DataAccessException ex)
+            catch (Exception ex)
             {
-                Logger.Write(ex);
+                if (!(ex is Exceptions.ValidationException) && !(ex is Exceptions.BusinessRuleException))
+                {
+                    Logger.Write(ex);
+                }
+
                 throw;
             }
 
-            if (user == null)
-                return IsValid;
-            else
-            {
-                //here we will compare the password with the PasswordHash and PasswordSalt:
-                IsValid = PasswordHasher.VerifyPassword(Password, user.PasswordSalt, user.PasswordHash);
-                if (IsValid)
-                {
-                    if (user.IsActive == false)
-                    {
-                        IsValid = false;
-                        return IsValid;
-                    }
-                    Sessions.CreateUserSession(user.ID, user.Username, user.Role, user.IsActive);
-                }
-            }
+          
 
             return IsValid;
         }
 
         public static bool IsPasswordCorrect(string Username, string Password)
         {
-            if (string.IsNullOrWhiteSpace(Username))
-                throw new ValidationException("Username must not be null or empty");
+            
 
             bool IsValid = false;
 
             User user = new User();
             try
             {
+                if (string.IsNullOrWhiteSpace(Username))
+                    throw new ValidationException("Username must not be null or empty");
+
+
                 user = UserDAL.Find(Username);
+
+                if (user == null)
+                    return IsValid;
+                else
+                {
+                    //here we will compare the password with the PasswordHash and PasswordSalt:
+                    IsValid = PasswordHasher.VerifyPassword(Password, user.PasswordSalt, user.PasswordHash);
+                }
             }
-            catch (DataAccessException ex)
+            catch (Exception ex)
             {
-                Logger.Write(ex);
+                if (!(ex is Exceptions.ValidationException) && !(ex is Exceptions.BusinessRuleException))
+                {
+                    Logger.Write(ex);
+                }
+
                 throw;
             }
 
-            if (user == null)
-                return IsValid;
-            else
-            {
-                //here we will compare the password with the PasswordHash and PasswordSalt:
-                IsValid = PasswordHasher.VerifyPassword(Password, user.PasswordSalt, user.PasswordHash);
-            }
+
+            
 
             return IsValid;
         }
@@ -379,16 +445,21 @@ namespace BLL
         public static DataTable GetUsers()
         {
             DataTable dtUsers = null;
-            if (!RequireAdmin())
-                throw new BusinessRuleException("Only admins can view users");
-
+           
             try
             {
+                if (!RequireAdmin())
+                    throw new BusinessRuleException("Only admins can view users");
+
                 dtUsers = UserDAL.GetUsers();
             }
-            catch (DataAccessException ex)
+            catch (Exception ex)
             {
-                Logger.Write(ex);
+                if (!(ex is Exceptions.ValidationException) && !(ex is Exceptions.BusinessRuleException))
+                {
+                    Logger.Write(ex);
+                }
+
                 throw;
             }
             return dtUsers;
