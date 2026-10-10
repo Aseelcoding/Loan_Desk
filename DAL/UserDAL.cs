@@ -367,7 +367,7 @@ namespace DAL
         }
         public static User FindByUsername(string Username) 
         {
-            User user = new User();
+           
          
             string query = @"
 
@@ -395,27 +395,19 @@ namespace DAL
                     connection.Open();
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        if (reader.Read())
+                        if (!reader.Read())
+                            return null;
+
+                        return new User
                         {
+                            ID = (int)reader["ID"],
+                            Username = reader["Username"].ToString(),
+                            Role = reader["Role"].ToString(),
+                            PasswordHash = reader["PasswordHash"].ToString(),
+                            PasswordSalt = reader["PasswordSalt"].ToString(),
+                            IsActive = (bool)reader["IsActive"]
+                        };
 
-
-                            int UID;
-                            if (!int.TryParse(reader["ID"].ToString(), out UID))
-                                return null;
-
-                            return new User
-                            {
-                                ID = UID,
-                                Username = reader["Username"].ToString(),
-                                Role = reader["Role"].ToString(),
-                                PasswordHash = reader["PasswordHash"].ToString(),
-                                PasswordSalt = reader["PasswordSalt"].ToString(),
-                                IsActive = (bool)reader["IsActive"]
-                            };
-                          
-
-                        }
-                      
                     }
                 }
             }
@@ -426,7 +418,7 @@ namespace DAL
             }
             
 
-            return user;
+           
             
         }
         public static User FindByID(int ID) 
