@@ -64,13 +64,20 @@ namespace Loan_Desk.Users
             }
 
         }
-        private void Filtering(string Text,string TextFilterIsActive) 
+        private void Filtering(string Text) 
         {
             if (string.IsNullOrEmpty(Text))
                 {
-                LoadUsersInfo("");
+                string ActivateFilter = "";
+                if (chActive.Checked&&chInActive.Checked==false)
+                    ActivateFilter = "IsActive =1";
+                else if(chActive.Checked==false && chInActive.Checked)
+                    ActivateFilter = "IsActive =0";
+
+                LoadUsersInfo(ActivateFilter);
                 return;
-                    }
+
+                 }
 
             string Filter = string.Empty;
 
@@ -92,13 +99,20 @@ namespace Loan_Desk.Users
             }
             else if (cbFilter.SelectedIndex == 1)
             {
-                Filter = $"Username  like '{Text}%' and {TextFilterIsActive}";
-
-                
+                Filter = $"Username  like '{Text}%'";
+                if(chActive.Checked && chInActive.Checked == false)
+                    Filter = $"Username  like '{Text}%' and IsActive=1";
+                else if (chActive.Checked == false && chInActive.Checked == true)
+                    Filter = $"Username  like '{Text}%' and IsActive=0";
             }
             else if (cbFilter.SelectedIndex == 2)
             {
-                Filter = $"Role  like '{Text}%' and {TextFilterIsActive}";
+
+                Filter = $"Role  like '{Text}%'";
+                if (chActive.Checked && chInActive.Checked == false)
+                    Filter = $"Role  like '{Text}%' and IsActive=1";
+                else if (chActive.Checked == false && chInActive.Checked == true)
+                    Filter = $"Role  like '{Text}%' and IsActive=0";
             }
 
             LoadUsersInfo(Filter);
@@ -107,23 +121,12 @@ namespace Loan_Desk.Users
         private void txtBarSearch_TextChanged(object sender, EventArgs e)
         {
             string Text = txtBarSearch.Text;
-            string TextFilterIsActive = "";
+            
             Text = utilities.utilities.ClearFilterString(Text);
 
-            if (cbFilter.SelectedIndex != 0) 
-            {
-                if (chActive.Checked && !string.IsNullOrEmpty(Text) && chInActive.Checked == false)
-                    TextFilterIsActive = "IsActive = 1";
-                else if (chInActive.Checked && !string.IsNullOrEmpty(Text) && chActive.Checked == false)
-                    TextFilterIsActive = "IsActive = 0";
-                else
-                    TextFilterIsActive = "1=1";
-            }
-
+           
             
-
-            
-            Filtering(Text, TextFilterIsActive);
+            Filtering(Text);
 
 
         }
@@ -222,13 +225,11 @@ namespace Loan_Desk.Users
         }
         private void chActive_CheckedChanged(object sender, EventArgs e)
         {
-            {
-                Filtering(txtBarSearch.Text, "Active");
-            }
+            txtBarSearch_TextChanged(txtBarSearch, EventArgs.Empty);
         }
         private void chInactive_CheckedChanged(object sender, EventArgs e)
         {
-            Filtering(txtBarSearch.Text, "Inactive");
+            txtBarSearch_TextChanged(txtBarSearch, EventArgs.Empty);
         }
         
         private void btnActivate_Click(object sender, EventArgs e)

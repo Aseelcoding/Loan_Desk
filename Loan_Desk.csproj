@@ -85,10 +85,10 @@
       <DependentUpon>frmUpdateBorrwer.cs</DependentUpon>
     </Compile>
     <Compile Include="ErrorHandler.cs" />
-    <Compile Include="TopInfoPanel.cs">
+    <Compile Include="Controls\TopInfoPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TopInfoPanel.Designer.cs">
+    <Compile Include="Controls\TopInfoPanel.Designer.cs">
       <DependentUpon>TopInfoPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Dashboard\DashboardView.cs">
@@ -180,7 +180,7 @@
     <EmbeddedResource Include="Borrowers\frmUpdateBorrwer.resx">
       <DependentUpon>frmUpdateBorrwer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TopInfoPanel.resx">
+    <EmbeddedResource Include="Controls\TopInfoPanel.resx">
       <DependentUpon>TopInfoPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\DashboardView.resx">
