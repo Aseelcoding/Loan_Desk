@@ -36,8 +36,6 @@
             this.bigLabel6 = new ReaLTaiizor.Controls.BigLabel();
             this.txtPassport = new ReaLTaiizor.Controls.ForeverTextBox();
             this.bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
-            this.togIsActive = new ReaLTaiizor.Controls.ToggleButton();
-            this.bigLabel3 = new ReaLTaiizor.Controls.BigLabel();
             this.txtborrowerID = new ReaLTaiizor.Controls.ForeverTextBox();
             this.bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
             this.txtFullName = new ReaLTaiizor.Controls.ForeverTextBox();
@@ -56,8 +54,6 @@
             this.panel1.Controls.Add(this.bigLabel6);
             this.panel1.Controls.Add(this.txtPassport);
             this.panel1.Controls.Add(this.bigLabel2);
-            this.panel1.Controls.Add(this.togIsActive);
-            this.panel1.Controls.Add(this.bigLabel3);
             this.panel1.Controls.Add(this.txtborrowerID);
             this.panel1.Controls.Add(this.bigLabel1);
             this.panel1.Controls.Add(this.txtFullName);
@@ -103,6 +99,7 @@
             this.btnSave.Size = new System.Drawing.Size(180, 62);
             this.btnSave.TabIndex = 89;
             this.btnSave.Text = "SAVE";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnClose
             // 
@@ -172,29 +169,6 @@
             this.bigLabel2.Size = new System.Drawing.Size(89, 23);
             this.bigLabel2.TabIndex = 83;
             this.bigLabel2.Text = "PASSPORT";
-            // 
-            // togIsActive
-            // 
-            this.togIsActive.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.togIsActive.Location = new System.Drawing.Point(125, 277);
-            this.togIsActive.Margin = new System.Windows.Forms.Padding(5);
-            this.togIsActive.Name = "togIsActive";
-            this.togIsActive.Size = new System.Drawing.Size(76, 33);
-            this.togIsActive.TabIndex = 82;
-            this.togIsActive.Toggled = false;
-            this.togIsActive.Type = ReaLTaiizor.Controls.ToggleButton._Type.YesNo;
-            // 
-            // bigLabel3
-            // 
-            this.bigLabel3.AutoSize = true;
-            this.bigLabel3.BackColor = System.Drawing.Color.Transparent;
-            this.bigLabel3.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.bigLabel3.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.bigLabel3.Location = new System.Drawing.Point(11, 287);
-            this.bigLabel3.Name = "bigLabel3";
-            this.bigLabel3.Size = new System.Drawing.Size(85, 23);
-            this.bigLabel3.TabIndex = 81;
-            this.bigLabel3.Text = "IS ACTIVE";
             // 
             // txtborrowerID
             // 
@@ -298,8 +272,6 @@
         private ReaLTaiizor.Controls.BigLabel bigLabel6;
         private ReaLTaiizor.Controls.ForeverTextBox txtPassport;
         private ReaLTaiizor.Controls.BigLabel bigLabel2;
-        private ReaLTaiizor.Controls.ToggleButton togIsActive;
-        private ReaLTaiizor.Controls.BigLabel bigLabel3;
         private ReaLTaiizor.Controls.ForeverTextBox txtborrowerID;
         private ReaLTaiizor.Controls.BigLabel bigLabel1;
         private ReaLTaiizor.Controls.ForeverTextBox txtFullName;

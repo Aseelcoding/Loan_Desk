@@ -56,5 +56,17 @@ namespace utilities
             if (string.IsNullOrEmpty(Text)||string.IsNullOrWhiteSpace(Text))
                 throw new Exceptions.ValidationException($"{PropertyName} must not be Empty or start with white space");
         }
+        static public string SanitizePhoneNumber(string Phone) 
+        {
+            string phoneNumber = Phone.Trim();
+            bool hasPlus = phoneNumber.StartsWith("+");
+
+            phoneNumber = new string(phoneNumber.Where(char.IsDigit).ToArray());
+
+            if (hasPlus)
+                phoneNumber = "+" + phoneNumber;
+
+            return phoneNumber;
+        }
     }
 }
