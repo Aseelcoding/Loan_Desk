@@ -42,6 +42,8 @@ GROUP BY B.ID, B.FullName, B.Passport, B.Phone, B.IsActive;";
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
+                        if(!reader.Read())
+                            return null;
                         dtBorrowers.Load(reader);
                     }
                 }
@@ -108,20 +110,25 @@ WHERE  ID = @BorrowerID;";
 
                     SqlDataReader reader = cmd.ExecuteReader();
 
-                    if (reader.Read()) 
+                    if (reader.Read())
                     {
-                        borrower=new Borrower();
+                        if (!reader.Read())
+                            return null;
+
+
 
                         int BID = -1;
                         int.TryParse(reader["ID"].ToString(), out BID);
-                        borrower.ID=BID;
 
-                        borrower.FullName=reader["FullName"].ToString();
-                        borrower.Passport=reader["Passport"].ToString();
-                        borrower.Phone = reader["Phone"].ToString();
-                        if ((bool)reader["IsActive"] == true)
-                            borrower.IsActive = true;
-                        else borrower.IsActive = false;
+                        return new Borrower {
+                            ID = BID,
+
+                            FullName = reader["FullName"].ToString(),
+                            Passport = reader["Passport"].ToString(),
+                            Phone = reader["Phone"].ToString(),
+                            IsActive = (bool)reader["IsActive"]
+
+                        };
                                        
                     }
                 }
@@ -157,18 +164,24 @@ WHERE  Passport = @Passport;";
 
                     if (reader.Read())
                     {
-                        borrower = new Borrower();
+
+
+                        if (!reader.Read())
+                            return null;
+
 
                         int BID = -1;
                         int.TryParse(reader["ID"].ToString(), out BID);
-                        borrower.ID = BID;
+                        return new Borrower
+                        {
+                            ID = BID,
 
-                        borrower.FullName = reader["FullName"].ToString();
-                        borrower.Passport = reader["Passport"].ToString();
-                        borrower.Phone = reader["Phone"].ToString();
-                        if ((bool)reader["IsActive"] == true)
-                            borrower.IsActive = true;
-                        else borrower.IsActive = false;
+                            FullName = reader["FullName"].ToString(),
+                            Passport = reader["Passport"].ToString(),
+                            Phone = reader["Phone"].ToString(),
+                            IsActive = (bool)reader["IsActive"]
+
+                        };
 
                     }
                 }

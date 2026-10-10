@@ -38,10 +38,10 @@ namespace Loan_Desk.Account
         }
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            UserBLL.RestartRequired = true;
+           
             if (UserBLL.RestartRequired)
             {
-                UserBLL.RestartRequired = false;
+               
 
                 UserBLL.Logout();
 

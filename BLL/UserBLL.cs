@@ -11,7 +11,7 @@ namespace BLL
 
     public class UserBLL
     {
-        public static bool RestartRequired = false;
+        public static bool RestartRequired { get; private set; }
 
         public static void Logout()
         {

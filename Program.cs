@@ -27,15 +27,21 @@ namespace Loan_Desk
             System.Windows.Forms.Application.EnableVisualStyles();
             System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
 
-            
+            bool adminExists;
+            try
+            {
+                adminExists = UserBLL.IsAdminExist();
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.Show(ex);
+                return;
+            }
 
-            if (!UserBLL.IsAdminExist())
-                System.Windows.Forms.Application.Run(new frmSetup());
-            else
+            if (adminExists)
                 System.Windows.Forms.Application.Run(new frmLogin());
-
-            //Application.Run(new frmMainScreen());
-
+            else
+                System.Windows.Forms.Application.Run(new frmSetup());
 
         }
     }

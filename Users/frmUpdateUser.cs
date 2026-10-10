@@ -15,11 +15,11 @@ namespace Loan_Desk.Users
 {
     public partial class frmUpdateUser : Form
     {
-        LoanDesk.Models.User UpdateUser;
+        LoanDesk.Models.User originalUser;
         public frmUpdateUser(LoanDesk.Models.User UpdateUser)
         {
             InitializeComponent();
-            this.UpdateUser = UpdateUser;
+            this.originalUser = UpdateUser;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -29,10 +29,10 @@ namespace Loan_Desk.Users
 
         private void frmUpdateUser_Load(object sender, EventArgs e)
         {
-            txtUserID.Text = UpdateUser.ID.ToString();
-            txtUsername.Text = UpdateUser.Username.ToString();
+            txtUserID.Text = originalUser.ID.ToString();
+            txtUsername.Text = originalUser.Username.ToString();
            
-            if (UpdateUser.Role == "Admin")
+            if (originalUser.Role == "Admin")
                 RadbtnAdmin.Checked = true;
             else 
                 RadbtnStaff.Checked = true;
@@ -45,8 +45,8 @@ namespace Loan_Desk.Users
         {
             bool IsSame = false;
 
-            if (NewUser.Username == UpdateUser.Username
-                && NewUser.Role == UpdateUser.Role
+            if (NewUser.Username == originalUser.Username
+                && NewUser.Role == originalUser.Role
                 
                 )
                 IsSame = true;
@@ -58,57 +58,47 @@ namespace Loan_Desk.Users
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            bool IsUpdated = false;
-            LoanDesk.Models.User NewUser=new LoanDesk.Models.User();
+            LoanDesk.Models.User newUser = new LoanDesk.Models.User
+            {
+                ID = originalUser.ID,
+                Username = txtUsername.Text.Trim(),
+                Role = RadbtnAdmin.Checked ? "Admin" : "Staff",
+                IsActive = originalUser.IsActive
+            };
 
-            NewUser.ID= UpdateUser.ID;
-            NewUser.Username = txtUsername.Text;
-
-            if (RadbtnAdmin.Checked)
-                NewUser.Role = "Admin";
-            else
-                NewUser.Role = "Staff";
-
-            NewUser.IsActive = true;
-
-
-            if (IsSameInfo(NewUser))
-              { MessageBox.Show("You did not change any info so this window will be closed.");
+            if (IsSameInfo(newUser))
+            {
+                MessageBox.Show("You did not change any info so this window will be closed.");
                 this.Close();
                 return;
             }
-            else
+
+            bool isUpdated;
+            try
             {
-                ///here we will call the update function:
-
-                try
-                {
-                    IsUpdated = UserBLL.UpdateUser(NewUser);
-                    if (UserBLL.RestartRequired) 
-                    {
-                        UserBLL.RestartRequired = false;
-
-
-                     
-                        Application.Restart();
-
-                    }
-                   
-                }
-                catch (Exception ex)
-                {
-                    ErrorHandler.Show(ex);
-                }
-
+                isUpdated = UserBLL.UpdateUser(newUser);
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.Show(ex);
+                return;
             }
 
-
-            if (IsUpdated)
-               { MessageBox.Show("Update user done successfully"); this.Close(); }
-            else
+            if (!isUpdated)
+            {
                 MessageBox.Show("Failed to update user.");
+                return;
+            }
 
-         
+            MessageBox.Show("Update user done successfully");
+
+            if (UserBLL.RestartRequired)
+            {
+                Application.Restart();
+                return;
+            }
+
+            this.Close();
         }
     }
 }
