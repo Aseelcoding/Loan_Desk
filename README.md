@@ -1,393 +1,164 @@
 # LoanDesk
 
-LoanDesk is a campus equipment loan management system designed to manage the lending and returning of equipment such as laptops, projectors, cameras, and other campus resources.
+LoanDesk is a Windows Forms desktop application for managing campus equipment lending. It is being developed as a learning project focused on C#, SQL Server, layered architecture, validation, and reliable application behavior.
 
-The project is being developed as a practical C# Windows Forms application with a focus on layered architecture, database management, authentication, authorization, maintainable code, and learning software engineering concepts through implementation.
+**Status:** Under development  
+**Current development focus:** Finishing the Users module and continuing the Borrowers module.
 
-> **Status:** Under Development
-> **Current Focus:** Completing the Users module and preparing the core Borrowers and Equipment modules
+## Current Features
 
----
+### Authentication and account management
+- First-run setup flow to create the initial Admin account when no active Admin exists.
+- Login flow and shared current-user session.
+- Logout and application restart flow.
+- Password hashing with SHA-256 and a randomly generated salt.
+- Username and password validation in the Business Logic Layer.
+- User roles currently supported by the code: `Admin` and `Staff`.
 
-## Overview
+### Users
+- Add users, update user details, and change passwords.
+- Activate and deactivate user accounts using `IsActive` rather than physically deleting them.
+- Count active users and active Admin accounts.
+- Check Admin permissions in the Business Logic Layer for protected user operations.
+- Prevent changing the only active Admin into a Staff account.
+- Handle changes to the currently logged-in user's role through an application restart flag.
 
-LoanDesk is designed to manage:
+### Borrowers
+- List borrowers with passport number, phone number, active status, active-loan count, and unpaid-fine information.
+- Add and update borrower records.
+- Look up borrowers by ID or passport number.
+- Validate borrower names, passport numbers, and phone numbers in the Business Logic Layer.
+- Check passport-number uniqueness.
+- Activate and deactivate borrower records.
 
-- Users
-- Borrowers
-- Equipment
-- Loans
-- Returns
-- Fines
-- Audit Logs
+The Borrowers module is still under development; its implementation and database behavior need further testing and refinement.
 
-The main goal is not only to build a working application, but also to apply software engineering concepts learned from previous projects and improve the architecture and code quality step by step.
+### Application infrastructure
+- Layered separation between the Windows Forms UI, Business Logic Layer (BLL), Data Access Layer (DAL), and Models project.
+- Parameterized SQL commands for database operations.
+- SQL exception mapping to application-specific data-access exceptions.
+- Centralized UI error handling for validation errors, business-rule errors, data-access errors, and unexpected exceptions.
+- Basic logging for technical and unexpected errors.
+- Reusable `UserControl` views within the main application window.
 
----
+## Modules Planned or Still in Progress
 
-## Current State
+The repository contains UI sections for Equipment, Loans, Returns, Fines, Dashboard, and Audit Log. Their presence in the project does not mean the complete workflows are implemented.
 
-### Completed / Working
-
-- Initial Admin account setup
-- User authentication and login
-- Password hashing with salt
-- User validation in the Business Logic Layer
-- Shared user session management
-- Restricted session modification using `internal`
-- Parameterized SQL queries
-- SQL exception mapping
-- Improved exception handling across the application
-- Global unhandled exception handling
-- Basic logging infrastructure
-- Layered UI / BLL / DAL / Models structure
-- Main application shell and navigation
-- Reusable `UserControl` based views
-- Account view
-- Users add, update, password update, deactivate, and activate operations
-- Soft delete using `IsActive`
-- User activation
-- Active-user count on the dashboard
-- Admin authorization for protected user operations
-- Admin authorization for protected navigation
-
-### In Progress
-
-- Users module final cleanup and edge cases
-- Borrowers management
-- Equipment management
-- Loans management
-- Returns
-- Fines
-- Dashboard statistics
-- Audit logging
-- Complete role-based authorization
-- Business rules and validation
-- Database transactions
-
-### Planned
-
-- Automated unit and integration testing
-- Password security hardening
-- Improved configuration management
-- More complete audit logging
-- Reports
-- Additional edge-case handling
-- Final UI/UX cleanup
-
----
+Remaining work includes:
+- Finish and test Users behavior and filtering.
+- Complete and test Borrowers behavior.
+- Implement Equipment management.
+- Implement the loan and return workflows and related business rules.
+- Implement fine handling.
+- Complete dashboard statistics and audit logging.
+- Review authorization across all modules.
+- Add automated tests and improve configuration and password-storage security.
 
 ## Architecture
 
-LoanDesk follows a layered architecture:
-
 ```text
 Windows Forms UI
-       ↓
+       |
+       v
 Business Logic Layer (BLL)
-       ↓
+       |
+       v
 Data Access Layer (DAL)
-       ↓
+       |
+       v
 SQL Server
 ```
 
-### Layers
+- **UI:** Displays data, collects input, handles navigation, and presents results and errors.
+- **BLL:** Applies validation, authentication, authorization, and business rules.
+- **DAL:** Executes database queries and commands.
+- **LoanDesk.Models:** Contains application models and custom exceptions.
 
-**UI**
-
-Responsible for displaying the interface, receiving user input, navigation, and presenting results.
-
-**BLL**
-
-Responsible for validation, authentication, authorization, business rules, password handling, and session management.
-
-**DAL**
-
-Responsible for communication with SQL Server and database operations.
-
-**Models**
-
-Contains the main application entities such as users, borrowers, equipment, loans, and audit logs.
-
----
-
-## Technologies
+## Technology Stack
 
 - C#
 - .NET Framework 4.8
 - Windows Forms
-- SQL Server
+- Microsoft SQL Server
 - ADO.NET
-- ReaLTaiizor
+- ReaLTaiizor UI controls
 - Visual Studio
-- Git & GitHub
+- Git and GitHub
 
----
+## Security Notes
 
-## Security
+The project currently uses parameterized SQL commands, salted SHA-256 password hashes, active/inactive account flags, and Business Logic Layer checks for protected user operations.
 
-Security is being considered as part of the application architecture.
-
-Current implementations include:
-
-- Password hashing
-- Random salt generation
-- Parameterized SQL queries
-- Active/inactive user control
-- Shared user sessions
-- Admin checks in the Business Logic Layer
-- Separation between UI and business logic
-
-The current password implementation uses SHA-256 with a random salt as a learning implementation. A slow password-specific hashing algorithm is planned for a later security hardening stage.
-
----
-
-## Problems Encountered and Solutions
-
-LoanDesk is also a learning project. Several design problems were encountered during development, and solving them has helped improve my understanding of application architecture.
-
-### 1. Creating a Form for Every Section
-
-Creating a separate Form for every application section would make navigation harder to manage and could lead to unnecessary duplication.
-
-Instead, LoanDesk uses reusable `UserControl` views inside the main screen:
-
-```text
-UsersView
-BorrowersView
-EquipmentView
-LoansView
-ReturnsView
-FinesView
-AuditLogView
-```
-
-This keeps the main window responsible for navigation while each view is responsible for its own section.
-
-### 2. Protecting the User Session from the UI
-
-The UI should be able to read the current session but should not directly control its state.
-
-The session uses restricted setters and an internal session creation method so that session changes are controlled from the Business Logic Layer.
-
-```text
-UI
- ↓
-Business Logic Layer
- ↓
-Session Management
-```
-
-### 3. Keeping Validation Outside the UI
-
-User validation is performed in the Business Logic Layer before data reaches the Data Access Layer.
-
-This keeps important business rules out of individual Forms and reduces duplicated validation logic.
-
-### 4. Handling Active and Inactive Users
-
-Users are not physically deleted. Instead, the application uses the `IsActive` field to deactivate accounts.
-
-Admins can activate inactive users again, while the login process prevents inactive accounts from signing in.
-
-### 5. Handling the Current Admin Account
-
-Changing the role of the currently logged-in Admin can affect the current application session. LoanDesk therefore treats this as a special case and can restart the application when the current user's role changes.
-
-The database is updated before the application decides whether the current session needs to be recreated or the application restarted.
-
-### 6. Reusable Top Information Panel
-
-A reusable custom panel is used for the top information area of the main screen. Its title changes according to the currently selected view, while the logged-in user's role is displayed separately.
-
-The custom panel also provides access to the Account view.
-
----
+**Security limitation:** SHA-256 is a fast general-purpose hash and is not recommended as a standalone password-hashing algorithm for production applications. Replacing it with a password-specific, deliberately slow algorithm is planned. The application is a work in progress and has not been presented as production-ready.
 
 ## Error Handling
 
-Error handling has been improved during development and is now separated according to the layer and type of failure.
+The application defines custom exceptions for validation, business-rule, and data-access failures. The UI error handler displays expected validation and business-rule messages, logs data-access and unexpected errors, and avoids showing raw unexpected exception messages to users.
 
-The application currently uses custom exceptions such as `ValidationException` and `BusinessRuleException` for expected application and business-rule failures.
-
-Database errors are handled in the Data Access Layer, where SQL exceptions can be mapped to application-specific exceptions.
-
-The application also contains global exception handling for unexpected unhandled errors.
-
-Logging is used to record important technical errors while the UI presents appropriate messages to the user.
-
-The error-handling implementation is still being refined as the remaining modules are developed.
-
----
-
-## Development Roadmap
-
-The project is being developed in stages rather than trying to complete every module at once.
-
-### Phase 1 — Foundation
-
-- [x] Project structure
-- [x] Layered architecture
-- [x] Database connection
-- [x] Models
-- [x] Error handling
-- [x] Logging infrastructure
-
-### Phase 2 — Authentication and Sessions
-
-- [x] Initial Admin setup
-- [x] Login
-- [x] Password hashing and salt
-- [x] User session
-- [x] Session access restrictions
-- [x] Basic authorization checks
-
-### Phase 3 — Users
-
-- [x] Add user
-- [x] Update user
-- [x] Update password
-- [x] Soft delete
-- [x] Activate user
-- [x] Active-user count
-- [ ] Finish filtering behavior
-- [ ] Finish edge cases and consistency checks
-- [ ] Final authorization checks
-
-### Phase 4 — Core Data
-
-- [ ] Borrowers
-- [ ] Equipment
-
-### Phase 5 — Loan Workflow
-
-- [ ] Loans
-- [ ] Returns
-- [ ] Fines
-- [ ] Complete loan business rules
-- [ ] Database transactions
-
-### Phase 6 — Administration
-
-- [ ] Complete role-based access control
-- [ ] Audit Log
-- [ ] Dashboard statistics
-- [ ] Reports
-
-### Phase 7 — Quality
-
-- [ ] Unit tests
-- [ ] Database/integration tests
-- [ ] Exception and edge-case review
-- [ ] Configuration cleanup
-- [ ] Password security hardening
-- [ ] Final UI/UX cleanup
-
----
+The handling and logging behavior will continue to evolve as more modules are implemented.
 
 ## Project Structure
 
-```text
-LoanDesk
-│
-├── UI
-│   ├── Login
-│   ├── Setup
-│   ├── Main Screen
-│   ├── Account
-│   ├── Users
-│   ├── Borrowers
-│   ├── Equipment
-│   ├── Loans
-│   ├── Returns
-│   ├── Fines
-│   └── AuditLog
-│
-├── BLL
-│   ├── UserBLL
-│   ├── PasswordHasher
-│   └── Sessions
-│
-├── DAL
-│   ├── UserDAL
-│   └── SqlErrorMapper
-│
-├── LoanDesk.Models
-│   ├── User
-│   ├── Borrower
-│   ├── Equipment
-│   ├── Loan
-│   └── AuditLog
-│
-└── Utilities
-```
-
----
-
-## Current Learning Focus
-
-The current development focus is not only completing features, but understanding the programming concepts behind them.
-
-The main concepts currently being practiced include:
-
-**Exception handling**
-
-Understanding how exceptions move between DAL, BLL, and UI and deciding which layer should handle each type of error.
-
-**State consistency**
-
-Understanding the difference between database state and application session state, especially when updating the currently logged-in user.
-
-**Validation and business rules**
-
-Separating input validation from rules that belong to the application domain.
-
-**Authorization**
-
-Protecting sensitive operations in the Business Logic Layer instead of relying only on hidden UI controls.
-
-**Resource management**
-
-Improving database connection, command, and reader disposal using appropriate .NET resource-management patterns.
-
-**Database integrity**
-
-Using primary keys, unique constraints, foreign keys, and other database rules together with BLL validation.
-
----
-
-## Development Philosophy
-
-LoanDesk is being developed as a learning project.
-
-The focus is not simply on making the application work, but on understanding why architectural and programming decisions are made.
-
-Bugs and design problems discovered during development are treated as part of the learning process. The goal is to improve both the application and my understanding of software engineering practices.
-
-The development process follows a simple cycle:
+The main folders and files currently include:
 
 ```text
-Understand the concept
-        ↓
-Understand the flow
-        ↓
-Predict the correct behavior
-        ↓
-Implement
-        ↓
-Test
-        ↓
-Review
+Loan_Desk
+├── Account/
+├── AuditLog/
+├── Borrowers/
+├── BLL/
+│   ├── BorrowersBLL.cs
+│   ├── PasswordHasher.cs
+│   ├── Sessions.cs
+│   └── UserBLL.cs
+├── DAL/
+│   ├── BorrowersDAL.cs
+│   ├── SqlErrorMapper.cs
+│   └── UserDAL.cs
+├── Dashboard/
+├── Equipment/
+├── Fines/
+├── LoanDesk.Models/
+├── Loans/
+├── Login/
+├── Main Screen/
+├── Returns/
+├── Setup/
+├── Users/
+├── utilities/
+├── ErrorHandler.cs
+├── Program.cs
+└── Loan_Desk.csproj
 ```
 
----
+## Development Roadmap
+
+- [x] Layered project structure
+- [x] SQL Server data-access foundation
+- [x] Initial Admin setup flow
+- [x] Login and shared session
+- [x] Basic user creation, updating, activation, and deactivation
+- [x] Basic Borrowers operations
+- [ ] Finish Users filtering, edge cases, and consistency checks
+- [ ] Finish and test Borrowers
+- [ ] Implement Equipment management
+- [ ] Implement Loans, Returns, and Fines workflows
+- [ ] Complete authorization checks across modules
+- [ ] Complete Dashboard and Audit Log functionality
+- [ ] Add unit and integration tests
+- [ ] Improve password-storage security
+- [ ] Final configuration and UI cleanup
+
+## Development Approach
+
+This project is built incrementally. Each feature is used to practice the reasoning behind validation, session state, authorization, database integrity, exception handling, and separation of responsibilities between layers.
 
 ## Author
 
-**Aseel**
-
+**Aseel**  
 GitHub: [Aseelcoding](https://github.com/Aseelcoding)
 
 ---
 
-**LoanDesk is currently under development.**
+**LoanDesk is under active development. Features and implementation details may change.**
