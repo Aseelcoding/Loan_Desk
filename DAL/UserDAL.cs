@@ -393,34 +393,32 @@ namespace DAL
                     cmd.Parameters.Add("@Username", SqlDbType.VarChar, 15).Value = Username;
 
                     connection.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    if (reader.Read())
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-
-
-                        int UID;
-                        if (!int.TryParse(reader["ID"].ToString(), out UID))
-                            return null;
-
-
-                        user.ID = UID;
-                        user.Username = reader["Username"].ToString();
-                        user.Role = reader["Role"].ToString();
-                        user.PasswordHash = reader["PasswordHash"].ToString();
-                        user.PasswordSalt = reader["PasswordSalt"].ToString();
-
-                        if ((bool)reader["IsActive"] == true)
+                        if (reader.Read())
                         {
-                            user.IsActive = true;
-                        }
-                        else
-                            user.IsActive = false;
 
-                    }
-                    else
-                    {
-                        return null;
+                            if (!reader.Read())
+                                return null;
+
+
+                            int UID;
+                            if (!int.TryParse(reader["ID"].ToString(), out UID))
+                                return null;
+
+                            return new User
+                            {
+                                ID = UID,
+                                Username = reader["Username"].ToString(),
+                                Role = reader["Role"].ToString(),
+                                PasswordHash = reader["PasswordHash"].ToString(),
+                                PasswordSalt = reader["PasswordSalt"].ToString(),
+                                IsActive = (bool)reader["IsActive"]
+                            };
+                          
+
+                        }
+                      
                     }
                 }
             }
@@ -433,6 +431,60 @@ namespace DAL
 
             return user;
             
+        }
+        public static User FindByID(int ID) 
+        {
+        
+
+            string query = @"
+
+                  SELECT [ID]
+                 ,[Username]
+                ,[PasswordHash]
+                ,[PasswordSalt]
+                ,[Role]
+                 ,[IsActive]
+                FROM [dbo].[Users]
+                 where [ID]=@ID;";
+
+
+
+
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    cmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
+
+                    connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (!reader.Read())
+                            return null;
+
+                        return new User
+                        {
+                            ID = ID,
+                            Username = reader["Username"].ToString(),
+                            Role = reader["Role"].ToString(),
+                            PasswordHash = reader["PasswordHash"].ToString(),
+                            PasswordSalt = reader["PasswordSalt"].ToString(),
+                            IsActive = (bool)reader["IsActive"]
+                        };
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw SqlErrorMapper.Map(ex, "Find User By ID.");
+
+            }
+
+
+           
+
         }
         public static DataTable GetUsers() 
         {
@@ -456,9 +508,13 @@ namespace DAL
                 {
                     connection.Open();
 
-                    SqlDataReader reader = cmd.ExecuteReader();
+                    using (SqlDataReader reader = cmd.ExecuteReader()) 
+                    {
+                        dtUsers.Load(reader);
 
-                    dtUsers.Load(reader);
+                    }
+
+                        
                 }
             }
             catch (SqlException ex) 

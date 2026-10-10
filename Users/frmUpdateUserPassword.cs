@@ -39,7 +39,7 @@ namespace Loan_Desk.Users
             }
             try
             {
-                IsUpdated = UserBLL.UpdateUserPassword(user.ID, user.Username, txtOldPassword.Text, txtNewPassword.Text);
+                IsUpdated = UserBLL.UpdateUserPassword(user.ID, txtOldPassword.Text, txtNewPassword.Text);
                 if (IsUpdated)
                     { MessageBox.Show("Update user password done successfully");
                     this.Close(); }
