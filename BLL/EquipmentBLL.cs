@@ -33,8 +33,8 @@ namespace BLL
         private static void IsEquipmentNameIsTaken(Equipment NewEquipment) 
         {
             Equipment equipment_1 = EquipmentDAL.GetEquipmentByName(NewEquipment.Name);
-            if (equipment_1.ID != NewEquipment.ID)
-                throw new Exceptions.BusinessRuleException("Dublicate equipment name.");
+            if (equipment_1!=null&&equipment_1.ID != NewEquipment.ID)
+                throw new Exceptions.BusinessRuleException("Duplicate equipment name.");
 
         }
         public static bool AddEquipment(Equipment NewEquipment)
