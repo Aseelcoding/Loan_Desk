@@ -87,7 +87,7 @@ namespace BLL
             CheckUser(user);
             CheckPassword(Password);
             
-                if (UserDAL.Find(user.Username) == null)
+                if (UserDAL.FindByUsername(user.Username) == null)
                 {
                     user.PasswordSalt = PasswordHasher.GenerateSalt();
                     user.PasswordHash = PasswordHasher.HashPassword(Password, user.PasswordSalt);
@@ -108,7 +108,7 @@ namespace BLL
             bool IsUsernameTaken = false;
             User OldUser;
 
-            OldUser = UserDAL.Find(NewUser.Username);
+            OldUser = UserDAL.FindByUsername(NewUser.Username);
 
             if (OldUser != null && OldUser.ID != NewUser.ID)
                 IsUsernameTaken = true;
@@ -212,7 +212,7 @@ namespace BLL
             if (string.IsNullOrWhiteSpace(Password))
                 throw new ValidationException("Password must not be null or empty");
 
-            user = UserDAL.Find(Username);
+            user = UserDAL.FindByUsername(Username);
 
             if (user == null)
                 return IsValid;

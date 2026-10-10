@@ -365,7 +365,7 @@ namespace DAL
 
 
         }
-        public static User Find(string Username) 
+        public static User FindByUsername(string Username) 
         {
             User user = new User();
          
@@ -397,9 +397,6 @@ namespace DAL
                     {
                         if (reader.Read())
                         {
-
-                            if (!reader.Read())
-                                return null;
 
 
                             int UID;
