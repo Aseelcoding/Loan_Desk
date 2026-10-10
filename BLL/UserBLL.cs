@@ -1,4 +1,5 @@
 ﻿using DAL;
+using Loan_Desk;
 using LoanDesk.Models;
 using System;
 using System.Data;
@@ -35,7 +36,18 @@ namespace BLL
 
         public static bool IsAdminExist()
         {
-            return UserDAL.IsAdminExist();
+            bool IsExist = false;
+            try
+            {
+                IsExist= UserDAL.IsAdminExist();
+            }
+            catch (Exception ex) 
+            {
+                Logger.Write(ex);
+            }
+            return IsExist;
+
+
         }
 
         public static void CheckPassword(string Password)
