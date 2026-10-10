@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ContentPanel = new ReaLTaiizor.Controls.ParrotGradientPanel();
             this.cbFilter = new ReaLTaiizor.Controls.MaterialComboBox();
             this.parrotGroupBox1 = new ReaLTaiizor.Controls.ParrotGroupBox();
             this.chInActive = new System.Windows.Forms.CheckBox();
             this.chActive = new System.Windows.Forms.CheckBox();
-            this.bigTextBox1 = new ReaLTaiizor.Controls.BigTextBox();
+            this.txtBarSearch = new ReaLTaiizor.Controls.BigTextBox();
             this.btnAddBorrower = new System.Windows.Forms.Button();
             this.dgvB = new System.Windows.Forms.DataGridView();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -63,7 +63,7 @@
             this.ContentPanel.CompositingQualityType = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
             this.ContentPanel.Controls.Add(this.cbFilter);
             this.ContentPanel.Controls.Add(this.parrotGroupBox1);
-            this.ContentPanel.Controls.Add(this.bigTextBox1);
+            this.ContentPanel.Controls.Add(this.txtBarSearch);
             this.ContentPanel.Controls.Add(this.btnAddBorrower);
             this.ContentPanel.Controls.Add(this.dgvB);
             this.ContentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -137,6 +137,7 @@
             this.chInActive.TabIndex = 2;
             this.chInActive.Text = "InActive";
             this.chInActive.UseVisualStyleBackColor = true;
+            this.chInActive.CheckedChanged += new System.EventHandler(this.chInActive_CheckedChanged);
             // 
             // chActive
             // 
@@ -148,24 +149,26 @@
             this.chActive.TabIndex = 1;
             this.chActive.Text = "Active";
             this.chActive.UseVisualStyleBackColor = true;
+            this.chActive.CheckedChanged += new System.EventHandler(this.chActive_CheckedChanged);
             // 
-            // bigTextBox1
+            // txtBarSearch
             // 
-            this.bigTextBox1.BackColor = System.Drawing.Color.Transparent;
-            this.bigTextBox1.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.bigTextBox1.ForeColor = System.Drawing.Color.DimGray;
-            this.bigTextBox1.Image = null;
-            this.bigTextBox1.Location = new System.Drawing.Point(4, 36);
-            this.bigTextBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.bigTextBox1.MaxLength = 32767;
-            this.bigTextBox1.Multiline = false;
-            this.bigTextBox1.Name = "bigTextBox1";
-            this.bigTextBox1.PlaceholderText = "Search for ID,Name,Passport or Phone";
-            this.bigTextBox1.ReadOnly = false;
-            this.bigTextBox1.Size = new System.Drawing.Size(333, 46);
-            this.bigTextBox1.TabIndex = 44;
-            this.bigTextBox1.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
-            this.bigTextBox1.UseSystemPasswordChar = false;
+            this.txtBarSearch.BackColor = System.Drawing.Color.Transparent;
+            this.txtBarSearch.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.txtBarSearch.ForeColor = System.Drawing.Color.DimGray;
+            this.txtBarSearch.Image = null;
+            this.txtBarSearch.Location = new System.Drawing.Point(4, 36);
+            this.txtBarSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBarSearch.MaxLength = 32767;
+            this.txtBarSearch.Multiline = false;
+            this.txtBarSearch.Name = "txtBarSearch";
+            this.txtBarSearch.PlaceholderText = "Search for ID,Name,Passport or Phone";
+            this.txtBarSearch.ReadOnly = false;
+            this.txtBarSearch.Size = new System.Drawing.Size(333, 46);
+            this.txtBarSearch.TabIndex = 44;
+            this.txtBarSearch.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtBarSearch.UseSystemPasswordChar = false;
+            this.txtBarSearch.TextChanged += new System.EventHandler(this.txtBarSearch_TextChanged);
             // 
             // btnAddBorrower
             // 
@@ -189,14 +192,14 @@
             this.dgvB.AllowUserToAddRows = false;
             this.dgvB.AllowUserToDeleteRows = false;
             this.dgvB.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvB.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvB.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvB.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvB.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
@@ -207,27 +210,27 @@
             this.UnpaidFines,
             this.IsActive});
             this.dgvB.ContextMenuStrip = this.ContextOperation;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvB.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvB.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvB.Location = new System.Drawing.Point(0, 92);
             this.dgvB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvB.MultiSelect = false;
             this.dgvB.Name = "dgvB";
             this.dgvB.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvB.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvB.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvB.RowHeadersWidth = 51;
             this.dgvB.RowTemplate.Height = 24;
             this.dgvB.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -350,7 +353,7 @@
         #endregion
 
         private ReaLTaiizor.Controls.ParrotGradientPanel ContentPanel;
-        private ReaLTaiizor.Controls.BigTextBox bigTextBox1;
+        private ReaLTaiizor.Controls.BigTextBox txtBarSearch;
         private System.Windows.Forms.Button btnAddBorrower;
         private System.Windows.Forms.DataGridView dgvB;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;

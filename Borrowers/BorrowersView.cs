@@ -9,16 +9,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Loan_Desk.Borrowers
 {
     public partial class BorrowersView : UserControl
     {
         DataTable dtB;
-        private void RefreshData(string Filter="")
+        private void RefreshData() 
+        {
+            try
+            {
+                dtB = BorrowersBLL.GetBorrowers();
+            }
+            catch (Exception ex) 
+            {
+                ErrorHandler.Show(ex);
+            }
+            LoadBorrowersInfo();
+        }
+        private void LoadBorrowersInfo(string Filter="")
         {
             dgvB.Rows.Clear();
-            dtB = BorrowersBLL.GetBorrowers();
+    
 
             DataView dvB = dtB.DefaultView;
             dvB.RowFilter = Filter;
@@ -43,7 +56,82 @@ namespace Loan_Desk.Borrowers
             RefreshData();
         }
 
+        private void Filtering(string Text) 
+        {
 
+            if (string.IsNullOrEmpty(Text))
+            {
+                string ActivateFilter = "";
+                if (chActive.Checked && chInActive.Checked == false)
+                    ActivateFilter = "IsActive =1";
+                else if (chActive.Checked == false && chInActive.Checked)
+                    ActivateFilter = "IsActive =0";
+
+                LoadBorrowersInfo(ActivateFilter);
+                return;
+            }
+
+            string Filter = string.Empty;
+
+            if (cbFilter.SelectedIndex == 0)
+            {
+                int USID = -1;
+                int.TryParse(Text, out USID);
+                Filter = $"ID = {USID} ";
+
+                if (chActive.Checked && chInActive.Checked == false)
+                {
+                    Filter = $"ID = {USID} and IsActive =1";
+                }
+                else if (chActive.Checked == false && chInActive.Checked == true)
+                {
+                    Filter = $"ID = {USID} and IsActive =0";
+                }
+
+            }
+            else if (cbFilter.SelectedIndex == 1)
+            {
+                Filter = $"FullName like '{Text}%'";
+
+                if (chActive.Checked && chInActive.Checked == false)
+                {
+                    Filter = $"FullName like '{Text}%' and IsActive =1";
+                }
+                else if (chActive.Checked == false && chInActive.Checked == true)
+                {
+                    Filter = $"FullName like '{Text}%' and IsActive =0";
+                }
+            }
+            else if (cbFilter.SelectedIndex == 2) 
+            {
+                Filter = $"Passport like '{Text}%'";
+
+                if (chActive.Checked && chInActive.Checked == false)
+                {
+                    Filter = $"Passport like '{Text}%' and IsActive =1";
+                }
+                else if (chActive.Checked == false && chInActive.Checked == true)
+                {
+                    Filter = $"Passport like '{Text}%' and IsActive =0";
+                }
+
+            }
+            else if (cbFilter.SelectedIndex == 3)
+            {
+                Filter = $"Phone like '{Text}%'";
+
+                if (chActive.Checked && chInActive.Checked == false)
+                {
+                    Filter = $"Phone like '{Text}%' and IsActive =1";
+                }
+                else if (chActive.Checked == false && chInActive.Checked == true)
+                {
+                    Filter = $"Phone like '{Text}%' and IsActive =0";
+                }
+
+            }
+            LoadBorrowersInfo(Filter);
+        }
         private LoanDesk.Models.Borrower GetSelectedRow()
         {
             LoanDesk.Models.Borrower borrower = new LoanDesk.Models.Borrower();
@@ -83,7 +171,7 @@ namespace Loan_Desk.Borrowers
 
 
            frmUpdateBorrwer frmUpdate  = new frmUpdateBorrwer(borrower);
-            frmUpdate.ShowDialog(); 
+            frmUpdate.ShowDialog();
             RefreshData();
         }
 
@@ -144,6 +232,28 @@ namespace Loan_Desk.Borrowers
             {
                 ErrorHandler.Show(ex);
             }
+        }
+
+        private void txtBarSearch_TextChanged(object sender, EventArgs e)
+        {
+            string Text = txtBarSearch.Text;
+
+            Text = utilities.utilities.ClearFilterString(Text);
+
+
+
+            Filtering(Text);
+
+        }
+
+        private void chActive_CheckedChanged(object sender, EventArgs e)
+        {
+            txtBarSearch_TextChanged(txtBarSearch, EventArgs.Empty);
+        }
+
+        private void chInActive_CheckedChanged(object sender, EventArgs e)
+        {
+            txtBarSearch_TextChanged(txtBarSearch, EventArgs.Empty);
         }
     }
 }
