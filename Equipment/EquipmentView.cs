@@ -58,7 +58,122 @@ namespace Loan_Desk.Equipment
             frmAddNewEquipment.ShowDialog();
             RefreshData();
         }
+        private void Filtering(string Text)
+        {
+//            Equipment ID
+//Equipment
+//Quantity
+//Avaliable Quantity
+//Replacement Cost
 
+            if (string.IsNullOrEmpty(Text))
+            {
+                string ActivateFilter = "";
+                if (chActive.Checked && chInActive.Checked == false)
+                    ActivateFilter = "IsActive =1";
+                else if (chActive.Checked == false && chInActive.Checked)
+                    ActivateFilter = "IsActive =0";
+
+                LoadEquipmentInfo(ActivateFilter);
+                return;
+            }
+
+            string Filter = string.Empty;
+
+            if (cbFilter.SelectedIndex == 0)
+            {
+                int USID = -1;
+                int.TryParse(Text, out USID);
+                Filter = $"ID = {USID} ";
+
+                if (chActive.Checked && chInActive.Checked == false)
+                {
+                    Filter = $"ID = {USID} and IsActive =1";
+                }
+                else if (chActive.Checked == false && chInActive.Checked == true)
+                {
+                    Filter = $"ID = {USID} and IsActive =0";
+                }
+
+            }
+            else if (cbFilter.SelectedIndex == 1)
+            {
+                Filter = $"Name like '{Text}%'";
+
+                if (chActive.Checked && chInActive.Checked == false)
+                {
+                    Filter = $"Name like '{Text}%' and IsActive =1";
+                }
+                else if (chActive.Checked == false && chInActive.Checked == true)
+                {
+                    Filter = $"Name like '{Text}%' and IsActive =0";
+                }
+            }
+            else if (cbFilter.SelectedIndex == 2)
+            {
+                int Quantity = -1;
+                int.TryParse(Text, out Quantity);
+                Filter = $"TotalQuantity = {Quantity} ";
+
+                if (chActive.Checked && chInActive.Checked == false)
+                {
+                    Filter = $"TotalQuantity = {Quantity} and IsActive =1";
+                }
+                else if (chActive.Checked == false && chInActive.Checked == true)
+                {
+                    Filter = $"TotalQuantity = {Quantity} and IsActive =0";
+                }
+            }
+            else if (cbFilter.SelectedIndex == 3)
+            {
+                decimal AvaliableQuantity = -1;
+                decimal.TryParse(Text, out AvaliableQuantity);
+                Filter = $"AvaliableQuantity = {AvaliableQuantity} ";
+
+                if (chActive.Checked && chInActive.Checked == false)
+                {
+                    Filter = $"AvaliableQuantity = {AvaliableQuantity} and IsActive =1";
+                }
+                else if (chActive.Checked == false && chInActive.Checked == true)
+                {
+                    Filter = $"AvaliableQuantity = {AvaliableQuantity} and IsActive =0";
+                }
+
+            }
+            else if (cbFilter.SelectedIndex == 4)
+            {
+                decimal DailyLateFee = -1;
+                decimal.TryParse(Text, out DailyLateFee);
+                Filter = $"DailyLateFee = {DailyLateFee} ";
+
+                if (chActive.Checked && chInActive.Checked == false)
+                {
+                    Filter = $"DailyLateFee = {DailyLateFee} and IsActive =1";
+                }
+                else if (chActive.Checked == false && chInActive.Checked == true)
+                {
+                    Filter = $"DailyLateFee = {DailyLateFee} and IsActive =0";
+                }
+
+            }
+            else if (cbFilter.SelectedIndex == 5)
+            {
+                decimal ReplecmentCost = -1;
+                decimal.TryParse(Text, out ReplecmentCost);
+                Filter = $"ReplacementCost = {ReplecmentCost} ";
+
+                if (chActive.Checked && chInActive.Checked == false)
+                {
+                    Filter = $"ReplacementCost = {ReplecmentCost} and IsActive =1";
+                }
+                else if (chActive.Checked == false && chInActive.Checked == true)
+                {
+                    Filter = $"ReplacementCost = {ReplecmentCost} and IsActive =0";
+                }
+
+            }
+            LoadEquipmentInfo(Filter);
+        }
         private void EquipmentView_Load(object sender, EventArgs e)
         {
             RefreshData();
@@ -155,6 +270,26 @@ namespace Loan_Desk.Equipment
             {
                 ErrorHandler.Show(ex);
             }
+        }
+
+        private void txtBarSearch_TextChanged(object sender, EventArgs e)
+        {
+            string Text = txtBarSearch.Text;
+
+            Text = utilities.utilities.ClearFilterString(Text);
+
+
+
+            Filtering(Text);
+        }
+        private void chActive_CheckedChanged(object sender, EventArgs e)
+        {
+            txtBarSearch_TextChanged(txtBarSearch, EventArgs.Empty);
+        }
+
+        private void chInActive_CheckedChanged(object sender, EventArgs e)
+        {
+            txtBarSearch_TextChanged(txtBarSearch, EventArgs.Empty);
         }
     }
 } 

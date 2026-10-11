@@ -69,11 +69,11 @@
             this.ContentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ContentPanel.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear;
             this.ContentPanel.Location = new System.Drawing.Point(0, 0);
-            this.ContentPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ContentPanel.Margin = new System.Windows.Forms.Padding(2);
             this.ContentPanel.Name = "ContentPanel";
             this.ContentPanel.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
             this.ContentPanel.PrimerColor = System.Drawing.Color.White;
-            this.ContentPanel.Size = new System.Drawing.Size(1000, 770);
+            this.ContentPanel.Size = new System.Drawing.Size(750, 626);
             this.ContentPanel.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             this.ContentPanel.Style = ReaLTaiizor.Controls.ParrotGradientPanel.GradientStyle.Corners;
             this.ContentPanel.TabIndex = 2;
@@ -87,7 +87,7 @@
             this.cbFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbFilter.Depth = 0;
             this.cbFilter.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.cbFilter.DropDownHeight = 218;
+            this.cbFilter.DropDownHeight = 174;
             this.cbFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbFilter.DropDownWidth = 227;
             this.cbFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 17.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
@@ -95,19 +95,20 @@
             this.cbFilter.FormattingEnabled = true;
             this.cbFilter.Hint = "Filter";
             this.cbFilter.IntegralHeight = false;
-            this.cbFilter.ItemHeight = 54;
+            this.cbFilter.ItemHeight = 43;
             this.cbFilter.Items.AddRange(new object[] {
             "Equipment ID",
             "Equipment",
             "Quantity",
             "Avaliable Quantity",
+            "Daily Late Fee",
             "Replacement Cost"});
-            this.cbFilter.Location = new System.Drawing.Point(306, 25);
-            this.cbFilter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbFilter.Location = new System.Drawing.Point(230, 20);
+            this.cbFilter.Margin = new System.Windows.Forms.Padding(2);
             this.cbFilter.MaxDropDownItems = 4;
             this.cbFilter.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.OUT;
             this.cbFilter.Name = "cbFilter";
-            this.cbFilter.Size = new System.Drawing.Size(227, 60);
+            this.cbFilter.Size = new System.Drawing.Size(227, 49);
             this.cbFilter.StartIndex = 0;
             this.cbFilter.TabIndex = 50;
             // 
@@ -117,12 +118,10 @@
             this.parrotGroupBox1.BorderWidth = 1;
             this.parrotGroupBox1.Controls.Add(this.chInActive);
             this.parrotGroupBox1.Controls.Add(this.chActive);
-            this.parrotGroupBox1.Location = new System.Drawing.Point(622, 36);
-            this.parrotGroupBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.parrotGroupBox1.Location = new System.Drawing.Point(466, 29);
             this.parrotGroupBox1.Name = "parrotGroupBox1";
-            this.parrotGroupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.parrotGroupBox1.ShowText = false;
-            this.parrotGroupBox1.Size = new System.Drawing.Size(184, 47);
+            this.parrotGroupBox1.Size = new System.Drawing.Size(138, 38);
             this.parrotGroupBox1.TabIndex = 49;
             this.parrotGroupBox1.TabStop = false;
             this.parrotGroupBox1.Text = "parrotGroupBox1";
@@ -131,24 +130,26 @@
             // chInActive
             // 
             this.chInActive.AutoSize = true;
-            this.chInActive.Location = new System.Drawing.Point(96, 16);
-            this.chInActive.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chInActive.Location = new System.Drawing.Point(72, 13);
+            this.chInActive.Margin = new System.Windows.Forms.Padding(2);
             this.chInActive.Name = "chInActive";
-            this.chInActive.Size = new System.Drawing.Size(76, 20);
+            this.chInActive.Size = new System.Drawing.Size(65, 17);
             this.chInActive.TabIndex = 3;
             this.chInActive.Text = "InActive";
             this.chInActive.UseVisualStyleBackColor = true;
+            this.chInActive.CheckedChanged += new System.EventHandler(this.chInActive_CheckedChanged);
             // 
             // chActive
             // 
             this.chActive.AutoSize = true;
-            this.chActive.Location = new System.Drawing.Point(7, 16);
-            this.chActive.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chActive.Location = new System.Drawing.Point(5, 13);
+            this.chActive.Margin = new System.Windows.Forms.Padding(2);
             this.chActive.Name = "chActive";
-            this.chActive.Size = new System.Drawing.Size(66, 20);
+            this.chActive.Size = new System.Drawing.Size(56, 17);
             this.chActive.TabIndex = 2;
             this.chActive.Text = "Active";
             this.chActive.UseVisualStyleBackColor = true;
+            this.chActive.CheckedChanged += new System.EventHandler(this.chActive_CheckedChanged);
             // 
             // txtBarSearch
             // 
@@ -156,17 +157,17 @@
             this.txtBarSearch.Font = new System.Drawing.Font("Tahoma", 11F);
             this.txtBarSearch.ForeColor = System.Drawing.Color.DimGray;
             this.txtBarSearch.Image = null;
-            this.txtBarSearch.Location = new System.Drawing.Point(4, 32);
-            this.txtBarSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBarSearch.Location = new System.Drawing.Point(3, 26);
             this.txtBarSearch.MaxLength = 255;
             this.txtBarSearch.Multiline = false;
             this.txtBarSearch.Name = "txtBarSearch";
             this.txtBarSearch.PlaceholderText = "Search Equipment";
             this.txtBarSearch.ReadOnly = false;
-            this.txtBarSearch.Size = new System.Drawing.Size(295, 46);
+            this.txtBarSearch.Size = new System.Drawing.Size(221, 41);
             this.txtBarSearch.TabIndex = 48;
             this.txtBarSearch.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtBarSearch.UseSystemPasswordChar = false;
+            this.txtBarSearch.TextChanged += new System.EventHandler(this.txtBarSearch_TextChanged);
             // 
             // btnAddEquipment
             // 
@@ -175,10 +176,10 @@
             this.btnAddEquipment.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddEquipment.Image = global::Loan_Desk.Properties.Resources.add_25;
             this.btnAddEquipment.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddEquipment.Location = new System.Drawing.Point(813, 46);
-            this.btnAddEquipment.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAddEquipment.Location = new System.Drawing.Point(610, 37);
+            this.btnAddEquipment.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddEquipment.Name = "btnAddEquipment";
-            this.btnAddEquipment.Size = new System.Drawing.Size(172, 30);
+            this.btnAddEquipment.Size = new System.Drawing.Size(129, 24);
             this.btnAddEquipment.TabIndex = 47;
             this.btnAddEquipment.Text = "Add Equipment";
             this.btnAddEquipment.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -216,8 +217,8 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvEq.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvEq.Location = new System.Drawing.Point(-3, 89);
-            this.dgvEq.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dgvEq.Location = new System.Drawing.Point(-2, 72);
+            this.dgvEq.Margin = new System.Windows.Forms.Padding(2);
             this.dgvEq.Name = "dgvEq";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
@@ -234,7 +235,7 @@
             this.dgvEq.ShowCellToolTips = false;
             this.dgvEq.ShowEditingIcon = false;
             this.dgvEq.ShowRowErrors = false;
-            this.dgvEq.Size = new System.Drawing.Size(1000, 679);
+            this.dgvEq.Size = new System.Drawing.Size(750, 552);
             this.dgvEq.TabIndex = 1;
             // 
             // ID
@@ -296,7 +297,7 @@
             this.btnActivate,
             this.btnDeactivate});
             this.ContextOperation.Name = "crownContextMenuStrip1";
-            this.ContextOperation.Size = new System.Drawing.Size(215, 110);
+            this.ContextOperation.Size = new System.Drawing.Size(134, 82);
             // 
             // btnUpdate
             // 
@@ -304,7 +305,7 @@
             this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btnUpdate.Image = global::Loan_Desk.Properties.Resources.update_20;
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(214, 26);
+            this.btnUpdate.Size = new System.Drawing.Size(133, 26);
             this.btnUpdate.Text = "Update";
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
@@ -314,7 +315,7 @@
             this.btnActivate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btnActivate.Image = global::Loan_Desk.Properties.Resources.active_20;
             this.btnActivate.Name = "btnActivate";
-            this.btnActivate.Size = new System.Drawing.Size(214, 26);
+            this.btnActivate.Size = new System.Drawing.Size(133, 26);
             this.btnActivate.Text = "Activate";
             this.btnActivate.Click += new System.EventHandler(this.btnActivate_Click);
             // 
@@ -324,18 +325,17 @@
             this.btnDeactivate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btnDeactivate.Image = global::Loan_Desk.Properties.Resources.delete_20;
             this.btnDeactivate.Name = "btnDeactivate";
-            this.btnDeactivate.Size = new System.Drawing.Size(214, 26);
+            this.btnDeactivate.Size = new System.Drawing.Size(133, 26);
             this.btnDeactivate.Text = "Deactivate";
             this.btnDeactivate.Click += new System.EventHandler(this.btnDeactivate_Click);
             // 
             // EquipmentView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.ContentPanel);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "EquipmentView";
-            this.Size = new System.Drawing.Size(1000, 770);
+            this.Size = new System.Drawing.Size(750, 626);
             this.Load += new System.EventHandler(this.EquipmentView_Load);
             this.ContentPanel.ResumeLayout(false);
             this.parrotGroupBox1.ResumeLayout(false);

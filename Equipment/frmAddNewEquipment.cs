@@ -50,7 +50,9 @@ namespace Loan_Desk.Equipment
                 IsAdded = EquipmentBLL.AddEquipment(NewEquipment);
 
                 if (IsAdded)
-                    MessageBox.Show("Success");
+                   { MessageBox.Show("Success");this.Close();
+                 
+                }
                 else
                     MessageBox.Show("Failed");
             }
