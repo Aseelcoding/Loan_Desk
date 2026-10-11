@@ -46,7 +46,12 @@ namespace BLL
 
             return EquipmentDAL.AddEquipment(NewEquipment);
         }
-
+        public static bool UpdateEquipment(Equipment NewEquipment) 
+        {
+            IsEquipmentNameIsTaken(NewEquipment);
+            CheckEquipment(NewEquipment);
+            return EquipmentDAL.UdpateEquipment(NewEquipment);
+        }
         public static Equipment GetEquipmentByID(int EquipmentID)
         {
             return EquipmentDAL.GetEquipmentByID(EquipmentID);

@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.numReplecmentCost = new ReaLTaiizor.Controls.CrownNumeric();
+            this.numDailyLateFee = new ReaLTaiizor.Controls.CrownNumeric();
+            this.numAvailableQuantity = new ReaLTaiizor.Controls.CrownNumeric();
+            this.numTotalQuantity = new ReaLTaiizor.Controls.CrownNumeric();
             this.aloneNotice1 = new ReaLTaiizor.Controls.AloneNotice();
             this.btnSave = new ReaLTaiizor.Controls.LostCancelButton();
             this.btnClose = new ReaLTaiizor.Controls.LostCancelButton();
@@ -43,15 +47,11 @@
             this.txtEquipmentID = new ReaLTaiizor.Controls.ForeverTextBox();
             this.bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
             this.bigLabel5 = new ReaLTaiizor.Controls.BigLabel();
-            this.numTotalQuantity = new ReaLTaiizor.Controls.CrownNumeric();
-            this.numAvailableQuantity = new ReaLTaiizor.Controls.CrownNumeric();
-            this.numDailyLateFee = new ReaLTaiizor.Controls.CrownNumeric();
-            this.numReplecmentCost = new ReaLTaiizor.Controls.CrownNumeric();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numTotalQuantity)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numAvailableQuantity)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numDailyLateFee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numReplecmentCost)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDailyLateFee)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numAvailableQuantity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numTotalQuantity)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -80,6 +80,64 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(572, 578);
             this.panel1.TabIndex = 0;
+            // 
+            // numReplecmentCost
+            // 
+            this.numReplecmentCost.DecimalPlaces = 6;
+            this.numReplecmentCost.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.numReplecmentCost.Location = new System.Drawing.Point(204, 365);
+            this.numReplecmentCost.Maximum = new decimal(new int[] {
+            50000,
+            0,
+            0,
+            0});
+            this.numReplecmentCost.Name = "numReplecmentCost";
+            this.numReplecmentCost.Size = new System.Drawing.Size(120, 26);
+            this.numReplecmentCost.TabIndex = 101;
+            // 
+            // numDailyLateFee
+            // 
+            this.numDailyLateFee.DecimalPlaces = 6;
+            this.numDailyLateFee.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.numDailyLateFee.Location = new System.Drawing.Point(204, 319);
+            this.numDailyLateFee.Maximum = new decimal(new int[] {
+            50000,
+            0,
+            0,
+            0});
+            this.numDailyLateFee.Name = "numDailyLateFee";
+            this.numDailyLateFee.Size = new System.Drawing.Size(120, 26);
+            this.numDailyLateFee.TabIndex = 100;
+            // 
+            // numAvailableQuantity
+            // 
+            this.numAvailableQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.numAvailableQuantity.Location = new System.Drawing.Point(204, 274);
+            this.numAvailableQuantity.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numAvailableQuantity.Name = "numAvailableQuantity";
+            this.numAvailableQuantity.Size = new System.Drawing.Size(120, 26);
+            this.numAvailableQuantity.TabIndex = 99;
+            this.numAvailableQuantity.ThousandsSeparator = true;
+            this.numAvailableQuantity.ValueChanged += new System.EventHandler(this.numAvailableQuantity_ValueChanged);
+            // 
+            // numTotalQuantity
+            // 
+            this.numTotalQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.numTotalQuantity.Location = new System.Drawing.Point(204, 230);
+            this.numTotalQuantity.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numTotalQuantity.Name = "numTotalQuantity";
+            this.numTotalQuantity.Size = new System.Drawing.Size(120, 26);
+            this.numTotalQuantity.TabIndex = 98;
+            this.numTotalQuantity.ThousandsSeparator = true;
+            this.numTotalQuantity.ValueChanged += new System.EventHandler(this.numTotalQuantity_ValueChanged);
             // 
             // aloneNotice1
             // 
@@ -134,7 +192,7 @@
             // togIsActive
             // 
             this.togIsActive.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.togIsActive.Location = new System.Drawing.Point(196, 415);
+            this.togIsActive.Location = new System.Drawing.Point(204, 415);
             this.togIsActive.Margin = new System.Windows.Forms.Padding(5);
             this.togIsActive.Name = "togIsActive";
             this.togIsActive.Size = new System.Drawing.Size(76, 33);
@@ -148,7 +206,7 @@
             this.bigLabel8.BackColor = System.Drawing.Color.Transparent;
             this.bigLabel8.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.bigLabel8.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.bigLabel8.Location = new System.Drawing.Point(12, 425);
+            this.bigLabel8.Location = new System.Drawing.Point(12, 420);
             this.bigLabel8.Name = "bigLabel8";
             this.bigLabel8.Size = new System.Drawing.Size(85, 23);
             this.bigLabel8.TabIndex = 87;
@@ -277,64 +335,6 @@
             this.bigLabel5.TabIndex = 76;
             this.bigLabel5.Text = "Add Equipment";
             // 
-            // numTotalQuantity
-            // 
-            this.numTotalQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.numTotalQuantity.Location = new System.Drawing.Point(204, 230);
-            this.numTotalQuantity.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.numTotalQuantity.Name = "numTotalQuantity";
-            this.numTotalQuantity.Size = new System.Drawing.Size(120, 26);
-            this.numTotalQuantity.TabIndex = 98;
-            this.numTotalQuantity.ThousandsSeparator = true;
-            this.numTotalQuantity.ValueChanged += new System.EventHandler(this.numTotalQuantity_ValueChanged);
-            // 
-            // numAvailableQuantity
-            // 
-            this.numAvailableQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.numAvailableQuantity.Location = new System.Drawing.Point(204, 274);
-            this.numAvailableQuantity.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.numAvailableQuantity.Name = "numAvailableQuantity";
-            this.numAvailableQuantity.Size = new System.Drawing.Size(120, 26);
-            this.numAvailableQuantity.TabIndex = 99;
-            this.numAvailableQuantity.ThousandsSeparator = true;
-            this.numAvailableQuantity.ValueChanged += new System.EventHandler(this.numAvailableQuantity_ValueChanged);
-            // 
-            // numDailyLateFee
-            // 
-            this.numDailyLateFee.DecimalPlaces = 6;
-            this.numDailyLateFee.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.numDailyLateFee.Location = new System.Drawing.Point(204, 319);
-            this.numDailyLateFee.Maximum = new decimal(new int[] {
-            50000,
-            0,
-            0,
-            0});
-            this.numDailyLateFee.Name = "numDailyLateFee";
-            this.numDailyLateFee.Size = new System.Drawing.Size(120, 26);
-            this.numDailyLateFee.TabIndex = 100;
-            // 
-            // numReplecmentCost
-            // 
-            this.numReplecmentCost.DecimalPlaces = 6;
-            this.numReplecmentCost.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.numReplecmentCost.Location = new System.Drawing.Point(204, 365);
-            this.numReplecmentCost.Maximum = new decimal(new int[] {
-            50000,
-            0,
-            0,
-            0});
-            this.numReplecmentCost.Name = "numReplecmentCost";
-            this.numReplecmentCost.Size = new System.Drawing.Size(120, 26);
-            this.numReplecmentCost.TabIndex = 101;
-            // 
             // frmAddNewEquipment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -346,10 +346,10 @@
             this.Text = "Add New Equipment";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numTotalQuantity)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numAvailableQuantity)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numDailyLateFee)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numReplecmentCost)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDailyLateFee)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numAvailableQuantity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numTotalQuantity)).EndInit();
             this.ResumeLayout(false);
 
         }

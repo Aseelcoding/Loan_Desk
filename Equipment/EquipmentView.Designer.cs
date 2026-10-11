@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ContentPanel = new ReaLTaiizor.Controls.ParrotGradientPanel();
             this.cbFilter = new ReaLTaiizor.Controls.MaterialComboBox();
             this.parrotGroupBox1 = new ReaLTaiizor.Controls.ParrotGroupBox();
@@ -46,9 +46,12 @@
             this.DailyLateFee = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ReplacementCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsActive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ContextOperation = new ReaLTaiizor.Controls.CrownContextMenuStrip();
+            this.btnUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.ContentPanel.SuspendLayout();
             this.parrotGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEq)).BeginInit();
+            this.ContextOperation.SuspendLayout();
             this.SuspendLayout();
             // 
             // ContentPanel
@@ -185,14 +188,14 @@
             this.dgvEq.AllowUserToAddRows = false;
             this.dgvEq.AllowUserToDeleteRows = false;
             this.dgvEq.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvEq.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvEq.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvEq.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEq.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
@@ -202,27 +205,33 @@
             this.DailyLateFee,
             this.ReplacementCost,
             this.IsActive});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvEq.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dgvEq.ContextMenuStrip = this.ContextOperation;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvEq.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvEq.Location = new System.Drawing.Point(-3, 89);
             this.dgvEq.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvEq.Name = "dgvEq";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvEq.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvEq.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvEq.RowHeadersWidth = 51;
             this.dgvEq.RowTemplate.Height = 24;
+            this.dgvEq.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvEq.ShowCellErrors = false;
+            this.dgvEq.ShowCellToolTips = false;
+            this.dgvEq.ShowEditingIcon = false;
+            this.dgvEq.ShowRowErrors = false;
             this.dgvEq.Size = new System.Drawing.Size(1000, 679);
             this.dgvEq.TabIndex = 1;
             // 
@@ -275,6 +284,26 @@
             this.IsActive.Name = "IsActive";
             this.IsActive.ReadOnly = true;
             // 
+            // ContextOperation
+            // 
+            this.ContextOperation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.ContextOperation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.ContextOperation.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.ContextOperation.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnUpdate});
+            this.ContextOperation.Name = "crownContextMenuStrip1";
+            this.ContextOperation.Size = new System.Drawing.Size(132, 30);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.btnUpdate.Image = global::Loan_Desk.Properties.Resources.update_20;
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(131, 26);
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
             // EquipmentView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -288,6 +317,7 @@
             this.parrotGroupBox1.ResumeLayout(false);
             this.parrotGroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEq)).EndInit();
+            this.ContextOperation.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -309,5 +339,7 @@
         private System.Windows.Forms.CheckBox chActive;
         private System.Windows.Forms.CheckBox chInActive;
         private ReaLTaiizor.Controls.MaterialComboBox cbFilter;
+        private ReaLTaiizor.Controls.CrownContextMenuStrip ContextOperation;
+        private System.Windows.Forms.ToolStripMenuItem btnUpdate;
     }
 }

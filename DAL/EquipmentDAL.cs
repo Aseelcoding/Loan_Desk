@@ -63,6 +63,46 @@ namespace DAL
             }
             return IsAdded;
         }
+        public static bool UdpateEquipment(Equipment NewEquipment) 
+        {
+            bool IsUpdated = false;
+
+            string query = @"UPDATE [dbo].[Equipment]
+   SET [Name] = @Name
+      ,[TotalQuantity] = @TotalQuantity
+      ,[AvailableQuantity] = @AvailableQuantity
+      ,[DailyLateFee] = @DailyLateFee
+      ,[ReplacementCost] = @ReplacementCost
+      ,[IsActive] = @IsActive
+ WHERE ID=@ID";
+
+            try
+            {
+                using (var connection = new SqlConnection(ConnectionString))
+                using (var cmd = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    cmd.Parameters.Add("@ID", SqlDbType.Int).Value = NewEquipment.ID;
+                    cmd.Parameters.Add("@Name", SqlDbType.VarChar, 250).Value = NewEquipment.Name;
+                    cmd.Parameters.Add("@TotalQuantity", SqlDbType.Int).Value = NewEquipment.TotalQuantity;
+                    cmd.Parameters.Add("@AvailableQuantity", SqlDbType.Int).Value = NewEquipment.AvailableQuantity;
+                    cmd.Parameters.Add("@DailyLateFee", SqlDbType.Decimal).Value = NewEquipment.DailyLateFee;
+                    cmd.Parameters.Add("@ReplacementCost", SqlDbType.Decimal).Value = NewEquipment.ReplacementCost;
+                    cmd.Parameters.Add("@IsActive", SqlDbType.Bit).Value = NewEquipment.IsActive;
+
+                    int AffectedRows = cmd.ExecuteNonQuery();
+                    if (AffectedRows > 0)
+                        IsUpdated = true;
+
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                throw SqlErrorMapper.Map(ex, "Add New borrower");
+            }
+            return IsUpdated;
+        }
         public static Equipment GetEquipmentByID(int EquipmentID) 
         {
             string query = @"SELECT [ID]
@@ -169,8 +209,8 @@ FROM   [dbo].[Equipment];";
 
             try 
             {
-                using (SqlConnection connection =new SqlConnection(ConnectionString))
-                using (SqlCommand cmd =new SqlCommand(query, connection))
+                using (var connection =new SqlConnection(ConnectionString))
+                using (var cmd =new SqlCommand(query, connection))
                 {
                     connection.Open();
                     using (SqlDataReader reader = cmd.ExecuteReader()) 
