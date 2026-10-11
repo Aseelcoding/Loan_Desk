@@ -74,7 +74,7 @@ namespace DAL
       ,[DailyLateFee] = @DailyLateFee
       ,[ReplacementCost] = @ReplacementCost
       ,[IsActive] = @IsActive
- WHERE ID=@ID";
+ WHERE ID=@ID;";
 
             try
             {
@@ -102,6 +102,72 @@ namespace DAL
                 throw SqlErrorMapper.Map(ex, "Add New borrower");
             }
             return IsUpdated;
+        }
+        public static bool DeactivateEquipment(int EquipmentID) 
+        {
+            bool IsDeactivated = false;
+
+            string query = @"
+                        
+                         UPDATE [dbo].[Equipment]
+   SET [IsActive] = 0
+ WHERE ID=@ID;";
+            try
+            {
+                using (var connection = new SqlConnection(ConnectionString))
+                using (var cmd = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    cmd.Parameters.Add("@ID", SqlDbType.Int).Value = EquipmentID;
+
+
+                    int AffectedRows = cmd.ExecuteNonQuery();
+                    if (AffectedRows > 0)
+                        IsDeactivated = true;
+
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                throw SqlErrorMapper.Map(ex, "Deactivate  borrower");
+            }
+
+            return IsDeactivated;
+
+        }
+        public static bool ActivateEquipment(int EquipmentID)
+        {
+            bool IsActivated = false;
+
+            string query = @"
+                        
+                         UPDATE [dbo].[Equipment]
+   SET [IsActive] = 1
+ WHERE ID=@ID;";
+            try
+            {
+                using (var connection = new SqlConnection(ConnectionString))
+                using (var cmd = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    cmd.Parameters.Add("@ID", SqlDbType.Int).Value = EquipmentID;
+
+
+                    int AffectedRows = cmd.ExecuteNonQuery();
+                    if (AffectedRows > 0)
+                        IsActivated = true;
+
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                throw SqlErrorMapper.Map(ex, "Activate  borrower");
+            }
+
+            return IsActivated;
+
         }
         public static Equipment GetEquipmentByID(int EquipmentID) 
         {
@@ -227,6 +293,7 @@ FROM   [dbo].[Equipment];";
 
             return dtEq;
         }
+
 
     }
 }

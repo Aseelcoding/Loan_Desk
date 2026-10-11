@@ -48,6 +48,8 @@
             this.IsActive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ContextOperation = new ReaLTaiizor.Controls.CrownContextMenuStrip();
             this.btnUpdate = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnActivate = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnDeactivate = new System.Windows.Forms.ToolStripMenuItem();
             this.ContentPanel.SuspendLayout();
             this.parrotGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEq)).BeginInit();
@@ -290,9 +292,11 @@
             this.ContextOperation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.ContextOperation.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.ContextOperation.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnUpdate});
+            this.btnUpdate,
+            this.btnActivate,
+            this.btnDeactivate});
             this.ContextOperation.Name = "crownContextMenuStrip1";
-            this.ContextOperation.Size = new System.Drawing.Size(132, 30);
+            this.ContextOperation.Size = new System.Drawing.Size(215, 110);
             // 
             // btnUpdate
             // 
@@ -300,9 +304,29 @@
             this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btnUpdate.Image = global::Loan_Desk.Properties.Resources.update_20;
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(131, 26);
+            this.btnUpdate.Size = new System.Drawing.Size(214, 26);
             this.btnUpdate.Text = "Update";
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnActivate
+            // 
+            this.btnActivate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.btnActivate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.btnActivate.Image = global::Loan_Desk.Properties.Resources.active_20;
+            this.btnActivate.Name = "btnActivate";
+            this.btnActivate.Size = new System.Drawing.Size(214, 26);
+            this.btnActivate.Text = "Activate";
+            this.btnActivate.Click += new System.EventHandler(this.btnActivate_Click);
+            // 
+            // btnDeactivate
+            // 
+            this.btnDeactivate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.btnDeactivate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.btnDeactivate.Image = global::Loan_Desk.Properties.Resources.delete_20;
+            this.btnDeactivate.Name = "btnDeactivate";
+            this.btnDeactivate.Size = new System.Drawing.Size(214, 26);
+            this.btnDeactivate.Text = "Deactivate";
+            this.btnDeactivate.Click += new System.EventHandler(this.btnDeactivate_Click);
             // 
             // EquipmentView
             // 
@@ -341,5 +365,7 @@
         private ReaLTaiizor.Controls.MaterialComboBox cbFilter;
         private ReaLTaiizor.Controls.CrownContextMenuStrip ContextOperation;
         private System.Windows.Forms.ToolStripMenuItem btnUpdate;
+        private System.Windows.Forms.ToolStripMenuItem btnActivate;
+        private System.Windows.Forms.ToolStripMenuItem btnDeactivate;
     }
 }

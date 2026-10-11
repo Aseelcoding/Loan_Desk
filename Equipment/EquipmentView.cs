@@ -114,5 +114,53 @@ namespace Loan_Desk.Equipment
             }
         }
 
+        private void btnActivate_Click(object sender, EventArgs e)
+        {
+            bool IsActivated=false;
+            try 
+            {
+                LoanDesk.Models.Equipment equipment = GetSelectedRow();
+                if (equipment.IsActive)
+                    throw new Exceptions.BusinessRuleException("The equipment is already Activated.");
+                IsActivated = EquipmentBLL.ActivateEquipment(equipment.ID);
+                if (IsActivated)
+                    { MessageBox.Show("Success");
+                    RefreshData();
+                }
+                else
+                    MessageBox.Show("Failed");
+            }
+            catch(Exception ex) 
+            {
+                ErrorHandler.Show(ex);
+            }
+
+        }
+
+        private void btnDeactivate_Click(object sender, EventArgs e)
+        {
+            bool IsDeactivated = false;
+            try
+            {
+                LoanDesk.Models.Equipment equipment = GetSelectedRow();
+                if (equipment.IsActive==false)
+                    throw new Exceptions.BusinessRuleException("The equipment is already Deactivated.");
+                IsDeactivated = EquipmentBLL.DeactivateEquipment(equipment.ID);
+                if (IsDeactivated)
+                    { MessageBox.Show("Success"); RefreshData(); }
+                else
+                    MessageBox.Show("Failed");
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.Show(ex);
+            }
+        }
     }
-}
+} 
+   
+
+
+
+
+   

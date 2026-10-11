@@ -56,7 +56,14 @@ namespace BLL
         {
             return EquipmentDAL.GetEquipmentByID(EquipmentID);
         }
-
+        public static bool ActivateEquipment(int EquipmentID) 
+        {
+            return EquipmentDAL.ActivateEquipment(EquipmentID);
+        }
+        public static bool DeactivateEquipment(int EquipmentID) 
+        {
+            return EquipmentDAL.DeactivateEquipment(EquipmentID);
+        }
         public static DataTable GetEquipments()
         {
             return EquipmentDAL.GetEquipments();
