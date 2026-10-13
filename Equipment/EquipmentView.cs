@@ -60,12 +60,6 @@ namespace Loan_Desk.Equipment
         }
         private void Filtering(string Text)
         {
-//            Equipment ID
-//Equipment
-//Quantity
-//Avaliable Quantity
-//Replacement Cost
-
             if (string.IsNullOrEmpty(Text))
             {
                 string ActivateFilter = "";

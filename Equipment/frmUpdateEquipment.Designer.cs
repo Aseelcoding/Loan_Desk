@@ -31,8 +31,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSave = new ReaLTaiizor.Controls.LostCancelButton();
             this.btnClose = new ReaLTaiizor.Controls.LostCancelButton();
-            this.togIsActive = new ReaLTaiizor.Controls.ToggleButton();
-            this.bigLabel8 = new ReaLTaiizor.Controls.BigLabel();
             this.numReplecmentCost = new ReaLTaiizor.Controls.CrownNumeric();
             this.numDailyLateFee = new ReaLTaiizor.Controls.CrownNumeric();
             this.bigLabel7 = new ReaLTaiizor.Controls.BigLabel();
@@ -59,8 +57,6 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
             this.panel1.Controls.Add(this.btnSave);
             this.panel1.Controls.Add(this.btnClose);
-            this.panel1.Controls.Add(this.togIsActive);
-            this.panel1.Controls.Add(this.bigLabel8);
             this.panel1.Controls.Add(this.numReplecmentCost);
             this.panel1.Controls.Add(this.numDailyLateFee);
             this.panel1.Controls.Add(this.bigLabel7);
@@ -78,7 +74,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(572, 578);
+            this.panel1.Size = new System.Drawing.Size(572, 499);
             this.panel1.TabIndex = 0;
             // 
             // btnSave
@@ -89,7 +85,7 @@
             this.btnSave.ForeColor = System.Drawing.Color.White;
             this.btnSave.HoverColor = System.Drawing.Color.MediumSeaGreen;
             this.btnSave.Image = null;
-            this.btnSave.Location = new System.Drawing.Point(0, 516);
+            this.btnSave.Location = new System.Drawing.Point(0, 438);
             this.btnSave.Margin = new System.Windows.Forms.Padding(5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(180, 62);
@@ -105,36 +101,13 @@
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.HoverColor = System.Drawing.Color.MediumSeaGreen;
             this.btnClose.Image = null;
-            this.btnClose.Location = new System.Drawing.Point(392, 516);
+            this.btnClose.Location = new System.Drawing.Point(392, 438);
             this.btnClose.Margin = new System.Windows.Forms.Padding(5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(180, 62);
             this.btnClose.TabIndex = 109;
             this.btnClose.Text = "CLOSE";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // togIsActive
-            // 
-            this.togIsActive.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.togIsActive.Location = new System.Drawing.Point(204, 421);
-            this.togIsActive.Margin = new System.Windows.Forms.Padding(5);
-            this.togIsActive.Name = "togIsActive";
-            this.togIsActive.Size = new System.Drawing.Size(76, 33);
-            this.togIsActive.TabIndex = 108;
-            this.togIsActive.Toggled = true;
-            this.togIsActive.Type = ReaLTaiizor.Controls.ToggleButton._Type.YesNo;
-            // 
-            // bigLabel8
-            // 
-            this.bigLabel8.AutoSize = true;
-            this.bigLabel8.BackColor = System.Drawing.Color.Transparent;
-            this.bigLabel8.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.bigLabel8.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.bigLabel8.Location = new System.Drawing.Point(12, 431);
-            this.bigLabel8.Name = "bigLabel8";
-            this.bigLabel8.Size = new System.Drawing.Size(85, 23);
-            this.bigLabel8.TabIndex = 107;
-            this.bigLabel8.Text = "IS ACTIVE";
             // 
             // numReplecmentCost
             // 
@@ -337,10 +310,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(572, 578);
+            this.ClientSize = new System.Drawing.Size(572, 499);
             this.Controls.Add(this.panel1);
-            this.MaximumSize = new System.Drawing.Size(590, 625);
-            this.MinimumSize = new System.Drawing.Size(590, 625);
+            this.MaximumSize = new System.Drawing.Size(590, 546);
+            this.MinimumSize = new System.Drawing.Size(590, 546);
             this.Name = "frmUpdateEquipment";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmUpdateEquipment";
@@ -371,8 +344,6 @@
         private ReaLTaiizor.Controls.CrownNumeric numDailyLateFee;
         private ReaLTaiizor.Controls.BigLabel bigLabel7;
         private ReaLTaiizor.Controls.BigLabel bigLabel6;
-        private ReaLTaiizor.Controls.ToggleButton togIsActive;
-        private ReaLTaiizor.Controls.BigLabel bigLabel8;
         private ReaLTaiizor.Controls.LostCancelButton btnSave;
         private ReaLTaiizor.Controls.LostCancelButton btnClose;
     }

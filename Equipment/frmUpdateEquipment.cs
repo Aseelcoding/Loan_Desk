@@ -30,7 +30,7 @@ namespace Loan_Desk.Equipment
             numAvailableQuantity.Value = OriginalEquipment.AvailableQuantity;
             numDailyLateFee.Value = OriginalEquipment.DailyLateFee;
             numReplecmentCost.Value = OriginalEquipment.ReplacementCost;
-            togIsActive.Toggled = OriginalEquipment.IsActive;
+            
 
         }
         private void CheckEquipmentInfo(LoanDesk.Models.Equipment equipment)
@@ -73,7 +73,7 @@ namespace Loan_Desk.Equipment
             Equipment.AvailableQuantity = (int)numAvailableQuantity.Value;
             Equipment.DailyLateFee = numDailyLateFee.Value;
             Equipment.ReplacementCost = numReplecmentCost.Value;
-            Equipment.IsActive = togIsActive.Toggled;
+            Equipment.IsActive = OriginalEquipment.IsActive;
 
             try
             {
