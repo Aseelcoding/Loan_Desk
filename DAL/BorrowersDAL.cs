@@ -288,5 +288,75 @@ WHERE  ID = @ID;";
 
             return IsActivated;
         }
+        public static bool IsActive(int ID)
+        {
+            bool IsActive = false;
+
+            string query = @"
+select IsActive
+from Borrowers
+where ID=@ID;
+";
+
+            try
+            {
+                using (var connection = new SqlConnection(ConnectionString))
+                using (var cmd = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    cmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
+                    object Result = cmd.ExecuteScalar();
+                    if (Result == null || Result == DBNull.Value)
+                        return false;
+
+                    IsActive = (bool)Result;
+
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                throw SqlErrorMapper.Map(ex, "Is Borrower Active.");
+            }
+            return IsActive;
+        }
+        public static int GetActiveLoansCountByBorrowerID(int ID)
+        {
+            int ActiveLoans = -1;
+
+
+            string query = @"select count
+(
+case 
+when status = 'Active' then 1
+else null
+end
+
+) as ActiveLoans
+
+from Loans
+where BorrowerID =@ID;
+";
+
+
+            try 
+            {
+                using (var connection=new SqlConnection (ConnectionString))
+                using (var cmd=new SqlCommand(query,connection))
+                {
+
+                    object Result = cmd.ExecuteScalar();
+
+                    int.TryParse(Result.ToString(), out ActiveLoans);
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw SqlErrorMapper.Map(ex, "Add New borrower");
+            }
+
+            return ActiveLoans;
+        }
+
     }
 }

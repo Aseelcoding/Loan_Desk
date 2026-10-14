@@ -95,5 +95,9 @@ namespace BLL
             RequireUser();
             return BorrowersDAL.ActivateBorrowerByID(BorrowerID);
         }
+
+        public static bool IsActive(int ID) {
+                return BorrowersDAL.IsActive(ID);
+        }
     }
 }

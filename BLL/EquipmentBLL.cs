@@ -68,5 +68,9 @@ namespace BLL
         {
             return EquipmentDAL.GetEquipments();
         }
+        public static bool IsActive(int ID) 
+        {
+            return EquipmentDAL.IsActive(ID);
+        }
     }
 }

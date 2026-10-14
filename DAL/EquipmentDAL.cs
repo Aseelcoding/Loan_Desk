@@ -293,7 +293,38 @@ FROM   [dbo].[Equipment];";
 
             return dtEq;
         }
+        public static bool IsActive(int ID)
+        {
+            bool IsActive = false;
 
+            string query = @"
+select IsActive
+from Equipment
+where ID=@ID;
+";
+
+            try
+            {
+                using (var connection = new SqlConnection(ConnectionString))
+                using (var cmd = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    cmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
+                    object Result = cmd.ExecuteScalar();
+                    if (Result == null || Result == DBNull.Value)
+                        return false;
+
+                    IsActive = (bool)Result;
+
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                throw SqlErrorMapper.Map(ex, "Is Equipment Active.");
+            }
+            return IsActive;
+        }
 
     }
 }

@@ -253,5 +253,10 @@ namespace BLL
             return UserDAL.GetUsers();
         }
 
+        public static bool IsActive(int ID) 
+        {
+            return UserDAL.IsActive(ID);
+        }
+       
     }
 }
