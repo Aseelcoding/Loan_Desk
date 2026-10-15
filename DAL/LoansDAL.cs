@@ -1,15 +1,13 @@
-﻿using System.Configuration;
-using System.Data.SqlClient;
-using LoanDesk.Models;
+﻿using System;
+using System.Configuration;
 using System.Data;
-using System;
-using System.Reflection;
+using System.Data.SqlClient;
 
 namespace DAL
 {
     public class LoansDAL
     {
-        //catch (SqlException ex) 
+        //catch (SqlException ex)
         //{
         //    throw SqlErrorMapper.Map(ex, "Add New borrower");
         //}
@@ -17,8 +15,7 @@ namespace DAL
 
         public static DataTable GetAllLoans()
         {
-
-            var dtLoans=new DataTable("Loans");
+            var dtLoans = new DataTable("Loans");
             string query = @"SELECT [ID]
       ,[EquipmentID]
       ,[BorrowerID]
@@ -33,14 +30,13 @@ namespace DAL
   FROM [dbo].[Loans]
 ;";
 
-
-            try 
+            try
             {
-                using (var connection =new SqlConnection(ConnectionString))
-                using (var cmd = new SqlCommand(query, connection)) 
+                using (var connection = new SqlConnection(ConnectionString))
+                using (var cmd = new SqlCommand(query, connection))
                 {
                     connection.Open();
-                    SqlDataReader reader =cmd.ExecuteReader();
+                    SqlDataReader reader = cmd.ExecuteReader();
 
                     dtLoans.Load(reader);
                 }
@@ -52,7 +48,8 @@ namespace DAL
 
             return dtLoans;
         }
-        public static bool AddLoan(LoanDesk.Models.Loan NewLoan) 
+
+        public static bool AddLoan(LoanDesk.Models.Loan NewLoan)
         {
             bool IsAdded = false;
 
@@ -79,10 +76,10 @@ namespace DAL
            ,@LateFee
            ,@FinePaid);";
 
-            try 
+            try
             {
                 using (var connection = new SqlConnection(ConnectionString))
-                using (var cmd =new SqlCommand(query, connection))
+                using (var cmd = new SqlCommand(query, connection))
                 {
                     connection.Open();
                     cmd.Parameters.Add("@EquipmentID", SqlDbType.Int).Value = NewLoan.EquipmentID;
@@ -92,20 +89,20 @@ namespace DAL
                     cmd.Parameters.Add("@LoanedAt", SqlDbType.DateTime).Value = NewLoan.LoanedAt;
                     cmd.Parameters.Add("@DueAt", SqlDbType.DateTime).Value = NewLoan.DueAt;
                     cmd.Parameters.Add("@Status", SqlDbType.VarChar, 25).Value = NewLoan.Status;
-                    cmd.Parameters.Add("@LateFee", SqlDbType.Decimal,24).Value = NewLoan.LateFee;
-                    
+                    cmd.Parameters.Add("@LateFee", SqlDbType.Decimal, 24).Value = NewLoan.LateFee;
+
                     if (NewLoan.ReturnedAt.HasValue)
                         cmd.Parameters.Add("@ReturnedAt", SqlDbType.DateTime).Value = NewLoan.ReturnedAt;
                     else
-                        cmd.Parameters.Add("@ReturnedAt", SqlDbType.DateTime).Value =DBNull.Value;
+                        cmd.Parameters.Add("@ReturnedAt", SqlDbType.DateTime).Value = DBNull.Value;
 
-                    if(NewLoan.FinePaid.HasValue)
-                        cmd.Parameters.Add("@FinePaid",SqlDbType.Bit).Value = NewLoan.FinePaid;
+                    if (NewLoan.FinePaid.HasValue)
+                        cmd.Parameters.Add("@FinePaid", SqlDbType.Bit).Value = NewLoan.FinePaid;
                     else
                         cmd.Parameters.Add("@FinePaid", SqlDbType.Bit).Value = DBNull.Value;
 
-                    int AffectedRows=cmd.ExecuteNonQuery();
-                    if(AffectedRows>0)
+                    int AffectedRows = cmd.ExecuteNonQuery();
+                    if (AffectedRows > 0)
                         IsAdded = true;
                 }
             }
@@ -115,6 +112,37 @@ namespace DAL
             }
 
             return IsAdded;
+        }
+
+        public static decimal GetLateFee(int ID)
+        {
+            decimal LateFee;
+            string query = @"select COALESCE(SUM(LateFee),0) as LateFee from loans
+                            where BorrowerID =@ID;";
+
+            try
+            {
+                using (var connection = new SqlConnection(ConnectionString))
+                using (var cmd = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+
+                    cmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
+
+                    object Result = cmd.ExecuteScalar();
+
+                    if (Result == null || Result == DBNull.Value)
+                        return 0;
+
+                    decimal.TryParse(Result.ToString(), out LateFee);
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw SqlErrorMapper.Map(ex, "Add New borrower");
+            }
+
+            return LateFee;
         }
     }
 }

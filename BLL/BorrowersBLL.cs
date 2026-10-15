@@ -51,6 +51,10 @@ namespace BLL
             return BorrowersDAL.GetBorrowers();
         }
 
+        public static List<Borrower> GetAllBorrowersList() {
+        return BorrowersDAL.GetAllBorrowersList();
+        }
+
         public static bool AddNewBorrower(Borrower Newborrower)
         {
             RequireUser();

@@ -16,5 +16,11 @@ namespace Loan_Desk.Loans
         {
             InitializeComponent();
         }
+
+        private void btnAddLoan_Click(object sender, EventArgs e)
+        {
+            frmAddLoan frmAddLoan = new frmAddLoan();
+            frmAddLoan.ShowDialog();
+        }
     }
 }

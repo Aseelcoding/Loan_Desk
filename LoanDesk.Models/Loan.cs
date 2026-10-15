@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LoanDesk.Models
 {
@@ -16,11 +12,11 @@ namespace LoanDesk.Models
         public DateTime LoanedAt { get; set; }
         public DateTime DueAt { get; set; }
         public DateTime? ReturnedAt { get; set; }
+
         //Allowed (Active,Returned,Lost) only
         public string Status { get; set; }
+
         public decimal LateFee { get; set; }
         public bool? FinePaid { get; set; }
-
-
     }
 }

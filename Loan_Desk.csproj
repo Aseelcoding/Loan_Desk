@@ -121,6 +121,12 @@
     <Compile Include="Fines\FinesView.Designer.cs">
       <DependentUpon>FinesView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Loans\frmAddLoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Loans\frmAddLoan.Designer.cs">
+      <DependentUpon>frmAddLoan.cs</DependentUpon>
+    </Compile>
     <Compile Include="Loans\LoansView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -209,6 +215,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Fines\FinesView.resx">
       <DependentUpon>FinesView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Loans\frmAddLoan.resx">
+      <DependentUpon>frmAddLoan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Loans\LoansView.resx">
       <DependentUpon>LoansView.cs</DependentUpon>

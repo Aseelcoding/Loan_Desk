@@ -293,6 +293,59 @@ FROM   [dbo].[Equipment];";
 
             return dtEq;
         }
+        public static List<Equipment> GetEquipmentList() 
+        {
+            List<Equipment> equipments= new List<Equipment>();
+
+            DataTable dtEq = new DataTable("Equipments");
+            string query = @"SELECT [ID],
+       [Name],
+       [TotalQuantity],
+       [AvailableQuantity],
+       [DailyLateFee],
+       [ReplacementCost],
+       [IsActive]
+FROM   [dbo].[Equipment];";
+
+
+            try
+            {
+                using (var connection = new SqlConnection(ConnectionString))
+                using (var cmd = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                     
+
+                        while (reader.Read())
+                        {
+                            int EQID = -1;
+                            int.TryParse(reader["ID"].ToString(), out EQID);
+                            equipments.Add(new Equipment
+                            {
+                                ID = EQID,
+                                Name = reader["Name"].ToString(),
+
+                                TotalQuantity = (int)reader["TotalQuantity"],
+                                AvailableQuantity = (int)reader["AvailableQuantity"],
+                                DailyLateFee = (decimal)reader["DailyLateFee"],
+                                ReplacementCost = (decimal)reader["ReplacementCost"],
+                                IsActive = (bool)reader["IsActive"]
+                            });
+                        }
+                    }
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                throw SqlErrorMapper.Map(ex, "Add New borrower");
+            }
+
+            return equipments;
+
+        }
         public static bool IsActive(int ID)
         {
             bool IsActive = false;

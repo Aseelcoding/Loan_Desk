@@ -4,6 +4,7 @@ using LoanDesk.Models;
 using System.Data;
 using System;
 using System.Reflection;
+using System.Collections.Generic;
 
 namespace DAL
 {
@@ -54,6 +55,61 @@ GROUP BY B.ID, B.FullName, B.Passport, B.Phone, B.IsActive;";
             }
 
             return dtBorrowers;
+        }
+         public static List<Borrower> GetAllBorrowersList()
+        {
+            List<Borrower> borrowers = new List<Borrower>();
+           
+                string query = @"SELECT   B.ID,
+         B.FullName,
+         B.Passport,
+         B.Phone,
+         B.IsActive,
+         count(CASE L.Status WHEN 'Active' THEN 1 END) AS ActiveLoans,
+         SUM(CASE L.FinePaid WHEN 0 THEN L.LateFee ELSE 0 END) AS UnpaidFines
+FROM     Borrowers AS B
+         LEFT OUTER JOIN
+         Loans AS L
+         ON B.ID = L.BorrowerID
+GROUP BY B.ID, B.FullName, B.Passport, B.Phone, B.IsActive;";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+
+
+                        while (reader.Read()) 
+                        {
+
+                            int BID = -1;
+                            int.TryParse(reader["ID"].ToString(), out BID);
+
+                            borrowers.Add(new Borrower
+                            {
+                                ID = BID,
+
+                                FullName = reader["FullName"].ToString(),
+                                Passport = reader["Passport"].ToString(),
+                                Phone = reader["Phone"].ToString(),
+                                IsActive = (bool)reader["IsActive"]
+                            }
+                             );
+
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw SqlErrorMapper.Map(ex, "Get Borrowers");
+            }
+            return borrowers;
         }
         public static bool AddNewBorrower(Borrower Newborrower)
         {
@@ -357,6 +413,6 @@ where BorrowerID =@ID;
 
             return ActiveLoans;
         }
-
+      
     }
 }
