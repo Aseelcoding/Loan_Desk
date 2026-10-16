@@ -3,6 +3,7 @@ using LoanDesk.Models;
 using System;
 using System.Data;
 using System.Windows.Forms;
+using utilities;
 
 namespace Loan_Desk.Borrowers
 {
@@ -48,6 +49,7 @@ namespace Loan_Desk.Borrowers
         {
             InitializeComponent();
             RefreshData();
+            DataGridViewHelper.StyleDataGridView(dgvB);
         }
 
         private void Filtering(string Text)

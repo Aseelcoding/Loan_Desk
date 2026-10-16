@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using utilities;
 
 namespace Loan_Desk.Fines
 {
@@ -7,6 +8,7 @@ namespace Loan_Desk.Fines
         public FinesView()
         {
             InitializeComponent();
+            DataGridViewHelper.StyleDataGridView(dgvF);
         }
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Data;
 using System.Windows.Forms;
+using utilities;
 
 namespace Loan_Desk.Users
 {
@@ -12,6 +13,8 @@ namespace Loan_Desk.Users
         public UsersView()
         {
             InitializeComponent();
+
+            DataGridViewHelper.StyleDataGridView(dgvUsers);
         }
 
         private void RefreshData()

@@ -3,6 +3,7 @@ using LoanDesk.Models;
 using System;
 using System.Data;
 using System.Windows.Forms;
+using utilities;
 
 namespace Loan_Desk.Equipment
 {
@@ -11,6 +12,7 @@ namespace Loan_Desk.Equipment
         public EquipmentView()
         {
             InitializeComponent();
+            DataGridViewHelper.StyleDataGridView(dgvEq);
         }
 
         private DataTable dtEq;

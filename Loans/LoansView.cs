@@ -2,6 +2,7 @@
 using System;
 using System.Data;
 using System.Windows.Forms;
+using utilities;
 
 namespace Loan_Desk.Loans
 {
@@ -13,6 +14,8 @@ namespace Loan_Desk.Loans
         {
             InitializeComponent();
             RefreshData();
+
+            DataGridViewHelper.StyleDataGridView(dgvLo);
         }
 
         private void Filtering(string Text)
