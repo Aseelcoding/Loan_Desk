@@ -90,6 +90,8 @@ namespace BLL
         public static bool DeactivateBorrowerByID(int BorrowerID)
         {
             RequireUser();
+            if (BorrowersDAL.GetActiveLoansCountByBorrowerID(BorrowerID) >= 1)
+                throw new Exceptions.BusinessRuleException($"This borrower with the ID {BorrowerID} has active loans.\nDeactivate loans first.");
 
             return BorrowersDAL.DeactivateBorrowerByID(BorrowerID);
         }

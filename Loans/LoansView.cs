@@ -1,4 +1,5 @@
 ﻿using BLL;
+using LoanDesk.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using utilities;
 
 namespace Loan_Desk.Loans
 {
@@ -18,6 +20,91 @@ namespace Loan_Desk.Loans
         {
             InitializeComponent();
             RefreshData();
+        }
+        private void Filtering(string Text)
+        {
+            string Filter = string.Empty;
+
+            if (!string.IsNullOrEmpty(Text))
+            {
+                if (cbFilter.SelectedIndex == 0)
+                {
+                    int ID = -1;
+                    int.TryParse(Text, out ID);
+                    Filter = $"ID = {ID}";
+                }
+                else if (cbFilter.SelectedIndex == 1)
+                {
+                    int EQID = -1;
+                    int.TryParse(Text, out EQID);
+                    Filter = $"EquipmentID = {EQID}";
+                }
+                else if (cbFilter.SelectedIndex == 2)
+                {
+                    int BOID = -1;
+                    int.TryParse(Text, out BOID);
+                    Filter = $"BorrowerID = {BOID}";
+                }
+                else if (cbFilter.SelectedIndex == 3)
+                {
+                    int USID = -1;
+                    int.TryParse(Text, out USID);
+                    Filter = $"UserID = {USID}";
+                }
+                else if (cbFilter.SelectedIndex == 4)
+                {
+                    int Quantity = -1;
+                    int.TryParse(Text, out Quantity);
+                    Filter = $"Quantity = {Quantity}";
+                }
+                else if (cbFilter.SelectedIndex == 5)
+                {
+                    DateTime LoanedAt;
+
+                    if (DateTime.TryParse(Text, out LoanedAt))
+                    {
+                        Filter = $"LoanedAt >= '{LoanedAt:yyyy-MM-dd}' AND LoanedAt < '{LoanedAt.AddDays(1):yyyy-MM-dd}'";
+                    }
+                }
+                else if (cbFilter.SelectedIndex == 6)
+                {
+                    DateTime DueAt;
+
+                    if (DateTime.TryParse(Text, out DueAt))
+                    {
+                        Filter = $"DueAt >= '{DueAt:yyyy-MM-dd}' AND DueAt < '{DueAt.AddDays(1):yyyy-MM-dd}'";
+                    }
+                }
+                else if (cbFilter.SelectedIndex == 7)
+                {
+                    DateTime ReturnedAt;
+
+                    if (DateTime.TryParse(Text, out ReturnedAt))
+                    {
+                        Filter = $"ReturnedAt >= '{ReturnedAt:yyyy-MM-dd}' AND ReturnedAt < '{ReturnedAt.AddDays(1):yyyy-MM-dd}'";
+                    }
+                }
+                else if (cbFilter.SelectedIndex == 8)
+                {
+                    Filter = $"Status = '{Text}'";
+                }
+            }
+
+            // Apply status filters
+            if (chActive.Checked && !chReturned.Checked && !chLost.Checked)
+            {
+                Filter += (Filter != "" ? " AND " : "") + "Status = 'Active'";
+            }
+            else if (!chActive.Checked && chReturned.Checked && !chLost.Checked)
+            {
+                Filter += (Filter != "" ? " AND " : "") + "Status = 'Returned'";
+            }
+            else if (!chActive.Checked && !chReturned.Checked && chLost.Checked)
+            {
+                Filter += (Filter != "" ? " AND " : "") + "Status = 'Lost'";
+            }
+
+            LoadLoansInfo(Filter);
         }
         private void LoadLoansInfo(string Filter = "")
         {
@@ -61,6 +148,34 @@ namespace Loan_Desk.Loans
             frmAddLoan frmAddLoan = new frmAddLoan();
             frmAddLoan.ShowDialog();
             RefreshData();
+        }
+
+        private void txtBarSearch_TextChanged(object sender, EventArgs e)
+        {
+            string Filter = txtBarSearch.Text;
+            Filter=utilities.utilities.ClearFilterString(Filter);
+            Filtering(Filter);
+        }
+
+        private void chActive_CheckedChanged(object sender, EventArgs e)
+        {
+            string Filter = txtBarSearch.Text;
+            Filter = utilities.utilities.ClearFilterString(Filter);
+            Filtering(Filter);
+        }
+
+        private void chReturned_CheckedChanged(object sender, EventArgs e)
+        {
+            string Filter = txtBarSearch.Text;
+            Filter = utilities.utilities.ClearFilterString(Filter);
+            Filtering(Filter);
+        }
+
+        private void chLost_CheckedChanged(object sender, EventArgs e)
+        {
+            string Filter = txtBarSearch.Text;
+            Filter = utilities.utilities.ClearFilterString(Filter);
+            Filtering(Filter);
         }
     }
 }
