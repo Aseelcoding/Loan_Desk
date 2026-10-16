@@ -7,7 +7,6 @@ namespace BLL
 {
     public class LoansBLL
     {
-        
         private static void LoanDefaultData(Loan Loan)
         {
             Loan.LoanedAt = DateTime.Now;
@@ -51,19 +50,24 @@ namespace BLL
 
         public static DataTable GetAllLoans()
         {
+            UserBLL.RequireUser();
             return LoansDAL.GetAllLoans();
         }
 
         public static bool AddLoan(LoanDesk.Models.Loan NewLoan)
         {
-
-
-
+            UserBLL.RequireUser();
             LoanDefaultData(NewLoan);
             ValidateLoan(NewLoan);
             LoanDefaultData(NewLoan);
             return LoansDAL.AddLoan(NewLoan);
+        }
 
+        public static DataTable GetDailyLoanStatistics(
+DateTime StartDate,
+DateTime EndDate)
+        {
+            return LoansDAL.GetDailyLoanStatistics(StartDate, EndDate);
         }
     }
 }

@@ -1,24 +1,14 @@
 ﻿using BLL;
-using LoanDesk.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using utilities;
-using static LoanDesk.Models.Exceptions;
 
 namespace Loan_Desk.Users
 {
-    
     public partial class UsersView : UserControl
     {
-        DataTable dtUsers;
+        private DataTable dtUsers;
+
         public UsersView()
         {
             InitializeComponent();
@@ -30,31 +20,31 @@ namespace Loan_Desk.Users
             {
                 dtUsers = UserBLL.GetUsers();
             }
-
             catch (Exception ex)
             {
                 ErrorHandler.Show(ex);
             }
             LoadUsersInfo(string.Empty);
         }
+
         private void UsersView_Load(object sender, EventArgs e)
         {
             RefreshData();
         }
-        private void LoadUsersInfo(string Filter) 
+
+        private void LoadUsersInfo(string Filter)
         {
             if (dtUsers == null)
                 return;
 
             dgvUsers.Rows.Clear();
-            DataView dvUser=new DataView();
+            DataView dvUser = new DataView();
             dvUser = dtUsers.DefaultView;
 
-            dvUser.RowFilter=Filter;
+            dvUser.RowFilter = Filter;
 
             foreach (DataRowView row in dvUser)
             {
-
                 dgvUsers.Rows.Add(
                     row["ID"],
                     row["Username"],
@@ -62,22 +52,21 @@ namespace Loan_Desk.Users
                     row["IsActive"]
                     );
             }
-
         }
-        private void Filtering(string Text) 
+
+        private void Filtering(string Text)
         {
             if (string.IsNullOrEmpty(Text))
-                {
+            {
                 string ActivateFilter = "";
-                if (chActive.Checked&&chInActive.Checked==false)
+                if (chActive.Checked && chInActive.Checked == false)
                     ActivateFilter = "IsActive =1";
-                else if(chActive.Checked==false && chInActive.Checked)
+                else if (chActive.Checked == false && chInActive.Checked)
                     ActivateFilter = "IsActive =0";
 
                 LoadUsersInfo(ActivateFilter);
                 return;
-
-                 }
+            }
 
             string Filter = string.Empty;
 
@@ -95,19 +84,17 @@ namespace Loan_Desk.Users
                 {
                     Filter = $"ID = {USID} and IsActive =0";
                 }
-
             }
             else if (cbFilter.SelectedIndex == 1)
             {
                 Filter = $"Username  like '{Text}%'";
-                if(chActive.Checked && chInActive.Checked == false)
+                if (chActive.Checked && chInActive.Checked == false)
                     Filter = $"Username  like '{Text}%' and IsActive=1";
                 else if (chActive.Checked == false && chInActive.Checked == true)
                     Filter = $"Username  like '{Text}%' and IsActive=0";
             }
             else if (cbFilter.SelectedIndex == 2)
             {
-
                 Filter = $"Role  like '{Text}%'";
                 if (chActive.Checked && chInActive.Checked == false)
                     Filter = $"Role  like '{Text}%' and IsActive=1";
@@ -116,45 +103,39 @@ namespace Loan_Desk.Users
             }
 
             LoadUsersInfo(Filter);
-
         }
+
         private void txtBarSearch_TextChanged(object sender, EventArgs e)
         {
             string Text = txtBarSearch.Text;
-            
+
             Text = utilities.utilities.ClearFilterString(Text);
 
-           
-            
             Filtering(Text);
-
-
         }
+
         private void btnAddUser_Click(object sender, EventArgs e)
         {
             frmAddUser frmAddUser = new frmAddUser();
-            DialogResult result= frmAddUser.ShowDialog();
-
+            DialogResult result = frmAddUser.ShowDialog();
 
             RefreshData();
-
-
-
         }
-        private LoanDesk.Models.User GetSelectedRow() 
-        {
-            LoanDesk.Models.User user =new LoanDesk.Models.User();
 
-            if (dgvUsers.SelectedRows.Count > 0) 
+        private LoanDesk.Models.User GetSelectedRow()
+        {
+            LoanDesk.Models.User user = new LoanDesk.Models.User();
+
+            if (dgvUsers.SelectedRows.Count > 0)
             {
                 int USID = -1;
                 int.TryParse(dgvUsers.SelectedRows[0].Cells["ID"].Value.ToString(), out USID);
-                user.ID= USID;
+                user.ID = USID;
 
-               user.Username= dgvUsers.SelectedRows[0].Cells["Username"].Value.ToString();
+                user.Username = dgvUsers.SelectedRows[0].Cells["Username"].Value.ToString();
                 user.Role = dgvUsers.SelectedRows[0].Cells["Role"].Value.ToString();
 
-               user.IsActive= (bool)dgvUsers.SelectedRows[0].Cells["IsActive"].Value;
+                user.IsActive = (bool)dgvUsers.SelectedRows[0].Cells["IsActive"].Value;
 
                 return user;
             }
@@ -163,6 +144,7 @@ namespace Loan_Desk.Users
                 return null;
             }
         }
+
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             LoanDesk.Models.User UpdateUser = GetSelectedRow();
@@ -176,9 +158,9 @@ namespace Loan_Desk.Users
             frmUpdateUser.ShowDialog();
             RefreshData();
         }
+
         private void btnUpdatePassword_Click(object sender, EventArgs e)
         {
-
             LoanDesk.Models.User user = GetSelectedRow();
             if (user == null)
             {
@@ -190,13 +172,14 @@ namespace Loan_Desk.Users
 
             RefreshData();
         }
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
             bool IsDeleted = false;
 
             try
             {
-                LoanDesk.Models.User user= GetSelectedRow();
+                LoanDesk.Models.User user = GetSelectedRow();
 
                 if (user == null)
                 {
@@ -204,12 +187,12 @@ namespace Loan_Desk.Users
                     return;
                 }
 
-                if (user.IsActive == false )
-                { MessageBox.Show("This user is already Inactive.");return; }
+                if (user.IsActive == false)
+                { MessageBox.Show("This user is already Inactive."); return; }
 
-                IsDeleted=UserBLL.DeleteUser(user);
-                if(IsDeleted)
-                MessageBox.Show("User now is Inactive.");
+                IsDeleted = UserBLL.DeleteUser(user);
+                if (IsDeleted)
+                    MessageBox.Show("User now is Inactive.");
                 else
                 {
                     MessageBox.Show("User could not be Inactivated.");
@@ -220,18 +203,19 @@ namespace Loan_Desk.Users
                 ErrorHandler.Show(ex);
             }
 
-
             RefreshData();
         }
+
         private void chActive_CheckedChanged(object sender, EventArgs e)
         {
             txtBarSearch_TextChanged(txtBarSearch, EventArgs.Empty);
         }
+
         private void chInactive_CheckedChanged(object sender, EventArgs e)
         {
             txtBarSearch_TextChanged(txtBarSearch, EventArgs.Empty);
         }
-        
+
         private void btnActivate_Click(object sender, EventArgs e)
         {
             bool IsActicated = false;
@@ -248,8 +232,8 @@ namespace Loan_Desk.Users
                 { MessageBox.Show("This user is already Active."); return; }
 
                 IsActicated = UserBLL.ActivateUser(user.ID);
-               
-                if(IsActicated)
+
+                if (IsActicated)
                     MessageBox.Show("User now is Active.");
                 else
                 {

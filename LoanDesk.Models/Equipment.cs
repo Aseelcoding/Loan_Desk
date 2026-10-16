@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LoanDesk.Models
+﻿namespace LoanDesk.Models
 {
     public class Equipment
     {
@@ -15,6 +9,5 @@ namespace LoanDesk.Models
         public decimal DailyLateFee { get; set; }
         public decimal ReplacementCost { get; set; }
         public bool IsActive { get; set; }
-
     }
 }

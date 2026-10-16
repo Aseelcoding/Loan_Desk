@@ -1,12 +1,5 @@
 ﻿using BLL;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Loan_Desk.Borrowers
@@ -23,7 +16,7 @@ namespace Loan_Desk.Borrowers
             bool IsAdded = false;
             try
             {
-                utilities.utilities.IsEmptyOrNullOrWhiteSpace(txtFullName.Text, "Username");
+                utilities.utilities.IsEmptyOrNullOrWhiteSpace(txtFullName.Text, "FullName");
                 utilities.utilities.IsEmptyOrNullOrWhiteSpace(txtPassport.Text, "Passport");
 
                 if (!txtPhone.MaskCompleted)
@@ -46,7 +39,6 @@ namespace Loan_Desk.Borrowers
                 { MessageBox.Show("Success"); this.Close(); }
                 else
                     MessageBox.Show("Failed");
-
             }
             catch (Exception ex)
             {

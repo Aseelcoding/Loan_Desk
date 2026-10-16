@@ -1,13 +1,7 @@
 ﻿using BLL;
 using LoanDesk.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Loan_Desk.Equipment
@@ -18,28 +12,30 @@ namespace Loan_Desk.Equipment
         {
             InitializeComponent();
         }
-        DataTable dtEq;
-        private void RefreshData() 
+
+        private DataTable dtEq;
+
+        private void RefreshData()
         {
-            try 
+            try
             {
                 dtEq = EquipmentBLL.GetEquipments();
                 LoadEquipmentInfo();
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 ErrorHandler.Show(ex);
             }
-
         }
-        private void LoadEquipmentInfo(string Filter = "") 
+
+        private void LoadEquipmentInfo(string Filter = "")
         {
             dgvEq.Rows.Clear();
             DataView dvEq = dtEq.DefaultView;
 
             dvEq.RowFilter = Filter;
 
-            foreach(DataRowView row in dvEq) 
+            foreach (DataRowView row in dvEq)
             {
                 dgvEq.Rows.Add
                     (
@@ -52,12 +48,14 @@ namespace Loan_Desk.Equipment
                     row["IsActive"]);
             }
         }
+
         private void btnAddEquipment_Click(object sender, EventArgs e)
         {
             frmAddNewEquipment frmAddNewEquipment = new frmAddNewEquipment();
             frmAddNewEquipment.ShowDialog();
             RefreshData();
         }
+
         private void Filtering(string Text)
         {
             if (string.IsNullOrEmpty(Text))
@@ -88,7 +86,6 @@ namespace Loan_Desk.Equipment
                 {
                     Filter = $"ID = {USID} and IsActive =0";
                 }
-
             }
             else if (cbFilter.SelectedIndex == 1)
             {
@@ -122,17 +119,16 @@ namespace Loan_Desk.Equipment
             {
                 decimal AvaliableQuantity = -1;
                 decimal.TryParse(Text, out AvaliableQuantity);
-                Filter = $"AvaliableQuantity = {AvaliableQuantity} ";
+                Filter = $"AvailableQuantity = {AvaliableQuantity} ";
 
                 if (chActive.Checked && chInActive.Checked == false)
                 {
-                    Filter = $"AvaliableQuantity = {AvaliableQuantity} and IsActive =1";
+                    Filter = $"AvailableQuantity = {AvaliableQuantity} and IsActive =1";
                 }
                 else if (chActive.Checked == false && chInActive.Checked == true)
                 {
-                    Filter = $"AvaliableQuantity = {AvaliableQuantity} and IsActive =0";
+                    Filter = $"AvailableQuantity = {AvaliableQuantity} and IsActive =0";
                 }
-
             }
             else if (cbFilter.SelectedIndex == 4)
             {
@@ -148,7 +144,6 @@ namespace Loan_Desk.Equipment
                 {
                     Filter = $"DailyLateFee = {DailyLateFee} and IsActive =0";
                 }
-
             }
             else if (cbFilter.SelectedIndex == 5)
             {
@@ -164,15 +159,16 @@ namespace Loan_Desk.Equipment
                 {
                     Filter = $"ReplacementCost = {ReplecmentCost} and IsActive =0";
                 }
-
             }
             LoadEquipmentInfo(Filter);
         }
+
         private void EquipmentView_Load(object sender, EventArgs e)
         {
             RefreshData();
         }
-        private LoanDesk.Models.Equipment GetSelectedRow() 
+
+        private LoanDesk.Models.Equipment GetSelectedRow()
         {
             if (dgvEq.SelectedRows.Count > 0)
             {
@@ -197,12 +193,13 @@ namespace Loan_Desk.Equipment
                     AvailableQuantity = AvaliableQun,
                     ReplacementCost = _ReplecmentCost,
                     DailyLateFee = _DailyLateFee,
-                    IsActive= _IsActive
+                    IsActive = _IsActive
                 };
             }
             else
                 return null;
         }
+
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             try
@@ -217,7 +214,7 @@ namespace Loan_Desk.Equipment
                 frmUpdateEquipment.ShowDialog();
                 RefreshData();
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 ErrorHandler.Show(ex);
             }
@@ -225,25 +222,27 @@ namespace Loan_Desk.Equipment
 
         private void btnActivate_Click(object sender, EventArgs e)
         {
-            bool IsActivated=false;
-            try 
+            bool IsActivated = false;
+            try
             {
                 LoanDesk.Models.Equipment equipment = GetSelectedRow();
+                if (equipment == null)
+                    throw new Exceptions.ValidationException("Please select a valid row");
                 if (equipment.IsActive)
                     throw new Exceptions.BusinessRuleException("The equipment is already Activated.");
                 IsActivated = EquipmentBLL.ActivateEquipment(equipment.ID);
                 if (IsActivated)
-                    { MessageBox.Show("Success");
+                {
+                    MessageBox.Show("Success");
                     RefreshData();
                 }
                 else
                     MessageBox.Show("Failed");
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 ErrorHandler.Show(ex);
             }
-
         }
 
         private void btnDeactivate_Click(object sender, EventArgs e)
@@ -252,11 +251,13 @@ namespace Loan_Desk.Equipment
             try
             {
                 LoanDesk.Models.Equipment equipment = GetSelectedRow();
-                if (equipment.IsActive==false)
+                if (equipment == null)
+                    throw new Exceptions.ValidationException("Please select a valid row");
+                if (equipment.IsActive == false)
                     throw new Exceptions.BusinessRuleException("The equipment is already Deactivated.");
                 IsDeactivated = EquipmentBLL.DeactivateEquipment(equipment.ID);
                 if (IsDeactivated)
-                    { MessageBox.Show("Success"); RefreshData(); }
+                { MessageBox.Show("Success"); RefreshData(); }
                 else
                     MessageBox.Show("Failed");
             }
@@ -272,10 +273,9 @@ namespace Loan_Desk.Equipment
 
             Text = utilities.utilities.ClearFilterString(Text);
 
-
-
             Filtering(Text);
         }
+
         private void chActive_CheckedChanged(object sender, EventArgs e)
         {
             txtBarSearch_TextChanged(txtBarSearch, EventArgs.Empty);
@@ -286,10 +286,4 @@ namespace Loan_Desk.Equipment
             txtBarSearch_TextChanged(txtBarSearch, EventArgs.Empty);
         }
     }
-} 
-   
-
-
-
-
-   
+}

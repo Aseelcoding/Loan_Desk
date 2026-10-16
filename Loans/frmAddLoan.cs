@@ -16,9 +16,15 @@ namespace Loan_Desk.Loans
         {
             InitializeComponent();
 
-            ListBorrowers = BorrowersBLL.GetAllBorrowersList();
-            ListEquipments = EquipmentBLL.GetEquipmentList();
-
+            try
+            {
+                ListBorrowers = BorrowersBLL.GetAllBorrowersList();
+                ListEquipments = EquipmentBLL.GetEquipmentList();
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.Show(ex);
+            }
             cmbBorrowers.DataSource = ListBorrowers;
             cmbBorrowers.DisplayMember = "FullName";
             cmbBorrowers.ValueMember = "ID";
@@ -30,9 +36,6 @@ namespace Loan_Desk.Loans
             cmbBorrowers.DrawMode = DrawMode.OwnerDrawFixed;
             cmbEquipments.DrawMode = DrawMode.OwnerDrawFixed;
         }
-
-        
-      
 
         private void cmbBorrowers_DrawItem(object sender, DrawItemEventArgs e)
         {
@@ -154,10 +157,9 @@ namespace Loan_Desk.Loans
         private void btnClose_Click_1(object sender, EventArgs e)
         {
             this.Close();
-
         }
 
-        private void ValidateLoan(LoanDesk.Models.Borrower borrower,LoanDesk.Models.Equipment equipment) 
+        private void ValidateLoan(LoanDesk.Models.Borrower borrower, LoanDesk.Models.Equipment equipment)
         {
             if (borrower.IsActive == false)
                 throw new Exceptions.BusinessRuleException("Inactive borrower can not take loans");
@@ -167,12 +169,11 @@ namespace Loan_Desk.Loans
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-
             bool IsAdded = false;
-            try 
+            try
             {
                 var borrower = cmbBorrowers.SelectedItem as LoanDesk.Models.Borrower;
-                var equipment =cmbEquipments.SelectedItem as LoanDesk.Models.Equipment;
+                var equipment = cmbEquipments.SelectedItem as LoanDesk.Models.Equipment;
                 ValidateLoan(borrower, equipment);
 
                 var NewLoan = new LoanDesk.Models.Loan();
@@ -183,17 +184,14 @@ namespace Loan_Desk.Loans
                 int.TryParse(numQuantity.Value.ToString(), out _Quantity);
                 NewLoan.Quantity = _Quantity;
 
-                IsAdded= LoansBLL.AddLoan(NewLoan);
-
+                IsAdded = LoansBLL.AddLoan(NewLoan);
 
                 if (IsAdded)
-                   { MessageBox.Show("Success");this.Close(); }
+                { MessageBox.Show("Success"); this.Close(); }
                 else
                     MessageBox.Show("Failed");
-
-
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 ErrorHandler.Show(ex);
             }
@@ -201,29 +199,21 @@ namespace Loan_Desk.Loans
 
         private void cmbBorrowers_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-            Borrower borrower=cmbBorrowers.SelectedItem as Borrower;
-            
+            Borrower borrower = cmbBorrowers.SelectedItem as Borrower;
         }
 
         private void cmbEquipments_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoanDesk.Models.Equipment equipment=cmbEquipments.SelectedItem as LoanDesk.Models.Equipment;
+            LoanDesk.Models.Equipment equipment = cmbEquipments.SelectedItem as LoanDesk.Models.Equipment;
             numAvailableQuantity.Value = equipment.AvailableQuantity;
-
-
         }
 
         private void numAvailableQuantity_ValueChanged(object sender, EventArgs e)
         {
-
             if (numAvailableQuantity.Value > 3)
                 numQuantity.Maximum = 3;
             else
                 numQuantity.Maximum = numAvailableQuantity.Value;
-
-
-
         }
     }
 }

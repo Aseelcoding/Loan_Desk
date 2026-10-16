@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using static LoanDesk.Models.Exceptions;
 
@@ -10,10 +6,9 @@ namespace Loan_Desk
 {
     internal class ErrorHandler
     {
-    
-            public static void Show(Exception ex, string title = "Loan Desk")
+        public static void Show(Exception ex, string title = "Loan Desk")
 
-            {
+        {
             if (ex is ValidationException || ex is BusinessRuleException)
             {
                 // User-level errors: shown as-is, not logged
@@ -21,7 +16,6 @@ namespace Loan_Desk
             }
             else if (ex is DataAccessException)
             {
-
                 Logger.Write(ex);
                 MessageBox.Show(ex.Message + "\n\nIf this keeps happening, contact the administrator.",
                 title, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -35,6 +29,4 @@ namespace Loan_Desk
             }
         }
     }
-
 }
-

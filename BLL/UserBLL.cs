@@ -8,7 +8,6 @@ using static LoanDesk.Models.Exceptions;
 
 namespace BLL
 {
-
     public class UserBLL
     {
         public static bool RestartRequired { get; private set; }
@@ -39,21 +38,17 @@ namespace BLL
             bool IsExist = false;
             try
             {
-                IsExist= UserDAL.IsAdminExist();
+                IsExist = UserDAL.IsAdminExist();
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 Logger.Write(ex);
             }
             return IsExist;
-
-
         }
 
         public static void CheckPassword(string Password)
         {
-            
-
             if (string.IsNullOrWhiteSpace(Password))
                 throw new ValidationException("Password must not be null or empty");
             if (Password.Length > 20 || Password.Length < 5)
@@ -65,8 +60,6 @@ namespace BLL
             //one uppuercase letter :
             if (!utilities.utilities.IsStringContainUpper(Password))
                 throw new ValidationException("Password must has at least one uppercase letter.");
-
-            
         }
 
         private static void CheckUser(User user)
@@ -75,7 +68,6 @@ namespace BLL
                 throw new ArgumentNullException("user");
 
             user.Username = user.Username?.Trim();
-            
 
             if (string.IsNullOrWhiteSpace(user.Username))
                 throw new ValidationException("Username must not be null or empty");
@@ -98,19 +90,18 @@ namespace BLL
             bool IsAdded = false;
             CheckUser(user);
             CheckPassword(Password);
-            
-                if (UserDAL.FindByUsername(user.Username) == null)
-                {
-                    user.PasswordSalt = PasswordHasher.GenerateSalt();
-                    user.PasswordHash = PasswordHasher.HashPassword(Password, user.PasswordSalt);
 
-                    IsAdded = UserDAL.AddNewUser(user);
-                }
-                else
-                {
-                    throw new BusinessRuleException("duplicate username , please enter a uniqeu username.");
-                }
-            
+            if (UserDAL.FindByUsername(user.Username) == null)
+            {
+                user.PasswordSalt = PasswordHasher.GenerateSalt();
+                user.PasswordHash = PasswordHasher.HashPassword(Password, user.PasswordSalt);
+
+                IsAdded = UserDAL.AddNewUser(user);
+            }
+            else
+            {
+                throw new BusinessRuleException("duplicate username , please enter a uniqeu username.");
+            }
 
             return IsAdded;
         }
@@ -129,6 +120,12 @@ namespace BLL
                 IsUsernameTaken = false;
             }
             return IsUsernameTaken;
+        }
+
+        public static void RequireUser()
+        {
+            if (Sessions.CurrentUser == null || Sessions.CurrentUser.IsActive == false)
+                throw new Exceptions.BusinessRuleException("Please log in first");
         }
 
         public static bool UpdateUser(User user)
@@ -192,12 +189,12 @@ namespace BLL
 
             return UserDAL.ActivateUser(ID);
         }
-        
+
         public static bool UpdateUserPassword(int ID, string OldPassword, string NewPassword)
         {
             bool isSelf = Sessions.CurrentUser?.ID == ID;
             if (!isSelf)
-                RequireAdmin();   
+                RequireAdmin();
             else
             {
                 User user = UserDAL.FindByID(ID);
@@ -253,10 +250,9 @@ namespace BLL
             return UserDAL.GetUsers();
         }
 
-        public static bool IsActive(int ID) 
+        public static bool IsActive(int ID)
         {
             return UserDAL.IsActive(ID);
         }
-       
     }
 }

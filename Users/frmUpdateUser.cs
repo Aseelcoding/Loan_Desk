@@ -1,21 +1,13 @@
 ﻿using BLL;
-using LoanDesk.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static LoanDesk.Models.Exceptions;
 
 namespace Loan_Desk.Users
 {
     public partial class frmUpdateUser : Form
     {
-        LoanDesk.Models.User originalUser;
+        private LoanDesk.Models.User originalUser;
+
         public frmUpdateUser(LoanDesk.Models.User UpdateUser)
         {
             InitializeComponent();
@@ -31,14 +23,11 @@ namespace Loan_Desk.Users
         {
             txtUserID.Text = originalUser.ID.ToString();
             txtUsername.Text = originalUser.Username.ToString();
-           
+
             if (originalUser.Role == "Admin")
                 RadbtnAdmin.Checked = true;
-            else 
+            else
                 RadbtnStaff.Checked = true;
-
-           
-
         }
 
         private bool IsSameInfo(LoanDesk.Models.User NewUser)
@@ -47,15 +36,13 @@ namespace Loan_Desk.Users
 
             if (NewUser.Username == originalUser.Username
                 && NewUser.Role == originalUser.Role
-                
+
                 )
                 IsSame = true;
 
-
-
             return IsSame;
-
         }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             LoanDesk.Models.User newUser = new LoanDesk.Models.User

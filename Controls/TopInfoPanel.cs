@@ -1,12 +1,5 @@
 ﻿using BLL;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Loan_Desk
@@ -16,11 +9,9 @@ namespace Loan_Desk
         public CustomPanel()
         {
             InitializeComponent();
-         
-           
         }
 
-          public string Title
+        public string Title
         {
             get { return LabTitle.Text; }
             set { LabTitle.Text = value; }
@@ -31,18 +22,16 @@ namespace Loan_Desk
             if (Sessions.CurrentUser == null)
                 return;
 
-                Form Accfrm = new Form();
-          
+            Form Accfrm = new Form();
+
             Account.AccountView accountView = new Account.AccountView();
-           
+
             Accfrm.MinimumSize = accountView.MinimumSize;
             Accfrm.MaximumSize = accountView.MaximumSize;
             Accfrm.StartPosition = FormStartPosition.CenterScreen;
-           accountView.Dock= DockStyle.Fill;
+            accountView.Dock = DockStyle.Fill;
             Accfrm.Controls.Add(accountView);
             Accfrm.ShowDialog();
-          
-
         }
 
         private void CustomPanel_Load(object sender, EventArgs e)
@@ -50,10 +39,8 @@ namespace Loan_Desk
             if (DesignMode)
                 return;
 
-            if(Sessions.CurrentUser!=null)
-            labAdOrStf.Text = Sessions.CurrentUser.Role;
+            if (Sessions.CurrentUser != null)
+                labAdOrStf.Text = Sessions.CurrentUser.Role;
         }
-
-       
     }
 }

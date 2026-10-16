@@ -1,24 +1,21 @@
-﻿using System;
+﻿using LoanDesk.Models;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
-using LoanDesk.Models;
+
 namespace DAL
 {
     public class EquipmentDAL
     {
-        //catch (SqlException ex) 
+        //catch (SqlException ex)
         //{
-        //    throw SqlErrorMapper.Map(ex, "Add New borrower");
+        //    throw SqlErrorMapper.Map(ex, "");
         //}
         private static readonly string ConnectionString = ConfigurationManager.ConnectionStrings["LoanDeskDB"].ConnectionString;
 
-
-        public static bool AddEquipment(Equipment NewEquipment) 
+        public static bool AddEquipment(Equipment NewEquipment)
         {
             bool IsAdded = false;
 
@@ -38,32 +35,32 @@ namespace DAL
            ,@IsActive
            );";
 
-            try 
+            try
             {
-                using (var connection = new SqlConnection (ConnectionString))
-                using (var cmd=new SqlCommand(query, connection)) 
+                using (var connection = new SqlConnection(ConnectionString))
+                using (var cmd = new SqlCommand(query, connection))
                 {
-                    connection.Open ();
-                    cmd.Parameters.Add("@Name",SqlDbType.VarChar, 250).Value= NewEquipment.Name;
+                    connection.Open();
+                    cmd.Parameters.Add("@Name", SqlDbType.VarChar, 250).Value = NewEquipment.Name;
                     cmd.Parameters.Add("@TotalQuantity", SqlDbType.Int).Value = NewEquipment.TotalQuantity;
                     cmd.Parameters.Add("@AvailableQuantity", SqlDbType.Int).Value = NewEquipment.AvailableQuantity;
                     cmd.Parameters.Add("@DailyLateFee", SqlDbType.Decimal).Value = NewEquipment.DailyLateFee;
-                    cmd.Parameters.Add("@ReplacementCost",SqlDbType.Decimal).Value= NewEquipment.ReplacementCost;
+                    cmd.Parameters.Add("@ReplacementCost", SqlDbType.Decimal).Value = NewEquipment.ReplacementCost;
                     cmd.Parameters.Add("@IsActive", SqlDbType.Bit).Value = NewEquipment.IsActive;
 
-                    int AffectedRows = cmd.ExecuteNonQuery() ;
-                    if(AffectedRows>=1)
-                        IsAdded= true;
+                    int AffectedRows = cmd.ExecuteNonQuery();
+                    if (AffectedRows >= 1)
+                        IsAdded = true;
                 }
-
             }
             catch (SqlException ex)
             {
-                throw SqlErrorMapper.Map(ex, "Add New borrower");
+                throw SqlErrorMapper.Map(ex, "Add new Equipment");
             }
             return IsAdded;
         }
-        public static bool UdpateEquipment(Equipment NewEquipment) 
+
+        public static bool UdpateEquipment(Equipment NewEquipment)
         {
             bool IsUpdated = false;
 
@@ -93,22 +90,21 @@ namespace DAL
                     int AffectedRows = cmd.ExecuteNonQuery();
                     if (AffectedRows > 0)
                         IsUpdated = true;
-
                 }
-
             }
             catch (SqlException ex)
             {
-                throw SqlErrorMapper.Map(ex, "Add New borrower");
+                throw SqlErrorMapper.Map(ex, "Udpate Equipment");
             }
             return IsUpdated;
         }
-        public static bool DeactivateEquipment(int EquipmentID) 
+
+        public static bool DeactivateEquipment(int EquipmentID)
         {
             bool IsDeactivated = false;
 
             string query = @"
-                        
+
                          UPDATE [dbo].[Equipment]
    SET [IsActive] = 0
  WHERE ID=@ID;";
@@ -120,28 +116,25 @@ namespace DAL
                     connection.Open();
                     cmd.Parameters.Add("@ID", SqlDbType.Int).Value = EquipmentID;
 
-
                     int AffectedRows = cmd.ExecuteNonQuery();
                     if (AffectedRows > 0)
                         IsDeactivated = true;
-
                 }
-
             }
             catch (SqlException ex)
             {
-                throw SqlErrorMapper.Map(ex, "Deactivate  borrower");
+                throw SqlErrorMapper.Map(ex, "Deactivate Equipment");
             }
 
             return IsDeactivated;
-
         }
+
         public static bool ActivateEquipment(int EquipmentID)
         {
             bool IsActivated = false;
 
             string query = @"
-                        
+
                          UPDATE [dbo].[Equipment]
    SET [IsActive] = 1
  WHERE ID=@ID;";
@@ -153,23 +146,20 @@ namespace DAL
                     connection.Open();
                     cmd.Parameters.Add("@ID", SqlDbType.Int).Value = EquipmentID;
 
-
                     int AffectedRows = cmd.ExecuteNonQuery();
                     if (AffectedRows > 0)
                         IsActivated = true;
-
                 }
-
             }
             catch (SqlException ex)
             {
-                throw SqlErrorMapper.Map(ex, "Activate  borrower");
+                throw SqlErrorMapper.Map(ex, "Activate Equipment");
             }
 
             return IsActivated;
-
         }
-        public static Equipment GetEquipmentByID(int EquipmentID) 
+
+        public static Equipment GetEquipmentByID(int EquipmentID)
         {
             string query = @"SELECT [ID]
       ,[Name]
@@ -181,15 +171,15 @@ namespace DAL
   FROM [dbo].[Equipment]
   where ID=@EquipmentID;";
 
-            try 
+            try
             {
-                using (var connection =new SqlConnection(ConnectionString))
-                using (var cmd=new SqlCommand(query, connection))
+                using (var connection = new SqlConnection(ConnectionString))
+                using (var cmd = new SqlCommand(query, connection))
                 {
                     connection.Open();
-                    cmd.Parameters.Add("@EquipmentID",SqlDbType.Int).Value= EquipmentID;
+                    cmd.Parameters.Add("@EquipmentID", SqlDbType.Int).Value = EquipmentID;
 
-                    using (SqlDataReader reader = cmd.ExecuteReader()) 
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (!reader.Read())
                             return null;
@@ -199,21 +189,21 @@ namespace DAL
                             Name = reader["Name"].ToString(),
 
                             TotalQuantity = (int)reader["TotalQuantity"],
-                            AvailableQuantity= (int)reader["AvailableQuantity"],
-                            DailyLateFee= (decimal)reader["DailyLateFee"],
-                            ReplacementCost=(decimal)reader["ReplacementCost"],
-                            IsActive=(bool)reader["IsActive"]
+                            AvailableQuantity = (int)reader["AvailableQuantity"],
+                            DailyLateFee = (decimal)reader["DailyLateFee"],
+                            ReplacementCost = (decimal)reader["ReplacementCost"],
+                            IsActive = (bool)reader["IsActive"]
                         };
-
                     }
                 }
             }
             catch (SqlException ex)
             {
-                throw SqlErrorMapper.Map(ex, "Add New borrower");
+                throw SqlErrorMapper.Map(ex, "Get Equipment By ID");
             }
         }
-        public static Equipment GetEquipmentByName(string EquipmentName) 
+
+        public static Equipment GetEquipmentByName(string EquipmentName)
         {
             string query = @"SELECT [ID]
       ,[Name]
@@ -238,10 +228,9 @@ namespace DAL
                         if (!reader.Read())
                             return null;
                         int EQID;
-                        int.TryParse(reader["ID"].ToString (), out EQID);
+                        int.TryParse(reader["ID"].ToString(), out EQID);
                         return new Equipment
                         {
-                           
                             ID = EQID,
                             Name = reader["Name"].ToString(),
 
@@ -251,16 +240,16 @@ namespace DAL
                             ReplacementCost = (decimal)reader["ReplacementCost"],
                             IsActive = (bool)reader["IsActive"]
                         };
-
                     }
                 }
             }
             catch (SqlException ex)
             {
-                throw SqlErrorMapper.Map(ex, "Add New borrower");
+                throw SqlErrorMapper.Map(ex, "Get Equipment By Name");
             }
         }
-        public static DataTable GetEquipments() 
+
+        public static DataTable GetEquipments()
         {
             DataTable dtEq = new DataTable("Equipments");
             string query = @"SELECT [ID],
@@ -271,42 +260,6 @@ namespace DAL
        [ReplacementCost],
        [IsActive]
 FROM   [dbo].[Equipment];";
-
-
-            try 
-            {
-                using (var connection =new SqlConnection(ConnectionString))
-                using (var cmd =new SqlCommand(query, connection))
-                {
-                    connection.Open();
-                    using (SqlDataReader reader = cmd.ExecuteReader()) 
-                    {
-                       dtEq.Load(reader);
-                    }
-                }
-
-            }
-            catch (SqlException ex)
-            {
-                throw SqlErrorMapper.Map(ex, "Add New borrower");
-            }
-
-            return dtEq;
-        }
-        public static List<Equipment> GetEquipmentList() 
-        {
-            List<Equipment> equipments= new List<Equipment>();
-
-            DataTable dtEq = new DataTable("Equipments");
-            string query = @"SELECT [ID],
-       [Name],
-       [TotalQuantity],
-       [AvailableQuantity],
-       [DailyLateFee],
-       [ReplacementCost],
-       [IsActive]
-FROM   [dbo].[Equipment];";
-
 
             try
             {
@@ -316,8 +269,40 @@ FROM   [dbo].[Equipment];";
                     connection.Open();
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                     
+                        dtEq.Load(reader);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw SqlErrorMapper.Map(ex, "Get Equipments");
+            }
 
+            return dtEq;
+        }
+
+        public static List<Equipment> GetEquipmentList()
+        {
+            List<Equipment> equipments = new List<Equipment>();
+
+            DataTable dtEq = new DataTable("Equipments");
+            string query = @"SELECT [ID],
+       [Name],
+       [TotalQuantity],
+       [AvailableQuantity],
+       [DailyLateFee],
+       [ReplacementCost],
+       [IsActive]
+FROM   [dbo].[Equipment];";
+
+            try
+            {
+                using (var connection = new SqlConnection(ConnectionString))
+                using (var cmd = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
                         while (reader.Read())
                         {
                             int EQID = -1;
@@ -336,16 +321,15 @@ FROM   [dbo].[Equipment];";
                         }
                     }
                 }
-
             }
             catch (SqlException ex)
             {
-                throw SqlErrorMapper.Map(ex, "Add New borrower");
+                throw SqlErrorMapper.Map(ex, "Get Equipment List");
             }
 
             return equipments;
-
         }
+
         public static bool IsActive(int ID)
         {
             bool IsActive = false;
@@ -368,9 +352,7 @@ where ID=@ID;
                         return false;
 
                     IsActive = (bool)Result;
-
                 }
-
             }
             catch (SqlException ex)
             {
@@ -378,6 +360,5 @@ where ID=@ID;
             }
             return IsActive;
         }
-
     }
 }

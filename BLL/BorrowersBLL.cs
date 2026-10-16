@@ -1,13 +1,7 @@
 ﻿using DAL;
-using Loan_Desk;
 using LoanDesk.Models;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using utilities;
 
 namespace BLL
 {
@@ -18,12 +12,6 @@ namespace BLL
             Borrower existing = BorrowersDAL.GetBorrowerByPassport(borrower.Passport);
             if (existing != null && existing.ID != borrower.ID)
                 throw new Exceptions.BusinessRuleException("Passport must be unique");
-        }
-
-        private static void RequireUser()
-        {
-            if (Sessions.CurrentUser == null || Sessions.CurrentUser.IsActive == false)
-                throw new Exceptions.BusinessRuleException("Please log in first");
         }
 
         private static void ValidateBorrower(Borrower Newborrower)
@@ -47,17 +35,18 @@ namespace BLL
 
         public static DataTable GetBorrowers()
         {
-            RequireUser();
+            UserBLL.RequireUser();
             return BorrowersDAL.GetBorrowers();
         }
 
-        public static List<Borrower> GetAllBorrowersList() {
-        return BorrowersDAL.GetAllBorrowersList();
+        public static List<Borrower> GetAllBorrowersList()
+        {
+            return BorrowersDAL.GetAllBorrowersList();
         }
 
         public static bool AddNewBorrower(Borrower Newborrower)
         {
-            RequireUser();
+            UserBLL.RequireUser();
             ValidateBorrower(Newborrower);
 
             EnsurePassportUnique(Newborrower);
@@ -67,19 +56,19 @@ namespace BLL
 
         public static Borrower GetBorrowerByID(int BorrowerID)
         {
-            RequireUser();
+            UserBLL.RequireUser();
             return BorrowersDAL.GetBorrowerByID(BorrowerID);
         }
 
         public static Borrower GetBorrowerByPassport(string Passport)
         {
-            RequireUser();
+            UserBLL.RequireUser();
             return BorrowersDAL.GetBorrowerByPassport(Passport);
         }
 
         public static bool UpdateBorrower(Borrower borrower)
         {
-            RequireUser();
+            UserBLL.RequireUser();
             ValidateBorrower(borrower);
 
             EnsurePassportUnique(borrower);
@@ -89,7 +78,7 @@ namespace BLL
 
         public static bool DeactivateBorrowerByID(int BorrowerID)
         {
-            RequireUser();
+            UserBLL.RequireUser();
             if (BorrowersDAL.GetActiveLoansCountByBorrowerID(BorrowerID) >= 1)
                 throw new Exceptions.BusinessRuleException($"This borrower with the ID {BorrowerID} has active loans.\nDeactivate loans first.");
 
@@ -98,12 +87,13 @@ namespace BLL
 
         public static bool ActivateBorrowerByID(int BorrowerID)
         {
-            RequireUser();
+            UserBLL.RequireUser();
             return BorrowersDAL.ActivateBorrowerByID(BorrowerID);
         }
 
-        public static bool IsActive(int ID) {
-                return BorrowersDAL.IsActive(ID);
+        public static bool IsActive(int ID)
+        {
+            return BorrowersDAL.IsActive(ID);
         }
     }
 }

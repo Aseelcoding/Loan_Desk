@@ -1,29 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using BLL;
+﻿using BLL;
 using Loan_Desk.Main_Screen;
-using LoanDesk.Models;
+using System;
+using System.Windows.Forms;
+
 namespace Loan_Desk
 {
     public partial class frmLogin : Form
     {
+        private short Tries = 3;
+
         public frmLogin()
         {
             InitializeComponent();
-           
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-
-
             try
             {
                 if (UserBLL.Login(txtUsername.Text, txtPassword.Text))
@@ -46,14 +38,14 @@ namespace Loan_Desk
                         MessageBoxIcon.Stop);
                 }
             }
-
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 ErrorHandler.Show(ex);
             }
-            
-        }
+            Tries--;
 
-      
+            if (Tries == 0)
+                Application.Exit();
+        }
     }
 }

@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using BLL;
 using LoanDesk.Models;
-using System.Globalization;
-using BLL;
+using System;
+using System.Windows.Forms;
 
 namespace Loan_Desk.Equipment
 {
@@ -50,8 +42,8 @@ namespace Loan_Desk.Equipment
                 IsAdded = EquipmentBLL.AddEquipment(NewEquipment);
 
                 if (IsAdded)
-                   { MessageBox.Show("Success");this.Close();
-                 
+                {
+                    MessageBox.Show("Success"); this.Close();
                 }
                 else
                     MessageBox.Show("Failed");

@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ContentPanel = new ReaLTaiizor.Controls.ParrotGradientPanel();
             this.cbFilter = new ReaLTaiizor.Controls.MaterialComboBox();
             this.parrotGroupBox1 = new ReaLTaiizor.Controls.ParrotGroupBox();
@@ -38,6 +38,8 @@
             this.chReturned = new System.Windows.Forms.CheckBox();
             this.chActive = new System.Windows.Forms.CheckBox();
             this.dgvLo = new System.Windows.Forms.DataGridView();
+            this.txtBarSearch = new ReaLTaiizor.Controls.BigTextBox();
+            this.btnAddLoan = new System.Windows.Forms.Button();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EquipmentID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BorrowerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,8 +51,6 @@
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LateFee = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FinePaid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtBarSearch = new ReaLTaiizor.Controls.BigTextBox();
-            this.btnAddLoan = new System.Windows.Forms.Button();
             this.ContentPanel.SuspendLayout();
             this.parrotGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLo)).BeginInit();
@@ -174,14 +174,15 @@
             this.dgvLo.AllowUserToAddRows = false;
             this.dgvLo.AllowUserToDeleteRows = false;
             this.dgvLo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvLo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            this.dgvLo.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvLo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvLo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
@@ -195,109 +196,32 @@
             this.Status,
             this.LateFee,
             this.FinePaid});
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvLo.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvLo.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvLo.Location = new System.Drawing.Point(3, 91);
             this.dgvLo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvLo.MultiSelect = false;
             this.dgvLo.Name = "dgvLo";
             this.dgvLo.ReadOnly = true;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvLo.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvLo.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvLo.RowHeadersWidth = 51;
             this.dgvLo.RowTemplate.Height = 24;
             this.dgvLo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvLo.Size = new System.Drawing.Size(1000, 679);
             this.dgvLo.TabIndex = 50;
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "Loan ID";
-            this.ID.MinimumWidth = 6;
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            // 
-            // EquipmentID
-            // 
-            this.EquipmentID.HeaderText = "Equipment ID";
-            this.EquipmentID.MinimumWidth = 6;
-            this.EquipmentID.Name = "EquipmentID";
-            this.EquipmentID.ReadOnly = true;
-            // 
-            // BorrowerID
-            // 
-            this.BorrowerID.HeaderText = "Borrower ID";
-            this.BorrowerID.MinimumWidth = 6;
-            this.BorrowerID.Name = "BorrowerID";
-            this.BorrowerID.ReadOnly = true;
-            // 
-            // UserID
-            // 
-            this.UserID.HeaderText = "User ID";
-            this.UserID.MinimumWidth = 6;
-            this.UserID.Name = "UserID";
-            this.UserID.ReadOnly = true;
-            // 
-            // Quantity
-            // 
-            this.Quantity.HeaderText = "Quantity";
-            this.Quantity.MinimumWidth = 6;
-            this.Quantity.Name = "Quantity";
-            this.Quantity.ReadOnly = true;
-            // 
-            // LoanedAt
-            // 
-            this.LoanedAt.HeaderText = "Loaned At";
-            this.LoanedAt.MinimumWidth = 6;
-            this.LoanedAt.Name = "LoanedAt";
-            this.LoanedAt.ReadOnly = true;
-            // 
-            // DueAt
-            // 
-            this.DueAt.HeaderText = "Due At";
-            this.DueAt.MinimumWidth = 6;
-            this.DueAt.Name = "DueAt";
-            this.DueAt.ReadOnly = true;
-            // 
-            // ReturnedAt
-            // 
-            this.ReturnedAt.HeaderText = "Returned At";
-            this.ReturnedAt.MinimumWidth = 6;
-            this.ReturnedAt.Name = "ReturnedAt";
-            this.ReturnedAt.ReadOnly = true;
-            // 
-            // Status
-            // 
-            this.Status.HeaderText = "Status";
-            this.Status.MinimumWidth = 6;
-            this.Status.Name = "Status";
-            this.Status.ReadOnly = true;
-            // 
-            // LateFee
-            // 
-            this.LateFee.HeaderText = "Late Fee";
-            this.LateFee.MinimumWidth = 6;
-            this.LateFee.Name = "LateFee";
-            this.LateFee.ReadOnly = true;
-            // 
-            // FinePaid
-            // 
-            this.FinePaid.HeaderText = "Fine Paid";
-            this.FinePaid.MinimumWidth = 6;
-            this.FinePaid.Name = "FinePaid";
-            this.FinePaid.ReadOnly = true;
             // 
             // txtBarSearch
             // 
@@ -335,6 +259,96 @@
             this.btnAddLoan.UseVisualStyleBackColor = false;
             this.btnAddLoan.Click += new System.EventHandler(this.btnAddLoan_Click);
             // 
+            // ID
+            // 
+            this.ID.FillWeight = 92.35294F;
+            this.ID.HeaderText = "Loan ID";
+            this.ID.MinimumWidth = 6;
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            // 
+            // EquipmentID
+            // 
+            this.EquipmentID.FillWeight = 92.35294F;
+            this.EquipmentID.HeaderText = "Equipment ID";
+            this.EquipmentID.MinimumWidth = 6;
+            this.EquipmentID.Name = "EquipmentID";
+            this.EquipmentID.ReadOnly = true;
+            // 
+            // BorrowerID
+            // 
+            this.BorrowerID.FillWeight = 92.35294F;
+            this.BorrowerID.HeaderText = "Borrower ID";
+            this.BorrowerID.MinimumWidth = 6;
+            this.BorrowerID.Name = "BorrowerID";
+            this.BorrowerID.ReadOnly = true;
+            // 
+            // UserID
+            // 
+            this.UserID.FillWeight = 92.35294F;
+            this.UserID.HeaderText = "User ID";
+            this.UserID.MinimumWidth = 6;
+            this.UserID.Name = "UserID";
+            this.UserID.ReadOnly = true;
+            // 
+            // Quantity
+            // 
+            this.Quantity.FillWeight = 92.35294F;
+            this.Quantity.HeaderText = "Quantity";
+            this.Quantity.MinimumWidth = 6;
+            this.Quantity.Name = "Quantity";
+            this.Quantity.ReadOnly = true;
+            // 
+            // LoanedAt
+            // 
+            this.LoanedAt.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.LoanedAt.FillWeight = 176.4706F;
+            this.LoanedAt.HeaderText = "Loaned At";
+            this.LoanedAt.MinimumWidth = 6;
+            this.LoanedAt.Name = "LoanedAt";
+            this.LoanedAt.ReadOnly = true;
+            this.LoanedAt.Width = 97;
+            // 
+            // DueAt
+            // 
+            this.DueAt.FillWeight = 92.35294F;
+            this.DueAt.HeaderText = "Due At";
+            this.DueAt.MinimumWidth = 6;
+            this.DueAt.Name = "DueAt";
+            this.DueAt.ReadOnly = true;
+            // 
+            // ReturnedAt
+            // 
+            this.ReturnedAt.FillWeight = 92.35294F;
+            this.ReturnedAt.HeaderText = "Returned At";
+            this.ReturnedAt.MinimumWidth = 6;
+            this.ReturnedAt.Name = "ReturnedAt";
+            this.ReturnedAt.ReadOnly = true;
+            // 
+            // Status
+            // 
+            this.Status.FillWeight = 92.35294F;
+            this.Status.HeaderText = "Status";
+            this.Status.MinimumWidth = 6;
+            this.Status.Name = "Status";
+            this.Status.ReadOnly = true;
+            // 
+            // LateFee
+            // 
+            this.LateFee.FillWeight = 92.35294F;
+            this.LateFee.HeaderText = "Late Fee";
+            this.LateFee.MinimumWidth = 6;
+            this.LateFee.Name = "LateFee";
+            this.LateFee.ReadOnly = true;
+            // 
+            // FinePaid
+            // 
+            this.FinePaid.FillWeight = 92.35294F;
+            this.FinePaid.HeaderText = "Fine Paid";
+            this.FinePaid.MinimumWidth = 6;
+            this.FinePaid.Name = "FinePaid";
+            this.FinePaid.ReadOnly = true;
+            // 
             // LoansView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -357,6 +371,11 @@
         private ReaLTaiizor.Controls.BigTextBox txtBarSearch;
         private System.Windows.Forms.Button btnAddLoan;
         private System.Windows.Forms.DataGridView dgvLo;
+        private ReaLTaiizor.Controls.ParrotGroupBox parrotGroupBox1;
+        private System.Windows.Forms.CheckBox chLost;
+        private System.Windows.Forms.CheckBox chReturned;
+        private System.Windows.Forms.CheckBox chActive;
+        private ReaLTaiizor.Controls.MaterialComboBox cbFilter;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn EquipmentID;
         private System.Windows.Forms.DataGridViewTextBoxColumn BorrowerID;
@@ -368,10 +387,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
         private System.Windows.Forms.DataGridViewTextBoxColumn LateFee;
         private System.Windows.Forms.DataGridViewTextBoxColumn FinePaid;
-        private ReaLTaiizor.Controls.ParrotGroupBox parrotGroupBox1;
-        private System.Windows.Forms.CheckBox chLost;
-        private System.Windows.Forms.CheckBox chReturned;
-        private System.Windows.Forms.CheckBox chActive;
-        private ReaLTaiizor.Controls.MaterialComboBox cbFilter;
     }
 }

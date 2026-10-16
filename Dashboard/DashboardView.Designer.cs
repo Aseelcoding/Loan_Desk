@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.lostPanel1 = new ReaLTaiizor.Controls.LostPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.lostPanel2 = new ReaLTaiizor.Controls.LostPanel();
@@ -37,11 +40,13 @@
             this.lostPanel4 = new ReaLTaiizor.Controls.LostPanel();
             this.label5 = new System.Windows.Forms.Label();
             this.parrotGradientPanel1 = new ReaLTaiizor.Controls.ParrotGradientPanel();
+            this.chartDailyLoans = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.lostPanel1.SuspendLayout();
             this.lostPanel2.SuspendLayout();
             this.lostPanel3.SuspendLayout();
             this.lostPanel4.SuspendLayout();
             this.parrotGradientPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartDailyLoans)).BeginInit();
             this.SuspendLayout();
             // 
             // lostPanel1
@@ -50,7 +55,7 @@
             this.lostPanel1.Controls.Add(this.label2);
             this.lostPanel1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lostPanel1.ForeColor = System.Drawing.Color.Black;
-            this.lostPanel1.Location = new System.Drawing.Point(47, 43);
+            this.lostPanel1.Location = new System.Drawing.Point(41, 41);
             this.lostPanel1.Name = "lostPanel1";
             this.lostPanel1.Padding = new System.Windows.Forms.Padding(5);
             this.lostPanel1.ShowText = true;
@@ -75,7 +80,7 @@
             this.lostPanel2.Controls.Add(this.label3);
             this.lostPanel2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.lostPanel2.ForeColor = System.Drawing.Color.Black;
-            this.lostPanel2.Location = new System.Drawing.Point(297, 43);
+            this.lostPanel2.Location = new System.Drawing.Point(291, 41);
             this.lostPanel2.Name = "lostPanel2";
             this.lostPanel2.Padding = new System.Windows.Forms.Padding(5);
             this.lostPanel2.ShowText = true;
@@ -100,7 +105,7 @@
             this.lostPanel3.Controls.Add(this.labActiveUsers);
             this.lostPanel3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lostPanel3.ForeColor = System.Drawing.Color.Black;
-            this.lostPanel3.Location = new System.Drawing.Point(552, 43);
+            this.lostPanel3.Location = new System.Drawing.Point(546, 41);
             this.lostPanel3.Name = "lostPanel3";
             this.lostPanel3.Padding = new System.Windows.Forms.Padding(5);
             this.lostPanel3.ShowText = true;
@@ -125,7 +130,7 @@
             this.lostPanel4.Controls.Add(this.label5);
             this.lostPanel4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lostPanel4.ForeColor = System.Drawing.Color.Black;
-            this.lostPanel4.Location = new System.Drawing.Point(788, 43);
+            this.lostPanel4.Location = new System.Drawing.Point(782, 41);
             this.lostPanel4.Name = "lostPanel4";
             this.lostPanel4.Padding = new System.Windows.Forms.Padding(5);
             this.lostPanel4.ShowText = true;
@@ -149,6 +154,7 @@
             this.parrotGradientPanel1.BottomLeft = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
             this.parrotGradientPanel1.BottomRight = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.parrotGradientPanel1.CompositingQualityType = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+            this.parrotGradientPanel1.Controls.Add(this.chartDailyLoans);
             this.parrotGradientPanel1.Controls.Add(this.lostPanel4);
             this.parrotGradientPanel1.Controls.Add(this.lostPanel3);
             this.parrotGradientPanel1.Controls.Add(this.lostPanel2);
@@ -168,6 +174,21 @@
             this.parrotGradientPanel1.TopLeft = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
             this.parrotGradientPanel1.TopRight = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
+            // chartDailyLoans
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chartDailyLoans.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartDailyLoans.Legends.Add(legend1);
+            this.chartDailyLoans.Location = new System.Drawing.Point(41, 158);
+            this.chartDailyLoans.Name = "chartDailyLoans";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Daily Loans";
+            this.chartDailyLoans.Series.Add(series1);
+            this.chartDailyLoans.Size = new System.Drawing.Size(920, 598);
+            this.chartDailyLoans.TabIndex = 6;
+            // 
             // DashboardView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -185,6 +206,7 @@
             this.lostPanel4.ResumeLayout(false);
             this.lostPanel4.PerformLayout();
             this.parrotGradientPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chartDailyLoans)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -200,5 +222,6 @@
         private ReaLTaiizor.Controls.LostPanel lostPanel4;
         private System.Windows.Forms.Label label5;
         private ReaLTaiizor.Controls.ParrotGradientPanel parrotGradientPanel1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartDailyLoans;
     }
 }

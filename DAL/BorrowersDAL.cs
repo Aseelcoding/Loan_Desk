@@ -1,20 +1,18 @@
-﻿using System.Configuration;
-using System.Data.SqlClient;
-using LoanDesk.Models;
-using System.Data;
+﻿using LoanDesk.Models;
 using System;
-using System.Reflection;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace DAL
 {
     public class BorrowersDAL
-    {           
-        
-            //catch (SqlException ex) 
-            //{
-            //    throw SqlErrorMapper.Map(ex, "Add New borrower");
-            //}
+    {
+        //catch (SqlException ex)
+        //{
+        //    throw SqlErrorMapper.Map(ex, "Add New borrower");
+        //}
         private static readonly string ConnectionString = ConfigurationManager.ConnectionStrings["LoanDeskDB"].ConnectionString;
 
         public static DataTable GetBorrowers()
@@ -43,8 +41,9 @@ GROUP BY B.ID, B.FullName, B.Passport, B.Phone, B.IsActive;";
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        if(!reader.Read())
+                        if (!reader.HasRows)
                             return null;
+
                         dtBorrowers.Load(reader);
                     }
                 }
@@ -56,11 +55,12 @@ GROUP BY B.ID, B.FullName, B.Passport, B.Phone, B.IsActive;";
 
             return dtBorrowers;
         }
-         public static List<Borrower> GetAllBorrowersList()
+
+        public static List<Borrower> GetAllBorrowersList()
         {
             List<Borrower> borrowers = new List<Borrower>();
-           
-                string query = @"SELECT   B.ID,
+
+            string query = @"SELECT   B.ID,
          B.FullName,
          B.Passport,
          B.Phone,
@@ -82,11 +82,8 @@ GROUP BY B.ID, B.FullName, B.Passport, B.Phone, B.IsActive;";
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-
-
-                        while (reader.Read()) 
+                        while (reader.Read())
                         {
-
                             int BID = -1;
                             int.TryParse(reader["ID"].ToString(), out BID);
 
@@ -100,7 +97,6 @@ GROUP BY B.ID, B.FullName, B.Passport, B.Phone, B.IsActive;";
                                 IsActive = (bool)reader["IsActive"]
                             }
                              );
-
                         }
                     }
                 }
@@ -111,6 +107,7 @@ GROUP BY B.ID, B.FullName, B.Passport, B.Phone, B.IsActive;";
             }
             return borrowers;
         }
+
         public static bool AddNewBorrower(Borrower Newborrower)
         {
             bool IsAdded = false;
@@ -118,32 +115,32 @@ GROUP BY B.ID, B.FullName, B.Passport, B.Phone, B.IsActive;";
             string query = @"INSERT  INTO [dbo].[Borrowers] ([FullName], [Passport], [Phone], [IsActive])
                             VALUES                        (@FullName, @Passport, @Phone, @IsActive);";
 
-            try 
+            try
             {
-
                 using (SqlConnection connection = new SqlConnection(ConnectionString))
-                using (SqlCommand cmd=new SqlCommand(query, connection)) 
+                using (SqlCommand cmd = new SqlCommand(query, connection))
                 {
                     cmd.Parameters.AddWithValue("@FullName", Newborrower.FullName);
                     cmd.Parameters.AddWithValue("@Passport", Newborrower.Passport);
-                    cmd.Parameters.AddWithValue("Phone", Newborrower.Phone);
+                    cmd.Parameters.AddWithValue("@Phone", Newborrower.Phone);
                     cmd.Parameters.AddWithValue("@IsActive", Newborrower.IsActive);
                     connection.Open();
 
                     int AffectedRows = cmd.ExecuteNonQuery();
 
-                    if(AffectedRows>0)
+                    if (AffectedRows > 0)
                         IsAdded = true;
                 }
             }
-            catch (SqlException ex) 
+            catch (SqlException ex)
             {
                 throw SqlErrorMapper.Map(ex, "Add New borrower");
             }
 
             return IsAdded;
         }
-        public static Borrower GetBorrowerByID(int BorrowerID) 
+
+        public static Borrower GetBorrowerByID(int BorrowerID)
         {
             Borrower borrower = null;
 
@@ -157,7 +154,6 @@ WHERE  ID = @BorrowerID;";
 
             try
             {
-
                 using (SqlConnection connection = new SqlConnection(ConnectionString))
                 using (SqlCommand cmd = new SqlCommand(query, connection))
                 {
@@ -168,24 +164,18 @@ WHERE  ID = @BorrowerID;";
 
                     if (reader.Read())
                     {
-                        if (!reader.Read())
-                            return null;
-
-
-
                         int BID = -1;
                         int.TryParse(reader["ID"].ToString(), out BID);
 
-                        return new Borrower {
+                        return new Borrower
+                        {
                             ID = BID,
 
                             FullName = reader["FullName"].ToString(),
                             Passport = reader["Passport"].ToString(),
                             Phone = reader["Phone"].ToString(),
                             IsActive = (bool)reader["IsActive"]
-
                         };
-                                       
                     }
                 }
             }
@@ -195,6 +185,7 @@ WHERE  ID = @BorrowerID;";
             }
             return borrower;
         }
+
         public static Borrower GetBorrowerByPassport(string Passport)
         {
             Borrower borrower = null;
@@ -209,7 +200,6 @@ WHERE  Passport = @Passport;";
 
             try
             {
-
                 using (SqlConnection connection = new SqlConnection(ConnectionString))
                 using (SqlCommand cmd = new SqlCommand(query, connection))
                 {
@@ -220,12 +210,6 @@ WHERE  Passport = @Passport;";
 
                     if (reader.Read())
                     {
-
-
-                        if (!reader.Read())
-                            return null;
-
-
                         int BID = -1;
                         int.TryParse(reader["ID"].ToString(), out BID);
                         return new Borrower
@@ -236,9 +220,7 @@ WHERE  Passport = @Passport;";
                             Passport = reader["Passport"].ToString(),
                             Phone = reader["Phone"].ToString(),
                             IsActive = (bool)reader["IsActive"]
-
                         };
-
                     }
                 }
             }
@@ -248,7 +230,8 @@ WHERE  Passport = @Passport;";
             }
             return borrower;
         }
-        public static bool UpdateBorrower (Borrower borrower) 
+
+        public static bool UpdateBorrower(Borrower borrower)
         {
             bool IsUpdated = false;
 
@@ -258,8 +241,7 @@ SET    [FullName] = @FullName,
        [Phone]    = @Phone
 WHERE  ID = @ID;";
 
-
-            try 
+            try
             {
                 using (SqlConnection connection = new SqlConnection(ConnectionString))
                 using (SqlCommand cmd = new SqlCommand(query, connection))
@@ -268,16 +250,14 @@ WHERE  ID = @ID;";
                     cmd.Parameters.AddWithValue("@FullName", borrower.FullName);
                     cmd.Parameters.AddWithValue("@Passport", borrower.Passport);
                     cmd.Parameters.AddWithValue("@Phone", borrower.Phone);
-                    
+
                     connection.Open();
 
                     int AffectedRows = cmd.ExecuteNonQuery();
 
                     if (AffectedRows > 0)
                         IsUpdated = true;
-
                 }
-
             }
             catch (SqlException ex)
             {
@@ -286,7 +266,8 @@ WHERE  ID = @ID;";
 
             return IsUpdated;
         }
-        public static bool DeactivateBorrowerByID(int BorrowerID) 
+
+        public static bool DeactivateBorrowerByID(int BorrowerID)
         {
             bool IsDeactivate = false;
 
@@ -294,10 +275,10 @@ WHERE  ID = @ID;";
                     SET    [IsActive] = 0
                          WHERE  ID = @ID;";
 
-            try 
+            try
             {
-                using (SqlConnection connection =new SqlConnection(ConnectionString))
-                using (SqlCommand cmd =new SqlCommand(query, connection)) 
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                using (SqlCommand cmd = new SqlCommand(query, connection))
                 {
                     connection.Open();
 
@@ -308,13 +289,14 @@ WHERE  ID = @ID;";
                         IsDeactivate = true;
                 }
             }
-            catch (SqlException ex) 
+            catch (SqlException ex)
             {
                 throw SqlErrorMapper.Map(ex, "Deactivate Borrower");
             }
 
             return IsDeactivate;
         }
+
         public static bool ActivateBorrowerByID(int BorrowerID)
         {
             bool IsActivated = false;
@@ -344,6 +326,7 @@ WHERE  ID = @ID;";
 
             return IsActivated;
         }
+
         public static bool IsActive(int ID)
         {
             bool IsActive = false;
@@ -366,9 +349,7 @@ where ID=@ID;
                         return false;
 
                     IsActive = (bool)Result;
-
                 }
-
             }
             catch (SqlException ex)
             {
@@ -376,14 +357,14 @@ where ID=@ID;
             }
             return IsActive;
         }
+
         public static int GetActiveLoansCountByBorrowerID(int ID)
         {
             int ActiveLoans = -1;
 
-
             string query = @"select count
 (
-case 
+case
 when status = 'Active' then 1
 else null
 end
@@ -394,11 +375,10 @@ from Loans
 where BorrowerID =@ID;
 ";
 
-
-            try 
+            try
             {
-                using (var connection=new SqlConnection (ConnectionString))
-                using (var cmd=new SqlCommand(query,connection))
+                using (var connection = new SqlConnection(ConnectionString))
+                using (var cmd = new SqlCommand(query, connection))
                 {
                     cmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
                     connection.Open();
@@ -415,6 +395,5 @@ where BorrowerID =@ID;
 
             return ActiveLoans;
         }
-      
     }
 }

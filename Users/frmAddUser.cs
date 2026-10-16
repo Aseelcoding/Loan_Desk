@@ -1,15 +1,6 @@
 ﻿using BLL;
-using LoanDesk.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static LoanDesk.Models.Exceptions;
 
 namespace Loan_Desk.Users
 {
@@ -22,9 +13,7 @@ namespace Loan_Desk.Users
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close  ();
-
-             
+            this.Close();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -38,12 +27,12 @@ namespace Loan_Desk.Users
                 return;
             }
 
-            if(string.IsNullOrEmpty(txtPassword.Text))
-               { MessageBox.Show("Enter a valid password please.");
+            if (string.IsNullOrEmpty(txtPassword.Text))
+            {
+                MessageBox.Show("Enter a valid password please.");
                 txtPassword.Focus();
                 return;
             }
-            
 
             LoanDesk.Models.User NewUser = new LoanDesk.Models.User();
             NewUser.Username = txtUsername.Text;
@@ -53,13 +42,10 @@ namespace Loan_Desk.Users
             else
                 NewUser.Role = "Staff";
 
-            if(togIsActive.Toggled==true)
+            if (togIsActive.Toggled == true)
                 NewUser.IsActive = true;
-            else 
-                NewUser.IsActive=false;
-
-            
-
+            else
+                NewUser.IsActive = false;
 
             try
             {
@@ -68,11 +54,6 @@ namespace Loan_Desk.Users
                     MessageBox.Show("User Added successfully");
                 else
                     MessageBox.Show("User Added Failed");
-
-               
-
-               
-            
             }
             catch (Exception ex)
             {
@@ -81,11 +62,9 @@ namespace Loan_Desk.Users
 
             if (IsAdded)
             {
-               this.DialogResult = DialogResult.OK;
+                this.DialogResult = DialogResult.OK;
                 this.Close();
             }
-            
         }
-
     }
 }

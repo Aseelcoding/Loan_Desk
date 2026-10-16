@@ -2,7 +2,6 @@
 {
     public class Sessions
     {
-
         public class UserSessions
         {
             public int ID { get; }
@@ -12,25 +11,22 @@
 
             public UserSessions(int ID, string Username, string Role, bool IsActive)
             {
-
                 this.ID = ID;
                 this.Username = Username;
                 this.Role = Role;
                 this.IsActive = IsActive;
             }
-
-           
-
-           
-
         }
 
-        public static UserSessions CurrentUser { get; internal set;}
-        static internal void CreateUserSession(int ID, string Username, string Role, bool IsActive)
+        public static UserSessions CurrentUser { get; internal set; }
+
+        internal static void CreateUserSession(int ID, string Username, string Role, bool IsActive)
         {
-                UserSessions CurrentUser_1 = new UserSessions(ID, Username, Role, IsActive);
-                CurrentUser = CurrentUser_1;
+            UserSessions CurrentUser_1 = new UserSessions(ID, Username, Role, IsActive);
+            CurrentUser = CurrentUser_1;
         }
-        static internal void ClearUserSessions() { CurrentUser = null; }
+
+        internal static void ClearUserSessions()
+        { CurrentUser = null; }
     }
 }

@@ -1,37 +1,26 @@
 ﻿using BLL;
 using Loan_Desk.Dashboard;
-using Loan_Desk.Fines;
-using Loan_Desk.Loans;
-using Loan_Desk.Returns;
-using LoanDesk.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Loan_Desk.Main_Screen
 {
     public partial class frmMainScreen : Form
     {
-       
-
         public frmMainScreen()
         {
             InitializeComponent();
-         
-         this.PanleTopInfo.Title = "Dashboard View";
+
+            this.PanleTopInfo.Title = "Dashboard View";
             DashboardView dashboardView = new DashboardView();
             ContentPanel.Controls.Add(dashboardView);
         }
+
         private void frmMainScreen_Load(object sender, EventArgs e)
         {
             if (Sessions.CurrentUser.Role != "Admin")
-            {btnUsers.Enabled = false;
+            {
+                btnUsers.Enabled = false;
                 btnUsers.Visible = false;
                 btnAuditLog.Enabled = false;
                 btnAuditLog.Visible = false;
@@ -43,11 +32,8 @@ namespace Loan_Desk.Main_Screen
                 btnAuditLog.Enabled = true;
                 btnAuditLog.Visible = true;
             }
-
-
-
-
         }
+
         private void btnDashboard_Click(object sender, EventArgs e)
         {
             DashboardView dashboardView = new DashboardView();
@@ -58,9 +44,8 @@ namespace Loan_Desk.Main_Screen
 
         private void btnUsers_Click(object sender, EventArgs e)
         {
-            
             ContentPanel.Controls.Clear();
-            if (Sessions.CurrentUser.Role != "Admin" )
+            if (Sessions.CurrentUser.Role != "Admin")
                 return;
 
             Users.UsersView usersView = new Users.UsersView();
@@ -71,7 +56,7 @@ namespace Loan_Desk.Main_Screen
         private void btnBorrowers_Click(object sender, EventArgs e)
         {
             ContentPanel.Controls.Clear();
-           Borrowers.BorrowersView borrowersView = new Borrowers.BorrowersView();
+            Borrowers.BorrowersView borrowersView = new Borrowers.BorrowersView();
             ContentPanel.Controls.Add(borrowersView);
             PanleTopInfo.Title = "Borrowers View";
         }
@@ -110,7 +95,6 @@ namespace Loan_Desk.Main_Screen
 
         private void btnAuditLog_Click(object sender, EventArgs e)
         {
-          
             ContentPanel.Controls.Clear();
             if (Sessions.CurrentUser.Role != "Admin")
                 return;
@@ -119,7 +103,5 @@ namespace Loan_Desk.Main_Screen
             ContentPanel.Controls.Add(auditLogView);
             this.PanleTopInfo.Title = "Audit Log View";
         }
-
-        
     }
 }

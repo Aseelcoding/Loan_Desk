@@ -211,7 +211,7 @@
             this.txtFullName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.txtFullName.Location = new System.Drawing.Point(141, 145);
             this.txtFullName.Margin = new System.Windows.Forms.Padding(4);
-            this.txtFullName.MaxLength = 25;
+            this.txtFullName.MaxLength = 250;
             this.txtFullName.Multiline = false;
             this.txtFullName.Name = "txtFullName";
             this.txtFullName.ReadOnly = false;

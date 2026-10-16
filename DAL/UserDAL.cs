@@ -1,36 +1,28 @@
-﻿using System.Configuration;
-using System.Data.SqlClient;
-using LoanDesk.Models;
-using System.Data;
+﻿using LoanDesk.Models;
 using System;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+
 namespace DAL
 {
     public class UserDAL
     {
-        private static readonly string  ConnectionString = ConfigurationManager.ConnectionStrings["LoanDeskDB"].ConnectionString;
+        private static readonly string ConnectionString = ConfigurationManager.ConnectionStrings["LoanDeskDB"].ConnectionString;
 
-
-        public static int CountActiveAdmins() 
+        public static int CountActiveAdmins()
         {
             int Counter = -1;
-
-          
 
             string query = @"SELECT Count(ID) AS CountAdmins
                         FROM Users
                 WHERE Users.Role='Admin' and Users.IsActive=1;";
 
-            
-
             try
             {
-
                 using (SqlConnection connection = new SqlConnection(ConnectionString))
                 using (SqlCommand cmd = new SqlCommand(query, connection))
                 {
-
-
-
                     connection.Open();
 
                     object Result = cmd.ExecuteScalar();
@@ -38,7 +30,6 @@ namespace DAL
                     if (Result != null && Result != DBNull.Value)
                     {
                         int.TryParse(Result.ToString(), out Counter);
-
                     }
                     else
                     {
@@ -46,26 +37,24 @@ namespace DAL
                     }
                 }
             }
-            catch (SqlException ex) 
+            catch (SqlException ex)
             {
                 throw SqlErrorMapper.Map(ex, "Get Number of Admins");
             }
-            
 
             return Counter;
-
         }
+
         public static int CountActiveUsers()
         {
             int Counter = -1;
-         
+
             string query = @"SELECT Count(ID) AS CountUsers
                         FROM Users
                 WHERE Users.IsActive=1;";
-            
+
             try
             {
-
                 using (SqlConnection connection = new SqlConnection(ConnectionString))
                 using (SqlCommand cmd = new SqlCommand(query, connection))
                 {
@@ -85,24 +74,20 @@ namespace DAL
             {
                 throw SqlErrorMapper.Map(ex, "Get Number of active users");
             }
-         
+
             return Counter;
         }
-        public static bool IsAdminExist() 
+
+        public static bool IsAdminExist()
         {
-            bool IsExist=false;
+            bool IsExist = false;
             string Role = "Admin";
-           
-         
+
             string query = @"SELECT TOP 1 IsActive FROM Users
                                 where Role=@Role and IsActive=1;";
-          
-            
-          
 
             try
             {
-
                 using (SqlConnection connection = new SqlConnection(ConnectionString))
                 using (SqlCommand cmd = new SqlCommand(query, connection))
                 {
@@ -131,15 +116,13 @@ namespace DAL
             {
                 throw SqlErrorMapper.Map(ex, "Check if user exist.");
             }
-           
 
             return IsExist;
         }
-        public static bool AddNewUser(User user) 
+
+        public static bool AddNewUser(User user)
         {
             bool IsAdded = false;
-
-               
 
             string query = @"
             INSERT INTO [dbo].[Users]
@@ -157,16 +140,11 @@ namespace DAL
             @IsActive
            ) select scope_identity();";
 
-           
-
-           
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(ConnectionString))
                 using (SqlCommand cmd = new SqlCommand(query, connection))
                 {
-
                     cmd.Parameters.Add("@Username", SqlDbType.VarChar, 15).Value = user.Username;
                     cmd.Parameters.Add("@PasswordHash", SqlDbType.VarChar, 500).Value = user.PasswordHash;
                     cmd.Parameters.Add("@PasswordSalt", SqlDbType.VarChar, 500).Value = user.PasswordSalt;
@@ -175,8 +153,6 @@ namespace DAL
 
                     connection.Open();
                     object Result = cmd.ExecuteScalar();
-
-
 
                     int ID;
                     if (Result != null && Result != DBNull.Value)
@@ -193,27 +169,24 @@ namespace DAL
                     }
                     else { IsAdded = false; }
                 }
-              
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
                 throw SqlErrorMapper.Map(ex, "Add new user");
             }
-           
 
             return IsAdded;
-
         }
+
         public static bool ActivateUser(int ID)
         {
             bool IsActivated = false;
-            
+
             bool IsActive = true;
             string query = @"
                             UPDATE [dbo].[Users]
                             SET [IsActive] =@IsActive
                              WHERE ID=@ID;";
-         
 
             try
             {
@@ -228,32 +201,26 @@ namespace DAL
                         IsActivated = true;
                 }
             }
-            catch (SqlException ex) 
+            catch (SqlException ex)
             {
                 throw SqlErrorMapper.Map(ex, "Activate a user");
             }
-           
+
             return IsActivated;
         }
-        public static bool UpdateUser(User user) 
+
+        public static bool UpdateUser(User user)
         {
             bool IsUpdated = false;
-
-         
 
             string query = @"UPDATE [dbo].[Users]
                                 SET Username= @Username
                                  , Role=@Role
-                                
+
                                 WHERE ID=@ID;";
-           
-
-           
-
 
             try
             {
-
                 using (SqlConnection connection = new SqlConnection(ConnectionString))
                 using (SqlCommand cmd = new SqlCommand(query, connection))
                 {
@@ -266,25 +233,19 @@ namespace DAL
 
                     if (AffectedRows > 0)
                         IsUpdated = true;
-
                 }
-
-
             }
             catch (SqlException ex)
             {
                 throw SqlErrorMapper.Map(ex, "update the user");
             }
-           
 
             return IsUpdated;
-
         }
-        public static bool DeleteUser(User user) 
+
+        public static bool DeleteUser(User user)
         {
             bool Isdeleted = false;
-
-           
 
             bool InActive = false;
             string query = @"
@@ -292,9 +253,6 @@ namespace DAL
                             UPDATE [dbo].[Users]
                             SET [IsActive] =@IsActive
                              WHERE ID=@ID;";
-
-     
-        
 
             try
             {
@@ -308,35 +266,26 @@ namespace DAL
 
                     if (AffectedRows > 0)
                         Isdeleted = true;
-
-
                 }
-
             }
             catch (SqlException ex)
             {
                 throw SqlErrorMapper.Map(ex, "Delete the user");
             }
-            
 
             return Isdeleted;
-
         }
-        public static bool UpdateUserPassword(int ID,string NewPasswordHash,string NewPasswordSalt)
+
+        public static bool UpdateUserPassword(int ID, string NewPasswordHash, string NewPasswordSalt)
         {
             bool IsUpdated = false;
-
-           
 
             string query = @"UPDATE [dbo].[Users]
                                 SET PasswordHash= @PasswordHash
                                 ,PasswordSalt=@PasswordSalt
                                 WHERE ID=@ID;";
 
-
-        
-
-           try
+            try
             {
                 using (SqlConnection connection = new SqlConnection(ConnectionString))
                 using (SqlCommand cmd = new SqlCommand(query, connection))
@@ -344,31 +293,24 @@ namespace DAL
                     cmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
                     cmd.Parameters.Add("@PasswordHash", SqlDbType.VarChar, 500).Value = NewPasswordHash;
                     cmd.Parameters.Add("@PasswordSalt", SqlDbType.VarChar, 500).Value = NewPasswordSalt;
-                    
+
                     connection.Open();
                     int AffectedRows = cmd.ExecuteNonQuery();
 
                     if (AffectedRows > 0)
                         IsUpdated = true;
-
-
                 }
-
             }
             catch (SqlException ex)
             {
                 throw SqlErrorMapper.Map(ex, "Update user password.");
             }
-          
 
             return IsUpdated;
-
-
         }
-        public static User FindByUsername(string Username) 
+
+        public static User FindByUsername(string Username)
         {
-           
-         
             string query = @"
 
                   SELECT [ID]
@@ -380,10 +322,6 @@ namespace DAL
                 FROM [dbo].[Users]
                  where [Username]=@Username
                         ;";
-
-           
-
-          
 
             try
             {
@@ -407,24 +345,17 @@ namespace DAL
                             PasswordSalt = reader["PasswordSalt"].ToString(),
                             IsActive = (bool)reader["IsActive"]
                         };
-
                     }
                 }
             }
             catch (SqlException ex)
             {
                 throw SqlErrorMapper.Map(ex, "Find the user.");
-
             }
-            
-
-           
-            
         }
-        public static User FindByID(int ID) 
-        {
-        
 
+        public static User FindByID(int ID)
+        {
             string query = @"
 
                   SELECT [ID]
@@ -435,10 +366,6 @@ namespace DAL
                  ,[IsActive]
                 FROM [dbo].[Users]
                  where [ID]=@ID;";
-
-
-
-
 
             try
             {
@@ -468,18 +395,12 @@ namespace DAL
             catch (SqlException ex)
             {
                 throw SqlErrorMapper.Map(ex, "Find User By ID.");
-
             }
-
-
-           
-
         }
-        public static DataTable GetUsers() 
+
+        public static DataTable GetUsers()
         {
             DataTable dtUsers = new DataTable("Users");
-
-            
 
             string query = @"
             SELECT [ID]
@@ -488,8 +409,6 @@ namespace DAL
              ,[IsActive]
              FROM [dbo].[Users];";
 
-           
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(ConnectionString))
@@ -497,24 +416,21 @@ namespace DAL
                 {
                     connection.Open();
 
-                    using (SqlDataReader reader = cmd.ExecuteReader()) 
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         dtUsers.Load(reader);
-
                     }
-
-                        
                 }
             }
-            catch (SqlException ex) 
+            catch (SqlException ex)
             {
                 throw SqlErrorMapper.Map(ex, "Get all users.");
             }
-           
 
             return dtUsers;
         }
-        public static bool IsActive(int ID) 
+
+        public static bool IsActive(int ID)
         {
             bool IsActive = false;
 
@@ -524,27 +440,25 @@ from Users
 where ID=@ID;
 ";
 
-            try 
-            {using (var connection = new SqlConnection(ConnectionString))
-                using (var cmd = new SqlCommand(query, connection)) 
+            try
+            {
+                using (var connection = new SqlConnection(ConnectionString))
+                using (var cmd = new SqlCommand(query, connection))
                 {
-                    connection.Open() ;
-                    cmd.Parameters.Add("@ID",SqlDbType.Int).Value= ID;
+                    connection.Open();
+                    cmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
                     object Result = cmd.ExecuteScalar();
                     if (Result == null || Result == DBNull.Value)
                         return false;
 
                     IsActive = (bool)Result;
-
                 }
-
             }
             catch (SqlException ex)
             {
                 throw SqlErrorMapper.Map(ex, "Is user Active.");
             }
-         return IsActive;   
+            return IsActive;
         }
     }
 }
-

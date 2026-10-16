@@ -1,41 +1,35 @@
 ﻿using BLL;
 using LoanDesk.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace Loan_Desk.Borrowers
 {
     public partial class BorrowersView : UserControl
     {
-        DataTable dtB;
-        private void RefreshData() 
+        private DataTable dtB;
+
+        private void RefreshData()
         {
             try
             {
                 dtB = BorrowersBLL.GetBorrowers();
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 ErrorHandler.Show(ex);
             }
             LoadBorrowersInfo();
         }
-        private void LoadBorrowersInfo(string Filter="")
+
+        private void LoadBorrowersInfo(string Filter = "")
         {
             dgvB.Rows.Clear();
-    
 
             DataView dvB = dtB.DefaultView;
             dvB.RowFilter = Filter;
-            foreach (DataRowView row in dvB) 
+            foreach (DataRowView row in dvB)
             {
                 dgvB.Rows.Add
                     (
@@ -48,17 +42,16 @@ namespace Loan_Desk.Borrowers
                     row["IsActive"]
                     );
             }
-
         }
+
         public BorrowersView()
         {
             InitializeComponent();
             RefreshData();
         }
 
-        private void Filtering(string Text) 
+        private void Filtering(string Text)
         {
-
             if (string.IsNullOrEmpty(Text))
             {
                 string ActivateFilter = "";
@@ -87,7 +80,6 @@ namespace Loan_Desk.Borrowers
                 {
                     Filter = $"ID = {USID} and IsActive =0";
                 }
-
             }
             else if (cbFilter.SelectedIndex == 1)
             {
@@ -102,7 +94,7 @@ namespace Loan_Desk.Borrowers
                     Filter = $"FullName like '{Text}%' and IsActive =0";
                 }
             }
-            else if (cbFilter.SelectedIndex == 2) 
+            else if (cbFilter.SelectedIndex == 2)
             {
                 Filter = $"Passport like '{Text}%'";
 
@@ -114,7 +106,6 @@ namespace Loan_Desk.Borrowers
                 {
                     Filter = $"Passport like '{Text}%' and IsActive =0";
                 }
-
             }
             else if (cbFilter.SelectedIndex == 3)
             {
@@ -128,32 +119,40 @@ namespace Loan_Desk.Borrowers
                 {
                     Filter = $"Phone like '{Text}%' and IsActive =0";
                 }
-
             }
             LoadBorrowersInfo(Filter);
         }
+
         private LoanDesk.Models.Borrower GetSelectedRow()
         {
             LoanDesk.Models.Borrower borrower = new LoanDesk.Models.Borrower();
 
-            if (dgvB.SelectedRows.Count > 0)
+            try
             {
-                int USID = -1;
-                int.TryParse(dgvB.SelectedRows[0].Cells["ID"].Value.ToString(), out USID);
-                borrower.ID = USID;
+                if (dgvB.SelectedRows.Count > 0)
+                {
+                    int USID = -1;
+                    int.TryParse(dgvB.SelectedRows[0].Cells["ID"].Value.ToString(), out USID);
+                    borrower.ID = USID;
 
-                borrower.FullName = dgvB.SelectedRows[0].Cells["FullName"].Value.ToString();
-                borrower.Passport = dgvB.SelectedRows[0].Cells["Passport"].Value.ToString();
-                borrower.Phone = dgvB.SelectedRows[0].Cells["Phone"].Value.ToString();
-                borrower.IsActive = (bool)dgvB.SelectedRows[0].Cells["IsActive"].Value;
-
-                return borrower;
+                    borrower.FullName = dgvB.SelectedRows[0].Cells["FullName"].Value.ToString();
+                    borrower.Passport = dgvB.SelectedRows[0].Cells["Passport"].Value.ToString();
+                    borrower.Phone = dgvB.SelectedRows[0].Cells["Phone"].Value.ToString();
+                    borrower.IsActive = (bool)dgvB.SelectedRows[0].Cells["IsActive"].Value;
+                }
+                else
+                {
+                    return null;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return null;
+                ErrorHandler.Show(ex);
             }
+
+            return borrower;
         }
+
         private void btnAddBorrower_Click(object sender, EventArgs e)
         {
             frmAddNewBorrower frmAddBorrower = new frmAddNewBorrower();
@@ -165,12 +164,12 @@ namespace Loan_Desk.Borrowers
         {
             LoanDesk.Models.Borrower borrower = GetSelectedRow();
             if (borrower == null)
-               { MessageBox.Show("Please choose a vaild row.");
-                 return;
-               }
+            {
+                MessageBox.Show("Please choose a vaild row.");
+                return;
+            }
 
-
-           frmUpdateBorrwer frmUpdate  = new frmUpdateBorrwer(borrower);
+            frmUpdateBorrwer frmUpdate = new frmUpdateBorrwer(borrower);
             frmUpdate.ShowDialog();
             RefreshData();
         }
@@ -190,19 +189,17 @@ namespace Loan_Desk.Borrowers
                 if (borrower.IsActive == false)
                     throw new Exceptions.ValidationException("This borrower is already InActive");
 
-                IsDeleted=BorrowersBLL.DeactivateBorrowerByID(borrower.ID);
-                if(IsDeleted) 
+                IsDeleted = BorrowersBLL.DeactivateBorrowerByID(borrower.ID);
+                if (IsDeleted)
                 {
                     MessageBox.Show("Success");
                     RefreshData();
                 }
-                
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 ErrorHandler.Show(ex);
             }
-
         }
 
         private void btnActivate_Click(object sender, EventArgs e)
@@ -226,7 +223,6 @@ namespace Loan_Desk.Borrowers
                     MessageBox.Show("Success");
                     RefreshData();
                 }
-
             }
             catch (Exception ex)
             {
@@ -240,10 +236,7 @@ namespace Loan_Desk.Borrowers
 
             Text = utilities.utilities.ClearFilterString(Text);
 
-
-
             Filtering(Text);
-
         }
 
         private void chActive_CheckedChanged(object sender, EventArgs e)

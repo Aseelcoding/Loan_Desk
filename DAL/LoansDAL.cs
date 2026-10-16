@@ -167,5 +167,40 @@ namespace DAL
 
             return LateFee;
         }
+
+        public static DataTable GetDailyLoanStatistics(DateTime StartDate, DateTime EndDate)
+        {
+            var dtDailyStatics = new DataTable();
+
+            string query = @"
+SELECT
+    CAST(LoanedAt AS DATE) AS LoanDate,
+    COUNT(*) AS TotalLoans
+FROM Loans
+WHERE LoanedAt >= @StartDate
+  AND LoanedAt < @EndDate
+GROUP BY CAST(LoanedAt AS DATE)
+ORDER BY LoanDate;";
+
+            try
+            {
+                using (var connection = new SqlConnection(ConnectionString))
+                using (var cmd = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    cmd.Parameters.Add("@StartDate", SqlDbType.DateTime).Value = StartDate;
+                    cmd.Parameters.Add("@EndDate", SqlDbType.DateTime).Value = EndDate;
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    dtDailyStatics.Load(reader);
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw SqlErrorMapper.Map(ex, "Get Daily Loan Statistics");
+            }
+
+            return dtDailyStatics;
+        }
     }
 }

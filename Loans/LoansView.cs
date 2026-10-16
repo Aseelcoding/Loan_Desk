@@ -1,26 +1,20 @@
 ﻿using BLL;
-using LoanDesk.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using utilities;
 
 namespace Loan_Desk.Loans
 {
     public partial class LoansView : UserControl
     {
-        DataTable dtLoans;
+        private DataTable dtLoans;
+
         public LoansView()
         {
             InitializeComponent();
             RefreshData();
         }
+
         private void Filtering(string Text)
         {
             string Filter = string.Empty;
@@ -106,6 +100,7 @@ namespace Loan_Desk.Loans
 
             LoadLoansInfo(Filter);
         }
+
         private void LoadLoansInfo(string Filter = "")
         {
             dgvLo.Rows.Clear();
@@ -130,6 +125,7 @@ namespace Loan_Desk.Loans
                     row["FinePaid"]);
             }
         }
+
         private void RefreshData()
         {
             try
@@ -141,8 +137,8 @@ namespace Loan_Desk.Loans
             {
                 ErrorHandler.Show(ex);
             }
-
         }
+
         private void btnAddLoan_Click(object sender, EventArgs e)
         {
             frmAddLoan frmAddLoan = new frmAddLoan();
@@ -153,7 +149,7 @@ namespace Loan_Desk.Loans
         private void txtBarSearch_TextChanged(object sender, EventArgs e)
         {
             string Filter = txtBarSearch.Text;
-            Filter=utilities.utilities.ClearFilterString(Filter);
+            Filter = utilities.utilities.ClearFilterString(Filter);
             Filtering(Filter);
         }
 

@@ -1,12 +1,7 @@
 ﻿using DAL;
 using LoanDesk.Models;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using utilities;
 
 namespace BLL
 {
@@ -30,49 +25,68 @@ namespace BLL
             if (NewEquipment.DailyLateFee > NewEquipment.ReplacementCost)
                 throw new Exceptions.BusinessRuleException("Daily Late Fee can't be greater than Replacement Cost");
         }
-        private static void IsEquipmentNameIsTaken(Equipment NewEquipment) 
+
+        private static void IsEquipmentNameIsTaken(Equipment NewEquipment)
         {
             Equipment equipment_1 = EquipmentDAL.GetEquipmentByName(NewEquipment.Name);
-            if (equipment_1!=null&&equipment_1.ID != NewEquipment.ID)
+            if (equipment_1 != null && equipment_1.ID != NewEquipment.ID)
                 throw new Exceptions.BusinessRuleException("Duplicate equipment name.");
-
         }
+
         public static bool AddEquipment(Equipment NewEquipment)
         {
-            IsEquipmentNameIsTaken(NewEquipment);
+            UserBLL.RequireUser();
+
             CheckEquipment(NewEquipment);
-
-
+            IsEquipmentNameIsTaken(NewEquipment);
 
             return EquipmentDAL.AddEquipment(NewEquipment);
         }
-        public static bool UpdateEquipment(Equipment NewEquipment) 
+
+        public static bool UpdateEquipment(Equipment NewEquipment)
         {
-            IsEquipmentNameIsTaken(NewEquipment);
+            UserBLL.RequireUser();
+
             CheckEquipment(NewEquipment);
+            IsEquipmentNameIsTaken(NewEquipment);
             return EquipmentDAL.UdpateEquipment(NewEquipment);
         }
+
         public static Equipment GetEquipmentByID(int EquipmentID)
         {
             return EquipmentDAL.GetEquipmentByID(EquipmentID);
         }
-        public static bool ActivateEquipment(int EquipmentID) 
+
+        public static bool ActivateEquipment(int EquipmentID)
         {
+            UserBLL.RequireUser();
             return EquipmentDAL.ActivateEquipment(EquipmentID);
         }
-        public static bool DeactivateEquipment(int EquipmentID) 
+
+        public static bool DeactivateEquipment(int EquipmentID)
         {
+            Equipment equipment = GetEquipmentByID(EquipmentID);
+            if (equipment == null)
+                throw new Exceptions.ValidationException("Please choose a valid Equipment");
+            if (equipment.TotalQuantity != equipment.AvailableQuantity)
+                throw new Exceptions.BusinessRuleException("There are borrowers who are using this equipment.");
+            UserBLL.RequireUser();
             return EquipmentDAL.DeactivateEquipment(EquipmentID);
         }
+
         public static DataTable GetEquipments()
         {
+            UserBLL.RequireUser();
             return EquipmentDAL.GetEquipments();
         }
-        public static List<Equipment> GetEquipmentList() 
+
+        public static List<Equipment> GetEquipmentList()
         {
+            UserBLL.RequireUser();
             return EquipmentDAL.GetEquipmentList();
         }
-        public static bool IsActive(int ID) 
+
+        public static bool IsActive(int ID)
         {
             return EquipmentDAL.IsActive(ID);
         }
