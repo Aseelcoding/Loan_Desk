@@ -51,67 +51,90 @@ namespace DAL
 
         public static bool AddLoan(LoanDesk.Models.Loan NewLoan)
         {
-            bool IsAdded = false;
+            string query_1 = @"
+        INSERT INTO [dbo].[Loans]
+        ([EquipmentID], [BorrowerID], [UserID], [Quantity],
+         [LoanedAt], [DueAt], [ReturnedAt], [Status],
+         [LateFee], [FinePaid])
+        VALUES
+        (@EquipmentID, @BorrowerID, @UserID, @Quantity,
+         @LoanedAt, @DueAt, @ReturnedAt, @Status,
+         @LateFee, @FinePaid);";
 
-            string query = @"INSERT INTO [dbo].[Loans]
-           ([EquipmentID]
-           ,[BorrowerID]
-           ,[UserID]
-           ,[Quantity]
-           ,[LoanedAt]
-           ,[DueAt]
-           ,[ReturnedAt]
-           ,[Status]
-           ,[LateFee]
-           ,[FinePaid])
-     VALUES
-           (@EquipmentID
-           ,@BorrowerID
-           ,@UserID
-           ,@Quantity
-           ,@LoanedAt
-           ,@DueAt
-           ,@ReturnedAt
-           ,@Status
-           ,@LateFee
-           ,@FinePaid);";
+            string query_2 = @"
+        UPDATE Equipment
+        SET AvailableQuantity = AvailableQuantity - @Quantity
+        WHERE ID = @EquipmentID
+          AND AvailableQuantity >= @Quantity;";
 
             try
             {
-                using (var connection = new SqlConnection(ConnectionString))
-                using (var cmd = new SqlCommand(query, connection))
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
                 {
                     connection.Open();
-                    cmd.Parameters.Add("@EquipmentID", SqlDbType.Int).Value = NewLoan.EquipmentID;
-                    cmd.Parameters.Add("@BorrowerID", SqlDbType.Int).Value = NewLoan.BorrowerID;
-                    cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = NewLoan.UserID;
-                    cmd.Parameters.Add("@Quantity", SqlDbType.Int).Value = NewLoan.Quantity;
-                    cmd.Parameters.Add("@LoanedAt", SqlDbType.DateTime).Value = NewLoan.LoanedAt;
-                    cmd.Parameters.Add("@DueAt", SqlDbType.DateTime).Value = NewLoan.DueAt;
-                    cmd.Parameters.Add("@Status", SqlDbType.VarChar, 25).Value = NewLoan.Status;
-                    cmd.Parameters.Add("@LateFee", SqlDbType.Decimal, 24).Value = NewLoan.LateFee;
 
-                    if (NewLoan.ReturnedAt.HasValue)
-                        cmd.Parameters.Add("@ReturnedAt", SqlDbType.DateTime).Value = NewLoan.ReturnedAt;
-                    else
-                        cmd.Parameters.Add("@ReturnedAt", SqlDbType.DateTime).Value = DBNull.Value;
+                    using (SqlTransaction transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            using (SqlCommand cmd = new SqlCommand(query_1, connection, transaction))
+                            {
+                                cmd.Parameters.Add("@EquipmentID", SqlDbType.Int).Value = NewLoan.EquipmentID;
+                                cmd.Parameters.Add("@BorrowerID", SqlDbType.Int).Value = NewLoan.BorrowerID;
+                                cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = NewLoan.UserID;
+                                cmd.Parameters.Add("@Quantity", SqlDbType.Int).Value = NewLoan.Quantity;
+                                cmd.Parameters.Add("@LoanedAt", SqlDbType.DateTime).Value = NewLoan.LoanedAt;
+                                cmd.Parameters.Add("@DueAt", SqlDbType.DateTime).Value = NewLoan.DueAt;
+                                cmd.Parameters.Add("@Status", SqlDbType.VarChar, 25).Value = NewLoan.Status;
 
-                    if (NewLoan.FinePaid.HasValue)
-                        cmd.Parameters.Add("@FinePaid", SqlDbType.Bit).Value = NewLoan.FinePaid;
-                    else
-                        cmd.Parameters.Add("@FinePaid", SqlDbType.Bit).Value = DBNull.Value;
+                                SqlParameter lateFeeParameter =
+                                    cmd.Parameters.Add("@LateFee", SqlDbType.Decimal);
+                                lateFeeParameter.Precision = 10;
+                                lateFeeParameter.Scale = 2;
+                                lateFeeParameter.Value = NewLoan.LateFee;
 
-                    int AffectedRows = cmd.ExecuteNonQuery();
-                    if (AffectedRows > 0)
-                        IsAdded = true;
+                                cmd.Parameters.Add("@ReturnedAt", SqlDbType.DateTime).Value =
+                                    NewLoan.ReturnedAt.HasValue
+                                        ? (object)NewLoan.ReturnedAt.Value
+                                        : DBNull.Value;
+
+                                cmd.Parameters.Add("@FinePaid", SqlDbType.Bit).Value =
+                                    NewLoan.FinePaid.HasValue
+                                        ? (object)NewLoan.FinePaid.Value
+                                        : DBNull.Value;
+
+                                cmd.ExecuteNonQuery();
+                            }
+
+                            using (SqlCommand cmd = new SqlCommand(query_2, connection, transaction))
+                            {
+                                cmd.Parameters.Add("@EquipmentID", SqlDbType.Int).Value = NewLoan.EquipmentID;
+                                cmd.Parameters.Add("@Quantity", SqlDbType.Int).Value = NewLoan.Quantity;
+
+                                int affectedRows = cmd.ExecuteNonQuery();
+
+                                if (affectedRows == 0)
+                                {
+                                    throw new InvalidOperationException(
+                                        "Equipment not found or insufficient available quantity.");
+                                }
+                            }
+
+                            transaction.Commit();
+                            return true;
+                        }
+                        catch
+                        {
+                            transaction.Rollback();
+                            throw;
+                        }
+                    }
                 }
             }
             catch (SqlException ex)
             {
-                throw SqlErrorMapper.Map(ex, "Add New borrower");
+                throw SqlErrorMapper.Map(ex, "Add New Loan");
             }
-
-            return IsAdded;
         }
 
         public static decimal GetLateFee(int ID)
@@ -139,7 +162,7 @@ namespace DAL
             }
             catch (SqlException ex)
             {
-                throw SqlErrorMapper.Map(ex, "Add New borrower");
+                throw SqlErrorMapper.Map(ex, "Get Late Fee");
             }
 
             return LateFee;

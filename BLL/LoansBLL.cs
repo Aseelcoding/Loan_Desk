@@ -7,10 +7,13 @@ namespace BLL
 {
     public class LoansBLL
     {
+        
         private static void LoanDefaultData(Loan Loan)
         {
             Loan.LoanedAt = DateTime.Now;
             Loan.DueAt = DateTime.Now.AddDays(3);
+            Loan.Status = "Active";
+            Loan.LateFee = 0;
         }
 
         private static void ValidateLoan(Loan Loan)
@@ -53,9 +56,14 @@ namespace BLL
 
         public static bool AddLoan(LoanDesk.Models.Loan NewLoan)
         {
+
+
+
+            LoanDefaultData(NewLoan);
             ValidateLoan(NewLoan);
             LoanDefaultData(NewLoan);
             return LoansDAL.AddLoan(NewLoan);
+
         }
     }
 }

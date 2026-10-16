@@ -32,7 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ContentPanel = new ReaLTaiizor.Controls.ParrotGradientPanel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvLo = new System.Windows.Forms.DataGridView();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EquipmentID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BorrowerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,13 +44,14 @@
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LateFee = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FinePaid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.parrotGroupBox1 = new ReaLTaiizor.Controls.ParrotGroupBox();
-            this.foreverRadioButton2 = new ReaLTaiizor.Controls.ForeverRadioButton();
-            this.foreverRadioButton1 = new ReaLTaiizor.Controls.ForeverRadioButton();
             this.bigTextBox1 = new ReaLTaiizor.Controls.BigTextBox();
             this.btnAddLoan = new System.Windows.Forms.Button();
+            this.parrotGroupBox1 = new ReaLTaiizor.Controls.ParrotGroupBox();
+            this.chInActive = new System.Windows.Forms.CheckBox();
+            this.chActive = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.ContentPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLo)).BeginInit();
             this.parrotGroupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,8 +60,8 @@
             this.ContentPanel.BottomLeft = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
             this.ContentPanel.BottomRight = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ContentPanel.CompositingQualityType = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-            this.ContentPanel.Controls.Add(this.dataGridView1);
             this.ContentPanel.Controls.Add(this.parrotGroupBox1);
+            this.ContentPanel.Controls.Add(this.dgvLo);
             this.ContentPanel.Controls.Add(this.bigTextBox1);
             this.ContentPanel.Controls.Add(this.btnAddLoan);
             this.ContentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -78,12 +79,12 @@
             this.ContentPanel.TopLeft = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
             this.ContentPanel.TopRight = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
-            // dataGridView1
+            // dgvLo
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvLo.AllowUserToAddRows = false;
+            this.dgvLo.AllowUserToDeleteRows = false;
+            this.dgvLo.AllowUserToOrderColumns = true;
+            this.dgvLo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -91,9 +92,9 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvLo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvLo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvLo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
             this.EquipmentID,
             this.BorrowerID,
@@ -112,10 +113,10 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 91);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dataGridView1.Name = "dataGridView1";
+            this.dgvLo.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvLo.Location = new System.Drawing.Point(3, 91);
+            this.dgvLo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dgvLo.Name = "dgvLo";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -123,11 +124,11 @@
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1000, 679);
-            this.dataGridView1.TabIndex = 50;
+            this.dgvLo.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvLo.RowHeadersWidth = 51;
+            this.dgvLo.RowTemplate.Height = 24;
+            this.dgvLo.Size = new System.Drawing.Size(1000, 679);
+            this.dgvLo.TabIndex = 50;
             // 
             // ID
             // 
@@ -206,57 +207,6 @@
             this.FinePaid.Name = "FinePaid";
             this.FinePaid.ReadOnly = true;
             // 
-            // parrotGroupBox1
-            // 
-            this.parrotGroupBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.parrotGroupBox1.BorderWidth = 1;
-            this.parrotGroupBox1.Controls.Add(this.foreverRadioButton2);
-            this.parrotGroupBox1.Controls.Add(this.foreverRadioButton1);
-            this.parrotGroupBox1.Location = new System.Drawing.Point(345, 38);
-            this.parrotGroupBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.parrotGroupBox1.Name = "parrotGroupBox1";
-            this.parrotGroupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.parrotGroupBox1.ShowText = false;
-            this.parrotGroupBox1.Size = new System.Drawing.Size(267, 47);
-            this.parrotGroupBox1.TabIndex = 49;
-            this.parrotGroupBox1.TabStop = false;
-            this.parrotGroupBox1.Text = "parrotGroupBox1";
-            this.parrotGroupBox1.TextColor = System.Drawing.Color.DodgerBlue;
-            // 
-            // foreverRadioButton2
-            // 
-            this.foreverRadioButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
-            this.foreverRadioButton2.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
-            this.foreverRadioButton2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
-            this.foreverRadioButton2.Checked = false;
-            this.foreverRadioButton2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.foreverRadioButton2.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.foreverRadioButton2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
-            this.foreverRadioButton2.Location = new System.Drawing.Point(136, 12);
-            this.foreverRadioButton2.Margin = new System.Windows.Forms.Padding(4);
-            this.foreverRadioButton2.Name = "foreverRadioButton2";
-            this.foreverRadioButton2.Options = ReaLTaiizor.Controls.ForeverRadioButton._Options.Style1;
-            this.foreverRadioButton2.Size = new System.Drawing.Size(99, 22);
-            this.foreverRadioButton2.TabIndex = 2;
-            this.foreverRadioButton2.Text = "InActive";
-            // 
-            // foreverRadioButton1
-            // 
-            this.foreverRadioButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
-            this.foreverRadioButton1.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
-            this.foreverRadioButton1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
-            this.foreverRadioButton1.Checked = false;
-            this.foreverRadioButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.foreverRadioButton1.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.foreverRadioButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
-            this.foreverRadioButton1.Location = new System.Drawing.Point(9, 12);
-            this.foreverRadioButton1.Margin = new System.Windows.Forms.Padding(4);
-            this.foreverRadioButton1.Name = "foreverRadioButton1";
-            this.foreverRadioButton1.Options = ReaLTaiizor.Controls.ForeverRadioButton._Options.Style1;
-            this.foreverRadioButton1.Size = new System.Drawing.Size(99, 22);
-            this.foreverRadioButton1.TabIndex = 1;
-            this.foreverRadioButton1.Text = "Active";
-            // 
             // bigTextBox1
             // 
             this.bigTextBox1.BackColor = System.Drawing.Color.Transparent;
@@ -292,6 +242,57 @@
             this.btnAddLoan.UseVisualStyleBackColor = false;
             this.btnAddLoan.Click += new System.EventHandler(this.btnAddLoan_Click);
             // 
+            // parrotGroupBox1
+            // 
+            this.parrotGroupBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.parrotGroupBox1.BorderWidth = 1;
+            this.parrotGroupBox1.Controls.Add(this.checkBox1);
+            this.parrotGroupBox1.Controls.Add(this.chInActive);
+            this.parrotGroupBox1.Controls.Add(this.chActive);
+            this.parrotGroupBox1.Location = new System.Drawing.Point(556, 38);
+            this.parrotGroupBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.parrotGroupBox1.Name = "parrotGroupBox1";
+            this.parrotGroupBox1.Padding = new System.Windows.Forms.Padding(4);
+            this.parrotGroupBox1.ShowText = false;
+            this.parrotGroupBox1.Size = new System.Drawing.Size(263, 47);
+            this.parrotGroupBox1.TabIndex = 51;
+            this.parrotGroupBox1.TabStop = false;
+            this.parrotGroupBox1.Text = "parrotGroupBox1";
+            this.parrotGroupBox1.TextColor = System.Drawing.Color.DodgerBlue;
+            // 
+            // chInActive
+            // 
+            this.chInActive.AutoSize = true;
+            this.chInActive.Location = new System.Drawing.Point(96, 16);
+            this.chInActive.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chInActive.Name = "chInActive";
+            this.chInActive.Size = new System.Drawing.Size(84, 20);
+            this.chInActive.TabIndex = 3;
+            this.chInActive.Text = "Returned";
+            this.chInActive.UseVisualStyleBackColor = true;
+            // 
+            // chActive
+            // 
+            this.chActive.AutoSize = true;
+            this.chActive.Location = new System.Drawing.Point(7, 16);
+            this.chActive.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chActive.Name = "chActive";
+            this.chActive.Size = new System.Drawing.Size(66, 20);
+            this.chActive.TabIndex = 2;
+            this.chActive.Text = "Active";
+            this.chActive.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(201, 16);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(54, 20);
+            this.checkBox1.TabIndex = 4;
+            this.checkBox1.Text = "Lost";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // LoansView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -301,8 +302,9 @@
             this.Name = "LoansView";
             this.Size = new System.Drawing.Size(1000, 770);
             this.ContentPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLo)).EndInit();
             this.parrotGroupBox1.ResumeLayout(false);
+            this.parrotGroupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -310,12 +312,9 @@
         #endregion
 
         private ReaLTaiizor.Controls.ParrotGradientPanel ContentPanel;
-        private ReaLTaiizor.Controls.ParrotGroupBox parrotGroupBox1;
-        private ReaLTaiizor.Controls.ForeverRadioButton foreverRadioButton2;
-        private ReaLTaiizor.Controls.ForeverRadioButton foreverRadioButton1;
         private ReaLTaiizor.Controls.BigTextBox bigTextBox1;
         private System.Windows.Forms.Button btnAddLoan;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvLo;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn EquipmentID;
         private System.Windows.Forms.DataGridViewTextBoxColumn BorrowerID;
@@ -327,5 +326,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
         private System.Windows.Forms.DataGridViewTextBoxColumn LateFee;
         private System.Windows.Forms.DataGridViewTextBoxColumn FinePaid;
+        private ReaLTaiizor.Controls.ParrotGroupBox parrotGroupBox1;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox chInActive;
+        private System.Windows.Forms.CheckBox chActive;
     }
 }

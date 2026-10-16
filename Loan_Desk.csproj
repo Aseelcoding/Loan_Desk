@@ -9,6 +9,7 @@
     <RootNamespace>Loan_Desk</RootNamespace>
     <AssemblyName>Loan_Desk</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+	 <LangVersion>8.0</LangVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>

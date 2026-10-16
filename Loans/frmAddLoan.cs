@@ -151,16 +151,52 @@ namespace Loan_Desk.Loans
             e.DrawFocusRectangle();
         }
 
-
         private void btnClose_Click_1(object sender, EventArgs e)
         {
             this.Close();
 
         }
 
+        private void ValidateLoan(LoanDesk.Models.Borrower borrower,LoanDesk.Models.Equipment equipment) 
+        {
+            if (borrower.IsActive == false)
+                throw new Exceptions.BusinessRuleException("Inactive borrower can not take loans");
+            if (equipment.IsActive == false)
+                throw new Exceptions.BusinessRuleException("Equipment is not active");
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Hello");
+
+            bool IsAdded = false;
+            try 
+            {
+                var borrower = cmbBorrowers.SelectedItem as LoanDesk.Models.Borrower;
+                var equipment =cmbEquipments.SelectedItem as LoanDesk.Models.Equipment;
+                ValidateLoan(borrower, equipment);
+
+                var NewLoan = new LoanDesk.Models.Loan();
+                NewLoan.BorrowerID = borrower.ID;
+                NewLoan.EquipmentID = equipment.ID;
+                NewLoan.UserID = Sessions.CurrentUser.ID;
+                int _Quantity;
+                int.TryParse(numQuantity.Value.ToString(), out _Quantity);
+                NewLoan.Quantity = _Quantity;
+
+                IsAdded= LoansBLL.AddLoan(NewLoan);
+
+
+                if (IsAdded)
+                   { MessageBox.Show("Success");this.Close(); }
+                else
+                    MessageBox.Show("Failed");
+
+
+            }
+            catch(Exception ex) 
+            {
+                ErrorHandler.Show(ex);
+            }
         }
 
         private void cmbBorrowers_SelectedIndexChanged(object sender, EventArgs e)

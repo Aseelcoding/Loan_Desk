@@ -133,7 +133,7 @@
             // numQuantity
             // 
             this.numQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.numQuantity.Location = new System.Drawing.Point(217, 418);
+            this.numQuantity.Location = new System.Drawing.Point(227, 415);
             this.numQuantity.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -160,7 +160,7 @@
             this.bigLabel9.BackColor = System.Drawing.Color.Transparent;
             this.bigLabel9.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.bigLabel9.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.bigLabel9.Location = new System.Drawing.Point(14, 418);
+            this.bigLabel9.Location = new System.Drawing.Point(24, 415);
             this.bigLabel9.Name = "bigLabel9";
             this.bigLabel9.Size = new System.Drawing.Size(91, 23);
             this.bigLabel9.TabIndex = 102;
@@ -170,7 +170,7 @@
             // 
             this.numAvailableQuantity.Enabled = false;
             this.numAvailableQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.numAvailableQuantity.Location = new System.Drawing.Point(217, 370);
+            this.numAvailableQuantity.Location = new System.Drawing.Point(227, 367);
             this.numAvailableQuantity.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -189,7 +189,7 @@
             this.bigLabel3.BackColor = System.Drawing.Color.Transparent;
             this.bigLabel3.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.bigLabel3.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.bigLabel3.Location = new System.Drawing.Point(14, 370);
+            this.bigLabel3.Location = new System.Drawing.Point(24, 367);
             this.bigLabel3.Name = "bigLabel3";
             this.bigLabel3.Size = new System.Drawing.Size(178, 23);
             this.bigLabel3.TabIndex = 100;
@@ -240,6 +240,7 @@
             this.MaximumSize = new System.Drawing.Size(550, 625);
             this.MinimumSize = new System.Drawing.Size(550, 625);
             this.Name = "frmAddLoan";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddLoan";
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

@@ -400,6 +400,8 @@ where BorrowerID =@ID;
                 using (var connection=new SqlConnection (ConnectionString))
                 using (var cmd=new SqlCommand(query,connection))
                 {
+                    cmd.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
+                    connection.Open();
 
                     object Result = cmd.ExecuteScalar();
 
@@ -408,7 +410,7 @@ where BorrowerID =@ID;
             }
             catch (SqlException ex)
             {
-                throw SqlErrorMapper.Map(ex, "Add New borrower");
+                throw SqlErrorMapper.Map(ex, "Get Active Loans for a borrower");
             }
 
             return ActiveLoans;
