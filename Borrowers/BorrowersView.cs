@@ -74,54 +74,37 @@ namespace Loan_Desk.Borrowers
                 int.TryParse(Text, out USID);
                 Filter = $"ID = {USID} ";
 
-                if (chActive.Checked && chInActive.Checked == false)
-                {
-                    Filter = $"ID = {USID} and IsActive =1";
-                }
-                else if (chActive.Checked == false && chInActive.Checked == true)
-                {
-                    Filter = $"ID = {USID} and IsActive =0";
-                }
+               
             }
             else if (cbFilter.SelectedIndex == 1)
             {
                 Filter = $"FullName like '{Text}%'";
 
-                if (chActive.Checked && chInActive.Checked == false)
-                {
-                    Filter = $"FullName like '{Text}%' and IsActive =1";
-                }
-                else if (chActive.Checked == false && chInActive.Checked == true)
-                {
-                    Filter = $"FullName like '{Text}%' and IsActive =0";
-                }
+               
             }
             else if (cbFilter.SelectedIndex == 2)
             {
                 Filter = $"Passport like '{Text}%'";
 
-                if (chActive.Checked && chInActive.Checked == false)
-                {
-                    Filter = $"Passport like '{Text}%' and IsActive =1";
-                }
-                else if (chActive.Checked == false && chInActive.Checked == true)
-                {
-                    Filter = $"Passport like '{Text}%' and IsActive =0";
-                }
+               
             }
             else if (cbFilter.SelectedIndex == 3)
             {
                 Filter = $"Phone like '{Text}%'";
 
-                if (chActive.Checked && chInActive.Checked == false)
-                {
-                    Filter = $"Phone like '{Text}%' and IsActive =1";
-                }
-                else if (chActive.Checked == false && chInActive.Checked == true)
-                {
-                    Filter = $"Phone like '{Text}%' and IsActive =0";
-                }
+               
             }
+
+            // Apply status filters
+            if (chActive.Checked && !chInActive.Checked)
+            {
+                Filter += (Filter != "" ? " AND " : "") + "IsActive =1";
+            }
+            else if (!chActive.Checked && chInActive.Checked)
+            {
+                Filter += (Filter != "" ? " AND " : "") + "IsActive = 0";
+            }
+
             LoadBorrowersInfo(Filter);
         }
 

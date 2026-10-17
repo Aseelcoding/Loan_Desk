@@ -80,27 +80,12 @@ namespace Loan_Desk.Equipment
                 int.TryParse(Text, out USID);
                 Filter = $"ID = {USID} ";
 
-                if (chActive.Checked && chInActive.Checked == false)
-                {
-                    Filter = $"ID = {USID} and IsActive =1";
-                }
-                else if (chActive.Checked == false && chInActive.Checked == true)
-                {
-                    Filter = $"ID = {USID} and IsActive =0";
-                }
             }
             else if (cbFilter.SelectedIndex == 1)
             {
                 Filter = $"Name like '{Text}%'";
 
-                if (chActive.Checked && chInActive.Checked == false)
-                {
-                    Filter = $"Name like '{Text}%' and IsActive =1";
-                }
-                else if (chActive.Checked == false && chInActive.Checked == true)
-                {
-                    Filter = $"Name like '{Text}%' and IsActive =0";
-                }
+               
             }
             else if (cbFilter.SelectedIndex == 2)
             {
@@ -108,14 +93,7 @@ namespace Loan_Desk.Equipment
                 int.TryParse(Text, out Quantity);
                 Filter = $"TotalQuantity = {Quantity} ";
 
-                if (chActive.Checked && chInActive.Checked == false)
-                {
-                    Filter = $"TotalQuantity = {Quantity} and IsActive =1";
-                }
-                else if (chActive.Checked == false && chInActive.Checked == true)
-                {
-                    Filter = $"TotalQuantity = {Quantity} and IsActive =0";
-                }
+               
             }
             else if (cbFilter.SelectedIndex == 3)
             {
@@ -123,14 +101,7 @@ namespace Loan_Desk.Equipment
                 decimal.TryParse(Text, out AvaliableQuantity);
                 Filter = $"AvailableQuantity = {AvaliableQuantity} ";
 
-                if (chActive.Checked && chInActive.Checked == false)
-                {
-                    Filter = $"AvailableQuantity = {AvaliableQuantity} and IsActive =1";
-                }
-                else if (chActive.Checked == false && chInActive.Checked == true)
-                {
-                    Filter = $"AvailableQuantity = {AvaliableQuantity} and IsActive =0";
-                }
+               
             }
             else if (cbFilter.SelectedIndex == 4)
             {
@@ -138,14 +109,7 @@ namespace Loan_Desk.Equipment
                 decimal.TryParse(Text, out DailyLateFee);
                 Filter = $"DailyLateFee = {DailyLateFee} ";
 
-                if (chActive.Checked && chInActive.Checked == false)
-                {
-                    Filter = $"DailyLateFee = {DailyLateFee} and IsActive =1";
-                }
-                else if (chActive.Checked == false && chInActive.Checked == true)
-                {
-                    Filter = $"DailyLateFee = {DailyLateFee} and IsActive =0";
-                }
+                
             }
             else if (cbFilter.SelectedIndex == 5)
             {
@@ -153,15 +117,18 @@ namespace Loan_Desk.Equipment
                 decimal.TryParse(Text, out ReplecmentCost);
                 Filter = $"ReplacementCost = {ReplecmentCost} ";
 
-                if (chActive.Checked && chInActive.Checked == false)
-                {
-                    Filter = $"ReplacementCost = {ReplecmentCost} and IsActive =1";
-                }
-                else if (chActive.Checked == false && chInActive.Checked == true)
-                {
-                    Filter = $"ReplacementCost = {ReplecmentCost} and IsActive =0";
-                }
+              
             }
+            // Apply status filters
+            if (chActive.Checked && !chInActive.Checked)
+            {
+                Filter += (Filter != "" ? " AND " : "") + "IsActive =1";
+            }
+            else if (!chActive.Checked && chInActive.Checked)
+            {
+                Filter += (Filter != "" ? " AND " : "") + "IsActive = 0";
+            }
+
             LoadEquipmentInfo(Filter);
         }
 

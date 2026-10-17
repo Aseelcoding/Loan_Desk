@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Windows.Forms;
 using utilities;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 
 namespace Loan_Desk.Users
 {
@@ -79,31 +80,28 @@ namespace Loan_Desk.Users
                 int.TryParse(Text, out USID);
                 Filter = $"ID = {USID} ";
 
-                if (chActive.Checked && chInActive.Checked == false)
-                {
-                    Filter = $"ID = {USID} and IsActive =1";
-                }
-                else if (chActive.Checked == false && chInActive.Checked == true)
-                {
-                    Filter = $"ID = {USID} and IsActive =0";
-                }
+               
             }
             else if (cbFilter.SelectedIndex == 1)
             {
                 Filter = $"Username  like '{Text}%'";
-                if (chActive.Checked && chInActive.Checked == false)
-                    Filter = $"Username  like '{Text}%' and IsActive=1";
-                else if (chActive.Checked == false && chInActive.Checked == true)
-                    Filter = $"Username  like '{Text}%' and IsActive=0";
+               
             }
             else if (cbFilter.SelectedIndex == 2)
             {
                 Filter = $"Role  like '{Text}%'";
-                if (chActive.Checked && chInActive.Checked == false)
-                    Filter = $"Role  like '{Text}%' and IsActive=1";
-                else if (chActive.Checked == false && chInActive.Checked == true)
-                    Filter = $"Role  like '{Text}%' and IsActive=0";
+              
             }
+            // Apply status filters
+            if (chActive.Checked && !chInActive.Checked)
+            {
+                Filter += (Filter != "" ? " AND " : "") + "IsActive =1";
+            }
+            else if (!chActive.Checked && chInActive.Checked )
+            {
+                Filter += (Filter != "" ? " AND " : "") + "IsActive = 0";
+            }
+           
 
             LoadUsersInfo(Filter);
         }
