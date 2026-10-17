@@ -36,17 +36,30 @@ namespace BLL
         public static bool AddEquipment(Equipment NewEquipment)
         {
             UserBLL.RequireUser();
-
+            NewEquipment.AvailableQuantity = NewEquipment.TotalQuantity;
             CheckEquipment(NewEquipment);
             IsEquipmentNameIsTaken(NewEquipment);
 
             return EquipmentDAL.AddEquipment(NewEquipment);
         }
 
+        private static void CalculateAvailablQuantity(Equipment NewEquipment)
+        {
+            Equipment OrginalEquipment = EquipmentDAL.GetEquipmentByID(NewEquipment.ID);
+
+            int def = OrginalEquipment.TotalQuantity - NewEquipment.TotalQuantity;
+
+            if (def <= NewEquipment.AvailableQuantity)
+                NewEquipment.AvailableQuantity -= def;
+            else
+                throw new Exceptions.BusinessRuleException("You can not do this operation.");
+        }
+
         public static bool UpdateEquipment(Equipment NewEquipment)
         {
             UserBLL.RequireUser();
 
+            CalculateAvailablQuantity(NewEquipment);
             CheckEquipment(NewEquipment);
             IsEquipmentNameIsTaken(NewEquipment);
             return EquipmentDAL.UdpateEquipment(NewEquipment);

@@ -27,8 +27,8 @@ namespace BLL
                 throw new Exceptions.BusinessRuleException($"Current borrower with the id {Loan.BorrowerID} is not active");
             if (BorrowersDAL.GetActiveLoansCountByBorrowerID(Loan.BorrowerID) >= 3)
                 throw new Exceptions.BusinessRuleException("A borrower can not has more than 3 active loans.");
-            if (LoansDAL.GetLateFee(Loan.BorrowerID) > 0)
-                throw new Exceptions.BusinessRuleException("A borrower who has late fee can not get new loan");
+            if (LoansDAL.hasUnpaidfee(Loan.BorrowerID))
+                throw new Exceptions.BusinessRuleException("A borrower who has Unpaid fine can not get new loan");
             //Equipment :
             Equipment equipment = EquipmentDAL.GetEquipmentByID(Loan.EquipmentID);
             if (equipment != null)
@@ -38,6 +38,9 @@ namespace BLL
 
                 if (Loan.Quantity <= 0)
                     throw new Exceptions.BusinessRuleException("Quantity must be at least one");
+
+                if (equipment.AvailableQuantity == 0)
+                    throw new Exceptions.BusinessRuleException($"Current Available quantity is {equipment.AvailableQuantity}, there is no available equipments.");
                 if (equipment.AvailableQuantity < Loan.Quantity)
                     throw new Exceptions.BusinessRuleException($"Current Available quantity is {equipment.AvailableQuantity}, you can not take more than that");
 

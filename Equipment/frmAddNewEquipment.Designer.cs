@@ -31,7 +31,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.numReplecmentCost = new ReaLTaiizor.Controls.CrownNumeric();
             this.numDailyLateFee = new ReaLTaiizor.Controls.CrownNumeric();
-            this.numAvailableQuantity = new ReaLTaiizor.Controls.CrownNumeric();
             this.numTotalQuantity = new ReaLTaiizor.Controls.CrownNumeric();
             this.aloneNotice1 = new ReaLTaiizor.Controls.AloneNotice();
             this.btnSave = new ReaLTaiizor.Controls.LostCancelButton();
@@ -40,7 +39,6 @@
             this.bigLabel8 = new ReaLTaiizor.Controls.BigLabel();
             this.bigLabel7 = new ReaLTaiizor.Controls.BigLabel();
             this.bigLabel6 = new ReaLTaiizor.Controls.BigLabel();
-            this.bigLabel4 = new ReaLTaiizor.Controls.BigLabel();
             this.bigLabel3 = new ReaLTaiizor.Controls.BigLabel();
             this.txtEquipmentName = new ReaLTaiizor.Controls.ForeverTextBox();
             this.bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
@@ -50,7 +48,6 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numReplecmentCost)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDailyLateFee)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numAvailableQuantity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numTotalQuantity)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,7 +56,6 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
             this.panel1.Controls.Add(this.numReplecmentCost);
             this.panel1.Controls.Add(this.numDailyLateFee);
-            this.panel1.Controls.Add(this.numAvailableQuantity);
             this.panel1.Controls.Add(this.numTotalQuantity);
             this.panel1.Controls.Add(this.aloneNotice1);
             this.panel1.Controls.Add(this.btnSave);
@@ -68,7 +64,6 @@
             this.panel1.Controls.Add(this.bigLabel8);
             this.panel1.Controls.Add(this.bigLabel7);
             this.panel1.Controls.Add(this.bigLabel6);
-            this.panel1.Controls.Add(this.bigLabel4);
             this.panel1.Controls.Add(this.bigLabel3);
             this.panel1.Controls.Add(this.txtEquipmentName);
             this.panel1.Controls.Add(this.bigLabel2);
@@ -78,14 +73,14 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(572, 578);
+            this.panel1.Size = new System.Drawing.Size(572, 487);
             this.panel1.TabIndex = 0;
             // 
             // numReplecmentCost
             // 
             this.numReplecmentCost.DecimalPlaces = 6;
             this.numReplecmentCost.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.numReplecmentCost.Location = new System.Drawing.Point(204, 365);
+            this.numReplecmentCost.Location = new System.Drawing.Point(202, 322);
             this.numReplecmentCost.Maximum = new decimal(new int[] {
             50000,
             0,
@@ -99,7 +94,7 @@
             // 
             this.numDailyLateFee.DecimalPlaces = 6;
             this.numDailyLateFee.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.numDailyLateFee.Location = new System.Drawing.Point(204, 319);
+            this.numDailyLateFee.Location = new System.Drawing.Point(202, 276);
             this.numDailyLateFee.Maximum = new decimal(new int[] {
             50000,
             0,
@@ -108,21 +103,6 @@
             this.numDailyLateFee.Name = "numDailyLateFee";
             this.numDailyLateFee.Size = new System.Drawing.Size(120, 26);
             this.numDailyLateFee.TabIndex = 100;
-            // 
-            // numAvailableQuantity
-            // 
-            this.numAvailableQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.numAvailableQuantity.Location = new System.Drawing.Point(204, 274);
-            this.numAvailableQuantity.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.numAvailableQuantity.Name = "numAvailableQuantity";
-            this.numAvailableQuantity.Size = new System.Drawing.Size(120, 26);
-            this.numAvailableQuantity.TabIndex = 99;
-            this.numAvailableQuantity.ThousandsSeparator = true;
-            this.numAvailableQuantity.ValueChanged += new System.EventHandler(this.numAvailableQuantity_ValueChanged);
             // 
             // numTotalQuantity
             // 
@@ -137,7 +117,7 @@
             this.numTotalQuantity.Size = new System.Drawing.Size(120, 26);
             this.numTotalQuantity.TabIndex = 98;
             this.numTotalQuantity.ThousandsSeparator = true;
-            this.numTotalQuantity.ValueChanged += new System.EventHandler(this.numTotalQuantity_ValueChanged);
+           
             // 
             // aloneNotice1
             // 
@@ -165,7 +145,7 @@
             this.btnSave.ForeColor = System.Drawing.Color.White;
             this.btnSave.HoverColor = System.Drawing.Color.MediumSeaGreen;
             this.btnSave.Image = null;
-            this.btnSave.Location = new System.Drawing.Point(0, 516);
+            this.btnSave.Location = new System.Drawing.Point(0, 425);
             this.btnSave.Margin = new System.Windows.Forms.Padding(5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(180, 62);
@@ -181,7 +161,7 @@
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.HoverColor = System.Drawing.Color.MediumSeaGreen;
             this.btnClose.Image = null;
-            this.btnClose.Location = new System.Drawing.Point(392, 516);
+            this.btnClose.Location = new System.Drawing.Point(392, 425);
             this.btnClose.Margin = new System.Windows.Forms.Padding(5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(180, 62);
@@ -192,7 +172,7 @@
             // togIsActive
             // 
             this.togIsActive.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.togIsActive.Location = new System.Drawing.Point(204, 415);
+            this.togIsActive.Location = new System.Drawing.Point(202, 372);
             this.togIsActive.Margin = new System.Windows.Forms.Padding(5);
             this.togIsActive.Name = "togIsActive";
             this.togIsActive.Size = new System.Drawing.Size(76, 33);
@@ -206,7 +186,7 @@
             this.bigLabel8.BackColor = System.Drawing.Color.Transparent;
             this.bigLabel8.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.bigLabel8.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.bigLabel8.Location = new System.Drawing.Point(12, 420);
+            this.bigLabel8.Location = new System.Drawing.Point(10, 377);
             this.bigLabel8.Name = "bigLabel8";
             this.bigLabel8.Size = new System.Drawing.Size(85, 23);
             this.bigLabel8.TabIndex = 87;
@@ -218,7 +198,7 @@
             this.bigLabel7.BackColor = System.Drawing.Color.Transparent;
             this.bigLabel7.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.bigLabel7.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.bigLabel7.Location = new System.Drawing.Point(12, 368);
+            this.bigLabel7.Location = new System.Drawing.Point(10, 325);
             this.bigLabel7.Name = "bigLabel7";
             this.bigLabel7.Size = new System.Drawing.Size(160, 23);
             this.bigLabel7.TabIndex = 86;
@@ -230,23 +210,11 @@
             this.bigLabel6.BackColor = System.Drawing.Color.Transparent;
             this.bigLabel6.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.bigLabel6.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.bigLabel6.Location = new System.Drawing.Point(12, 321);
+            this.bigLabel6.Location = new System.Drawing.Point(10, 278);
             this.bigLabel6.Name = "bigLabel6";
             this.bigLabel6.Size = new System.Drawing.Size(126, 23);
             this.bigLabel6.TabIndex = 85;
             this.bigLabel6.Text = "DAILY LATE FEE";
-            // 
-            // bigLabel4
-            // 
-            this.bigLabel4.AutoSize = true;
-            this.bigLabel4.BackColor = System.Drawing.Color.Transparent;
-            this.bigLabel4.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.bigLabel4.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.bigLabel4.Location = new System.Drawing.Point(12, 274);
-            this.bigLabel4.Name = "bigLabel4";
-            this.bigLabel4.Size = new System.Drawing.Size(178, 23);
-            this.bigLabel4.TabIndex = 83;
-            this.bigLabel4.Text = "AVAILABLE QUANTITY";
             // 
             // bigLabel3
             // 
@@ -339,8 +307,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(572, 578);
+            this.ClientSize = new System.Drawing.Size(572, 487);
             this.Controls.Add(this.panel1);
+            this.MaximumSize = new System.Drawing.Size(590, 534);
+            this.MinimumSize = new System.Drawing.Size(590, 534);
             this.Name = "frmAddNewEquipment";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add New Equipment";
@@ -348,7 +318,6 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numReplecmentCost)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDailyLateFee)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numAvailableQuantity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numTotalQuantity)).EndInit();
             this.ResumeLayout(false);
 
@@ -365,13 +334,11 @@
         private ReaLTaiizor.Controls.BigLabel bigLabel1;
         private ReaLTaiizor.Controls.BigLabel bigLabel7;
         private ReaLTaiizor.Controls.BigLabel bigLabel6;
-        private ReaLTaiizor.Controls.BigLabel bigLabel4;
         private ReaLTaiizor.Controls.ToggleButton togIsActive;
         private ReaLTaiizor.Controls.BigLabel bigLabel8;
         private ReaLTaiizor.Controls.LostCancelButton btnSave;
         private ReaLTaiizor.Controls.LostCancelButton btnClose;
         private ReaLTaiizor.Controls.AloneNotice aloneNotice1;
-        private ReaLTaiizor.Controls.CrownNumeric numAvailableQuantity;
         private ReaLTaiizor.Controls.CrownNumeric numTotalQuantity;
         private ReaLTaiizor.Controls.CrownNumeric numReplecmentCost;
         private ReaLTaiizor.Controls.CrownNumeric numDailyLateFee;

@@ -21,7 +21,7 @@ namespace Loan_Desk.Equipment
             txtEquipmentID.Text = OriginalEquipment.ID.ToString();
             txtEquipmentName.Text = OriginalEquipment.Name;
             numTotalQuantity.Value = OriginalEquipment.TotalQuantity;
-            numAvailableQuantity.Value = OriginalEquipment.AvailableQuantity;
+
             numDailyLateFee.Value = OriginalEquipment.DailyLateFee;
             numReplecmentCost.Value = OriginalEquipment.ReplacementCost;
         }
@@ -33,16 +33,6 @@ namespace Loan_Desk.Equipment
                 throw new Exceptions.BusinessRuleException("Dailt late fee can not be greater than replecment cost.");
         }
 
-        private void numTotalQuantity_ValueChanged(object sender, EventArgs e)
-        {
-            numAvailableQuantity.Maximum = numTotalQuantity.Value;
-        }
-
-        private void numAvailableQuantity_ValueChanged(object sender, EventArgs e)
-        {
-            numAvailableQuantity.Maximum = numTotalQuantity.Value;
-        }
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -52,7 +42,7 @@ namespace Loan_Desk.Equipment
         {
             if (equipment.Name == OriginalEquipment.Name &&
                 equipment.TotalQuantity == OriginalEquipment.TotalQuantity &&
-                equipment.AvailableQuantity == OriginalEquipment.AvailableQuantity &&
+
                 equipment.DailyLateFee == OriginalEquipment.DailyLateFee &&
                 equipment.ReplacementCost == OriginalEquipment.ReplacementCost
                 )
@@ -68,7 +58,7 @@ namespace Loan_Desk.Equipment
             Equipment.ID = OriginalEquipment.ID;
             Equipment.Name = txtEquipmentName.Text;
             Equipment.TotalQuantity = (int)numTotalQuantity.Value;
-            Equipment.AvailableQuantity = (int)numAvailableQuantity.Value;
+            Equipment.AvailableQuantity = OriginalEquipment.AvailableQuantity;
             Equipment.DailyLateFee = numDailyLateFee.Value;
             Equipment.ReplacementCost = numReplecmentCost.Value;
             Equipment.IsActive = OriginalEquipment.IsActive;

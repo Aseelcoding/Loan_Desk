@@ -202,5 +202,36 @@ ORDER BY LoanDate;";
 
             return dtDailyStatics;
         }
+
+        public static bool hasUnpaidfee(int BorrowerID)
+        {
+            bool Has = false;
+
+            string query = @"select 1 as HasUnpaidFine from Loans
+                        where BorrowerID=1 and  FinePaid =0;";
+
+            try
+            {
+                using (var connection = new SqlConnection(ConnectionString))
+                using (var cmd = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    cmd.Parameters.Add("@BorrowerID", SqlDbType.Int).Value = BorrowerID;
+
+                    var reader = cmd.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        Has = true;
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw SqlErrorMapper.Map(ex, "Check if borrower has unpaid fee.");
+            }
+
+            return Has;
+        }
     }
 }

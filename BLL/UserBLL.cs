@@ -43,6 +43,7 @@ namespace BLL
             catch (Exception ex)
             {
                 Logger.Write(ex);
+                throw;
             }
             return IsExist;
         }

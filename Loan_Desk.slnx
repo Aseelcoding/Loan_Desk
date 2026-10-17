@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="App.config.example" />
+  </Folder>
   <Project Path="BLL/BLL.csproj" Id="8d287a4b-eaa0-4974-9f2d-f2ae34981050" />
   <Project Path="DAL/DAL.csproj" Id="2dbadb5c-d368-4578-8887-327163acab00" />
   <Project Path="LoanDesk.Models/LoanDesk.Models.csproj" Id="d4eea928-bd1f-4d76-ab3d-5bf2a9a91c24" />

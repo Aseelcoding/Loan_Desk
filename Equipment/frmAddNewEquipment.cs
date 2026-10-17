@@ -31,7 +31,6 @@ namespace Loan_Desk.Equipment
 
             NewEquipment.Name = txtEquipmentName.Text;
             NewEquipment.TotalQuantity = (int)numTotalQuantity.Value;
-            NewEquipment.AvailableQuantity = (int)numAvailableQuantity.Value;
             NewEquipment.DailyLateFee = numDailyLateFee.Value;
             NewEquipment.ReplacementCost = numReplecmentCost.Value;
             NewEquipment.IsActive = togIsActive.Toggled;
@@ -52,16 +51,6 @@ namespace Loan_Desk.Equipment
             {
                 ErrorHandler.Show(ex);
             }
-        }
-
-        private void numTotalQuantity_ValueChanged(object sender, EventArgs e)
-        {
-            numAvailableQuantity.Maximum = numTotalQuantity.Value;
-        }
-
-        private void numAvailableQuantity_ValueChanged(object sender, EventArgs e)
-        {
-            numAvailableQuantity.Maximum = numTotalQuantity.Value;
         }
     }
 }

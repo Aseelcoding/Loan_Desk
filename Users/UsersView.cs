@@ -3,7 +3,6 @@ using System;
 using System.Data;
 using System.Windows.Forms;
 using utilities;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 
 namespace Loan_Desk.Users
 {
@@ -79,29 +78,24 @@ namespace Loan_Desk.Users
                 int USID = -1;
                 int.TryParse(Text, out USID);
                 Filter = $"ID = {USID} ";
-
-               
             }
             else if (cbFilter.SelectedIndex == 1)
             {
                 Filter = $"Username  like '{Text}%'";
-               
             }
             else if (cbFilter.SelectedIndex == 2)
             {
                 Filter = $"Role  like '{Text}%'";
-              
             }
             // Apply status filters
             if (chActive.Checked && !chInActive.Checked)
             {
                 Filter += (Filter != "" ? " AND " : "") + "IsActive =1";
             }
-            else if (!chActive.Checked && chInActive.Checked )
+            else if (!chActive.Checked && chInActive.Checked)
             {
                 Filter += (Filter != "" ? " AND " : "") + "IsActive = 0";
             }
-           
 
             LoadUsersInfo(Filter);
         }

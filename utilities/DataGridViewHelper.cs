@@ -1,6 +1,6 @@
-﻿
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
+
 namespace utilities
 {
     public class DataGridViewHelper

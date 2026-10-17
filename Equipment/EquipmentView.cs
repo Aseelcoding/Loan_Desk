@@ -79,45 +79,34 @@ namespace Loan_Desk.Equipment
                 int USID = -1;
                 int.TryParse(Text, out USID);
                 Filter = $"ID = {USID} ";
-
             }
             else if (cbFilter.SelectedIndex == 1)
             {
                 Filter = $"Name like '{Text}%'";
-
-               
             }
             else if (cbFilter.SelectedIndex == 2)
             {
                 int Quantity = -1;
                 int.TryParse(Text, out Quantity);
                 Filter = $"TotalQuantity = {Quantity} ";
-
-               
             }
             else if (cbFilter.SelectedIndex == 3)
             {
                 decimal AvaliableQuantity = -1;
                 decimal.TryParse(Text, out AvaliableQuantity);
                 Filter = $"AvailableQuantity = {AvaliableQuantity} ";
-
-               
             }
             else if (cbFilter.SelectedIndex == 4)
             {
                 decimal DailyLateFee = -1;
                 decimal.TryParse(Text, out DailyLateFee);
                 Filter = $"DailyLateFee = {DailyLateFee} ";
-
-                
             }
             else if (cbFilter.SelectedIndex == 5)
             {
                 decimal ReplecmentCost = -1;
                 decimal.TryParse(Text, out ReplecmentCost);
                 Filter = $"ReplacementCost = {ReplecmentCost} ";
-
-              
             }
             // Apply status filters
             if (chActive.Checked && !chInActive.Checked)

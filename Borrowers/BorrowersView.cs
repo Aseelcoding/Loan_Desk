@@ -73,26 +73,18 @@ namespace Loan_Desk.Borrowers
                 int USID = -1;
                 int.TryParse(Text, out USID);
                 Filter = $"ID = {USID} ";
-
-               
             }
             else if (cbFilter.SelectedIndex == 1)
             {
                 Filter = $"FullName like '{Text}%'";
-
-               
             }
             else if (cbFilter.SelectedIndex == 2)
             {
                 Filter = $"Passport like '{Text}%'";
-
-               
             }
             else if (cbFilter.SelectedIndex == 3)
             {
                 Filter = $"Phone like '{Text}%'";
-
-               
             }
 
             // Apply status filters

@@ -75,7 +75,7 @@ namespace Loan_Desk.Loans
                 else if (cbFilter.SelectedIndex == 7)
                 {
                     DateTime ReturnedAt;
-                   // DataColumn.Expression.
+                    // DataColumn.Expression.
                     if (DateTime.TryParse(Text, out ReturnedAt))
                     {
                         Filter = $"ReturnedAt >= '{ReturnedAt:MM-dd-yyyy 00:00:00}' and ReturnedAt <= '{ReturnedAt:MM-dd-yyyy 23:59:59}'";
