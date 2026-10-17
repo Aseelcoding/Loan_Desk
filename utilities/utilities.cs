@@ -24,8 +24,8 @@ namespace utilities
 
         public static string ClearFilterString(string input)
         {
-            // Remove all special characters from the string
-            string output = Regex.Replace(input, @"[^\w\s]", "");
+            // Remove all special characters except /
+            string output = Regex.Replace(input, @"[^\w\s/]", "");
             return output;
         }
 

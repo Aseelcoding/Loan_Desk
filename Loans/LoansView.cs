@@ -60,7 +60,7 @@ namespace Loan_Desk.Loans
 
                     if (DateTime.TryParse(Text, out LoanedAt))
                     {
-                        Filter = $"LoanedAt >= '{LoanedAt:yyyy-MM-dd}' AND LoanedAt < '{LoanedAt.AddDays(1):yyyy-MM-dd}'";
+                        Filter = $"LoanedAt >= '{LoanedAt:MM-dd-yyyy 00:00:00}' and LoanedAt <= '{LoanedAt:MM-dd-yyyy 23:59:59}'";
                     }
                 }
                 else if (cbFilter.SelectedIndex == 6)
@@ -69,16 +69,16 @@ namespace Loan_Desk.Loans
 
                     if (DateTime.TryParse(Text, out DueAt))
                     {
-                        Filter = $"DueAt >= '{DueAt:yyyy-MM-dd}' AND DueAt < '{DueAt.AddDays(1):yyyy-MM-dd}'";
+                        Filter = $"DueAt >= '{DueAt:MM-dd-yyyy 00:00:00}' and DueAt <= '{DueAt:MM-dd-yyyy 23:59:59}'";
                     }
                 }
                 else if (cbFilter.SelectedIndex == 7)
                 {
                     DateTime ReturnedAt;
-
+                   // DataColumn.Expression.
                     if (DateTime.TryParse(Text, out ReturnedAt))
                     {
-                        Filter = $"ReturnedAt >= '{ReturnedAt:yyyy-MM-dd}' AND ReturnedAt < '{ReturnedAt.AddDays(1):yyyy-MM-dd}'";
+                        Filter = $"ReturnedAt >= '{ReturnedAt:MM-dd-yyyy 00:00:00}' and ReturnedAt <= '{ReturnedAt:MM-dd-yyyy 23:59:59}'";
                     }
                 }
                 else if (cbFilter.SelectedIndex == 8)
