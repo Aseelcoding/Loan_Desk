@@ -1,164 +1,214 @@
 # LoanDesk
 
-LoanDesk is a Windows Forms desktop application for managing campus equipment lending. It is being developed as a learning project focused on C#, SQL Server, layered architecture, validation, and reliable application behavior.
+A campus equipment loan system built with C# and Windows Forms. It handles lending and returning things like laptops, projectors, and cameras, and keeps track of who has what, what's overdue, and who owes a fine.
 
-**Status:** Under development  
-**Current development focus:** Finishing the Users module and continuing the Borrowers module.
+> **Status:** Under development, around 40% done. Login, setup, and the main shell work. The management screens are still being built.
 
-## Current Features
-
-### Authentication and account management
-- First-run setup flow to create the initial Admin account when no active Admin exists.
-- Login flow and shared current-user session.
-- Logout and application restart flow.
-- Password hashing with SHA-256 and a randomly generated salt.
-- Username and password validation in the Business Logic Layer.
-- User roles currently supported by the code: `Admin` and `Staff`.
-
-### Users
-- Add users, update user details, and change passwords.
-- Activate and deactivate user accounts using `IsActive` rather than physically deleting them.
-- Count active users and active Admin accounts.
-- Check Admin permissions in the Business Logic Layer for protected user operations.
-- Prevent changing the only active Admin into a Staff account.
-- Handle changes to the currently logged-in user's role through an application restart flag.
-
-### Borrowers
-- List borrowers with passport number, phone number, active status, active-loan count, and unpaid-fine information.
-- Add and update borrower records.
-- Look up borrowers by ID or passport number.
-- Validate borrower names, passport numbers, and phone numbers in the Business Logic Layer.
-- Check passport-number uniqueness.
-- Activate and deactivate borrower records.
-
-The Borrowers module is still under development; its implementation and database behavior need further testing and refinement.
-
-### Application infrastructure
-- Layered separation between the Windows Forms UI, Business Logic Layer (BLL), Data Access Layer (DAL), and Models project.
-- Parameterized SQL commands for database operations.
-- SQL exception mapping to application-specific data-access exceptions.
-- Centralized UI error handling for validation errors, business-rule errors, data-access errors, and unexpected exceptions.
-- Basic logging for technical and unexpected errors.
-- Reusable `UserControl` views within the main application window.
-
-## Modules Planned or Still in Progress
-
-The repository contains UI sections for Equipment, Loans, Returns, Fines, Dashboard, and Audit Log. Their presence in the project does not mean the complete workflows are implemented.
-
-Remaining work includes:
-- Finish and test Users behavior and filtering.
-- Complete and test Borrowers behavior.
-- Implement Equipment management.
-- Implement the loan and return workflows and related business rules.
-- Implement fine handling.
-- Complete dashboard statistics and audit logging.
-- Review authorization across all modules.
-- Add automated tests and improve configuration and password-storage security.
-
-## Architecture
-
-```text
-Windows Forms UI
-       |
-       v
-Business Logic Layer (BLL)
-       |
-       v
-Data Access Layer (DAL)
-       |
-       v
-SQL Server
-```
-
-- **UI:** Displays data, collects input, handles navigation, and presents results and errors.
-- **BLL:** Applies validation, authentication, authorization, and business rules.
-- **DAL:** Executes database queries and commands.
-- **LoanDesk.Models:** Contains application models and custom exceptions.
-
-## Technology Stack
-
-- C#
-- .NET Framework 4.8
-- Windows Forms
-- Microsoft SQL Server
-- ADO.NET
-- ReaLTaiizor UI controls
-- Visual Studio
-- Git and GitHub
-
-## Security Notes
-
-The project currently uses parameterized SQL commands, salted SHA-256 password hashes, active/inactive account flags, and Business Logic Layer checks for protected user operations.
-
-**Security limitation:** SHA-256 is a fast general-purpose hash and is not recommended as a standalone password-hashing algorithm for production applications. Replacing it with a password-specific, deliberately slow algorithm is planned. The application is a work in progress and has not been presented as production-ready.
-
-## Error Handling
-
-The application defines custom exceptions for validation, business-rule, and data-access failures. The UI error handler displays expected validation and business-rule messages, logs data-access and unexpected errors, and avoids showing raw unexpected exception messages to users.
-
-The handling and logging behavior will continue to evolve as more modules are implemented.
-
-## Project Structure
-
-The main folders and files currently include:
-
-```text
-Loan_Desk
-├── Account/
-├── AuditLog/
-├── Borrowers/
-├── BLL/
-│   ├── BorrowersBLL.cs
-│   ├── PasswordHasher.cs
-│   ├── Sessions.cs
-│   └── UserBLL.cs
-├── DAL/
-│   ├── BorrowersDAL.cs
-│   ├── SqlErrorMapper.cs
-│   └── UserDAL.cs
-├── Dashboard/
-├── Equipment/
-├── Fines/
-├── LoanDesk.Models/
-├── Loans/
-├── Login/
-├── Main Screen/
-├── Returns/
-├── Setup/
-├── Users/
-├── utilities/
-├── ErrorHandler.cs
-├── Program.cs
-└── Loan_Desk.csproj
-```
-
-## Development Roadmap
-
-- [x] Layered project structure
-- [x] SQL Server data-access foundation
-- [x] Initial Admin setup flow
-- [x] Login and shared session
-- [x] Basic user creation, updating, activation, and deactivation
-- [x] Basic Borrowers operations
-- [ ] Finish Users filtering, edge cases, and consistency checks
-- [ ] Finish and test Borrowers
-- [ ] Implement Equipment management
-- [ ] Implement Loans, Returns, and Fines workflows
-- [ ] Complete authorization checks across modules
-- [ ] Complete Dashboard and Audit Log functionality
-- [ ] Add unit and integration tests
-- [ ] Improve password-storage security
-- [ ] Final configuration and UI cleanup
-
-## Development Approach
-
-This project is built incrementally. Each feature is used to practice the reasoning behind validation, session state, authorization, database integrity, exception handling, and separation of responsibilities between layers.
-
-## Author
-
-**Aseel**  
-GitHub: [Aseelcoding](https://github.com/Aseelcoding)
+I'm building this as a learning project. The goal isn't just a working app, it's getting the architecture right: a clean split between UI, business logic, and data access, with security built in from the start instead of patched on later.
 
 ---
 
-**LoanDesk is under active development. Features and implementation details may change.**
+## What it will do
+
+- Manage users, borrowers, and equipment
+- Check equipment out to borrowers and record returns
+- Calculate and track fines for late returns
+- Keep an audit log of important actions
+- Role-based access (Admin and regular staff)
+
+## Where things stand
+
+**Working now**
+
+- Login and first-run Admin account setup
+- Password hashing with a random salt per user
+- Session management
+- Validation in the business layer
+- Parameterized SQL queries everywhere
+- Main dashboard with navigation between sections
+- Core models for users, borrowers, equipment, and loans
+
+**In progress**
+
+- Users, Borrowers, Equipment, and Loans management
+- Returns and Fines
+- Audit logging
+- Role-based access control
+
+**Planned**
+
+- Database transactions for the loan/return workflow
+- Better exception handling and logging
+- Automated tests
+- Stronger password hashing and better config management
+- Reports
+- UI polish
+
+---
+
+## Screenshots
+
+Returns, Fines, and Audit Log are still being built, so they're not shown yet.
+
+### Initial Administrator Setup
+
+![Setup form](UI_Screenshots/SetupForm.png)
+
+Shows up on first launch, only when the database has no admin account yet. You can't get past it until you create one. The password has to meet the listed requirements (a number or symbol, an uppercase letter, and at least 5 characters), and the checkboxes tick off as you type.
+
+### Login
+
+![Login form](UI_Screenshots/LoginForm.png)
+
+Plain sign-in screen with username and password. Credentials are checked in the business layer against the stored salted hash, and a successful login starts the user session.
+
+### Dashboard
+
+![Dashboard](UI_Screenshots/DashboardForm.png)
+
+The main window. The sidebar is grouped into Overview, Records (Users, Borrowers, Equipment), Circulation (Loans, Returns, Fines), and Oversight (Audit Log). Clicking an item swaps the view in the main area. The dashboard itself shows the number of active users and a chart of daily loans.
+
+### Users
+
+![Users form](UI_Screenshots/UsersForm.png)
+
+A list of everyone who can use the system, with their role (Admin or Staff) and whether the account is active. You can search by ID, username, or role, filter by active or inactive, and add a new user.
+
+### Borrowers
+
+![Borrowers form](UI_Screenshots/BorrowersForm.png)
+
+The people who borrow equipment. Each row shows name, passport number, phone, how many loans they currently have, and how much they owe in unpaid fines. Search works on ID, name, passport, or phone, and there's an active/inactive filter.
+
+### Equipment
+
+![Equipment form](UI_Screenshots/EquipmentsForm.png)
+
+The inventory. Each item has a total quantity, how many are still available, a daily late fee, and a replacement cost (used if the item is lost). Same search and active/inactive filter as the other lists.
+
+### Loans
+
+![Loans form](UI_Screenshots/LoansForm.png)
+
+Every loan with the equipment, borrower, staff member who handled it, quantity, loan date, due date, return date, status, late fee, and whether the fine was paid. You can search by loan, borrower, or item, and filter by Active, Returned, or Lost.
+
+### My Account
+
+![Account view](UI_Screenshots/AccountView.png)
+
+Opens from the account button in the top right corner. Shows who is logged in (ID, username, role, active status) and has the Logout button.
+
+---
+
+## Architecture
+
+Three layers, each one only talks to the layer below it:
+
+```
+Windows Forms UI
+       ↓
+Business Logic Layer (BLL)
+       ↓
+Data Access Layer (DAL)
+       ↓
+SQL Server
+```
+
+| Layer | What it does |
+|-------|--------------|
+| **UI** | Shows screens, takes input, displays results. No business rules here. |
+| **BLL** | Validation, authentication, password handling, sessions, business rules. |
+| **DAL** | Talks to SQL Server. Nothing else. |
+| **Models** | The entities passed between layers (`User`, `Borrower`, `Equipment`, `Loan`). |
+
+## Tech stack
+
+- C# on .NET Framework 4.8
+- Windows Forms (with the ReaLTaiizor UI library)
+- SQL Server with ADO.NET
+- Visual Studio
+
+---
+
+## Getting started
+
+**You'll need**
+
+- Windows
+- Visual Studio with the .NET desktop development workload
+- SQL Server (Express is fine)
+
+**Steps**
+
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/Aseelcoding/Loan_Desk.git
+   ```
+2. Open `Loan_Desk.slnx` in Visual Studio.
+3. Restore the NuGet packages (Visual Studio usually does this on build).
+4. Create the database in SQL Server and update the connection string to point to it. <!-- TODO: say where the connection string lives and add the DB script or schema -->
+5. Build and run. On first launch you'll be asked to create the initial Admin account.
+
+---
+
+## Security
+
+- Passwords are hashed with a random salt, never stored in plain text
+- All SQL goes through parameterized queries
+- The current session can only be changed from the BLL (the setter is `internal`), so the UI can't touch it directly
+- Validation lives in the BLL, not in the forms
+
+More hardening is planned, see the list above.
+
+---
+
+## Design decisions
+
+A few problems I ran into and what I did about them.
+
+**One form per section got messy.** Instead of a separate `Form` for every section, the main screen handles navigation and each section is a reusable `UserControl` (`UsersView`, `BorrowersView`, `EquipmentView`, `LoansView`, `ReturnsView`, `FinesView`, `AuditLogView`). Everything shows up inside one main window and each view owns its own logic.
+
+**The UI shouldn't control the session.** If forms could modify the session directly, the UI would own application state. I restricted session changes with `internal`, so only the BLL can do it.
+
+**Validation can't depend on the forms.** If rules live in the UI, they get copied across forms and drift apart. User validation runs in the BLL before anything reaches the DAL.
+
+---
+
+## Project structure
+
+```
+Loan_Desk
+├── Login/            Login screen
+├── Setup/            First-run Admin setup
+├── Main Screen/      Main window and navigation
+├── Users/            Users view
+├── Borrowers/        Borrowers view
+├── Equipment/        Equipment view
+├── Loans/            Loans view
+├── Returns/          Returns view
+├── Fines/            Fines view
+├── AuditLog/         Audit log view
+├── Dashboard/
+├── BLL/              Business logic (validation, hashing, sessions)
+├── DAL/              Database access
+├── LoanDesk.Models/  Entities
+├── utilities/
+├── UI_Screenshots/   Screenshots used in this README
+├── ErrorHandler.cs
+├── Logger.cs
+└── Program.cs
+```
+
+---
+
+## What I'm learning from this
+
+- Keeping UI, logic, data access, and models separate
+- When to use a `Form` and when a `UserControl` is the better fit
+- Using access modifiers to protect application state
+- Password hashing, salts, and parameterized queries
+- Writing code that stays maintainable as it grows
+
+## Author
+
+**Aseel** ([@Aseelcoding](https://github.com/Aseelcoding))
