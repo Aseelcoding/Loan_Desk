@@ -122,7 +122,7 @@ namespace BLL
 
             
         }
-        public static void PayFine(Loan loan)
+        public static bool PayFine(Loan loan)
         {
 
 
@@ -135,7 +135,7 @@ namespace BLL
 
 
             loan.FinePaid = true;
-            UpdateLoan(loan);
+           return UpdateLoan(loan);
 
         }
         public static bool AddLoan(LoanDesk.Models.Loan NewLoan)

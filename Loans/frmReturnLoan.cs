@@ -97,8 +97,9 @@ namespace Loan_Desk.Loans
                     throw new Exceptions.BusinessRuleException("The fines for this loan have been paid.");
                 }
 
-
-                LoansBLL.PayFine(_loan);
+                
+              frmpayment frmpayment=new frmpayment(_loan);
+                frmpayment.ShowDialog();
             }
             catch (Exception ex) 
             {
