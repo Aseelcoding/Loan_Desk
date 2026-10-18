@@ -38,8 +38,6 @@
             this.chReturned = new System.Windows.Forms.CheckBox();
             this.chActive = new System.Windows.Forms.CheckBox();
             this.dgvLo = new System.Windows.Forms.DataGridView();
-            this.txtBarSearch = new ReaLTaiizor.Controls.BigTextBox();
-            this.btnAddLoan = new System.Windows.Forms.Button();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EquipmentID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BorrowerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,9 +49,14 @@
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LateFee = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FinePaid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ContextOperationsMenue = new ReaLTaiizor.Controls.CrownContextMenuStrip();
+            this.btnReturn = new System.Windows.Forms.ToolStripMenuItem();
+            this.txtBarSearch = new ReaLTaiizor.Controls.BigTextBox();
+            this.btnAddLoan = new System.Windows.Forms.Button();
             this.ContentPanel.SuspendLayout();
             this.parrotGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLo)).BeginInit();
+            this.ContextOperationsMenue.SuspendLayout();
             this.SuspendLayout();
             // 
             // ContentPanel
@@ -104,8 +107,7 @@
             "Quantity",
             "Loaned At",
             "Due At",
-            "Returned At ",
-            "Status"});
+            "Returned At "});
             this.cbFilter.Location = new System.Drawing.Point(290, 27);
             this.cbFilter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbFilter.MaxDropDownItems = 4;
@@ -175,6 +177,7 @@
             this.dgvLo.AllowUserToDeleteRows = false;
             this.dgvLo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvLo.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvLo.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -196,6 +199,7 @@
             this.Status,
             this.LateFee,
             this.FinePaid});
+            this.dgvLo.ContextMenuStrip = this.ContextOperationsMenue;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -220,44 +224,8 @@
             this.dgvLo.RowHeadersWidth = 51;
             this.dgvLo.RowTemplate.Height = 24;
             this.dgvLo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvLo.Size = new System.Drawing.Size(1000, 679);
+            this.dgvLo.Size = new System.Drawing.Size(997, 679);
             this.dgvLo.TabIndex = 50;
-            // 
-            // txtBarSearch
-            // 
-            this.txtBarSearch.BackColor = System.Drawing.Color.Transparent;
-            this.txtBarSearch.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.txtBarSearch.ForeColor = System.Drawing.Color.DimGray;
-            this.txtBarSearch.Image = null;
-            this.txtBarSearch.Location = new System.Drawing.Point(4, 34);
-            this.txtBarSearch.Margin = new System.Windows.Forms.Padding(4);
-            this.txtBarSearch.MaxLength = 32767;
-            this.txtBarSearch.Multiline = false;
-            this.txtBarSearch.Name = "txtBarSearch";
-            this.txtBarSearch.PlaceholderText = "Search Loan , Borrower or Item";
-            this.txtBarSearch.ReadOnly = false;
-            this.txtBarSearch.Size = new System.Drawing.Size(279, 42);
-            this.txtBarSearch.TabIndex = 48;
-            this.txtBarSearch.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
-            this.txtBarSearch.UseSystemPasswordChar = false;
-            this.txtBarSearch.TextChanged += new System.EventHandler(this.txtBarSearch_TextChanged);
-            // 
-            // btnAddLoan
-            // 
-            this.btnAddLoan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
-            this.btnAddLoan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddLoan.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddLoan.Image = global::Loan_Desk.Properties.Resources.add_25;
-            this.btnAddLoan.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddLoan.Location = new System.Drawing.Point(857, 50);
-            this.btnAddLoan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnAddLoan.Name = "btnAddLoan";
-            this.btnAddLoan.Size = new System.Drawing.Size(132, 30);
-            this.btnAddLoan.TabIndex = 47;
-            this.btnAddLoan.Text = "Add Loan";
-            this.btnAddLoan.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAddLoan.UseVisualStyleBackColor = false;
-            this.btnAddLoan.Click += new System.EventHandler(this.btnAddLoan_Click);
             // 
             // ID
             // 
@@ -349,6 +317,62 @@
             this.FinePaid.Name = "FinePaid";
             this.FinePaid.ReadOnly = true;
             // 
+            // ContextOperationsMenue
+            // 
+            this.ContextOperationsMenue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.ContextOperationsMenue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.ContextOperationsMenue.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.ContextOperationsMenue.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnReturn});
+            this.ContextOperationsMenue.Name = "ContextOperationsMenue";
+            this.ContextOperationsMenue.Size = new System.Drawing.Size(126, 30);
+            // 
+            // btnReturn
+            // 
+            this.btnReturn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.btnReturn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.btnReturn.Image = global::Loan_Desk.Properties.Resources.return_32;
+            this.btnReturn.Name = "btnReturn";
+            this.btnReturn.Size = new System.Drawing.Size(125, 26);
+            this.btnReturn.Text = "Return";
+            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
+            // 
+            // txtBarSearch
+            // 
+            this.txtBarSearch.BackColor = System.Drawing.Color.Transparent;
+            this.txtBarSearch.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.txtBarSearch.ForeColor = System.Drawing.Color.DimGray;
+            this.txtBarSearch.Image = null;
+            this.txtBarSearch.Location = new System.Drawing.Point(4, 34);
+            this.txtBarSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBarSearch.MaxLength = 32767;
+            this.txtBarSearch.Multiline = false;
+            this.txtBarSearch.Name = "txtBarSearch";
+            this.txtBarSearch.PlaceholderText = "Search Loan , Borrower or Item";
+            this.txtBarSearch.ReadOnly = false;
+            this.txtBarSearch.Size = new System.Drawing.Size(279, 42);
+            this.txtBarSearch.TabIndex = 48;
+            this.txtBarSearch.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtBarSearch.UseSystemPasswordChar = false;
+            this.txtBarSearch.TextChanged += new System.EventHandler(this.txtBarSearch_TextChanged);
+            // 
+            // btnAddLoan
+            // 
+            this.btnAddLoan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
+            this.btnAddLoan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddLoan.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddLoan.Image = global::Loan_Desk.Properties.Resources.add_25;
+            this.btnAddLoan.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddLoan.Location = new System.Drawing.Point(857, 50);
+            this.btnAddLoan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAddLoan.Name = "btnAddLoan";
+            this.btnAddLoan.Size = new System.Drawing.Size(132, 30);
+            this.btnAddLoan.TabIndex = 47;
+            this.btnAddLoan.Text = "Add Loan";
+            this.btnAddLoan.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddLoan.UseVisualStyleBackColor = false;
+            this.btnAddLoan.Click += new System.EventHandler(this.btnAddLoan_Click);
+            // 
             // LoansView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -361,6 +385,7 @@
             this.parrotGroupBox1.ResumeLayout(false);
             this.parrotGroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLo)).EndInit();
+            this.ContextOperationsMenue.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -387,5 +412,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
         private System.Windows.Forms.DataGridViewTextBoxColumn LateFee;
         private System.Windows.Forms.DataGridViewTextBoxColumn FinePaid;
+        private ReaLTaiizor.Controls.CrownContextMenuStrip ContextOperationsMenue;
+        private System.Windows.Forms.ToolStripMenuItem btnReturn;
     }
 }

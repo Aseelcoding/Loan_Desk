@@ -57,6 +57,7 @@
             this.txtUsername.BackColor = System.Drawing.Color.Transparent;
             this.txtUsername.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
             this.txtUsername.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
+            this.txtUsername.Enabled = false;
             this.txtUsername.FocusOnHover = false;
             this.txtUsername.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.txtUsername.Location = new System.Drawing.Point(128, 157);

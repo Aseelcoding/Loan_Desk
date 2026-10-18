@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LoanDesk.Models;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -137,6 +138,92 @@ namespace DAL
             }
         }
 
+        public static bool ReturnEquipment(Loan ReturnedLoan,Equipment equipment) 
+        {
+            
+            string query_1 = @"UPDATE [dbo].[Loans]
+        SET [ReturnedAt] = @ReturnedAt,
+            [Status]     = @Status,
+            [LateFee]    = @LateFee,
+            [FinePaid]   = @FinePaid
+        WHERE [ID] = @LoanID;";
+
+            string query_2 = @"
+            UPDATE Equipment
+            SET AvailableQuantity = @AvailableQuantity
+            WHERE ID = @EquipmentID;";
+
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                {
+                    connection.Open();
+
+                    using (SqlTransaction transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            using (SqlCommand cmd = new SqlCommand(query_1, connection, transaction))
+                            {
+
+
+                                cmd.Parameters.Add("@LoanID", SqlDbType.Int).Value = ReturnedLoan.ID;
+                                cmd.Parameters.Add("@Status", SqlDbType.VarChar, 25).Value = ReturnedLoan.Status;
+
+                                SqlParameter lateFeeParameter =
+                                    cmd.Parameters.Add("@LateFee", SqlDbType.Decimal);
+                                lateFeeParameter.Precision = 10;
+                                lateFeeParameter.Scale = 2;
+                                lateFeeParameter.Value = ReturnedLoan.LateFee;
+
+                                cmd.Parameters.Add("@ReturnedAt", SqlDbType.DateTime).Value =
+                                    ReturnedLoan.ReturnedAt.HasValue
+                                        ? (object)ReturnedLoan.ReturnedAt.Value
+                                        : DBNull.Value;
+
+                                cmd.Parameters.Add("@FinePaid", SqlDbType.Bit).Value =
+                                    ReturnedLoan.FinePaid.HasValue
+                                        ? (object)ReturnedLoan.FinePaid.Value
+                                        : DBNull.Value;
+
+                                cmd.ExecuteNonQuery();
+                            }
+
+                            using (SqlCommand cmd = new SqlCommand(query_2, connection, transaction))
+                            {
+                                cmd.Parameters.Add("@EquipmentID", SqlDbType.Int).Value = equipment.ID;
+                                cmd.Parameters.Add("@AvailableQuantity", SqlDbType.Int).Value = equipment.AvailableQuantity;
+
+                                int affectedRows = cmd.ExecuteNonQuery();
+
+                                if (affectedRows == 0)
+                                {
+                                    throw new InvalidOperationException(
+                                        "Equipment not found or insufficient available quantity.");
+
+                                }
+                               
+                            }
+
+                            transaction.Commit();
+                            return true;
+                        }
+                        catch
+                        {
+                            transaction.Rollback();
+                            throw;
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw SqlErrorMapper.Map(ex, "Return Equipment");
+            }
+           
+        }
+
         public static decimal GetLateFee(int ID)
         {
             decimal LateFee;
@@ -232,6 +319,73 @@ ORDER BY LoanDate;";
             }
 
             return Has;
+        }
+
+        public static bool UpdateLoan(Loan loan) 
+        {
+
+            bool IsUpdated=false;
+
+            string query = @"UPDATE [dbo].[Loans]
+   SET [EquipmentID] = @EquipmentID
+      ,[BorrowerID] = @BorrowerID
+      ,[UserID] = @UserID
+      ,[Quantity] = @Quantity
+      ,[LoanedAt] = @LoanedAt
+      ,[DueAt] = @DueAt
+      ,[ReturnedAt] = @ReturnedAt
+      ,[Status] =@Status
+      ,[LateFee] =@LateFee
+      ,[FinePaid]=@FinePaid
+ WHERE ID=@ID;";
+
+            try 
+            {
+                using (var connection=new SqlConnection(ConnectionString))
+                using (var cmd =new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    cmd.Parameters.Add("@ID", SqlDbType.Int).Value = loan.ID;
+                    cmd.Parameters.Add("@EquipmentID", SqlDbType.Int).Value = loan.EquipmentID;
+                    cmd.Parameters.Add("@BorrowerID", SqlDbType.Int).Value = loan.BorrowerID;
+                    cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = loan.UserID;
+                    cmd.Parameters.Add("@Quantity", SqlDbType.Int).Value = loan.Quantity;
+                    cmd.Parameters.Add("@LoanedAt", SqlDbType.DateTime).Value = loan.LoanedAt;
+                    cmd.Parameters.Add("@DueAt", SqlDbType.DateTime).Value = loan.DueAt;
+                    cmd.Parameters.Add("@Status", SqlDbType.VarChar, 25).Value = loan.Status;
+
+                    SqlParameter lateFeeParameter =
+                        cmd.Parameters.Add("@LateFee", SqlDbType.Decimal);
+                    lateFeeParameter.Precision = 10;
+                    lateFeeParameter.Scale = 2;
+                    lateFeeParameter.Value = loan.LateFee;
+
+                    cmd.Parameters.Add("@ReturnedAt", SqlDbType.DateTime).Value =
+                        loan.ReturnedAt.HasValue
+                            ? (object)loan.ReturnedAt.Value
+                            : DBNull.Value;
+
+                    cmd.Parameters.Add("@FinePaid", SqlDbType.Bit).Value =
+                        loan.FinePaid.HasValue
+                            ? (object)loan.FinePaid.Value
+                            : DBNull.Value;
+
+                    int AAffectedRows = cmd.ExecuteNonQuery();
+
+                    if (AAffectedRows > 0)
+                        IsUpdated = true;
+                }
+                
+            }
+            catch(SqlException ex) 
+            {
+                throw SqlErrorMapper.Map(ex, "Update loan");
+            }
+
+            return IsUpdated;
+
+
+
         }
     }
 }

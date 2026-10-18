@@ -300,7 +300,7 @@
             this.btnActivate,
             this.btnDeactivate});
             this.ContextOperation.Name = "crownContextMenuStrip1";
-            this.ContextOperation.Size = new System.Drawing.Size(154, 82);
+            this.ContextOperation.Size = new System.Drawing.Size(215, 110);
             // 
             // btnUpdate
             // 
@@ -308,7 +308,7 @@
             this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btnUpdate.Image = global::Loan_Desk.Properties.Resources.update_20;
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(153, 26);
+            this.btnUpdate.Size = new System.Drawing.Size(214, 26);
             this.btnUpdate.Text = "Update";
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
@@ -318,7 +318,7 @@
             this.btnActivate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btnActivate.Image = global::Loan_Desk.Properties.Resources.active_20;
             this.btnActivate.Name = "btnActivate";
-            this.btnActivate.Size = new System.Drawing.Size(153, 26);
+            this.btnActivate.Size = new System.Drawing.Size(214, 26);
             this.btnActivate.Text = "Activate";
             this.btnActivate.Click += new System.EventHandler(this.btnActivate_Click);
             // 
@@ -328,7 +328,7 @@
             this.btnDeactivate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btnDeactivate.Image = global::Loan_Desk.Properties.Resources.delete_20;
             this.btnDeactivate.Name = "btnDeactivate";
-            this.btnDeactivate.Size = new System.Drawing.Size(153, 26);
+            this.btnDeactivate.Size = new System.Drawing.Size(214, 26);
             this.btnDeactivate.Text = "Deactivate";
             this.btnDeactivate.Click += new System.EventHandler(this.btnDeactivate_Click);
             // 

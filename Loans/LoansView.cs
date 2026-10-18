@@ -1,4 +1,5 @@
 ﻿using BLL;
+using LoanDesk.Models;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -81,10 +82,7 @@ namespace Loan_Desk.Loans
                         Filter = $"ReturnedAt >= '{ReturnedAt:MM-dd-yyyy 00:00:00}' and ReturnedAt <= '{ReturnedAt:MM-dd-yyyy 23:59:59}'";
                     }
                 }
-                else if (cbFilter.SelectedIndex == 8)
-                {
-                    Filter = $"Status = '{Text}'";
-                }
+               
             }
 
             // Apply status filters
@@ -175,6 +173,61 @@ namespace Loan_Desk.Loans
             string Filter = txtBarSearch.Text;
             Filter = utilities.utilities.ClearFilterString(Filter);
             Filtering(Filter);
+        }
+        private LoanDesk.Models.Loan GetSelectedRow() 
+        {
+         
+
+            if (dgvLo.SelectedRows.Count > 0)
+            {
+                var row = dgvLo.SelectedRows[0];
+                var loan = new LoanDesk.Models.Loan();
+
+                loan.ID = Convert.ToInt32(row.Cells["ID"].Value);
+                loan.EquipmentID = Convert.ToInt32(row.Cells["EquipmentID"].Value);
+                loan.BorrowerID = Convert.ToInt32(row.Cells["BorrowerID"].Value);
+                loan.UserID = Convert.ToInt32(row.Cells["UserID"].Value);
+                loan.Quantity = Convert.ToInt32(row.Cells["Quantity"].Value);
+                loan.LoanedAt = Convert.ToDateTime(row.Cells["LoanedAt"].Value);
+                loan.DueAt = Convert.ToDateTime(row.Cells["DueAt"].Value);
+
+                if (row.Cells["ReturnedAt"].Value != DBNull.Value)
+                    loan.ReturnedAt = Convert.ToDateTime(row.Cells["ReturnedAt"].Value);
+
+                loan.Status = row.Cells["Status"].Value.ToString();
+                loan.LateFee = Convert.ToDecimal(row.Cells["LateFee"].Value);
+
+                if (row.Cells["FinePaid"].Value != DBNull.Value)
+                    loan.FinePaid = Convert.ToBoolean(row.Cells["FinePaid"].Value);
+                return loan;
+            }
+            else
+                return null;
+        }
+        private void btnReturn_Click(object sender, EventArgs e)
+        {
+            LoanDesk.Models.Loan loan = GetSelectedRow();
+
+            try
+            {
+                if (loan == null)
+                {
+                    throw new Exceptions.ValidationException("Please choose a valid loan.");
+                }
+                
+            }
+            catch(Exception ex)
+            {
+                ErrorHandler.Show(ex);
+                return;
+            }
+           
+            frmReturnLoan frmReturnLoan=new frmReturnLoan(loan);
+            
+            frmReturnLoan.ShowDialog();
+
+            RefreshData();
+
         }
     }
 }
