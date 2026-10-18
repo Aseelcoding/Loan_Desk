@@ -2,7 +2,7 @@
 
 A campus equipment loan system built with C# and Windows Forms. It handles lending and returning things like laptops, projectors, and cameras, and keeps track of who has what, what's overdue, and who owes a fine.
 
-> **Status:** Under development, around 40% done. Login, setup, and the main shell work. The management screens are still being built.
+> **Status:** Under development. Login, first-run setup, the dashboard, and the Users, Borrowers, Equipment, and Loans screens work. Returns, Fines, and the Audit Log are next.
 
 I'm building this as a learning project. The goal isn't just a working app, it's getting the architecture right: a clean split between UI, business logic, and data access, with security built in from the start instead of patched on later.
 
@@ -25,22 +25,27 @@ I'm building this as a learning project. The goal isn't just a working app, it's
 - Session management
 - Validation in the business layer
 - Parameterized SQL queries everywhere
-- Main dashboard with navigation between sections
-- Core models for users, borrowers, equipment, and loans
+- Main window with navigation between sections
+- Dashboard with active user count and a daily loans chart
+- Users: list, search and filter, add, edit, and change password
+- Borrowers: list, search and filter, add, and edit
+- Equipment: list, search and filter, add, and edit
+- Loans: list with search and filters (including dates and status), and creating a loan inside a database transaction
+- Business rule: a borrower with an unpaid fine can't take a new loan
+- Database script and an example config file
 
 **In progress**
 
-- Users, Borrowers, Equipment, and Loans management
-- Returns and Fines
-- Audit logging
+- Returns and Fines (the screens exist but are still empty)
+- Audit logging (the table is there, the screen and logging aren't wired up yet)
 - Role-based access control
 
 **Planned**
 
-- Database transactions for the loan/return workflow
+- Database transaction for the return workflow (loans already use one)
 - Better exception handling and logging
 - Automated tests
-- Stronger password hashing and better config management
+- Better config management
 - Reports
 - UI polish
 
@@ -146,19 +151,20 @@ SQL Server
    ```
 2. Open `Loan_Desk.slnx` in Visual Studio.
 3. Restore the NuGet packages (Visual Studio usually does this on build).
-4. Create the database in SQL Server and update the connection string to point to it. <!-- TODO: say where the connection string lives and add the DB script or schema -->
-5. Build and run. On first launch you'll be asked to create the initial Admin account.
+4. Create the database by running `Database/schema.sql` in SQL Server Management Studio. It creates a database called `LoanDeskDB` with all the tables.
+5. Copy `App.config.example` to `App.config` and replace `YOUR_SERVER_NAME` in the connection string with your SQL Server instance name. `App.config` is in `.gitignore`, so your own settings won't get committed.
+6. Build and run. On first launch you'll be asked to create the initial Admin account.
 
 ---
 
 ## Security
 
-- Passwords are hashed with a random salt, never stored in plain text
+- Passwords are hashed with SHA-256 and a random salt per user, never stored in plain text
 - All SQL goes through parameterized queries
 - The current session can only be changed from the BLL (the setter is `internal`), so the UI can't touch it directly
 - Validation lives in the BLL, not in the forms
 
-More hardening is planned, see the list above.
+**A note on password hashing:** salted SHA-256 is fine for a learning project, but it's too fast to be a good choice for real passwords. A production system should use a slow, purpose-built algorithm like PBKDF2, bcrypt, or Argon2. I'm keeping SHA-256 here on purpose to keep the project simple.
 
 ---
 
@@ -188,14 +194,17 @@ Loan_Desk
 ├── Returns/          Returns view
 ├── Fines/            Fines view
 ├── AuditLog/         Audit log view
-├── Dashboard/
-├── BLL/              Business logic (validation, hashing, sessions)
+├── Account/          My Account view (current user and logout)
+├── Dashboard/        Active users and daily loans chart
+├── Controls/         Shared custom controls (top info panel)
+├── BLL/              Business logic (validation, hashing, sessions, logger)
 ├── DAL/              Database access
 ├── LoanDesk.Models/  Entities
-├── utilities/
+├── utilities/        Shared helpers (e.g. DataGridView styling)
+├── Database/         schema.sql to create the database
 ├── UI_Screenshots/   Screenshots used in this README
+├── App.config.example
 ├── ErrorHandler.cs
-├── Logger.cs
 └── Program.cs
 ```
 
