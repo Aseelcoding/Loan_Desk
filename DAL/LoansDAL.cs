@@ -245,6 +245,78 @@ namespace DAL
            
         }
 
+        public static bool MarkLoanLost(Loan loan, Equipment equipment, int returnedQuantity)
+        {
+            string updateLoan = @"
+UPDATE dbo.Loans
+SET Status = @Status,
+    LostQuantity = @LostQuantity,
+    ReplacementFee = @ReplacementFee,
+    ReplacementPaid = @ReplacementPaid,
+    LateFee = @LateFee,
+    FinePaid = @FinePaid
+WHERE ID = @ID AND Status = 'Active';";
+
+            string updateEquipment = @"
+UPDATE dbo.Equipment
+SET TotalQuantity = TotalQuantity - @LostQuantity,
+    AvailableQuantity = AvailableQuantity + @ReturnedQuantity
+WHERE ID = @EquipmentID
+  AND TotalQuantity >= @LostQuantity
+  AND AvailableQuantity + @ReturnedQuantity <= TotalQuantity - @LostQuantity;";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                {
+                    connection.Open();
+                    using (SqlTransaction transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            using (SqlCommand cmd = new SqlCommand(updateLoan, connection, transaction))
+                            {
+                                cmd.Parameters.Add("@ID", SqlDbType.Int).Value = loan.ID;
+                                cmd.Parameters.Add("@Status", SqlDbType.VarChar, 25).Value = loan.Status;
+                                cmd.Parameters.Add("@LostQuantity", SqlDbType.Int).Value = loan.LostQuantity;
+                                AddMoneyParameter(cmd, "@ReplacementFee", loan.ReplacementFee);
+                                cmd.Parameters.Add("@ReplacementPaid", SqlDbType.Bit).Value = loan.ReplacementPaid.HasValue
+                                    ? (object)loan.ReplacementPaid.Value : DBNull.Value;
+                                AddMoneyParameter(cmd, "@LateFee", loan.LateFee);
+                                cmd.Parameters.Add("@FinePaid", SqlDbType.Bit).Value = loan.FinePaid.HasValue
+                                    ? (object)loan.FinePaid.Value : DBNull.Value;
+
+                                if (cmd.ExecuteNonQuery() == 0)
+                                    throw new InvalidOperationException("This loan has already been processed.");
+                            }
+
+                            using (SqlCommand cmd = new SqlCommand(updateEquipment, connection, transaction))
+                            {
+                                cmd.Parameters.Add("@EquipmentID", SqlDbType.Int).Value = equipment.ID;
+                                cmd.Parameters.Add("@LostQuantity", SqlDbType.Int).Value = loan.LostQuantity;
+                                cmd.Parameters.Add("@ReturnedQuantity", SqlDbType.Int).Value = returnedQuantity;
+
+                                if (cmd.ExecuteNonQuery() == 0)
+                                    throw new InvalidOperationException("Equipment inventory could not be updated.");
+                            }
+
+                            transaction.Commit();
+                            return true;
+                        }
+                        catch
+                        {
+                            transaction.Rollback();
+                            throw;
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw SqlErrorMapper.Map(ex, "Mark loan as lost");
+            }
+        }
+
         public static decimal GetLateFee(int ID)
         {
             decimal LateFee;
