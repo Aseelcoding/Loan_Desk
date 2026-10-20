@@ -199,6 +199,17 @@ namespace Loan_Desk.Loans
 
                 if (row.Cells["FinePaid"].Value != DBNull.Value)
                     loan.FinePaid = Convert.ToBoolean(row.Cells["FinePaid"].Value);
+
+                DataRow[] loanRecords = dtLoans.Select("ID = " + loan.ID);
+                if (loanRecords.Length > 0)
+                {
+                    DataRow loanRecord = loanRecords[0];
+                    loan.LostQuantity = Convert.ToInt32(loanRecord["LostQuantity"]);
+                    loan.ReplacementFee = Convert.ToDecimal(loanRecord["ReplacementFee"]);
+                    if (loanRecord["ReplacementPaid"] != DBNull.Value)
+                        loan.ReplacementPaid = Convert.ToBoolean(loanRecord["ReplacementPaid"]);
+                }
+
                 return loan;
             }
             else
