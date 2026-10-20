@@ -108,7 +108,10 @@ namespace BLL
 
 
 
-            int daysLate = Math.Max(0, (DateTime.Today - loan.DueAt.Date).Days);
+            DateTime feeEndDate = loan.ReturnedAt.HasValue
+                ? loan.ReturnedAt.Value.Date
+                : DateTime.Today;
+            int daysLate = Math.Max(0, (feeEndDate - loan.DueAt.Date).Days);
 
             Equipment equipment = EquipmentBLL.GetEquipmentByID(loan.EquipmentID);
 
@@ -125,6 +128,35 @@ namespace BLL
 
             
         }
+        public static bool MarkLoanLost(Loan loan, int lostQuantity)
+        {
+            UserBLL.RequireUser();
+
+            if (loan == null)
+                throw new Exceptions.ValidationException("Please choose a valid loan.");
+            if (loan.Status != "Active")
+                throw new Exceptions.BusinessRuleException("Only active loans can be marked as lost.");
+            if (lostQuantity < 1 || lostQuantity > loan.Quantity)
+                throw new Exceptions.ValidationException("Lost quantity must be between 1 and the loan quantity.");
+
+            Equipment equipment = EquipmentBLL.GetEquipmentByID(loan.EquipmentID);
+            if (equipment == null)
+                throw new Exceptions.ValidationException("Equipment not found.");
+
+            int returnedQuantity = loan.Quantity - lostQuantity;
+            int daysLate = Math.Max(0, (DateTime.Today - loan.DueAt.Date).Days);
+
+            loan.Status = "Lost";
+            loan.ReturnedAt = null;
+            loan.LostQuantity = lostQuantity;
+            loan.ReplacementFee = equipment.ReplacementCost * lostQuantity;
+            loan.ReplacementPaid = loan.ReplacementFee > 0 ? (bool?)false : null;
+            loan.LateFee = equipment.DailyLateFee * daysLate;
+            loan.FinePaid = loan.LateFee > 0 ? (bool?)false : null;
+
+            return LoansDAL.MarkLoanLost(loan, equipment, returnedQuantity);
+        }
+
         public static decimal CalculateReplacementFee(Loan loan, int lostQuantity)
         {
             if (loan == null)
