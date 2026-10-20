@@ -175,12 +175,6 @@
     <Compile Include="Equipment\EquipmentView.Designer.cs">
       <DependentUpon>EquipmentView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fines\FinesView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Fines\FinesView.Designer.cs">
-      <DependentUpon>FinesView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Loans\frmAddLoan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -219,12 +213,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Returns\ReturnsView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Returns\ReturnsView.Designer.cs">
-      <DependentUpon>ReturnsView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Setup\frmSetup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -285,9 +273,6 @@
     <EmbeddedResource Include="Equipment\frmUpdateEquipment.resx">
       <DependentUpon>frmUpdateEquipment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fines\FinesView.resx">
-      <DependentUpon>FinesView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Loans\frmAddLoan.resx">
       <DependentUpon>frmAddLoan.cs</DependentUpon>
     </EmbeddedResource>
@@ -316,9 +301,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Returns\ReturnsView.resx">
-      <DependentUpon>ReturnsView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Setup\frmSetup.resx">
       <DependentUpon>frmSetup.cs</DependentUpon>
     </EmbeddedResource>

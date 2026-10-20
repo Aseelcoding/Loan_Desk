@@ -123,7 +123,8 @@ namespace Loan_Desk.Loans
                 row["ReturnedAt"],
                 row["Status"],
                 row["LateFee"],
-                    row["FinePaid"]);
+                    row["FinePaid"],
+                   row["ReplacementFee"]);
             }
         }
 
@@ -190,7 +191,7 @@ namespace Loan_Desk.Loans
                 loan.Quantity = Convert.ToInt32(row.Cells["Quantity"].Value);
                 loan.LoanedAt = Convert.ToDateTime(row.Cells["LoanedAt"].Value);
                 loan.DueAt = Convert.ToDateTime(row.Cells["DueAt"].Value);
-
+                loan.ReplacementFee = Convert.ToDecimal(row.Cells["ReplacementFee"].Value);
                 if (row.Cells["ReturnedAt"].Value != DBNull.Value)
                     loan.ReturnedAt = Convert.ToDateTime(row.Cells["ReturnedAt"].Value);
 
@@ -228,6 +229,58 @@ namespace Loan_Desk.Loans
 
             RefreshData();
 
+        }
+
+        private void btnLost_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Loan loan = GetSelectedRow();
+                if (loan == null)
+                    throw new Exceptions.ValidationException("Please choose a valid loan.");
+                if (loan.Status != "Active")
+                    throw new Exceptions.BusinessRuleException("Only an active loan can be marked as lost.");
+
+                DialogResult result = MessageBox.Show(
+                    "Mark this loan as lost? This can't be undone.",
+                    "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result != DialogResult.Yes)
+                    return;
+
+                if (LoansBLL.MarkLoanLost(loan))
+                {
+                    frmpayment frm = new frmpayment(loan);
+                    frm.ShowDialog();
+                }
+                RefreshData();
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.Show(ex);
+            }
+        }
+        private void btnPay_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Loan loan = GetSelectedRow();
+                if (loan == null)
+                    throw new Exceptions.ValidationException("Please choose a valid loan.");
+                if (loan.Status == "Active")
+                    throw new Exceptions.BusinessRuleException("Please first return the equipment\nafter that you can pay the fine.");
+                if (loan.FinePaid == true)
+                    throw new Exceptions.BusinessRuleException("This loan is already paid.");
+                if (loan.LateFee + loan.ReplacementFee <= 0)
+                    throw new Exceptions.ValidationException("There is no fee due for this loan.");
+
+                frmpayment frm = new frmpayment(loan);
+                frm.ShowDialog();
+                RefreshData();
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.Show(ex);
+            }
         }
     }
 }

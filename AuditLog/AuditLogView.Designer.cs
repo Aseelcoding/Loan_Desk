@@ -32,8 +32,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ContentPanel = new ReaLTaiizor.Controls.ParrotGradientPanel();
-            this.bigTextBox1 = new ReaLTaiizor.Controls.BigTextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.cbFilter = new ReaLTaiizor.Controls.MaterialComboBox();
+            this.txtBarSearch = new ReaLTaiizor.Controls.BigTextBox();
+            this.dgvAuditLog = new System.Windows.Forms.DataGridView();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UserID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ActioneDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,7 +43,7 @@
             this.EntityID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Details = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ContentPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAuditLog)).BeginInit();
             this.SuspendLayout();
             // 
             // ContentPanel
@@ -50,8 +51,9 @@
             this.ContentPanel.BottomLeft = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
             this.ContentPanel.BottomRight = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ContentPanel.CompositingQualityType = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-            this.ContentPanel.Controls.Add(this.bigTextBox1);
-            this.ContentPanel.Controls.Add(this.dataGridView1);
+            this.ContentPanel.Controls.Add(this.cbFilter);
+            this.ContentPanel.Controls.Add(this.txtBarSearch);
+            this.ContentPanel.Controls.Add(this.dgvAuditLog);
             this.ContentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ContentPanel.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear;
             this.ContentPanel.Location = new System.Drawing.Point(0, 0);
@@ -67,29 +69,61 @@
             this.ContentPanel.TopLeft = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(63)))), ((int)(((byte)(86)))));
             this.ContentPanel.TopRight = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             // 
-            // bigTextBox1
+            // cbFilter
             // 
-            this.bigTextBox1.BackColor = System.Drawing.Color.Transparent;
-            this.bigTextBox1.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.bigTextBox1.ForeColor = System.Drawing.Color.DimGray;
-            this.bigTextBox1.Image = null;
-            this.bigTextBox1.Location = new System.Drawing.Point(4, 34);
-            this.bigTextBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.bigTextBox1.MaxLength = 32767;
-            this.bigTextBox1.Multiline = false;
-            this.bigTextBox1.Name = "bigTextBox1";
-            this.bigTextBox1.ReadOnly = false;
-            this.bigTextBox1.Size = new System.Drawing.Size(333, 46);
-            this.bigTextBox1.TabIndex = 47;
-            this.bigTextBox1.Text = "Search ID, User ID or Entity ID";
-            this.bigTextBox1.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
-            this.bigTextBox1.UseSystemPasswordChar = false;
+            this.cbFilter.AutoResize = true;
+            this.cbFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cbFilter.Depth = 0;
+            this.cbFilter.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbFilter.DropDownHeight = 218;
+            this.cbFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFilter.DropDownWidth = 167;
+            this.cbFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 17.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.cbFilter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cbFilter.FormattingEnabled = true;
+            this.cbFilter.Hint = "Filter";
+            this.cbFilter.IntegralHeight = false;
+            this.cbFilter.ItemHeight = 54;
+            this.cbFilter.Items.AddRange(new object[] {
+            "ID",
+            "User ID",
+            "Action Date",
+            "Action",
+            "Entity Type",
+            "Entity ID"});
+            this.cbFilter.Location = new System.Drawing.Point(355, 27);
+            this.cbFilter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbFilter.MaxDropDownItems = 4;
+            this.cbFilter.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.OUT;
+            this.cbFilter.Name = "cbFilter";
+            this.cbFilter.Size = new System.Drawing.Size(167, 60);
+            this.cbFilter.StartIndex = 0;
+            this.cbFilter.TabIndex = 51;
             // 
-            // dataGridView1
+            // txtBarSearch
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.txtBarSearch.BackColor = System.Drawing.Color.Transparent;
+            this.txtBarSearch.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.txtBarSearch.ForeColor = System.Drawing.Color.DimGray;
+            this.txtBarSearch.Image = null;
+            this.txtBarSearch.Location = new System.Drawing.Point(4, 34);
+            this.txtBarSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBarSearch.MaxLength = 32767;
+            this.txtBarSearch.Multiline = false;
+            this.txtBarSearch.Name = "txtBarSearch";
+            this.txtBarSearch.PlaceholderText = "Search ID, User ID or Entity ID";
+            this.txtBarSearch.ReadOnly = false;
+            this.txtBarSearch.Size = new System.Drawing.Size(333, 46);
+            this.txtBarSearch.TabIndex = 47;
+            this.txtBarSearch.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtBarSearch.UseSystemPasswordChar = false;
+            // 
+            // dgvAuditLog
+            // 
+            this.dgvAuditLog.AllowUserToAddRows = false;
+            this.dgvAuditLog.AllowUserToDeleteRows = false;
+            this.dgvAuditLog.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvAuditLog.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -97,9 +131,9 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvAuditLog.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvAuditLog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAuditLog.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
             this.UserID,
             this.ActioneDate,
@@ -114,10 +148,14 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 91);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dataGridView1.Name = "dataGridView1";
+            this.dgvAuditLog.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvAuditLog.Location = new System.Drawing.Point(0, 91);
+            this.dgvAuditLog.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dgvAuditLog.MaximumSize = new System.Drawing.Size(1000, 679);
+            this.dgvAuditLog.MinimumSize = new System.Drawing.Size(1000, 679);
+            this.dgvAuditLog.MultiSelect = false;
+            this.dgvAuditLog.Name = "dgvAuditLog";
+            this.dgvAuditLog.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -125,11 +163,12 @@
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1000, 679);
-            this.dataGridView1.TabIndex = 1;
+            this.dgvAuditLog.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvAuditLog.RowHeadersWidth = 51;
+            this.dgvAuditLog.RowTemplate.Height = 24;
+            this.dgvAuditLog.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvAuditLog.Size = new System.Drawing.Size(1000, 679);
+            this.dgvAuditLog.TabIndex = 1;
             // 
             // ID
             // 
@@ -147,14 +186,14 @@
             // 
             // ActioneDate
             // 
-            this.ActioneDate.HeaderText = "ActioneDate";
+            this.ActioneDate.HeaderText = "Actione Date";
             this.ActioneDate.MinimumWidth = 6;
             this.ActioneDate.Name = "ActioneDate";
             this.ActioneDate.ReadOnly = true;
             // 
             // Actione
             // 
-            this.Actione.HeaderText = "ActioneDate";
+            this.Actione.HeaderText = "Actione";
             this.Actione.MinimumWidth = 6;
             this.Actione.Name = "Actione";
             this.Actione.ReadOnly = true;
@@ -175,21 +214,23 @@
             // 
             // Details
             // 
+            this.Details.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Details.HeaderText = "Details";
             this.Details.MinimumWidth = 6;
             this.Details.Name = "Details";
             this.Details.ReadOnly = true;
+            this.Details.Width = 78;
             // 
             // AuditLogView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.ContentPanel);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AuditLogView";
             this.Size = new System.Drawing.Size(1000, 770);
             this.ContentPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAuditLog)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -197,8 +238,9 @@
         #endregion
 
         private ReaLTaiizor.Controls.ParrotGradientPanel ContentPanel;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private ReaLTaiizor.Controls.BigTextBox bigTextBox1;
+        private System.Windows.Forms.DataGridView dgvAuditLog;
+        private ReaLTaiizor.Controls.BigTextBox txtBarSearch;
+        private ReaLTaiizor.Controls.MaterialComboBox cbFilter;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn UserID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ActioneDate;

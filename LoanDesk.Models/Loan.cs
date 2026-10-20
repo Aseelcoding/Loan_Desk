@@ -18,5 +18,6 @@ namespace LoanDesk.Models
 
         public decimal LateFee { get; set; }
         public bool? FinePaid { get; set; }
+        public decimal ReplacementFee { get; set; }
     }
 }

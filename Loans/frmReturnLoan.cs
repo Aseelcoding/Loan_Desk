@@ -37,7 +37,7 @@ namespace Loan_Desk.Loans
                 txtBorrowerID.Text = _loan.BorrowerID.ToString();
                 txtEquipmentID.Text = _loan.EquipmentID.ToString();
                 numQuantity.Value = _loan.Quantity;
-                txtLoanID.Text = _loan.LoanedAt.ToString();
+                txtLoanDate.Text = _loan.LoanedAt.ToString();
                 txtDueDate.Text = _loan.DueAt.ToString();
                 txtLoanDate.Text=_loan.LoanedAt.ToString();
                 //2.late fee information
@@ -92,6 +92,8 @@ namespace Loan_Desk.Loans
                
                 if (_loan.LateFee <= 0 || _loan.FinePaid == null)
                     throw new Exceptions.BusinessRuleException("This loan has no fee");
+                if(_loan.Status!="Returned" && _loan.Status != "Lost")
+                    throw new Exceptions.BusinessRuleException("First return the equipment then pay the fine.");
                 if (_loan.FinePaid != null && _loan.FinePaid == true)
                 {
                     throw new Exceptions.BusinessRuleException("The fines for this loan have been paid.");

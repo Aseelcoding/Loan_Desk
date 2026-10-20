@@ -2,6 +2,7 @@
 using Loan_Desk;
 using LoanDesk.Models;
 using System;
+using System.Collections.Generic;
 using System.Data;
 
 using static LoanDesk.Models.Exceptions;
@@ -10,6 +11,9 @@ namespace BLL
 {
     public class UserBLL
     {
+        private enum eActions {Add,Update,Activate,Deactivate };
+         static eActions Actions { get; set; }
+        private static readonly string EntityType = "Users";
         public static bool RestartRequired { get; private set; }
 
         public static void Logout()
@@ -98,6 +102,18 @@ namespace BLL
                 user.PasswordHash = PasswordHasher.HashPassword(Password, user.PasswordSalt);
 
                 IsAdded = UserDAL.AddNewUser(user);
+                if (IsAdded) 
+                {
+                    AuditLog auditLog = new AuditLog();
+                    auditLog.UserID = Sessions.CurrentUser.ID;
+                    auditLog.ActionDate= DateTime.Now;
+                    Actions = eActions.Add;
+                    auditLog.Action = Actions.ToString();
+                    auditLog.EntityType = EntityType;
+                    auditLog.EntityID = user.ID;
+                    auditLog.Details = "Add new user.";
+                    AuditLogBLL.AddNewAuditLog(auditLog);
+                }
             }
             else
             {
@@ -145,6 +161,7 @@ namespace BLL
             if (Sessions.CurrentUser.ID != user.ID)
             {
                 IsUpdated = UserDAL.UpdateUser(user);
+
             }
             else
             {
@@ -160,6 +177,18 @@ namespace BLL
                     if (IsUpdated)
                         RestartRequired = true;
 
+                    if (IsUpdated) 
+                    {
+                        AuditLog auditLog = new AuditLog();
+                        auditLog.UserID = Sessions.CurrentUser.ID;
+                        auditLog.ActionDate = DateTime.Now;
+                        Actions = eActions.Update;
+                        auditLog.Action = Actions.ToString();
+                        auditLog.EntityType = EntityType;
+                        auditLog.EntityID = user.ID;
+                        auditLog.Details = "Update user.";
+                        AuditLogBLL.AddNewAuditLog(auditLog);
+                    }
                     return IsUpdated;
                 }
                 else
@@ -171,24 +200,65 @@ namespace BLL
                 }
             }
 
+            if(IsUpdated)
+               {
+                AuditLog auditLog = new AuditLog();
+                auditLog.UserID = Sessions.CurrentUser.ID;
+                auditLog.ActionDate = DateTime.Now;
+                Actions = eActions.Update;
+                auditLog.Action = Actions.ToString();
+                auditLog.EntityType = EntityType;
+                auditLog.EntityID = user.ID;
+                auditLog.Details = "Update user.";
+                AuditLogBLL.AddNewAuditLog(auditLog);
+            }
             return IsUpdated;
         }
 
-        public static bool DeleteUser(User user)
+        public static bool Deactivate(User user)
         {
+
             RequireAdmin();
 
+            bool IsDeleted=false;
             if (user.ID == Sessions.CurrentUser.ID)
                 throw new BusinessRuleException("You can not delete loging account.");
 
-            return UserDAL.DeleteUser(user);
+            IsDeleted= UserDAL.DeleteUser(user);
+            if (IsDeleted) 
+            {
+                AuditLog auditLog = new AuditLog();
+                auditLog.UserID = Sessions.CurrentUser.ID;
+                auditLog.ActionDate = DateTime.Now;
+                Actions = eActions.Deactivate;
+                auditLog.Action = Actions.ToString();
+                auditLog.EntityType = EntityType;
+                auditLog.EntityID = user.ID;
+                auditLog.Details = "Deactivate user.";
+                AuditLogBLL.AddNewAuditLog(auditLog);
+            }
+            return IsDeleted;
         }
 
         public static bool ActivateUser(int ID)
         {
             RequireAdmin();
 
-            return UserDAL.ActivateUser(ID);
+            bool IsActivated=false;
+            IsActivated= UserDAL.ActivateUser(ID);
+            if (IsActivated) 
+            {
+                AuditLog auditLog = new AuditLog();
+                auditLog.UserID = Sessions.CurrentUser.ID;
+                auditLog.ActionDate = DateTime.Now;
+                Actions = eActions.Activate;
+                auditLog.Action = Actions.ToString();
+                auditLog.EntityType = EntityType;
+                auditLog.EntityID = ID;
+                auditLog.Details = "Activate user.";
+                AuditLogBLL.AddNewAuditLog(auditLog);
+            }
+            return IsActivated;
         }
 
         public static bool UpdateUserPassword(int ID, string OldPassword, string NewPassword)
@@ -205,9 +275,24 @@ namespace BLL
 
             CheckPassword(NewPassword);
 
+            bool IsPassowrdUpdated= false;
             string salt = PasswordHasher.GenerateSalt();
             string hash = PasswordHasher.HashPassword(NewPassword, salt);
-            return UserDAL.UpdateUserPassword(ID, hash, salt);
+            IsPassowrdUpdated= UserDAL.UpdateUserPassword(ID, hash, salt);
+
+            if (IsPassowrdUpdated) 
+            {
+                AuditLog auditLog = new AuditLog();
+                auditLog.UserID = Sessions.CurrentUser.ID;
+                auditLog.ActionDate = DateTime.Now;
+                Actions = eActions.Update;
+                auditLog.Action = Actions.ToString();
+                auditLog.EntityType = EntityType;
+                auditLog.EntityID = ID;
+                auditLog.Details = "Update User's Password.";
+                AuditLogBLL.AddNewAuditLog(auditLog);
+            }
+            return IsPassowrdUpdated;
         }
 
         public static bool Login(string Username, string Password)

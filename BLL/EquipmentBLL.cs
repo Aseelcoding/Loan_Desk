@@ -1,5 +1,6 @@
 ﻿using DAL;
 using LoanDesk.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 
@@ -7,6 +8,9 @@ namespace BLL
 {
     public class EquipmentBLL
     {
+        private enum eActions { Add, Update, Activate, Deactivate };
+        static eActions Actions { get; set; }
+        private static readonly  string EntityType="Equipments";
         private static void CheckEquipment(Equipment NewEquipment)
         {
             utilities.utilities.IsEmptyOrNullOrWhiteSpace(NewEquipment.Name, "Equipment Name");
@@ -40,7 +44,22 @@ namespace BLL
             CheckEquipment(NewEquipment);
             IsEquipmentNameIsTaken(NewEquipment);
 
-            return EquipmentDAL.AddEquipment(NewEquipment);
+            bool IsAdded = false;
+            IsAdded= EquipmentDAL.AddEquipment(NewEquipment);
+            if (IsAdded)
+            {
+                AuditLog auditLog = new AuditLog();
+                auditLog.UserID = Sessions.CurrentUser.ID;
+                auditLog.ActionDate = DateTime.Now;
+                Actions = eActions.Add;
+                auditLog.Action = Actions.ToString();
+                auditLog.EntityType = EntityType;
+                auditLog.EntityID = NewEquipment.ID;
+                auditLog.Details = "Add New Equipment.";
+                AuditLogBLL.AddNewAuditLog(auditLog);
+
+            }
+            return IsAdded;
         }
 
         private static void CalculateAvailablQuantity(Equipment NewEquipment)
@@ -62,7 +81,20 @@ namespace BLL
             CalculateAvailablQuantity(NewEquipment);
             CheckEquipment(NewEquipment);
             IsEquipmentNameIsTaken(NewEquipment);
-            return EquipmentDAL.UdpateEquipment(NewEquipment);
+            bool IsUpdated= EquipmentDAL.UdpateEquipment(NewEquipment);
+            if (IsUpdated)
+            {
+                AuditLog auditLog = new AuditLog();
+                auditLog.UserID = Sessions.CurrentUser.ID;
+                auditLog.ActionDate = DateTime.Now;
+                Actions = eActions.Update;
+                auditLog.Action = Actions.ToString();
+                auditLog.EntityType = EntityType;
+                auditLog.EntityID = NewEquipment.ID;
+                auditLog.Details = "Update Equipment.";
+                AuditLogBLL.AddNewAuditLog(auditLog);
+            }
+            return IsUpdated;
         }
 
         public static Equipment GetEquipmentByID(int EquipmentID)
@@ -73,7 +105,20 @@ namespace BLL
         public static bool ActivateEquipment(int EquipmentID)
         {
             UserBLL.RequireUser();
-            return EquipmentDAL.ActivateEquipment(EquipmentID);
+            bool IsActivated= EquipmentDAL.ActivateEquipment(EquipmentID);
+            if (IsActivated)
+            {
+                AuditLog auditLog = new AuditLog();
+                auditLog.UserID = Sessions.CurrentUser.ID;
+                auditLog.ActionDate = DateTime.Now;
+                Actions = eActions.Activate;
+                auditLog.Action = Actions.ToString();
+                auditLog.EntityType = EntityType;
+                auditLog.EntityID = EquipmentID;
+                auditLog.Details = "Activate Equipment.";
+                AuditLogBLL.AddNewAuditLog(auditLog);
+            }
+            return IsActivated;
         }
 
         public static bool DeactivateEquipment(int EquipmentID)
@@ -84,7 +129,20 @@ namespace BLL
             if (equipment.TotalQuantity != equipment.AvailableQuantity)
                 throw new Exceptions.BusinessRuleException("There are borrowers who are using this equipment.");
             UserBLL.RequireUser();
-            return EquipmentDAL.DeactivateEquipment(EquipmentID);
+            bool IsDeactivated= EquipmentDAL.DeactivateEquipment(EquipmentID);
+            if (IsDeactivated)
+            {
+                AuditLog auditLog = new AuditLog();
+                auditLog.UserID = Sessions.CurrentUser.ID;
+                auditLog.ActionDate = DateTime.Now;
+                Actions = eActions.Deactivate;
+                auditLog.Action = Actions.ToString();
+                auditLog.EntityType = EntityType;
+                auditLog.EntityID = EquipmentID;
+                auditLog.Details = "Deactivate Equipment.";
+                AuditLogBLL.AddNewAuditLog(auditLog);
+            }
+            return IsDeactivated;
         }
 
         public static DataTable GetEquipments()

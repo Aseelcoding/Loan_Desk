@@ -28,6 +28,7 @@ namespace DAL
       ,[Status]
       ,[LateFee]
       ,[FinePaid]
+       ,[ReplacementFee]
   FROM [dbo].[Loans]
 ;";
 
@@ -295,7 +296,7 @@ ORDER BY LoanDate;";
             bool Has = false;
 
             string query = @"select 1 as HasUnpaidFine from Loans
-                        where BorrowerID=1 and  FinePaid =0;";
+                        where BorrowerID=@BorrowerID and  FinePaid =0;";
 
             try
             {
@@ -337,6 +338,7 @@ ORDER BY LoanDate;";
       ,[Status] =@Status
       ,[LateFee] =@LateFee
       ,[FinePaid]=@FinePaid
+       ,[ReplacementFee] = @ReplacementFee
  WHERE ID=@ID;";
 
             try 
@@ -359,7 +361,11 @@ ORDER BY LoanDate;";
                     lateFeeParameter.Precision = 10;
                     lateFeeParameter.Scale = 2;
                     lateFeeParameter.Value = loan.LateFee;
-
+                    SqlParameter replacementFeeParameter =
+    cmd.Parameters.Add("@ReplacementFee", SqlDbType.Decimal);
+                    replacementFeeParameter.Precision = 10;
+                    replacementFeeParameter.Scale = 2;
+                    replacementFeeParameter.Value = loan.ReplacementFee;
                     cmd.Parameters.Add("@ReturnedAt", SqlDbType.DateTime).Value =
                         loan.ReturnedAt.HasValue
                             ? (object)loan.ReturnedAt.Value
@@ -386,6 +392,89 @@ ORDER BY LoanDate;";
 
 
 
+        }
+        public static bool MarkLoanLost(Loan loan)
+        {
+            string query_1 = @"UPDATE [dbo].[Loans]
+        SET [Status]          = @Status,
+            [LateFee]         = @LateFee,
+            [ReplacementFee]  = @ReplacementFee,
+            [FinePaid]        = @FinePaid
+        WHERE [ID] = @LoanID AND [Status] = 'Active';";
+
+            string query_2 = @"UPDATE Equipment
+        SET TotalQuantity = TotalQuantity - @Quantity
+        WHERE ID = @EquipmentID
+          AND TotalQuantity >= @Quantity;";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
+                {
+                    connection.Open();
+
+                    using (SqlTransaction transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            using (SqlCommand cmd = new SqlCommand(query_1, connection, transaction))
+                            {
+                                cmd.Parameters.Add("@LoanID", SqlDbType.Int).Value = loan.ID;
+                                cmd.Parameters.Add("@Status", SqlDbType.VarChar, 25).Value = loan.Status;
+
+                                SqlParameter lateFeeParameter =
+                                    cmd.Parameters.Add("@LateFee", SqlDbType.Decimal);
+                                lateFeeParameter.Precision = 10;
+                                lateFeeParameter.Scale = 2;
+                                lateFeeParameter.Value = loan.LateFee;
+
+                                SqlParameter replacementFeeParameter =
+                                    cmd.Parameters.Add("@ReplacementFee", SqlDbType.Decimal);
+                                replacementFeeParameter.Precision = 10;
+                                replacementFeeParameter.Scale = 2;
+                                replacementFeeParameter.Value = loan.ReplacementFee;
+
+                                cmd.Parameters.Add("@FinePaid", SqlDbType.Bit).Value =
+                                    loan.FinePaid.HasValue
+                                        ? (object)loan.FinePaid.Value
+                                        : DBNull.Value;
+
+                                int affectedRows = cmd.ExecuteNonQuery();
+                                if (affectedRows == 0)
+                                {
+                                    throw new InvalidOperationException(
+                                        "Loan not found or it is no longer active.");
+                                }
+                            }
+
+                            using (SqlCommand cmd = new SqlCommand(query_2, connection, transaction))
+                            {
+                                cmd.Parameters.Add("@EquipmentID", SqlDbType.Int).Value = loan.EquipmentID;
+                                cmd.Parameters.Add("@Quantity", SqlDbType.Int).Value = loan.Quantity;
+
+                                int affectedRows = cmd.ExecuteNonQuery();
+                                if (affectedRows == 0)
+                                {
+                                    throw new InvalidOperationException(
+                                        "Equipment not found or total quantity is too low.");
+                                }
+                            }
+
+                            transaction.Commit();
+                            return true;
+                        }
+                        catch
+                        {
+                            transaction.Rollback();
+                            throw;
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw SqlErrorMapper.Map(ex, "Mark Loan Lost");
+            }
         }
     }
 }
