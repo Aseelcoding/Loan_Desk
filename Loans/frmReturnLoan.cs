@@ -120,6 +120,7 @@ namespace Loan_Desk.Loans
                 if (_loan.Status == "Active")
                     LoansBLL.GetFinalLateFee(_loan);
 
+                btnSave.Visible = _loan.Status == "Active";
                 btnPayFine.Visible = _loan.Status != "Active" &&
                     ((_loan.LateFee > 0 && _loan.FinePaid != true) ||
                      (_loan.ReplacementFee > 0 && _loan.ReplacementPaid != true));
