@@ -75,12 +75,17 @@ namespace Loan_Desk.Loans
                     throw new Exceptions.ValidationException("Borrower not found.");
 
                 txtBorrowerName.Text = borrower.FullName;
-                _labLateFee.Text = _loan.LateFee.ToString("N2");
-                _labReplacementFee.Text = _loan.ReplacementFee.ToString("N2");
-                _labTotalFee.Text = (_loan.LateFee + _loan.ReplacementFee).ToString("N2");
+                decimal lateFeeDue = _loan.LateFee > 0 && _loan.FinePaid != true ? _loan.LateFee : 0m;
+                decimal replacementFeeDue = _loan.ReplacementFee > 0 && _loan.ReplacementPaid != true
+                    ? _loan.ReplacementFee : 0m;
 
-                bool hasUnpaidFee = (_loan.LateFee > 0 && _loan.FinePaid != true)
-                    || (_loan.ReplacementFee > 0 && _loan.ReplacementPaid != true);
+                _labLateFee.Text = _loan.LateFee <= 0 ? "0.00"
+                    : (_loan.FinePaid == true ? "PAID" : _loan.LateFee.ToString("N2"));
+                _labReplacementFee.Text = _loan.ReplacementFee <= 0 ? "0.00"
+                    : (_loan.ReplacementPaid == true ? "PAID" : _loan.ReplacementFee.ToString("N2"));
+                _labTotalFee.Text = (lateFeeDue + replacementFeeDue).ToString("N2");
+
+                bool hasUnpaidFee = lateFeeDue > 0 || replacementFeeDue > 0;
                 btnConfirm.Enabled = hasUnpaidFee;
             }
             catch (Exception ex)
