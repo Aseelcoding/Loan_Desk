@@ -33,8 +33,6 @@
             this.parrotGroupBox4 = new ReaLTaiizor.Controls.ParrotGroupBox();
             this.btnAuditLog = new ReaLTaiizor.Controls.ParrotButton();
             this.parrotGroupBox3 = new ReaLTaiizor.Controls.ParrotGroupBox();
-            this.btnFines = new ReaLTaiizor.Controls.ParrotButton();
-            this.btnReturn = new ReaLTaiizor.Controls.ParrotButton();
             this.btnLoans = new ReaLTaiizor.Controls.ParrotButton();
             this.parrotGroupBox2 = new ReaLTaiizor.Controls.ParrotGroupBox();
             this.btnEquipment = new ReaLTaiizor.Controls.ParrotButton();
@@ -91,12 +89,12 @@
             this.parrotGroupBox4.BorderWidth = 1;
             this.parrotGroupBox4.Controls.Add(this.btnAuditLog);
             this.parrotGroupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.parrotGroupBox4.Location = new System.Drawing.Point(3, 703);
+            this.parrotGroupBox4.Location = new System.Drawing.Point(3, 739);
             this.parrotGroupBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.parrotGroupBox4.Name = "parrotGroupBox4";
             this.parrotGroupBox4.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.parrotGroupBox4.ShowText = true;
-            this.parrotGroupBox4.Size = new System.Drawing.Size(363, 96);
+            this.parrotGroupBox4.Size = new System.Drawing.Size(363, 80);
             this.parrotGroupBox4.TabIndex = 14;
             this.parrotGroupBox4.TabStop = false;
             this.parrotGroupBox4.Text = "Oversight";
@@ -133,72 +131,18 @@
             this.parrotGroupBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(68)))), ((int)(((byte)(86)))));
             this.parrotGroupBox3.BorderColor = System.Drawing.SystemColors.ControlDark;
             this.parrotGroupBox3.BorderWidth = 1;
-            this.parrotGroupBox3.Controls.Add(this.btnFines);
-            this.parrotGroupBox3.Controls.Add(this.btnReturn);
             this.parrotGroupBox3.Controls.Add(this.btnLoans);
             this.parrotGroupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.parrotGroupBox3.Location = new System.Drawing.Point(3, 457);
+            this.parrotGroupBox3.Location = new System.Drawing.Point(3, 576);
             this.parrotGroupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.parrotGroupBox3.Name = "parrotGroupBox3";
             this.parrotGroupBox3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.parrotGroupBox3.ShowText = true;
-            this.parrotGroupBox3.Size = new System.Drawing.Size(363, 209);
+            this.parrotGroupBox3.Size = new System.Drawing.Size(363, 68);
             this.parrotGroupBox3.TabIndex = 13;
             this.parrotGroupBox3.TabStop = false;
             this.parrotGroupBox3.Text = "Circulation";
             this.parrotGroupBox3.TextColor = System.Drawing.SystemColors.ControlDark;
-            // 
-            // btnFines
-            // 
-            this.btnFines.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(68)))), ((int)(((byte)(86)))));
-            this.btnFines.ButtonImage = global::Loan_Desk.Properties.Resources.fine_32;
-            this.btnFines.ButtonStyle = ReaLTaiizor.Controls.ParrotButton.Style.Material;
-            this.btnFines.ButtonText = "Fines";
-            this.btnFines.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
-            this.btnFines.ClickTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(130)))), ((int)(((byte)(140)))));
-            this.btnFines.CornerRadius = 5;
-            this.btnFines.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFines.Font = new System.Drawing.Font("Century", 13.8F, System.Drawing.FontStyle.Bold);
-            this.btnFines.Horizontal_Alignment = System.Drawing.StringAlignment.Near;
-            this.btnFines.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(80)))), ((int)(((byte)(90)))));
-            this.btnFines.HoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(215)))));
-            this.btnFines.ImagePosition = ReaLTaiizor.Controls.ParrotButton.ImgPosition.Left;
-            this.btnFines.Location = new System.Drawing.Point(5, 139);
-            this.btnFines.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnFines.Name = "btnFines";
-            this.btnFines.Size = new System.Drawing.Size(353, 36);
-            this.btnFines.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            this.btnFines.TabIndex = 14;
-            this.btnFines.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(200)))), ((int)(((byte)(185)))));
-            this.btnFines.TextRenderingType = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.btnFines.Vertical_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnFines.Click += new System.EventHandler(this.btnFines_Click);
-            // 
-            // btnReturn
-            // 
-            this.btnReturn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(68)))), ((int)(((byte)(86)))));
-            this.btnReturn.ButtonImage = global::Loan_Desk.Properties.Resources.return_32;
-            this.btnReturn.ButtonStyle = ReaLTaiizor.Controls.ParrotButton.Style.Material;
-            this.btnReturn.ButtonText = "Returns";
-            this.btnReturn.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(75)))), ((int)(((byte)(80)))));
-            this.btnReturn.ClickTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(130)))), ((int)(((byte)(140)))));
-            this.btnReturn.CornerRadius = 5;
-            this.btnReturn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReturn.Font = new System.Drawing.Font("Century", 13.8F, System.Drawing.FontStyle.Bold);
-            this.btnReturn.Horizontal_Alignment = System.Drawing.StringAlignment.Near;
-            this.btnReturn.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(80)))), ((int)(((byte)(90)))));
-            this.btnReturn.HoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(215)))));
-            this.btnReturn.ImagePosition = ReaLTaiizor.Controls.ParrotButton.ImgPosition.Left;
-            this.btnReturn.Location = new System.Drawing.Point(5, 78);
-            this.btnReturn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnReturn.Name = "btnReturn";
-            this.btnReturn.Size = new System.Drawing.Size(348, 36);
-            this.btnReturn.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            this.btnReturn.TabIndex = 12;
-            this.btnReturn.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(200)))), ((int)(((byte)(185)))));
-            this.btnReturn.TextRenderingType = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.btnReturn.Vertical_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
             // 
             // btnLoans
             // 
@@ -237,7 +181,7 @@
             this.parrotGroupBox2.Controls.Add(this.btnBorrowers);
             this.parrotGroupBox2.Controls.Add(this.btnUsers);
             this.parrotGroupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.parrotGroupBox2.Location = new System.Drawing.Point(3, 219);
+            this.parrotGroupBox2.Location = new System.Drawing.Point(5, 284);
             this.parrotGroupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.parrotGroupBox2.Name = "parrotGroupBox2";
             this.parrotGroupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -442,6 +386,7 @@
             this.parrotSlidingPanel1.ResumeLayout(false);
             this.parrotSlidingPanel1.PerformLayout();
             this.parrotGroupBox4.ResumeLayout(false);
+            this.parrotGroupBox4.PerformLayout();
             this.parrotGroupBox3.ResumeLayout(false);
             this.parrotGroupBox3.PerformLayout();
             this.parrotGroupBox2.ResumeLayout(false);
@@ -464,8 +409,6 @@
         private ReaLTaiizor.Controls.ParrotGroupBox parrotGroupBox4;
         private ReaLTaiizor.Controls.ParrotButton btnAuditLog;
         private ReaLTaiizor.Controls.ParrotGroupBox parrotGroupBox3;
-        private ReaLTaiizor.Controls.ParrotButton btnFines;
-        private ReaLTaiizor.Controls.ParrotButton btnReturn;
         private ReaLTaiizor.Controls.ParrotButton btnLoans;
         private ReaLTaiizor.Controls.ParrotButton btnEquipment;
         private ReaLTaiizor.Controls.ParrotButton btnBorrowers;

@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuditLogDAL.cs" />
     <Compile Include="BorrowersDAL.cs" />
     <Compile Include="EquipmentDAL.cs" />
     <Compile Include="LoansDAL.cs" />

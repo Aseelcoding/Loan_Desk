@@ -110,10 +110,11 @@ GROUP BY B.ID, B.FullName, B.Passport, B.Phone, B.IsActive;";
 
         public static bool AddNewBorrower(Borrower Newborrower)
         {
-            bool IsAdded = false;
+            
 
             string query = @"INSERT  INTO [dbo].[Borrowers] ([FullName], [Passport], [Phone], [IsActive])
-                            VALUES                        (@FullName, @Passport, @Phone, @IsActive);";
+                            VALUES                        (@FullName, @Passport, @Phone, @IsActive);
+                                            SCOPE_IDENTITY() ; ";
 
             try
             {
@@ -126,10 +127,16 @@ GROUP BY B.ID, B.FullName, B.Passport, B.Phone, B.IsActive;";
                     cmd.Parameters.AddWithValue("@IsActive", Newborrower.IsActive);
                     connection.Open();
 
-                    int AffectedRows = cmd.ExecuteNonQuery();
+                    object Result = cmd.ExecuteScalar();
 
-                    if (AffectedRows > 0)
-                        IsAdded = true;
+                    int BOID = -1;
+                    if (int.TryParse(Result.ToString(), out BOID))
+                    {
+                        Newborrower.ID = BOID;
+                        return true;
+                    }
+                    else
+                        return false;
                 }
             }
             catch (SqlException ex)
@@ -137,7 +144,7 @@ GROUP BY B.ID, B.FullName, B.Passport, B.Phone, B.IsActive;";
                 throw SqlErrorMapper.Map(ex, "Add New borrower");
             }
 
-            return IsAdded;
+          
         }
 
         public static Borrower GetBorrowerByID(int BorrowerID)

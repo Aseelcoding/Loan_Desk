@@ -8,6 +8,10 @@ namespace BLL
 {
     public class LoansBLL
     {
+        
+        private enum eActions { Add, Return, PayFine, MarkLost };
+        static eActions Actions { get; set; }
+        private static readonly string EntityType = "Loans";
         private static void LoanDefaultData(Loan Loan)
         {
             Loan.LoanedAt = DateTime.Now;
@@ -65,31 +69,33 @@ namespace BLL
 
             foreach (DataRow row in dtLoans.Rows)
             {
-                DateTime.TryParse(row["DueAt"].ToString(), out DateTime dueAt);
 
-                int daysLate = Math.Max(0, (DateTime.Today - dueAt.Date).Days);
-
-                if (daysLate <= 0)
+                if (row["Status"].ToString() != "Returned" && row["Status"].ToString() != "Lost")
                 {
-                    row["LateFee"] = 0m;
-                    continue;
+                    DateTime.TryParse(row["DueAt"].ToString(), out DateTime dueAt);
+                    int daysLate = Math.Max(0, (DateTime.Today - dueAt.Date).Days);
+
+                    if (daysLate <= 0)
+                    {
+                        row["LateFee"] = 0m;
+                        continue;
+                    }
+
+                    int.TryParse(row["EquipmentID"].ToString(), out int eqID);
+
+                    Equipment equipment = equipments.Find(item => item.ID == eqID);
+
+                    if (equipment == null)
+                        continue;
+
+                    decimal lateFee = equipment.DailyLateFee * daysLate;
+
+                    row["LateFee"] = lateFee;
+                    if (lateFee > 0 && row["FinePaid"] == DBNull.Value)
+                    {
+                        row["FinePaid"] = false;
+                    }
                 }
-               
-                int.TryParse(row["EquipmentID"].ToString(), out int eqID);
-
-                Equipment equipment = equipments.Find(item => item.ID == eqID);
-
-                if (equipment == null)
-                    continue;
-
-                decimal lateFee = equipment.DailyLateFee * daysLate;
-
-                row["LateFee"] = lateFee;
-                if (lateFee > 0 && row["FinePaid"] == DBNull.Value)
-                {
-                    row["FinePaid"] = false;
-                }
-
             }
 
             return dtLoans;
@@ -97,22 +103,20 @@ namespace BLL
 
         public static void GetFinalLateFee(Loan loan) 
         {
-            if(loan.ReturnedAt !=null&& Math.Max(0, (loan.ReturnedAt.Value.Date - loan.DueAt.Date).Days)==0) 
-            {
-                loan.LateFee = 0;
-                return;
-            }
-
-
-
-            int daysLate = Math.Max(0, (DateTime.Today - loan.DueAt.Date).Days);
-
-            Equipment equipment = EquipmentBLL.GetEquipmentByID(loan.EquipmentID);
+            Equipment equipment =
+        EquipmentBLL.GetEquipmentByID(loan.EquipmentID);
 
             if (equipment == null)
                 throw new Exceptions.ValidationException("Equipment not found.");
 
-            
+            DateTime calculationDate =
+                loan.ReturnedAt?.Date ?? DateTime.Today;
+
+            int daysLate = Math.Max(
+                0,
+                (calculationDate - loan.DueAt.Date).Days
+            );
+
             decimal lateFee = equipment.DailyLateFee * daysLate;
 
             loan.LateFee = lateFee;
@@ -120,35 +124,66 @@ namespace BLL
             if (lateFee > 0 && loan.FinePaid == null)
                 loan.FinePaid = false;
 
-            
+
         }
         public static bool PayFine(Loan loan)
         {
 
-
+            bool IsFinePaid = false;
             UserBLL.RequireUser();
-            if (loan.LateFee <= 0)
-                throw new Exceptions.ValidationException($"There is no late fee for loan with the ID :{loan.ID}");
-            if (loan.Status != "Returned")
-                throw new Exceptions.BusinessRuleException("Please first return the equipemnt\nafter that you can pay the fine.");
+      
 
+            decimal totalDue = loan.LateFee + loan.ReplacementFee;
 
-
+            if (totalDue <= 0)
+                throw new Exceptions.ValidationException($"There is no fee due for loan with the ID :{loan.ID}");
+            if (loan.Status == "Active")
+                throw new Exceptions.BusinessRuleException("Please first return the equipment\nafter that you can pay the fine.");
+            if (loan.FinePaid == true)
+                throw new Exceptions.BusinessRuleException("This loan is already paid.");
             loan.FinePaid = true;
-           return UpdateLoan(loan);
-
+            IsFinePaid= UpdateLoan(loan);
+            if (IsFinePaid) 
+            {
+                AuditLog auditLog = new AuditLog();
+                auditLog.UserID = Sessions.CurrentUser.ID;
+                auditLog.ActionDate = DateTime.Now;
+                Actions = eActions.PayFine;
+                auditLog.Action = Actions.ToString();
+                auditLog.EntityType = EntityType;
+                auditLog.EntityID = loan.ID;
+                auditLog.Details = "Pay Loan Fine.";
+                AuditLogBLL.AddNewAuditLog(auditLog);
+            }
+            return IsFinePaid;
         }
         public static bool AddLoan(LoanDesk.Models.Loan NewLoan)
         {
+            bool IsAdded = false;
             UserBLL.RequireUser();
             LoanDefaultData(NewLoan);
             ValidateLoan(NewLoan);
             LoanDefaultData(NewLoan);
-            return LoansDAL.AddLoan(NewLoan);
+            IsAdded= LoansDAL.AddLoan(NewLoan);
+
+            if (IsAdded) 
+            {
+                AuditLog auditLog = new AuditLog();
+                auditLog.UserID = Sessions.CurrentUser.ID;
+                auditLog.ActionDate = DateTime.Now;
+                Actions = eActions.Add;
+                auditLog.Action = Actions.ToString();
+                auditLog.EntityType = EntityType;
+                auditLog.EntityID = NewLoan.ID;
+                auditLog.Details = "Add New Loan.";
+                AuditLogBLL.AddNewAuditLog(auditLog);
+            }
+            return IsAdded;
         }
 
         private static bool UpdateLoan(Loan loan) 
         {
+            
             return LoansDAL.UpdateLoan(loan);
         }
 
@@ -162,6 +197,8 @@ DateTime EndDate)
         {
             //first we will check if the current user is active or not
             UserBLL.RequireUser();
+            if (ReturnedLoan.Status != "Active")
+                throw new Exceptions.BusinessRuleException("This loan has been returned.");
             //here we will set the correct data of equipment and send it with tha loan to update them togather using transaction
             Equipment equipment = EquipmentBLL.GetEquipmentByID(ReturnedLoan.EquipmentID);
             equipment.AvailableQuantity += ReturnedLoan.Quantity;
@@ -169,10 +206,61 @@ DateTime EndDate)
             ReturnedLoan.ReturnedAt = DateTime.Now;
             ReturnedLoan.Status = "Returned";
 
+            GetFinalLateFee(ReturnedLoan);
+            bool IsReturned = false;
+            IsReturned= LoansDAL.ReturnEquipment(ReturnedLoan, equipment);
 
-            return LoansDAL.ReturnEquipment(ReturnedLoan, equipment);
+            if (IsReturned) 
+            {
+                AuditLog auditLog = new AuditLog();
+                auditLog.UserID = Sessions.CurrentUser.ID;
+                auditLog.ActionDate = DateTime.Now;
+                Actions = eActions.Return;
+                auditLog.Action = Actions.ToString();
+                auditLog.EntityType = EntityType;
+                auditLog.EntityID = ReturnedLoan.ID;
+                auditLog.Details = "Return Loan.";
+                AuditLogBLL.AddNewAuditLog(auditLog);
 
+            }
+            return IsReturned;
+        }
+        public static void CalculateReplacementFee(Loan Loan) 
+        {
+            Equipment equipment = EquipmentBLL.GetEquipmentByID(Loan.EquipmentID);
+            Loan.ReplacementFee = equipment.ReplacementCost * Loan.Quantity;
 
+         
+
+        }
+
+        public static bool MarkLoanLost(Loan Loan) 
+        {
+            UserBLL.RequireUser();
+
+            if (Loan.Status != "Active")
+                throw new Exceptions.BusinessRuleException("Only an active loan can be marked as lost.");
+
+            Loan.Status = "Lost";
+            GetFinalLateFee(Loan);          
+            CalculateReplacementFee(Loan);  
+            Loan.FinePaid = false;         
+
+            bool IsUpdated = LoansDAL.MarkLoanLost(Loan);  
+
+            if (IsUpdated)
+            {
+                AuditLog auditLog = new AuditLog();
+                auditLog.UserID = Sessions.CurrentUser.ID;
+                auditLog.ActionDate = DateTime.Now;
+                Actions = eActions.MarkLost;
+                auditLog.Action = Actions.ToString();
+                auditLog.EntityType = EntityType;
+                auditLog.EntityID = Loan.ID;
+                auditLog.Details = "Mark as lost.";
+                AuditLogBLL.AddNewAuditLog(auditLog);
+            }
+            return IsUpdated;
         }
 
     }

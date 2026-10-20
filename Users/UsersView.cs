@@ -168,7 +168,7 @@ namespace Loan_Desk.Users
             RefreshData();
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void btnDeactivate_Click(object sender, EventArgs e)
         {
             bool IsDeleted = false;
 
@@ -185,7 +185,7 @@ namespace Loan_Desk.Users
                 if (user.IsActive == false)
                 { MessageBox.Show("This user is already Inactive."); return; }
 
-                IsDeleted = UserBLL.DeleteUser(user);
+                IsDeleted = UserBLL.Deactivate(user);
                 if (IsDeleted)
                     MessageBox.Show("User now is Inactive.");
                 else

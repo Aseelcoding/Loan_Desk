@@ -77,21 +77,6 @@ namespace Loan_Desk.Main_Screen
             this.PanleTopInfo.Title = "Loans View";
         }
 
-        private void btnReturn_Click(object sender, EventArgs e)
-        {
-            Returns.ReturnsView returnsView = new Returns.ReturnsView();
-            ContentPanel.Controls.Clear();
-            ContentPanel.Controls.Add(returnsView);
-            this.PanleTopInfo.Title = "Returns View";
-        }
-
-        private void btnFines_Click(object sender, EventArgs e)
-        {
-            Fines.FinesView finesView = new Fines.FinesView();
-            ContentPanel.Controls.Clear();
-            ContentPanel.Controls.Add(finesView);
-            this.PanleTopInfo.Title = "Fines View";
-        }
 
         private void btnAuditLog_Click(object sender, EventArgs e)
         {

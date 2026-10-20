@@ -151,7 +151,7 @@ namespace Loan_Desk.Borrowers
             RefreshData();
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void btnDeactivate_Click(object sender, EventArgs e)
         {
             bool IsDeleted = false;
             LoanDesk.Models.Borrower borrower = GetSelectedRow();

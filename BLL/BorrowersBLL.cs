@@ -1,5 +1,6 @@
 ﻿using DAL;
 using LoanDesk.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 
@@ -7,6 +8,9 @@ namespace BLL
 {
     public class BorrowersBLL
     {
+        private enum eActions { Add, Update, Activate, Deactivate };
+        static eActions Actions { get; set;}
+        private static readonly string EntityType = "Borrowers";
         private static void EnsurePassportUnique(Borrower borrower)
         {
             Borrower existing = BorrowersDAL.GetBorrowerByPassport(borrower.Passport);
@@ -46,12 +50,28 @@ namespace BLL
 
         public static bool AddNewBorrower(Borrower Newborrower)
         {
+
             UserBLL.RequireUser();
             ValidateBorrower(Newborrower);
 
             EnsurePassportUnique(Newborrower);
 
-            return BorrowersDAL.AddNewBorrower(Newborrower);
+            bool IsAdded = false;
+            IsAdded= BorrowersDAL.AddNewBorrower(Newborrower);
+
+            if (IsAdded) 
+            {
+                AuditLog auditLog = new AuditLog();
+                auditLog.UserID = Sessions.CurrentUser.ID;
+                auditLog.ActionDate = DateTime.Now;
+                Actions = eActions.Add;
+                auditLog.Action = Actions.ToString();
+                auditLog.EntityType = EntityType;
+                auditLog.EntityID = Newborrower.ID;
+                auditLog.Details = "Add new borrower.";
+                AuditLogBLL.AddNewAuditLog(auditLog);
+            }
+            return IsAdded;
         }
 
         public static Borrower GetBorrowerByID(int BorrowerID)
@@ -72,8 +92,22 @@ namespace BLL
             ValidateBorrower(borrower);
 
             EnsurePassportUnique(borrower);
+            bool IsUpdated = false;
+            IsUpdated= BorrowersDAL.UpdateBorrower(borrower);
+            if (IsUpdated)
+            {
+                AuditLog auditLog = new AuditLog();
+                auditLog.UserID = Sessions.CurrentUser.ID;
+                auditLog.ActionDate = DateTime.Now;
+                Actions = eActions.Update;
+                auditLog.Action = Actions.ToString();
+                auditLog.EntityType = EntityType;
+                auditLog.EntityID = borrower.ID;
+                auditLog.Details = "Update borrower.";
+                AuditLogBLL.AddNewAuditLog(auditLog);
 
-            return BorrowersDAL.UpdateBorrower(borrower);
+            }
+            return IsUpdated;
         }
 
         public static bool DeactivateBorrowerByID(int BorrowerID)
@@ -82,13 +116,42 @@ namespace BLL
             if (BorrowersDAL.GetActiveLoansCountByBorrowerID(BorrowerID) >= 1)
                 throw new Exceptions.BusinessRuleException($"This borrower with the ID {BorrowerID} has active loans.\nDeactivate loans first.");
 
-            return BorrowersDAL.DeactivateBorrowerByID(BorrowerID);
+            bool IsDeactivated = false;
+            IsDeactivated= BorrowersDAL.DeactivateBorrowerByID(BorrowerID);
+
+            if (IsDeactivated)
+            {
+                AuditLog auditLog = new AuditLog();
+                auditLog.UserID = Sessions.CurrentUser.ID;
+                auditLog.ActionDate = DateTime.Now;
+                Actions = eActions.Deactivate;
+                auditLog.Action = Actions.ToString();
+                auditLog.EntityType = EntityType;
+                auditLog.EntityID = BorrowerID;
+                auditLog.Details = "Deactivate borrower.";
+                AuditLogBLL.AddNewAuditLog(auditLog);
+            }
+            return IsDeactivated;
         }
 
         public static bool ActivateBorrowerByID(int BorrowerID)
         {
             UserBLL.RequireUser();
-            return BorrowersDAL.ActivateBorrowerByID(BorrowerID);
+            bool IsActivated= BorrowersDAL.ActivateBorrowerByID(BorrowerID);
+
+            if (IsActivated)
+            {
+                AuditLog auditLog = new AuditLog();
+                auditLog.UserID = Sessions.CurrentUser.ID;
+                auditLog.ActionDate = DateTime.Now;
+                Actions = eActions.Activate;
+                auditLog.Action = Actions.ToString();
+                auditLog.EntityType = EntityType;
+                auditLog.EntityID = BorrowerID;
+                auditLog.Details = "Activate borrower.";
+                AuditLogBLL.AddNewAuditLog(auditLog);
+            }
+            return IsActivated;
         }
 
         public static bool IsActive(int ID)
