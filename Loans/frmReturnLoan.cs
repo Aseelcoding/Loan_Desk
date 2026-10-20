@@ -111,10 +111,18 @@ namespace Loan_Desk.Loans
                 //2.late fee information
                 txtReturnDate.Text = DateTime.Now.ToString();
 
-                int daysLate = Math.Max(0, (DateTime.Today - _loan.DueAt.Date).Days);
+                DateTime feeEndDate = _loan.ReturnedAt.HasValue
+                    ? _loan.ReturnedAt.Value.Date
+                    : DateTime.Today;
+                int daysLate = Math.Max(0, (feeEndDate - _loan.DueAt.Date).Days);
                 numOverdueDays.Value = daysLate;
 
-                LoansBLL.GetFinalLateFee(_loan);
+                if (_loan.Status == "Active")
+                    LoansBLL.GetFinalLateFee(_loan);
+
+                btnPayFine.Visible = _loan.Status != "Active" &&
+                    ((_loan.LateFee > 0 && _loan.FinePaid != true) ||
+                     (_loan.ReplacementFee > 0 && _loan.ReplacementPaid != true));
 
 
               
