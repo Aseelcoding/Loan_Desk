@@ -69,8 +69,11 @@ namespace BLL
             foreach (DataRow row in dtLoans.Rows)
             {
                 DateTime.TryParse(row["DueAt"].ToString(), out DateTime dueAt);
+                DateTime feeEndDate = row["ReturnedAt"] != DBNull.Value
+                    ? Convert.ToDateTime(row["ReturnedAt"]).Date
+                    : DateTime.Today;
 
-                int daysLate = Math.Max(0, (DateTime.Today - dueAt.Date).Days);
+                int daysLate = Math.Max(0, (feeEndDate - dueAt.Date).Days);
 
                 if (daysLate <= 0)
                 {
