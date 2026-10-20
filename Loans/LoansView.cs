@@ -191,7 +191,7 @@ namespace Loan_Desk.Loans
                 loan.Quantity = Convert.ToInt32(row.Cells["Quantity"].Value);
                 loan.LoanedAt = Convert.ToDateTime(row.Cells["LoanedAt"].Value);
                 loan.DueAt = Convert.ToDateTime(row.Cells["DueAt"].Value);
-
+                loan.ReplacementFee = Convert.ToDecimal(row.Cells["ReplacementFee"].Value);
                 if (row.Cells["ReturnedAt"].Value != DBNull.Value)
                     loan.ReturnedAt = Convert.ToDateTime(row.Cells["ReturnedAt"].Value);
 
