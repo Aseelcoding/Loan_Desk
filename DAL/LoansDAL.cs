@@ -28,6 +28,9 @@ namespace DAL
       ,[Status]
       ,[LateFee]
       ,[FinePaid]
+      ,[LostQuantity]
+      ,[ReplacementFee]
+      ,[ReplacementPaid]
   FROM [dbo].[Loans]
 ;";
 
@@ -56,11 +59,11 @@ namespace DAL
         INSERT INTO [dbo].[Loans]
         ([EquipmentID], [BorrowerID], [UserID], [Quantity],
          [LoanedAt], [DueAt], [ReturnedAt], [Status],
-         [LateFee], [FinePaid])
+         [LateFee], [FinePaid], [LostQuantity], [ReplacementFee], [ReplacementPaid])
         VALUES
         (@EquipmentID, @BorrowerID, @UserID, @Quantity,
          @LoanedAt, @DueAt, @ReturnedAt, @Status,
-         @LateFee, @FinePaid);";
+         @LateFee, @FinePaid, @LostQuantity, @ReplacementFee, @ReplacementPaid);";
 
             string query_2 = @"
         UPDATE Equipment
@@ -102,6 +105,12 @@ namespace DAL
                                 cmd.Parameters.Add("@FinePaid", SqlDbType.Bit).Value =
                                     NewLoan.FinePaid.HasValue
                                         ? (object)NewLoan.FinePaid.Value
+                                        : DBNull.Value;
+                                cmd.Parameters.Add("@LostQuantity", SqlDbType.Int).Value = NewLoan.LostQuantity;
+                                AddMoneyParameter(cmd, "@ReplacementFee", NewLoan.ReplacementFee);
+                                cmd.Parameters.Add("@ReplacementPaid", SqlDbType.Bit).Value =
+                                    NewLoan.ReplacementPaid.HasValue
+                                        ? (object)NewLoan.ReplacementPaid.Value
                                         : DBNull.Value;
 
                                 cmd.ExecuteNonQuery();
@@ -145,8 +154,12 @@ namespace DAL
         SET [ReturnedAt] = @ReturnedAt,
             [Status]     = @Status,
             [LateFee]    = @LateFee,
-            [FinePaid]   = @FinePaid
-        WHERE [ID] = @LoanID;";
+            [FinePaid]   = @FinePaid,
+            [LostQuantity] = @LostQuantity,
+            [ReplacementFee] = @ReplacementFee,
+            [ReplacementPaid] = @ReplacementPaid
+        WHERE [ID] = @LoanID
+          AND [Status] = 'Active';";
 
             string query_2 = @"
             UPDATE Equipment
@@ -186,8 +199,16 @@ namespace DAL
                                     ReturnedLoan.FinePaid.HasValue
                                         ? (object)ReturnedLoan.FinePaid.Value
                                         : DBNull.Value;
+                                cmd.Parameters.Add("@LostQuantity", SqlDbType.Int).Value = ReturnedLoan.LostQuantity;
+                                AddMoneyParameter(cmd, "@ReplacementFee", ReturnedLoan.ReplacementFee);
+                                cmd.Parameters.Add("@ReplacementPaid", SqlDbType.Bit).Value =
+                                    ReturnedLoan.ReplacementPaid.HasValue
+                                        ? (object)ReturnedLoan.ReplacementPaid.Value
+                                        : DBNull.Value;
 
-                                cmd.ExecuteNonQuery();
+                                int loanRows = cmd.ExecuteNonQuery();
+                                if (loanRows == 0)
+                                    throw new InvalidOperationException("This loan was already processed or could not be found.");
                             }
 
                             using (SqlCommand cmd = new SqlCommand(query_2, connection, transaction))
@@ -295,7 +316,7 @@ ORDER BY LoanDate;";
             bool Has = false;
 
             string query = @"select 1 as HasUnpaidFine from Loans
-                        where BorrowerID=1 and  FinePaid =0;";
+                        where BorrowerID=@BorrowerID and FinePaid =0;";
 
             try
             {
@@ -321,6 +342,14 @@ ORDER BY LoanDate;";
             return Has;
         }
 
+        private static void AddMoneyParameter(SqlCommand cmd, string name, decimal value)
+        {
+            SqlParameter parameter = cmd.Parameters.Add(name, SqlDbType.Decimal);
+            parameter.Precision = 18;
+            parameter.Scale = 6;
+            parameter.Value = value;
+        }
+
         public static bool UpdateLoan(Loan loan) 
         {
 
@@ -337,6 +366,9 @@ ORDER BY LoanDate;";
       ,[Status] =@Status
       ,[LateFee] =@LateFee
       ,[FinePaid]=@FinePaid
+      ,[LostQuantity]=@LostQuantity
+      ,[ReplacementFee]=@ReplacementFee
+      ,[ReplacementPaid]=@ReplacementPaid
  WHERE ID=@ID;";
 
             try 
@@ -368,6 +400,12 @@ ORDER BY LoanDate;";
                     cmd.Parameters.Add("@FinePaid", SqlDbType.Bit).Value =
                         loan.FinePaid.HasValue
                             ? (object)loan.FinePaid.Value
+                            : DBNull.Value;
+                    cmd.Parameters.Add("@LostQuantity", SqlDbType.Int).Value = loan.LostQuantity;
+                    AddMoneyParameter(cmd, "@ReplacementFee", loan.ReplacementFee);
+                    cmd.Parameters.Add("@ReplacementPaid", SqlDbType.Bit).Value =
+                        loan.ReplacementPaid.HasValue
+                            ? (object)loan.ReplacementPaid.Value
                             : DBNull.Value;
 
                     int AAffectedRows = cmd.ExecuteNonQuery();
