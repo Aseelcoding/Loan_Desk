@@ -388,7 +388,7 @@ ORDER BY LoanDate;";
             bool Has = false;
 
             string query = @"select 1 as HasUnpaidFine from Loans
-                        where BorrowerID=@BorrowerID and FinePaid =0;";
+                        where BorrowerID=@BorrowerID and (FinePaid = 0 OR ReplacementPaid = 0);";
 
             try
             {
