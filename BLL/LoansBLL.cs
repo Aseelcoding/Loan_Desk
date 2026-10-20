@@ -14,6 +14,9 @@ namespace BLL
             Loan.DueAt = DateTime.Now.AddDays(3);
             Loan.Status = "Active";
             Loan.LateFee = 0;
+            Loan.LostQuantity = 0;
+            Loan.ReplacementFee = 0;
+            Loan.ReplacementPaid = null;
         }
 
         private static void ValidateLoan(Loan Loan)
@@ -122,22 +125,52 @@ namespace BLL
 
             
         }
+        public static decimal CalculateReplacementFee(Loan loan, int lostQuantity)
+        {
+            if (loan == null)
+                throw new Exceptions.ValidationException("Please choose a valid loan.");
+
+            if (loan.Status != "Lost")
+                throw new Exceptions.BusinessRuleException("Replacement fees can only be calculated for a lost loan.");
+
+            if (lostQuantity < 1 || lostQuantity > loan.Quantity)
+                throw new Exceptions.ValidationException("Lost quantity must be between 1 and the loan quantity.");
+
+            Equipment equipment = EquipmentBLL.GetEquipmentByID(loan.EquipmentID);
+            if (equipment == null)
+                throw new Exceptions.ValidationException("Equipment not found.");
+
+            loan.LostQuantity = lostQuantity;
+            loan.ReplacementFee = equipment.ReplacementCost * lostQuantity;
+            loan.ReplacementPaid = loan.ReplacementFee > 0 ? (bool?)false : null;
+            return loan.ReplacementFee;
+        }
+
         public static bool PayFine(Loan loan)
         {
-
-
             UserBLL.RequireUser();
-            if (loan.LateFee <= 0)
-                throw new Exceptions.ValidationException($"There is no late fee for loan with the ID :{loan.ID}");
-            if (loan.Status != "Returned")
-                throw new Exceptions.BusinessRuleException("Please first return the equipemnt\nafter that you can pay the fine.");
 
+            if (loan == null)
+                throw new Exceptions.ValidationException("Please choose a valid loan.");
 
+            if (loan.Status != "Returned" && loan.Status != "Lost")
+                throw new Exceptions.BusinessRuleException("Return or mark the equipment as lost before taking payment.");
 
-            loan.FinePaid = true;
-           return UpdateLoan(loan);
+            bool hasUnpaidLateFee = loan.LateFee > 0 && loan.FinePaid != true;
+            bool hasUnpaidReplacementFee = loan.ReplacementFee > 0 && loan.ReplacementPaid != true;
 
+            if (!hasUnpaidLateFee && !hasUnpaidReplacementFee)
+                throw new Exceptions.ValidationException("There are no unpaid fees for this loan.");
+
+            if (loan.LateFee > 0)
+                loan.FinePaid = true;
+
+            if (loan.ReplacementFee > 0)
+                loan.ReplacementPaid = true;
+
+            return UpdateLoan(loan);
         }
+
         public static bool AddLoan(LoanDesk.Models.Loan NewLoan)
         {
             UserBLL.RequireUser();
